@@ -1,0 +1,7 @@
+In payment term master add prepay payment term check box.
+
+
+If that check box is true and payment term is assigned to customer then in sales order and sales quotation list page those order's should line should be in red color.
+ (If red color is already used kindly discuss.)
+
+Also add filter and group by function in search of sales order/quotation and on customer.

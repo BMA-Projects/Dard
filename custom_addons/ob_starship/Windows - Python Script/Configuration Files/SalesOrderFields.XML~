@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FSI_InputFields>
+    <FSIField>
+        <FieldName>Sales Order Number</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Sales Order Number on the Main tab of the Sales Order Entry screen.</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Cust No.</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Customer Number on Main tab of the Sales Order Entry screen.</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To Address Line 1</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To Address Line 1</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To Address Line 2</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To Address Line 2</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To Name</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To Name</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To Country</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To Country</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To City</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To City</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To Zip</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To Zip</Description>
+    </FSIField>
+    <FSIField>
+        <FieldName>Ship To State</FieldName>
+        <IsNumeric>False</IsNumeric>
+        <HasValueList>False</HasValueList>
+        <Description>Ship To State</Description>
+    </FSIField>
+  <FSIField>
+    <FieldName>LineNumber</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Line Number</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>Item No.</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Item No.</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>Item UOM</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Item UOM</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>Item Description</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Item Description</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>Ordered Units</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Ordered Units</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>Item Unit Price</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Item Unit Price</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>Unit Weight</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>Unit Weight</Description>
+  </FSIField>
+  <FSIField>
+    <FieldName>ATTENTION</FieldName>
+    <IsNumeric>False</IsNumeric>
+    <HasValueList>False</HasValueList>
+    <Description>ATTENTION</Description>
+  </FSIField>
+
+ 
+</FSI_InputFields>

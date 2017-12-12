@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    	
+        <record id="email_template_so_reset_notification" model="email.template">
+            <field name="name">SO Reset E-mail Template</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">SO : ${object.name} reset.</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+
+		<div>
+			<p>
+			<strong>Hello,</strong>
+			</p>  
+			<p>
+			SO : ${object.name} Reset.So cancel its respective Manufacturing Order.
+			</p>
+		</div>
+
+            ]]></field>
+        </record>
+        
+            	
+		<record id="email_template_so_cancel_notification" model="email.template">
+            <field name="name">SO Cancel E-mail Template</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">SO : ${object.name} cancelled.</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+
+		<div>
+			<p>
+			<strong>Hello,</strong>
+			</p>  
+			<p>
+			SO : ${object.name} Cancelled. So cancel its respective Manufacturing Order.
+			</p>
+		</div>
+
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

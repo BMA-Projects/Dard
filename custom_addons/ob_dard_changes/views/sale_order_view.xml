@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_order_form_inherit_for_hide_numbers" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.for.hide.numbers</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="so_partners.view_partner_multiple_values_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='asi_number']" position="replace">
+                    <field name="asi_number" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='pppc_number']" position="replace">
+                    <field name="pppc_number" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='sage_number']" position="replace">
+                    <field name="sage_number" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='asi_number']" position="before">
+                    <field name="old_customer_number" attrs="{'invisible':[('is_company','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_order_line_image_form_inherit111" model="ir.ui.view">
+		    <field name="name">sale.order.line.images.form1</field>
+		    <field name="model">sale.order.line.images</field>
+		    <field name="inherit_id" ref="ob_sale_artwork.view_order_line_image_form"/>
+		    <field name="arch" type="xml">
+			    <xpath expr="//field[@name='virtual_file']" position="attributes">
+			    	<attribute name="invisible">True</attribute>
+			    </xpath>
+		        <xpath expr="//field[@name='virtual_file']" position="after">
+		            <field name="virtual_file_path" widget="image_pdf_multi" options="{'custom_img': True}" attrs="{'invisible':['|',('art_image','=',False),('is_url','=',True)],'readonly': [('state','=','send_for_approval'),('state','=','confirmed')]}" groups="ob_sale_artwork.group_virtual_team"/>
+		        </xpath>
+		    </field>
+		</record>
+        
+        <record id="sale_order_form_inherit_for_hide_email" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.for.hide.email</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="ob_sale_artwork.view_partner_form_inherit_email" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='confirm_email']" position="replace">
+                    <field name="confirm_email" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='ship_track_email']" position="replace">
+                    <field name="ship_track_email" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='order_proof_email']" position="replace">
+                    <field name="order_proof_email" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_form_inherit_for_hide_shipping_accounting_tab" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.for.hide.shipping.accounting.tab</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="shipping_pragtech.shipping_partners_form_inherit_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Shipping Accounts']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('supplier', '=', True), ('customer', '=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_order_form_scheduled_dt_inherit" model="ir.ui.view">
+            <field name="name">view.order.form.scheduled.dt.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_scheduled_date.view_order_form_scheduled_dt" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='in_hand_date_visible']" position="replace">
+                    <field name="in_hand_date_visible" invisible="1"/>
+                </xpath>
+                <xpath expr="/form/sheet/group/group/field[@name='partner_shipping_id']" position="attributes">
+                     <attribute name="context">{'is_customer_shipped':True, 'readonly_customer': True, 'tree_view_ref': 'ob_tag_master.partner_shipping_id_tree_view'}</attribute>
+                     <!-- <attribute name="domain">[('is_company', '=', True)]</attribute> -->
+               </xpath>
+               <xpath expr="/form/sheet/group/group/field[@name='partner_id']" position="attributes">
+                     <attribute name="context">{'search_default_customer':1, 'show_address': 1, 'tree_view_ref': 'ob_tag_master.partner_shipping_id_tree_view'}</attribute>
+               </xpath>
+               <xpath expr="//button[@name='action_button_confirm']" position="after">
+                    <field name="ticket_generated" invisible="1"/>
+                    <field name="ticket_button_visible" invisible="1"/>
+                    <field name="generated_by_admin" invisible="1"/>
+                    <field name="generated_by_oem" invisible="1"/>
+                    <field name="temp_bool" invisible="1"/>
+                    <button string="Generate Ticket" name="generate_ticket" type="object" attrs="{'invisible':['|', '|', ('ticket_button_visible', '=', False), ('ticket_generated','=',True),('state','in', ['draft','sent','prepared','cancel'])]}" groups='ob_order_entry.group_virtual_data_entry_internal'/>
+                    <button string="Generate Ticket" name="generate_ticket" type="object" class="btn disabled" attrs="{'invisible':['|',('ticket_button_visible', '=', False),('ticket_generated','=',False)]}" groups='ob_order_entry.group_virtual_data_entry_internal'/>
+                </xpath>
+                <xpath expr="//field[@name='address_allotment_id']" position="after">
+                    <field name="additional_product_components"/>
+                </xpath>
+                <!--  -->
+            </field>
+        </record>
+        
+        
+        <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+            <field name="name">sale.order.list.select.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+            	
+            	<xpath expr="//field[@name='product_id']" position="after">
+                    <field name="ticket_generated"/>
+                </xpath>
+                
+                <xpath expr="//filter[@string='Done']" position="after">
+                    <filter string="Ticket Not Generated" domain="[('ticket_generated','=',False),('generated_by_oem','=',False),('generated_by_admin','=',False),('is_mo_created','=',True),('state','in',['progress'])]"/>
+                </xpath>
+                
+
+
+<!--                 <xpath expr="//filter[@string='Done']" position="after"> -->
+<!--                     <filter string="Ticket Generated" domain="[('ticket_generated','=',True)]" /> -->
+<!--                 </xpath> -->
+                
+                
+<!--                 <xpath expr="//group[@string='Group By']" position="inside"> -->
+<!--                     <filter string="Ticket Generated" domain="[]" context="{'group_by':'ticket_generated'}"/> -->
+<!--                 </xpath> -->
+            	
+            </field>
+     	</record>
+        
+        
+
+        <record id="view_sales_order_filter_inherit_isquotation" model="ir.ui.view">
+            <field name="name">sale.order.list.select.inherit.isquotation</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Done']" position="after">
+                    <filter string="Is Quotation" name='is_quotation' domain="[('is_quotation','=','True')]"  />
+                </xpath>
+
+            </field>
+        </record>
+        
+        
+        
+        <record id="view_order_form_scheduled_dt_inherit_ext" model="ir.ui.view">
+            <field name="name">view.order.form.scheduled.dt.inherit.ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_dard_changes.view_order_form_scheduled_dt_inherit" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='generate_ticket']" position="after">
+                	<field name="is_mo_created" invisible="1"/>
+                    <button string="Generate Ticket" name="generate_ticket_oem" type="object" attrs="{'invisible':['|',('is_mo_created','=',False),('state','in', ['draft','sent','prepared','cancel'])]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <record id="view_order_form_scheduled_dt_ext" model="ir.ui.view">
+            <field name="name">sale.order.confirm.date.ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_scheduled_date.view_order_form_scheduled_dt" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='create_date']" position="after">
+                	<field name="date_confirm" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <record model="ir.ui.view" id="res_partner_remove_is_customer_true_inherit">
+            <field name="name">res.partner.remove.is.customer.true.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="ob_sale_wise_shipping.res_partner_remove_is_customer_true"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='customer']" position="attributes">
+            		<attribute name="attrs">{'readonly': context.get('readonly_customer', False)}</attribute>
+                </xpath>
+           </field>
+        </record>
+        
+        <record id="sale_order_inherit_shipping_wise_inherit" model="ir.ui.view">
+            <field name="name">view.order.form.shipping.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_sale_wise_shipping.sale_order_inherit_shipping_wise" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='shipping_address_id']" position="attributes">
+                      <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_zorch_invisible" model="ir.ui.view">
+            <field name="name">view.order.zorch.invisible</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_sale_artwork.view_order_form_artwork_inherit" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='rush_order']" position="after">
+                    <field name="zorch_sale_order" attrs="{'invisible':[('zorch_visible','=',False)]}"/>
+                    <field name="zorch_po_number" attrs="{'invisible':[('zorch_visible','=',False)]}"/>
+                    <field name="zorch_visible" invisible="1"/>
+               </xpath>
+            </field>
+        </record>
+		
+		
+		<record id="vpicktree_ext" model="ir.ui.view">
+            <field name="name">stock.picking.tree.ext</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	 <field name="supplier_id"/>
+               </xpath>
+            </field>
+        </record>
+		
+		<record id="purchase_order_tree_ext" model="ir.ui.view">
+            <field name="name">purchase.order.tree.ext</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree" />
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='partner_id']" position="after">
+				      <field name="dest_address_id" string="Customer Address"/>
+				</xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
+

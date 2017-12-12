@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="sale_view_order_form_inherit">
+			<field name="name">sale.order.form.sod_account_payment_cc_authorizenet</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@string='Confirm Sale']" position="before">
+					<button name="button_register_payment" type="object"
+						string="Register Payment" groups="base.group_user" class="oe_highlight"
+						attrs="{'invisible': ['|','|',('invoice_exists','=',True),('state','not in',['draft','sent']),('order_policy','=','picking')]}" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

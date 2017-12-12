@@ -1,0 +1,407 @@
+from openerp import models, fields, api, _
+from datetime import datetime
+from openerp.exceptions import Warning
+from openerp.tools.translate import _
+from openerp.exceptions import Warning
+
+class project_project(models.Model):
+    """Project Management"""
+    _inherit = 'project.project'
+
+    @api.model
+    def create(self, vals):
+        #print "vals=========",vals
+        return super(project_project, self).create(vals)
+
+    @api.onchange('date_start','date')
+    def _onchange_date(self):
+        if self.date_start and self.date:
+            if self.date_start > self.date:
+                raise Warning(_('Actual End Date must be greater than or equals to Actual End Date !!!'))
+            date_format = "%Y-%m-%d"
+            diff  = datetime.strptime(self.date, date_format) - datetime.strptime(self.date_start, date_format)
+            days = days = diff.days or 0
+            self.act_dura_project = days * 9 or 0
+
+    @api.onchange('exp_start_date','exp_end_date')
+    def _onchange_expected_date(self):
+        if self.exp_start_date and self.exp_end_date:
+            if self.exp_start_date > self.exp_end_date:
+                raise Warning(_('Expected End Date must be greater than or equals to Expected End Date !!!'))
+            date_format = "%Y-%m-%d"
+            diff  = datetime.strptime(self.exp_end_date, date_format) - datetime.strptime(self.exp_start_date, date_format)
+            days = days = diff.days or 0
+            self.exp_dura_project = float(days * 9 or 0)
+            
+
+    reviewer_id = fields.Many2one('res.users', string='Scrum Master')
+    inti_plan_time = fields.Float('Initially Planned Time')
+    #time_spent = fields.Float('Time Spent') ## mapped with work summery
+    exp_start_date = fields.Date('Expected Start Date')
+    exp_end_date = fields.Date('Expected End Date')
+    #act_plan_time = fields.Float('Actual Planned Time (Hours)')
+    exp_dura_project = fields.Float('Expected Duration of project')
+    act_dura_project = fields.Float('Actual Duration of Project')
+
+class project_task_work(models.Model):
+    """Project Management"""
+    _inherit = 'project.task.work'
+ 
+#    def write(self, cr, uid, ids, vals, context=None):
+#        if context is None:
+#            context = {}
+#        print "vals(project_task_work)=============",vals
+#        fields = ['estimated_task_type_id','work_type_id','name','date','hours','user_id']
+#        #if vals.has_key('name') or vals.has_key('estimated_task_type_id') or vals.has_key('hours') or vals.has_key('est_start_date') or vals.has_key('est_start_date') or vals.has_key('allocated_id'):
+#        for field in fields:
+#            if vals.has_key(field):
+#                group_sprint_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'ob_project_enhance', 'group_project_sprint_master')[1]
+#                print "group_sprint_id work.................",group_sprint_id
+#                group_est = self.pool.get('res.groups').browse(cr, uid, group_sprint_id, context=context)
+#                print "group_est work..............",group_est
+#                print "group_est.users work....BEFORE.......",group_est.users
+#                i = 0
+#                if group_est and uid in [x.id for x in group_est.users]:
+#                    i = i + 1
+#                    print "i======== work ",i
+#                    print "x.........work",x
+#                print "uid work============",uid
+#                if uid != 1 and i == 0:
+#                    raise Warning(_('You are not Authorized to Update the Work Entry.'))
+#
+#        return super(task_estimated, self).write(cr, uid, ids, vals, context=context)
+
+    @api.multi
+    def unlink(self):
+        if self.hours and self.task_sequence_id:
+            for est_id in self.task_sequence_id.task_estimated_id:
+                hours = float(est_id.total_time_spent) - float(self.hours)
+                est_id.write({'total_time_spent':hours})
+        return super(project_task_work, self).unlink()
+
+
+    @api.model
+    def create(self, vals):
+        seq = self.env['ir.sequence'].get('task.work') or '/'
+        vals['work_number'] = seq
+        vals['project_id'] = self.env['project.task'].browse(vals['task_id']).project_id.id
+        return super(project_task_work, self).create(vals)
+
+
+#    @api.one
+#    @api.depends('task_sequence_id')
+#    def _get_task(self):
+#        project_id = self.project_id.id or False
+#        if project_id:
+#            self._cr.execute("SELECT SUM(hours) FROM project_task_work WHERE project_id=%s", [project_id])
+#            res = self._cr.dictfetchone()
+#            hours = 0
+#            if res.get('sum'):
+#                hours = float(res['sum'])
+#            data_lines = self.work_ids.filtered(lambda l: l.project_id.id == project_id)
+#            wrk_hours = 0
+#            for data_line in data_lines:
+#                if data_line.hours:
+#                    wrk_hours = wrk_hours + float(data_line.hours)
+#            self.work_hours = wrk_hours
+#            self.project_id.write({'time_spent':hours})
+
+
+#    @api.onchange('task_sequence_id')
+#    def _onchange_task_sequence_id(self):
+#        print "task_sequence_id==========================",self.task_sequence_id,"self======",self
+#        if self.task_sequence_id:
+#            print "task_estimated_id============",self.task_sequence_id.task_estimated_id
+#            if
+
+    
+#        if self.exp_start_date and self.exp_end_date:
+#            if self.exp_start_date > self.exp_end_date:
+#                raise Warning(_('Expected End Date must be greater than or equals to Expected End Date !!!'))
+#            date_format = "%Y-%m-%d"
+#            diff  = datetime.strptime(self.exp_end_date, date_format) - datetime.strptime(self.exp_start_date, date_format)
+#            days = days = diff.days or 0
+#            self.exp_dura_project = float(days * 9 or 0)
+   
+    work_number = fields.Char('Work ID', default='/')
+    #task_number = fields.Char('Task ID')
+    task_type_id = fields.Many2one('project.task.type', 'Task of Task')
+    work_type_id = fields.Many2one('project.work.type', 'Type of Work')
+    project_id = fields.Many2one('project.project', 'Project')
+    #task_sequence_id = fields.Many2one('project.task.sequence', 'Task ID')
+    task_sequence_id = fields.Many2one('project.task.sequence', 'Task ID')
+    estimated_task_type_id = fields.Many2one('estimated.task.type', 'Type of Task')
+    #task_id = fields.Many2one('project.task', 'Task', ondelete='cascade', required=True, select="1",default=self.env.user.company_id.partner_id)
+    #default=lambda self: self.env.user.company_id.partner_id
+
+#    def default_get(self, cr, uid, fields, context=None):
+#        if context is None:
+#            context = {}
+#        print "\ncontext:",context
+#        res = super(project_task_work, self).default_get(cr, uid, fields, context=context)
+#        print "\nres:",res
+#        if not context.has_key('active_ids'):
+#            pass
+#        else:
+#            story_id = context.get('active_ids')
+#        if 'story_id' in fields:
+#            res.update({'story_id': story_id})
+#        return res
+
+class project_task_sequence(models.Model):
+    _name = "project.task.sequence"
+
+    name = fields.Char('Estimated Task Origin')
+    task_estimated_id = fields.Many2one('task.estimated', 'Estimated Task')
+    work_ids = fields.One2many('project.task.work', 'task_sequence_id', string='Work Entry')
+    story_id = fields.Many2one('project.task', string='Story')
+
+
+class estimated_task_type(models.Model):
+    _name = "estimated.task.type"
+
+    name = fields.Char('Type')
+    sequence = fields.Integer('Sequence', help="Gives the sequence of estimated task type when displaying a list of project work types.", default=10)
+
+
+class task_estimated(models.Model):
+    _name = "task.estimated"
+
+
+#    def write(self, cr, uid, ids, vals, context=None):
+#        if context is None:
+#            context = {}
+#        print "vals(task_estimated)=============",vals
+#        fields = ['name','estimated_task_type_id','hours','est_start_date','est_start_date','allocated_id']
+#        #if vals.has_key('name') or vals.has_key('estimated_task_type_id') or vals.has_key('hours') or vals.has_key('est_start_date') or vals.has_key('est_start_date') or vals.has_key('allocated_id'):
+#        for field in fields:
+#            if vals.has_key(field):
+#                group_sprint_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'ob_project_enhance', 'group_project_sprint_master')[1]
+#                print "group_sprint_id.................",group_sprint_id
+#                group_est = self.pool.get('res.groups').browse(cr, uid, group_sprint_id, context=context)
+#                print "group_est..............",group_est
+#                print "group_est.users....BEFORE.......",group_est.users
+#                i = 0
+#                if group_est and uid in [x.id for x in group_est.users]:
+#                    i = i + 1
+#                    print "i========",i
+#                    print "x.........",x
+#                print "uid============",uid
+#                if uid != 1 and i == 0:
+#                    raise Warning(_('You are not Authorized to Update the Estimated Task.'))
+#
+#        return super(task_estimated, self).write(cr, uid, ids, vals, context=context)
+
+    @api.one
+    @api.constrains('est_start_date', 'est_end_date')
+    def _check_closing_date(self):
+        if self.est_end_date < self.est_start_date:
+            raise Warning(_('End Date cannot be set before Start Date.'))
+
+
+    @api.model
+    def create(self, vals):
+        task_number = self.env['ir.sequence'].get('project.task.work') or '/'
+        vals['task_number'] = task_number
+        vals['project_id'] = self.env['project.task'].browse(vals['estimated_task_id']).project_id.id
+        res = super(task_estimated, self).create(vals)
+
+        vals_seq = {}
+        vals_seq['name'] = task_number or False
+        vals_seq['task_estimated_id'] = res.id or False
+        vals_seq['story_id'] = vals['estimated_task_id'] or False
+        self.env['project.task.sequence'].create(vals_seq)
+        
+        return res
+
+
+    @api.multi
+    def unlink(self):
+        """Allows to delete Estimated tasks if there is not entry of work log related to that task"""
+        if self.total_time_spent:
+            raise Warning(_('You cannot delete this entry as it contains worklog entry'))
+        return super(task_estimated, self).unlink()
+
+
+    name = fields.Char('Description')
+    task_number = fields.Char('Task ID', default='/')
+    task_type_id = fields.Many2one('project.task.type', 'Type of Task')
+    date = fields.Datetime('Date', select="1")
+    hours =  fields.Float('Time to be Spent')
+    est_start_date = fields.Date('Estimated Start Date', track_visibility='onchange')
+    est_end_date = fields.Date('Estimated End Date', track_visibility='onchange')
+    #user_id = fields.Many2one('res.users', string='Created By',default=lambda self: self.env.user,track_visibility='onchange')
+    total_time_spent = fields.Float('Total Time Spent')
+    estimated_task_id = fields.Many2one('project.task', string='Estimated Task')
+    allocated_id = fields.Many2one('res.users', string='Allocated To',default=lambda self: self.env.user,track_visibility='onchange')
+    project_id = fields.Many2one('project.project', string='Project')
+    import_id = fields.Char('Imported ID')
+    is_imported = fields.Char('Is Imported')
+    estimated_task_type_id = fields.Many2one('estimated.task.type', 'Type of Task')
+    
+    
+
+
+class project_sprint(models.Model):
+    _name = "project.sprint"
+
+    name = fields.Text('Description')
+    sprint_start_date= fields.Date('Sprint Start Date')
+    sprint_end_date= fields.Date('Sprint End Date')
+
+
+
+class project_work_type(models.Model):
+    _name = "project.work.type"
+
+    name = fields.Text('Description')
+    sequence = fields.Integer('Sequence', help="Gives the sequence of work type when displaying a list of project work types.", default=10)
+
+
+
+class task(models.Model):
+    _inherit = 'project.task'
+    def onchange_project(self, cr, uid, id, project_id, context=None):
+        if context is None:
+            context = {}
+        if project_id:
+            res = super(task, self).onchange_project(cr, uid, id, project_id, context=context)
+            project = self.pool.get('project.project').browse(cr, uid, project_id, context=context)
+            res['value'].update({'reviewer_id':project.reviewer_id.id,'project_manager_id':project.user_id.id})
+            return res
+        return {}
+
+    def onchange_planned(self, cr, uid, ids, planned=0.0, effective=0.0):
+        return super(task, self).onchange_planned(cr, uid, ids, planned=planned, effective=effective)
+
+    def create(self, cr, uid, vals, context=None):
+        if context is None:
+            context={}
+        hours = 0
+        if vals.has_key('estimated_id') and vals['estimated_id']:
+            for estimated_list in vals['estimated_id']:
+                
+                if estimated_list[2] and estimated_list[2]['hours']:
+                    hours = hours + estimated_list[2]['hours']
+        
+        vals['planned_hours'] = hours
+        res = super(task, self).create(cr, uid, vals, context)
+        
+        return res
+
+
+
+    def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
+        pro_task_wrk_obj = self.pool.get('project.task.work')
+        task_obj = self.pool.get('task.estimated')
+
+        if vals.get('project_id'):
+            wrk_ids = pro_task_wrk_obj.search(cr, uid, [('task_id', '=', ids[0])], context=context)
+            est_ids = task_obj.search(cr, uid, [('estimated_task_id', '=', ids[0])], context=context)
+
+            for wrk_id in wrk_ids:
+                pro_task_wrk_obj.write(cr, uid, ids, {'project_id':vals['project_id']}, context=context)
+            for est_id in est_ids:
+                task_obj.write(cr, uid, ids, {'project_id':vals['project_id']}, context=context)
+        
+        if vals.get('estimated_id'):
+
+            
+            hours = 0
+            effective_hours = 0
+            flag = 0
+            for estimated_vals in vals.get('estimated_id',False):
+                if estimated_vals and len(estimated_vals) > 2:
+                    if estimated_vals[0] == 4 and estimated_vals[1]:#[4, 123, false]
+                        hrs = task_obj.read(cr, uid, estimated_vals[1], ['hours'], context=context)
+                        hours += hrs.get('hours', 0)
+                        flag = 1
+                    elif estimated_vals[0] == 0 and estimated_vals[1] == False:
+                        hours += estimated_vals[2].get('hours',0)
+                        flag = 1
+                    elif estimated_vals[0] == 1 and estimated_vals[1]:
+                        if estimated_vals[2].get('hours',0):
+                            hours += estimated_vals[2].get('hours',0)
+                        else:
+                            hrs = task_obj.read(cr, uid, estimated_vals[1], ['hours'], context=context)
+                            hours += hrs.get('hours', 0)
+                        flag = 1
+
+
+            #if flag == 1:
+            
+            vals.update({'planned_hours': hours})
+            effective_hrs = self.read(cr, uid, ids, ['effective_hours'], context=context)
+
+            if effective_hrs and effective_hrs[0]:
+                effective_hours = effective_hrs[0].get('effective_hours', 0)
+            res = self.onchange_planned(cr, uid, ids, planned=hours, effective=effective_hours)
+            onchange_val = res.get('value', False)
+            vals.update(onchange_val)
+
+        
+        return super(task, self).write(cr, uid, ids, vals, context=context)
+
+
+    @api.one
+    @api.depends('estimated_id')
+    def _estimated_hours(self):
+        project_id = self.project_id.id or False
+        if project_id:
+            self._cr.execute("SELECT SUM(hours) FROM task_estimated WHERE project_id=%s", [project_id])
+            res = self._cr.dictfetchone()
+            hours = 0
+            if res.get('sum'):
+                hours = float(res['sum'])
+            
+            est_hours = 0 
+            self.estimated_hours = est_hours
+            
+
+    @api.one
+    @api.depends('work_ids')
+    def _work_hours(self):
+        project_id = self.project_id.id or False
+        if project_id:
+            self._cr.execute("SELECT SUM(hours) FROM project_task_work WHERE project_id=%s", [project_id])
+            res = self._cr.dictfetchone()
+            hours = 0
+            if res.get('sum'):
+                hours = float(res['sum'])
+            data_lines = self.work_ids.filtered(lambda l: l.project_id.id == project_id)
+            wrk_hours = 0
+            for data_line in data_lines:
+                if data_line.hours:
+                    wrk_hours = wrk_hours + float(data_line.hours)
+            self.work_hours = wrk_hours
+            self.project_id.write({'time_spent':hours})
+
+
+    #scrum_master_id = fields.Many2one('res.users', string='Scrum Master',track_visibility='onchange')
+    #name =  fields.Char('Task Summary', track_visibility='onchange', required=True, select=True),
+    project_manager_id = fields.Many2one('res.users', string='Project Master',track_visibility='onchange')
+    #created_by = fields.Many2one('res.users', string='Created By',default=lambda self: self.env.user,track_visibility='onchange')
+    actual_hours = fields.Float('Initially Planned Hours',track_visibility='onchange')
+    sprint_started = fields.Many2one('project.sprint', string='Sprint Started',track_visibility='onchange')
+    sprint_current = fields.Many2one('project.sprint', string='Current Sprint',track_visibility='onchange')
+    sprint_completed = fields.Many2one('project.sprint', string='Sprint Completed',track_visibility='onchange')
+    expected_qa_demo_date = fields.Date('Expected QA Demo Date',track_visibility='onchange')
+    actual_qa_demo_date = fields.Date('Actual QA Demo Date',track_visibility='onchange')
+    expected_external_demo_date = fields.Date('Expected External Demo Date',track_visibility='onchange')
+    actual_expected_external_demo_date = fields.Date('Actual Expected External Demo Date',track_visibility='onchange')
+    demo_status = fields.Selection([('pending', 'Pending'),('accepted', 'Accepted'),('rejected', 'Rejected')], 'Demo Status',track_visibility='onchange')
+    estimated_id = fields.One2many('task.estimated', 'estimated_task_id', string='Estimated Task')
+    #planned_hours = fields.Float(string='Actual Planned Hour1111111(s)',compute='_estimated_hours',store=True)
+    estimated_hours = fields.Float(string='Actual Hours',compute='_estimated_hours',store=True)
+    work_hours = fields.Float(string='Work Hours',compute='_work_hours')
+    work_ids = fields.One2many('project.task.work', 'task_id', 'Work done')
+    issue_ids = fields.One2many('project.issue', 'task_id', string='Issue')
+    act_start_date = fields.Date('Actual Start Date')
+    act_end_date = fields.Date('Actual End Date')
+    is_imported = fields.Boolean('Is Imported')
+    import_id = fields.Integer('Imported ID')
+    initial_planned_hours = fields.Integer('Initial Planned Hours')
+
+

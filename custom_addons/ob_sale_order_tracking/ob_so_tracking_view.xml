@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_so_tracking_form" model="ir.ui.view">
+            <field name="name">so.tracking.form</field>
+            <field name="model">so.tracking</field>
+            <field name="arch" type="xml">
+                <form string="Order Tracking" version="7.0" create="false" edit="false">
+                    <header>
+                        <field name="stage_id" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <h2>
+                            <field name="sale_order_id" readonly="1"/>
+                        </h2>
+                        <field name="update_time"/>
+			<div><field name="since" class="oe_inline"/><field name="time_selection" readonly="1" class="oe_inline"/></div>	
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="client_order_ref" readonly="1"/>
+                                <field name="user_id"/>
+                                <!--<field name="rush_order"/>-->
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <!-- <field name="confirm_date"/> -->
+                                <field name="invoiced"/>
+                                <field name="shipped"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Order Lines">
+                                <field name="order_line" context="{'from_so_tracking': True}"/>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <div class="oe_subtotal_footer_separator oe_inline">
+                                        <label for="amount_total"/>
+                                    </div>
+                                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                                <div class="oe_clear"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_so_tracking_tree" model="ir.ui.view">
+            <field name="name">so.tracking.tree</field>
+            <field name="model">so.tracking</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Orders Tracking" create="false" colors="red:since&gt;max_time_limit and max_time_limit&gt;0">
+                    <field name="name" string="Tracking Number"/>
+                    <field name="sale_order_id"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="date_order"/>
+                    <field name="client_order_ref"/>
+                    <!--<field name="rush_order"/>-->
+                    <field name="invoiced"/>
+                    <field name="shipped"/>
+                    <field name="max_time_limit"/>
+                    <field name="since" string="Since(Hrs)."/>
+                    <field name="stage_id"/>
+                    <!-- <field name="confirm_date"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_so_tracking_kanban">
+            <field name="name">so.tracking.kanban</field>
+            <field name="model">so.tracking</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" quick_create="false" create="false" default_order="name">
+                    <field name="name"/>
+                    <field name="sale_order_id"/>
+                    <field name="color"/>
+                    <field name="since"/>
+                    <field name="time_selection_related"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click oe_semantic_html_override">
+                                <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                    <span class="oe_e">i</span>
+                                    <ul class="oe_dropdown_menu">
+                                        <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div><b><field name="sale_order_id"/></b></div>
+                                    <div>
+                                        <field name="partner_id"/><br/>
+                                        <field name="user_id"/><br/>
+                                        <field name="date_order"/><br/>
+                                        <field name="client_order_ref"/>
+                                        <field name="update_time" invisible="1"/>
+                                        <field name="since" invisible="1"/>
+                                    </div>
+                                    <div class="oe_kanban_footer_left">
+                                        <span t-att-title="'Since ' + record.time_selection_related.raw_value">
+                                            <span class="oe_e">N</span>
+                                            <t t-esc="Math.round(record.since.raw_value)"/>
+                                            <t t-esc="record.time_selection_related.value" />
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+         </record>
+
+
+        <!-- Add GroupBy/Filters to Order Tracking view.-->
+        <record id="view_order_tracking_filter" model="ir.ui.view">
+            <field name="name">so.tracking.filter</field>
+            <field name="model">so.tracking</field>
+            <field name="arch" type="xml">
+                <search string="Search Order Tracking">
+                    <field name="name" string="Order Tracking" filter_domain="['|',('name','ilike',self),('client_order_ref','ilike',self)]"/>
+                    <field name="partner_id" filter_domain="[('partner_id', '=', self)]"/>
+                    <field name="sale_order_id" string="SO Number"/>
+                    <field name="client_order_ref" string="Customer PO Number"/>
+                    <field name="company_id" string="Company" />
+                    <!-- <field name="sale_order_id" string="Sales Order"/> -->
+                    <field name="user_id" string="Order Processor"/>
+                    <!--<filter name="rush_order" string="Rush Order" domain="[('rush_order', '=', True)]"/>-->
+                    <filter string="My" domain="[('user_id','=',uid)]" name="my_sale_tracking_filter"/>
+                    <filter name="invoiced" string="Paid" domain="[('invoiced', '=', True)]"/>
+                    <filter name="shipped" string="Delivered" domain="[('shipped', '=', True)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Customer" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Stage" icon="terp-personal" domain="[]" context="{'group_by':'stage_id'}"/>
+                        <filter string="Order Processor" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+
+        <record id="open_sale_tracking" model="ir.actions.act_window">
+            <field name="name">Order Tracking</field>
+            <field name="res_model">so.tracking</field>
+            <field name="search_view_id" ref="view_order_tracking_filter"/>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_my_sale_tracking_filter': 1}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to track sales orders.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="base.menu_so_tracking" name="Order Tracking" action="open_sale_tracking" parent="base.menu_sales" sequence="10" groups="base.group_sale_salesman,base.group_sale_manager"/>
+
+        <!-- Add tracking reference to sales order -->
+        <record id="view_order_inherit_so_tracking" model="ir.ui.view">
+            <field name="name">sale.order.form.tracking.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <label for="so_tracking_id"/>
+                    <div>
+                        <field name="so_tracking_id"/>
+                        <button name="create_tracking" states="draft,sent,progress,manual" string="create" type="object" class="oe_edit_only oe_link" attrs="{'invisible': ['|',('so_tracking_id', '!=', False)]}"/>
+                    </div>
+                    <field name="so_tracking_stage_id"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- Tracking Stage view -->
+        <record id="tracking_stage_edit" model="ir.ui.view">
+            <field name="name">so.tracking.stage.form</field>
+            <field name="model">so.tracking.stage</field>
+            <field name="arch" type="xml">
+                <form string="SO Tracking Stages" version="7.0">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="case_default"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="user_allow_ids" domain="[('company_id', '=', company_id)]">
+                                <tree string="User" >
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="fold"/>
+                            <field name="max_time_limit"/>
+                            <field name="time_selection"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Add a description..."/>
+                </form>
+            </field>
+        </record>
+        <record id="tracking_stage_tree" model="ir.ui.view">
+            <field name="name">so.tracking.stage.tree</field>
+            <field name="model">so.tracking.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Tracking Stage">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="max_time_limit"/>
+                    <field name="case_default"/>
+                    <field name="fold"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_tracking_stage" model="ir.actions.act_window">
+            <field name="name">SO Tracking Stages</field>
+            <field name="res_model">so.tracking.stage</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="tracking_stage_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a stage to track sales orders.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="base.menu_so_tracking_stages" name="SO Tracking Stages" action="open_tracking_stage" parent="base.menu_base_config" sequence="1" groups="base.group_no_one"/>
+
+        <!-- Add GroupBy/Filters to Sales Quotation/Order view.-->
+        <record id="view_sales_order_tracking_filter_inherit" model="ir.ui.view">
+            <field name="name">sale.order.filter.inherit1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <field name="so_tracking_id"/>
+                    <field name="so_tracking_stage_id"/>
+                    <field name="client_po_ref"/>
+                </xpath>
+                <xpath expr="//group//filter[@string='Order Month']" position="after">
+                    <filter string="Sale Order Tracking" domain="[]" context="{'group_by':'so_tracking_id'}"/>
+                    <filter string="Tracking State" domain="[]" context="{'group_by':'so_tracking_stage_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <data noupdate="1">
+	    <!-- Multi - Company Rules -->
+
+	    <record model="ir.rule" id="so_tracking_comp_rule">
+	        <field name="name">SO Tracking multi-company</field>
+	        <field name="model_id" ref="model_so_tracking"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+
+    </data>
+    <data noupdate="1">
+	    <!-- Multi - Company Rules -->
+
+	    <record model="ir.rule" id="so_tracking_stage_comp_rule">
+	        <field name="name">SO Tracking Stage multi-company</field>
+	        <field name="model_id" ref="model_so_tracking_stage"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+
+    </data>
+
+     <data noupdate="1">
+        <!-- so tracking stages my Rules -->
+
+        <record model="ir.rule" id="so_tracking_stage_rule">
+            <field name="name">SO Tracking Stages My</field>
+            <field name="model_id" ref="model_so_tracking_stage"/>
+             <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+    </data>
+
+</openerp>

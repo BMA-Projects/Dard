@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_shipping_report_tree" model="ir.ui.view">
+            <field name="name">shippng.report.tree</field>
+            <field name="model">shipping.report</field>
+            <field name="arch" type="xml">
+                <tree string="Shipping Report Tree">
+                    <field name="sale_order" />
+                    <field name="sale_order_date" />
+                    <field name="customer" />
+                    <field name="delivery_order" />
+                    <field name="delivery_date" />
+                    <field name="delivery_address" />
+                    <field name="delivery_state" />
+                    <field name="delivery_country" />
+                    <field name="shipping_carrier" />
+                    <field name="shipping_type" />
+                    <field name="total_shipping_cost" />
+                    <field name="state" invisible="1" />
+                </tree>
+            </field>
+        </record>
+        
+    	
+    	 <!-- <record id="view_shipping_report_form" model="ir.ui.view">
+            <field name="name">shippng.report.form</field>
+            <field name="model">shipping.report</field>
+            <field name="arch" type="xml">
+                <form string="Shipping Report form">
+                    <field name="sale_order" />
+                    <field name="sale_order_date" />
+                    <field name="customer" />
+                    <field name="delivery_order" />
+                    <field name="delivery_date" />
+                    <field name="delivery_address" />
+                    <field name="delivery_state" />
+                    <field name="delivery_country" />
+                    <field name="shipping_carrier" />
+                    <field name="shipping_type" />
+                    <field name="total_shipping_cost" />
+                    <field name="state" invisible="1" />
+                </form>
+            </field>
+        </record>
+          -->
+        
+		<record model="ir.ui.view" id="view_shipping_report_graph">
+            <field name="name">shipping.anylysis.graph</field>
+            <field name="model">shipping.report</field>
+            <field name="arch" type="xml">
+                <graph string="Shipping Statistics" type="pivot">
+                	<field name="delivery_date" interval="month" type="row"/>
+                   	<field name="delivery_country" type="row"/>
+                   	<field name="shipping_carrier" type="col"/>
+                   	<field name="total_shipping_cost" type="measure"/>
+                </graph>
+            </field>
+        </record>
+		
+		<record id="filter_delivery_cost_per_state" model="ir.filters">
+            <field name="name">Delivery Cost By State</field>
+            <field name="model_id">shipping.report</field>
+            <field name="delivery_state"/>
+            <field name="context">{'group_by': ['delivery_state'], 'measures': ['total_shipping_cost']}</field>
+        </record>
+        <record id="filter_delivery_cost_per_country" model="ir.filters">
+            <field name="name">Delivery Cost By Country</field>
+            <field name="model_id">shipping.report</field>
+            <field name="delivery_country" eval="False"/>
+            <field name="context">{'group_by': ['delivery_country'], 'measures': ['total_shipping_cost']}</field>
+        </record>
+        
+        
+        <record id="view_shipping_report_search" model="ir.ui.view">
+            <field name="name">view.shipping.internal.search</field>
+            <field name="model">shipping.report</field>
+            <field name="arch" type="xml">
+                <search string="Shipping Lists">
+                	<filter string="Delivery Order" name="delivery_order"/>
+                	<filter string="Sale Order" name="sale_order"/>
+	              	<field name="sale_order_date" />
+	              	<field name="customer" />
+	              	<field name="delivery_date" />
+	              	<field name="delivery_address" />
+	                <field name="delivery_state" />
+	                <field name="delivery_country" />
+	                <field name="shipping_carrier" />
+	                <field name="shipping_type" />
+	                <field name="total_shipping_cost" />
+                    <group expand="0" string="Group By">
+                        <filter string="Customer" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'customer'}"/>
+                        <filter string="Shipping Carrier" domain="[]" name="group_by_shipping_carrier" context="{'group_by':'shipping_carrier'}"/>
+                        <filter string="Delivery Order" domain="[]" context="{'group_by':'delivery_order'}"/>
+                        <filter string="Delivery Date" domain="[]" context="{'group_by':'delivery_date'}"/>
+                        <filter string="Sales Order" domain="[]" context="{'group_by':'sale_order'}"/>
+                        <filter string="Sale Order Date" domain="[]" context="{'group_by':'sale_order_date'}"/>
+                        <filter string="Delivery Address" domain="[]" context="{'group_by':'delivery_address'}"/>
+                        <filter string="Shipping Type" domain="[]" context="{'group_by':'shipping_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_shipping_analysis_report" model="ir.actions.act_window">
+            <field name="name">Shipping Analysis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+            <field name="view_id" ref="view_shipping_report_tree"/>
+            <field name="context">{'search_default_group_by_shipping_carrier':1,'group_by':[]}</field>
+            <!-- <field name="domain">[('state','=','done')]</field> -->
+        </record>
+        
+        <menuitem
+            action="action_shipping_analysis_report" 
+            id="menu_shipping_report"
+            parent="stock.next_id_61" />
+        
+
+    </data>
+</openerp>

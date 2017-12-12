@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_order_form_inherit_for_hide_numbers" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.for.hide.numbers</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="so_partners.view_partner_multiple_values_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='asi_number']" position="replace">
+                    <field name="asi_number" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='pppc_number']" position="replace">
+                    <field name="pppc_number" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='sage_number']" position="replace">
+                    <field name="sage_number" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="sale_order_form_inherit_for_hide_email" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.for.hide.email</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="ob_sale_artwork.view_partner_form_inherit_email" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='confirm_email']" position="replace">
+                    <field name="confirm_email" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='ship_track_email']" position="replace">
+                    <field name="ship_track_email" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='order_proof_email']" position="replace">
+                    <field name="order_proof_email" attrs="{'invisible':[('supplier','=',True), ('customer', '=', False)]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_form_inherit_for_hide_shipping_accounting_tab" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.for.hide.shipping.accounting.tab</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="shipping_pragtech.shipping_partners_form_inherit_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Shipping Accounts']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('supplier', '=', True), ('customer', '=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_form_scheduled_dt_inherit" model="ir.ui.view">
+            <field name="name">view.order.form.scheduled.dt.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_scheduled_date.view_order_form_scheduled_dt" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='in_hand_date_visible']" position="replace">
+                    <field name="in_hand_date_visible" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

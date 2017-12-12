@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="email_template_edi_notification_screen_ready" model="email.template">
+            <field name="name">Notification - Screens are ready</field>
+            <field name="email_from">${object.order_id.user_id.email or object.order_id.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Screens are ready for : ${object.product_id.name}</field>
+            <field name="email_to">${object.mrp_manager_mails}</field>
+            <field name="model_id" ref="ob_notification_screen_ready.model_sale_order_line"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.order_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                    <p>Respected Sir/Madam,</p>
+					<p>Screens are ready for ${object.order_id.name}-${object.sol_seq or ''}-${object.product_id.name}.</p>
+					<p>Thank you.</p>
+					<p>Regards,<br/>
+					Sales Team</p>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

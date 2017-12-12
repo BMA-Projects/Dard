@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_bom_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="arch" type="xml">
+                <tree string="BOM">
+                    <field name="product_tmpl_id"/>
+                    <field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="mrp_production_form_virtual_file_add_new_field" model="ir.ui.view">
+            <field name="name">mrp.production.form.virtual.file.add.new.field</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="ob_sale_artwork.mrp_production_form_virtual_file"/>
+           	<field name="arch" type="xml">
+                <xpath expr="//page/field[@name='art_approval_file_ids']" position="replace">
+                	<field name="art_approval_file_ids">
+                            <tree string="ArtWork Files" editable="False" create="0" edit="0" readonly="0">
+                                <field name="order_line_id"/>
+                                <field name="art_image_name" />
+                                <field name="virtual_file" filename="virtual_file_name_url" options='{"virtual_img": true}' invisible="1"/>
+                                <button string="Download Virtual" name="download_virtual" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                <field name="virtual_file_name" />
+                                <field name="virtual_file_name_url" invisible="1"/>
+                                <field name="is_url" invisible="1"/>
+                                <field name="external_link" class="oe_link" attr="{'invisible':[('is_url','=',False)]" />
+                                <field name="state"/>
+                            </tree>
+                            <form string="ArtWork Files" editable="False" create="0" edit="0" >
+                                <group col="2" colspan="1">
+                                    <field name="order_line_id"/>
+                                    <field name="art_image_name"/>
+                                    <field name="virtual_file_path" widget="image_pdf_multi"/>
+                                    <field name="virtual_file" filename="virtual_file_name_url" options='{"virtual_img": true}' invisible="1"/>
+                                    <field name="virtual_file_name_url" invisible="1"/>
+                                    <field name="is_url" invisible="1"/>
+                                    <field name="external_link" class="oe_link" attr="{'invisible':[('is_url','=',False)]" />
+                                    <field name="virtual_file_name"/>
+                                </group>
+                            </form>
+                        </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

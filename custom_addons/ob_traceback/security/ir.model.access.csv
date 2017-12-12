@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_traceback_user,res.traceback,model_res_traceback,group_traceback_manager,1,1,1,1
+access_res_traceback_notifiers_user,res.traceback.notifiers,model_res_traceback_notifiers,group_traceback_manager,1,1,1,1
+access_res_traceback_user,res.traceback,model_res_traceback,,1,1,1,1
+access_res_traceback_notifiers_user,res.traceback.notifiers,model_res_traceback_notifiers,,1,1,1,1

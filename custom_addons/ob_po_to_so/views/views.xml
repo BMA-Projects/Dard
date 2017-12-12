@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+    	<!--  For loading js file -->
+        <template id="inherit_assets_backend_for_po_to_so" name="mail assets1" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/ob_po_to_so/static/src/js/po_to_so_msg.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

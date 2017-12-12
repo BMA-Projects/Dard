@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+       
+        <record id="view_partner_mobile_app_form" model="ir.ui.view">
+           <field name="name">view.partner.mobile.app.form</field>
+           <field name="model">res.partner</field>
+	   <field name="type">form</field>
+	   <field name="inherit_id" ref="base.view_partner_form" />
+	   	<field name="arch" type="xml">
+                    <xpath expr="//field[@name='category_id']" position="after">
+                        <button string="Sync Customer" name="sync_customer" type="object" class="oe_highlight"/>
+                    </xpath>
+		</field>
+	</record>
+        
+    </data>
+</openerp>
+

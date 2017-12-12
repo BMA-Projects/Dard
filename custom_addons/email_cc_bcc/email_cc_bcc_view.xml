@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+        <record id='view_message_form_inherit' model='ir.ui.view'>
+            <field name="name">mail.message.form.inherit</field>
+            <field name="model">mail.message</field>
+            <field name="inherit_id" ref="mail.view_message_form" />
+            <field name="arch" type="xml">
+                <field name="partner_ids" position="before">
+                    <field name="email_cc_ids" widget="many2many_tags"/>
+                    <field name="email_bcc_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id='email_compose_message_wizard_form_inherit' model='ir.ui.view'>
+            <field name="name">mail.compose.message.form.inherit</field>
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
+            <field name="arch" type="xml">
+            	
+            	<xpath  expr="//form[@string='Compose Email']/group/div[@groups='base.group_user']" position="after">
+                	<field name="email_cc_ids" widget="many2many_tags_email" placeholder="Add CC contacts to notify..."
+                           context="{'force_email':True, 'show_email':True}"/>
+                	<field name="email_bcc_ids" widget="many2many_tags_email" placeholder="Add BCC contacts to notify..."
+	                            context="{'force_email':True, 'show_email':True}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id='email_template_form_inherit' model='ir.ui.view'>
+            <field name="name">email.template.form.inherit</field>
+            <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.email_template_form" />
+            <field name="arch" type="xml">
+                <field name="email_cc" position="after">
+                    <field name="email_bcc"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

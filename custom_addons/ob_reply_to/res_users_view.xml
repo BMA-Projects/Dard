@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="res_users_form_inherit_1" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.1</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='signature']" position="before">
+            		<field name="reply_to"/>
+            	</xpath>
+            </field>
+        </record>
+
+		<record id="res_users_form_inherit_2" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.1</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='signature']" position="before">
+            		<field name="reply_to"/>
+            	</xpath>
+            </field>
+        </record>
+		
+
+    </data>
+</openerp>

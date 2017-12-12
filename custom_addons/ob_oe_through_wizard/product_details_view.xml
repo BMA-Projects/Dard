@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Artwork form -->
+        <record model="ir.ui.view" id="ob_wiz_artwork_form">
+            <field name="name">ob.wiz.artwork.form</field>
+            <field name="model">wiz.artwork</field>
+            <field name="arch" type="xml">
+                <form string='Artwotk Upload'>
+                    <sheet>
+                        <group>
+                            <field name="art_image" widget="image_pdf_multi"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="upload_art" string="Upload" type="object" class="oe_highlight"/>
+                        or
+                        <button name="display_wizard" string="Cancel" class="oe_link" type="object"/>
+                   </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_variation_details_form">
+            <field name="name">product.variation.details.form</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <form string="Product Details">
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="imprint_method" options="{'no_create': True}" context="{'from_wizard':True, 'product_template_id': parent.prod_tmpl_id}" attrs="{'invisible':[('is_variant','=',False),('has_imprint_method','=',False)]}"/>
+                        </group>
+                        <group>
+                            <field name="is_proof_required"/>
+                            <field name="price"/>
+                            <field name="is_variant" invisible="1"/>
+                            <field name="has_imprint_method" invisible="1"/>
+                            <field name="imprint_data_fields" invisible="1"/>
+                            <field name="imprint_data" invisible="1"/>    
+                        </group>
+                    </group>
+                    <group>
+                        <field name="imprint_details_ids" attrs="{'invisible': [('imprint_method','=',False)]}">
+                            <tree string="Imprint Details" editable="top" create="false">
+                                <field name="dim_type_id" readonly="1"/>
+                                <field name="dim_option_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True, 'my_custom_field': True, 'is_color': True}" context="{'from_oe_wizard': True, 'dim_type_id': dim_type_id, 'product_id': parent.product_id, 'dim_option_ids': dim_option_ids}"/>
+                                <field name="line_attr_max_val" invisible="1"/>
+                                <field name="attribute_field_type" invisible="1"/>
+                                <field name="pro_details_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

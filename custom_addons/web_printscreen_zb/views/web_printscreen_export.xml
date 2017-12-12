@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="web_printscreen_zb_assets_backend" name="web_printscreen_zb_artwork assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/web_printscreen_zb/static/src/js/web_printscreen_export.js"></script>
+                <link rel="stylesheet" href="/web_printscreen_zb/static/src/css/web_printscreen_zb.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

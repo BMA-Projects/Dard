@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_order_credit_limit_tree" model="ir.ui.view">
+            <field name="name">view.sale.order.credit.limit.tree.</field>
+            <field name="model">sale.order</field>
+            <field name="context">{'from_action_sale_order_credit_limit_form': True}</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Order" create="false">
+                    <field name="name" string="Order Number"/>
+                    <field name="date_order"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="amount_total" sum="Total Tax Included"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoice_tree_extends" model="ir.ui.view">
+            <field name="name">account.invoice.tree.dard</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='user_id']" position="replace">
+                    <field name="user_id" invisible="context.get('type') in ['out_invoice','out_refund']"/>
+                    <field name="client_po_ref" string="Customer PO#" invisible="context.get('type') in ['in_invoice','in_refund']"/>
+                    <field name="zorch_sale_order" string="SO Number" invisible="context.get('type') in ['in_invoice','in_refund']"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_invoice_tree_extends" model="ir.ui.view">
+            <field name="name">account.invoice.tree.extends</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="sale.account_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='section_id']" position="replace">
+                    <field name="section_id" invisible="context.get('type') in ['out_invoice','out_refund']"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_due_days_tree_extends" model="ir.ui.view">
+            <field name="name">account.invoice.tree.extends.due.payment</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="ob_due_payment.invoice_due_days_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='paid_after']" position="replace" >
+                    <field name="paid_after" invisible="context.get('type') in ['out_invoice','out_refund']"/>
+                    <field name="picking_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_form_extends" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group[1]/group[2]/field[@name='date_invoice']" position="before">
+                    <field name="zorch_sale_order" attrs="{'invisible':[('zorch_visible','=',False)], 
+                        'readonly': ['|',('picking_id','!=', False), ('state','not in', ['draft'])]}"/>
+                    <field name="zorch_po_number" attrs="{'invisible':[('zorch_visible','=',False)], 
+                        'readonly': ['|',('picking_id','!=', False), ('state','not in', ['draft'])]}"/>
+                    <field name="client_po_ref" attrs="{'readonly': ['|',('picking_id','!=', False), ('state','!=', 'draft')]}" />
+                    <field name="zorch_visible" invisible="1"/>
+                    <field name="picking_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="attributes">
+                   <attribute name="attrs">{'readonly': ['|',('picking_id','!=', False), ('state','!=', 'draft')]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_sale_order_credit_limit_form" model="ir.actions.act_window">
+            <field name="name">Credit Hold Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('has_limit', '=', True),('state','in',['prepared'])]</field>
+            <field name="context">{'from_action_sale_order_credit_limit_form': True, 'no_create': True}</field>
+            <field name="view_id" ref="view_sale_order_credit_limit_tree"/>
+        </record>
+
+        <record id="action_by_pass_sale_order_credit_limit" model="ir.actions.server">
+            <field name="name">Release Credit Hold</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">action = self.release_sales_order(cr, uid, context.get('active_ids', []), context=context)</field>
+        </record>
+
+        <menuitem id="menu_sale_order_credit_limit" name="Sales" parent="account.menu_finance" sequence="3"
+                groups="account.group_account_manager"/>
+        <menuitem string="Credit Hold Orders" action="action_sale_order_credit_limit_form" groups="account.group_account_manager"
+                  id="menu_sale_order_credit_limit_form" parent="menu_sale_order_credit_limit" sequence="1"/>
+    </data>
+</openerp>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="stock.view_stock_config_settings" model="ir.ui.view">
+            <field name="name">stock settings</field>
+            <field name="model">stock.config.settings</field>
+            <field name="arch" type="xml">
+                <form string="Configure Warehouse" class="oe_form_configuration">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <separator string="Traceability"/>
+                    <group name="traceability">
+                        <label for="id" string="Traceability"/>
+                        <div>
+                            <div>
+                                <field name="group_stock_production_lot" class="oe_inline"/>
+                                <label for="group_stock_production_lot"/>
+                            </div>
+                            <div attrs="{'invisible': [('group_stock_production_lot','=',False)]}">
+                                <field name="module_product_expiry" class="oe_inline"/>
+                                <label for="module_product_expiry"/>
+                            </div>
+                            <div>
+                                <field name="group_stock_tracking_lot" class="oe_inline"/>
+                                <label for="group_stock_tracking_lot"/>
+                            </div>
+                            <div>
+                                <field name="group_stock_tracking_owner" class="oe_inline"/>
+                                <label for="group_stock_tracking_owner"/>
+                             </div>
+                        </div>    
+                    </group>
+                    <separator string="Location &amp; Warehouse"/>
+                    <group>
+                        <label for="id" string="Logistic"/>
+                        <div>
+                            <div>
+                                <field name="module_procurement_jit" class="oe_inline"/>
+                                <label for="module_procurement_jit"/>
+                            </div>
+                            <div>
+                                <field name="group_stock_multiple_locations" class="oe_inline"/>
+                                <label for="group_stock_multiple_locations"/>  
+                            </div>
+                            <div>
+                                <field name="group_stock_adv_location" class="oe_inline" on_change="onchange_adv_location(group_stock_adv_location)"/>
+                                <label for="group_stock_adv_location"/>
+                            </div>
+                            <div attrs="{'invisible': [('group_stock_adv_location', '=', False)]}">
+                                <label for="propagation_minimum_delta"/>
+                                <field name="propagation_minimum_delta" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </group>
+                    <group>
+                        <label for="id" string="Products"/>
+                        <div>
+                            <div>
+                                <field name="group_stock_packaging" class="oe_inline"/>
+                                <label for="group_stock_packaging"/>
+                            </div>
+                             <div>
+                                <label for="decimal_precision"/>
+                                <field name="decimal_precision" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="group_uom" class="oe_inline"/>
+                                <label for="group_uom"/>
+                            </div>
+                            <div>
+                                <field name="group_uos" class="oe_inline"/>
+                                <label for="group_uos" />
+                            </div>
+                        </div>
+                    </group>
+                    <group>
+                        <label for="id" string="Additional Features"/>
+                            <div>
+                                <div>
+                                    <field name="module_claim_from_delivery" class="oe_inline"/>
+                                    <label for="module_claim_from_delivery"/>
+                                </div>
+                                <div>
+                                    <field name="module_stock_dropshipping" class="oe_inline"/>
+                                    <label for="module_stock_dropshipping"/>
+                                </div>
+                                <div>
+                                    <field name="module_stock_picking_wave" class="oe_inline"/>
+                                    <label for="module_stock_picking_wave"/>
+                                </div>
+                            </div>
+                    </group>
+                    <separator string="Shipping Configuration" colspan="2"/>
+                    <group>
+                        <label for="id" string="Shipping Config"/>
+                        <div>
+                            <div>
+                                <group col="2" colspan="2">
+                                	<field name="shipping_type" class="oe_inline"/>
+                                	<field name="product_id" domain="[('type','=','service')]"/>
+                                	<field name="priclist_id"/>
+                                </group>
+                            </div>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

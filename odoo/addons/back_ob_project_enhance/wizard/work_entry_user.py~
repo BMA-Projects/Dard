@@ -1,0 +1,10 @@
+from openerp import models,fields ,api
+
+class work_entry_user(models.TransientModel):
+    """Work entry by user"""
+    _name = 'work.entry.user'
+
+    time_spent = fields.Integer('Time Spent')
+
+    # def work_entry_log(self, cr, uid, ids, context=None):
+    # 	return {}

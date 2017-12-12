@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Sale Order Line -related subtypes for messaging / Chatter -->
+         <record id="mt_sol_stage" model="mail.message.subtype">
+            <field name="name">Stage Changed</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="False"/>
+            <field name="description">Stage Changed</field>
+        </record>
+        <record id="mt_sol_new" model="mail.message.subtype">
+            <field name="name">Virtual Created</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="True"/>
+            <field name="description">Virtual Created</field>
+        </record>
+        <record id="mt_sol_sent_for_approval" model="mail.message.subtype">
+            <field name="name">Virtual Sent for Approval</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="False"/>
+            <field name="description">Virtual Sent for Approval</field>
+        </record>
+        <record id="mt_sol_confirmed" model="mail.message.subtype">
+            <field name="name">Virtual Approved</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="False"/>
+            <field name="description">Virtual Approved</field>
+        </record>
+        <record id="mt_sol_semi_confirmed" model="mail.message.subtype">
+            <field name="name">Virtual Approved with Changes</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="False"/>
+            <field name="description">Virtual Approved with Changes</field>
+        </record>
+        <record id="mt_sol_done" model="mail.message.subtype">
+            <field name="name">Virtual Done</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="False"/>
+            <field name="description">Virtual Done</field>
+        </record>
+        <record id="mt_sol_cancel" model="mail.message.subtype">
+            <field name="name">Send Another Virtual</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="default" eval="False"/>
+            <field name="description">Send Another Virtual</field>
+        </record>
+        
+    </data>
+</openerp>

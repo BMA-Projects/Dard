@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<record id="ob_crm_phon_call_form_extend" model="ir.ui.view">
+            <field name="name">crm.phon.call.form.extend</field>
+            <field name="model">crm.phonecall</field>
+            <field name="inherit_id" ref="crm.crm_case_phone_form_view"/>
+                <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//form//field[@name='user_id']" position="after">
+                        <field name='follow_up_date' />
+                    </xpath>
+                    <xpath expr="//form//field[@name='partner_mobile']" position="after">
+                        <field name='call_type_ids' />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
+            
+    	<record id="ob_crm_phon_call_tree_extend" model="ir.ui.view">
+            <field name="name">crm.phon.call.tree.extend</field>
+            <field name="model">crm.phonecall</field>
+            <field name="inherit_id" ref="crm.crm_case_inbound_phone_tree_view"/>
+                <field name="arch" type="xml">
+                  <xpath expr="//field[@name='date']" position="after">
+                  	 <field name="follow_up_date"/>
+                   	<field name="call_type_ids"  />
+               </xpath>
+            </field>
+        </record>
+        
+                   
+    	<record id="ob_crm_schedule_call_tree_extend" model="ir.ui.view">
+            <field name="name">crm.schedule.call.tree.extend</field>
+            <field name="model">crm.phonecall</field>
+            <field name="inherit_id" ref="crm.crm_case_phone_tree_view"/>
+                <field name="arch" type="xml">
+                  <xpath expr="//field[@name='date']" position="after">
+                  	 <field name="follow_up_date"/>
+                   	<field name="call_type_ids"  />
+               </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ob_crm_filter_inherited">
+            <field name="name">view.ob.crm.filter.inherited</field>
+            <field name="model">crm.phonecall</field>
+            <field name="inherit_id" ref="crm.view_crm_case_phonecalls_filter"/>
+            <field name="arch" type="xml">
+                <data>
+                
+                    <xpath expr="//filter[@string='My Phonecalls']" position="after">
+                  		<field name="follow_up_date_from" filter_domain="[('follow_up_date','&gt;=',self)]" widget="calendar"/>
+                    	<field name="follow_up_date_to" filter_domain="[('follow_up_date','&lt;=',self)]" widget="calendar"/>
+                    	<field name="call_type_ids"/>
+                    </xpath>
+                    
+                    <xpath expr="//filter[@string='Month']" position="after">
+	                    <filter string="Call Type" icon="terp-partner" domain="[]" context="{'group_by':'call_type_ids'}"/> 
+    	                <filter string="Follow up date" icon="terp-partner" domain="[]" context="{'group_by':'follow_up_date'}"/>
+    	            </xpath>
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

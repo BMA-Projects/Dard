@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+   <!-- onchange for check uniqe email id  -->	
+  		<record id="view_partner_form_inherit_for_email" model="ir.ui.view">
+            <field name="name">res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+	            <field name="email" position="attributes">
+	        		<attribute name="on_change">onchange_email(email)</attribute>
+	       		</field>
+            </field>
+        </record>
+  </data>
+</openerp>

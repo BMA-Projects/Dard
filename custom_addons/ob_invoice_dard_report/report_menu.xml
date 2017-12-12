@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+          <report 
+            id="dard_check_print_report"
+            model="account.voucher"
+            string="Print Check"
+            report_type="qweb-pdf"
+            name="ob_invoice_dard_report.dard_check_print_report_view"
+            file="ob_invoice_dard_report.dard_check_print_report_view"
+            menu="False"
+        />
+
+        <record id="dard_check_print_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ob_invoice_dard_report.dard_check_paper_format"/>
+        </record>
+
+    </data>
+</openerp>

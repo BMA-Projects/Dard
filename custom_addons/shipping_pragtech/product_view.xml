@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--        <record id="view_product_category_shipping_inherit1" model="ir.ui.view">
+            <field name="name">product.category.shipping.inherit1</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="magentoconnect.product_category_form_view_magerp2" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group/notebook" position="inside">
+                    <page string="Shipping Method">
+
+                        <separator string="Default Shipping Method" colspan="4" />
+                        <field colspan="4" name="product_categ_shipping_ids" nolabel="1" widget="one2many_list">
+                            <tree string="" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="weight"/>
+                                <field name="shipping_type"/>
+                                <field name="service_type_usps" />
+                                <field name="first_class_mail_type_usps"/>
+                                <field name="container_usps"/>
+                                <field name="size_usps"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>-->
+
+        <record id="view_product_product_shipping_inherit1" model="ir.ui.view">
+            <field name="name">product.product.shipping.inherit1</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<page string="Information" position="after">
+<!--                 <xpath expr="/form/notebook/page[@string='Information']" position="after"> -->
+                   <page string="Shipping Method">
+                        <separator string="Default Shipping Method"/>
+                        <field name="default_shipping" on_change="onchange_default_shipping(default_shipping)"/>
+                        <field colspan="4" name="product_shipping_ids" nolabel="1" widget="one2many_list">
+                            <!--<form string ="Shipping">
+                                <field name="weight"/>
+                                <field name="service_type_usps"/>
+                                <field name="shipping_type"/>
+                                <field name="first_class_mail_type_usps"/>
+                                <field name="container_usps"/>
+                                <field name="size_usps"/>
+                            </form>-->
+                            <tree string="" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="weight"/>
+                                <field name="shipping_type"/>
+                                <field name="service_type_usps"/>
+                                <field name="first_class_mail_type_usps"/>
+                                <field name="container_usps"/>
+                                <field name="size_usps"/>
+                            </tree>
+                        </field>
+                    </page>
+<!--                 </xpath> -->
+                </page>
+        </field>
+    </record>
+
+     </data>
+</openerp>

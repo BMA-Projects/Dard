@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+  <template id="report_invoice_document">
+    <t t-foreach="docs" t-as="o">
+      <t t-call="ob_invoice_dard_report.invoice_report_layout">
+        <div class="page">
+            <div class="row" style="margin-top: 800px;">
+            <br/><br/>
+                <div class="col-xs-12 text-center">
+                  <!--  <h1><strong>ORDER INVOICE</strong></h1>  --> 
+                    <h2><span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid' or o.state == 'draft')">ORDER INVOICE</span></h2>
+                    <h2><span t-if="(o.type == 'out_refund')">CREDIT INVOICE</span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                  <span><b>BILL TO:</b></span>
+                </div>
+                <div class="col-xs-4" style="text-transform: uppercase;">
+                        <t t-if="o.partner_id">
+                            <t t-if="o.partner_id.name">
+                                <span t-field="o.partner_id.name"/><br />
+                            </t>
+                            <t t-if="o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name">
+                                <span t-field="o.partner_id.parent_id.name"/><br />
+                            </t>
+                            <t t-if="o.partner_id.street">
+                                <span t-field="o.partner_id.street"/><br />
+                            </t>
+                            <t t-if="o.partner_id.street2">
+                                <span t-field="o.partner_id.street2"/><br />
+                            </t>
+                            <t t-if="o.partner_id.city">
+                                <span t-field="o.partner_id.city"/> <br />
+                            </t>
+                            <t t-if="o.partner_id.state_id">
+                                <span t-field="o.partner_id.state_id.name"/>-<span t-field="o.partner_id.zip"/><br />
+                            </t>
+                            <t t-if="o.partner_id.country_id">
+                                <span t-field="o.partner_id.country_id.name"/><br />
+                            </t>
+                            <t t-if="o.partner_id.vat">
+                                <span t-field="o.partner_id.vat"/><br />
+                            </t>
+                            <t t-if="o.partner_id.email">
+                                Email: <span t-field="o.partner_id.email"/><br />
+                            </t>
+                            <t t-if="o.partner_id.fax">
+                                FAX#: <span t-field="o.partner_id.fax"/><br />
+                            </t>
+                        </t>
+                </div>
+                <div class="col-xs-2">
+                  <span><b>SHIP TO:</b></span>
+                </div>
+                <div class="col-xs-4" style="text-transform: uppercase;">
+                    <t t-if="o.origin">
+                        <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id">
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id.name">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.name"/><br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id and get_so_ref(o.origin).partner_shipping_id.parent_id and get_so_ref(o.origin).partner_shipping_id.parent_id.name">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.parent_id.name"/><br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id.street">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.street"/><br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id.street2">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.street2"/><br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and  get_so_ref(o.origin).partner_shipping_id.city">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.city"/> <br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id.state_id">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.state_id.name"/>-<span t-field="get_so_ref(o.origin).partner_shipping_id.zip"/><br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id.country_id">
+                                <span t-field="get_so_ref(o.origin).partner_shipping_id.country_id.name"/><br />
+                            </t>
+                            <t t-if="get_so_ref(o.origin) and get_so_ref(o.origin).partner_shipping_id.vat">
+                                 <span t-field="get_so_ref(o.origin).partner_shipping_id.vat"/>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+            </div>
+            <div class="row">
+                <t>
+					<div class="col-xs-2"><br/>
+                    	<t t-if="o.type == 'out_invoice'">
+                      		<span><b>Customer No#:</b></span>
+                      	</t>
+                      	<t t-if="o.type == 'in_invoice'">
+                      		<span><b>Supplier No#:</b></span>
+                      	</t>
+                   	</div>
+                    <div class="col-xs-4" style="text-transform: uppercase;"><br/>
+                    	<t t-if="o.partner_id.cust_number">
+                    		<span t-field="o.partner_id.cust_number"/>
+                    	</t>
+                    	<t t-if="o.partner_id.search_contect and not o.partner_id.cust_number">
+                    		<span t-field="o.partner_id.search_contect"/>
+                    	</t>
+                    </div>
+                </t>
+                <t t-if="o.origin and get_so_ref(o.origin) and get_so_ref(o.origin).ship_dt">
+                    <div class="col-xs-2"><br/>
+                        <span><b>Ship Date:</b></span>
+                    </div>
+                    <div class="col-xs-4" style="text-transform: uppercase;"><br/>
+                        <p t-esc="formatLang(get_so_ref(o.origin).ship_dt, date=True)"/>
+                    </div>
+                </t>
+            </div>
+
+            <h2>
+                <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+                <span t-if="o.type == 'out_refund'">Refund</span>
+                <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+                <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+                <!-- <span t-field="o.number"/> -->
+                <span t-esc="get_number(o.number)"/>
+            </h2>
+
+            <div class="row mt32 mb32">
+                <div class="col-xs-2" t-if="o.refund_invoice_number">
+                    <strong>Customer Po#:</strong>
+                    <p t-field="o.refund_invoice_number"/>
+                </div>
+                <div class="col-xs-2" t-if="o.date_invoice">
+                    <strong>Invoice Date:</strong>
+                    <p t-field="o.date_invoice"/>
+                </div>
+                <div class="col-xs-2" t-if="o.date_due">
+                    <strong>Due Date:</strong>
+                    <p t-field="o.date_due"/>
+                </div>
+                <div class="col-xs-2" t-if="o.origin">
+                    <strong>Order#:</strong>
+                    <p t-field="o.origin"/>
+                </div>
+                  <div class="col-xs-2" t-if="o.client_po_ref">
+                    <strong>Customer PO#:</strong>
+                    <p t-field="o.client_po_ref"/>
+                </div>
+                <div class="col-xs-2" t-if="o.zorch_po_number">
+                    <strong>Zorch PO#:</strong>
+                    <p t-field="o.zorch_po_number"/>
+                </div>
+                <div class="col-xs-2" t-if="o.partner_id.ref">
+                    <strong>Customer Code:</strong>
+                    <p t-field="o.partner_id.ref"/>
+                </div>
+                <div class="col-xs-2" t-if="o.reference">
+                    <strong>Reference:</strong>
+                    <p t-field="o.reference"/>
+                </div>
+                <div class="col-xs-2" t-if="o.payment_term">
+                    <strong>Terms :</strong>
+                    <p t-field="o.payment_term"/>
+                </div>
+                <div class="col-xs-2" t-if="o.origin and get_so_ref(o.origin) and get_so_ref(o.origin).carrier_id">
+	                <strong>Ship via:</strong>
+	                <span t-esc="get_so_ref(o.origin).carrier_id.name"/>
+                </div>
+            </div>
+            <br/>
+            <div class="row" style="word-wrap: break-word;" t-if="o.origin">
+                <t t-if="get_so_ref_from_do_invoice(o.origin) and get_so_ref_from_do_invoice(o.origin).shipping_tracking_numbers">
+                    <strong>Tracking Numbers:</strong>
+                    <p t-field="get_so_ref_from_do_invoice(o.origin).shipping_tracking_numbers"/>
+                </t>
+            </div>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th class="text-right">Unit Price</th>
+                        <th class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <t t-foreach="o.invoice_line" t-as="l">
+                    	<tr t-if="l.product_id.type!='service'">
+	                        <td><span t-field="l.product_id.name"/></td>
+	                        <td>
+	                            <span t-field="l.quantity"/>
+	                            <span t-field="l.uos_id"  groups="product.group_uom"/>
+	                        </td>
+	                        <td class="text-right">
+	                            <span t-field="l.price_unit"/>
+	                        </td>
+	                        <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+	                        <td class="text-right">
+	                            <span t-field="l.price_subtotal" 
+	                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+	                        </td>
+	                    </tr>
+	                </t>
+	                <t t-foreach="o.invoice_line" t-as="l">
+	                    <tr t-if="l.product_id.type=='service'">
+	                        <td><span t-field="l.product_id.name"/></td>
+	                        <td>
+	                            <span t-field="l.quantity"/>
+	                            <span t-field="l.uos_id"  groups="product.group_uom"/>
+	                        </td>
+	                        <td class="text-right">
+	                            <span t-field="l.price_unit"/>
+	                        </td>
+	                        <td class="text-right" groups="sale.group_discount_per_so_line"><span t-field="l.discount"/></td>
+	                        <td class="text-right">
+	                            <span t-field="l.price_subtotal" 
+	                                t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+	                        </td>
+	                    </tr>
+                   	</t>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col-xs-8">
+                    <p t-if="o.comment">
+                        <strong>Comment:</strong>
+                        <span t-field="o.comment"/>
+                    </p>
+                </div>
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><span style="float:right;">SALE AMOUNT</span></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><span style="float:right;">TOTAL AMOUNT</span></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black" t-if="o.state != 'draft'">
+                            <td><span style="float:right;">AMOUNT RECEIVED</span></td>
+                            <td class="text-right">
+                                <span t-esc="get_amn_rec(o.amount_total , o.residual)" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <p>
+                        <span>1.5% OR $10 FINANCE CHARGE, WHICHEVER IS GREATER,</span>
+                        <span style="float:left;">WILL BE ADDED IF NOT PAID BY INVOICE DUE DATE!    ANY</span><br />
+                        <span style="float:left;">EXPENSE INCURRED BY DARD PRODUCTS, Inc. FOR THE </span><br />
+                        <span style="float:left;">COLLECTION OF PAST DUE INVOICES WILL BE THE SOLE </span><br />
+                        <span style="float:left;">RESPONSIBILITY OF THE CUSTOMER. </span>
+                    </p>
+                    
+                </div>
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black" style="margin-bottom:10px;">
+                            <td><span style="float:right;">BALANCE DUE</span></td>
+                            <td class="text-right">
+                                <span t-field="o.residual" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                            <t t-if="o.type in ['in_invoice','out_invoice']">
+                            <tr class="border-black" t-if="get_paid_after(o.residual) != 0"> 
+                                <td><span style="float:right;">IF PAID AFTER <t t-if="o.date_due"><span t-field="o.date_due"/></t></span></td>
+                                <td class="text-right">
+                                    <span t-esc="get_paid_after(o.residual)" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                            </t>   
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-6" t-if="o.tax_line">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Tax</th>
+                                <th class="text-right">Base</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.tax_line" t-as="t">
+                                <td><span t-field="t.name"/></td>
+                                <td class="text-right">
+                                    <span t-field="t.base"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="t.amount"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-6 pull-right">
+                    <p>
+                        <span style="float:right;">We bill in only US Dollars.</span><br />
+                        <span style="float:right;">We accept payment in US currency only.</span><br />
+                        <span style="float:right;">Please Reference Invoice Number with Remittance.</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        </t>
+    </t>
+</template>
+
+
+</data>
+</openerp>
+

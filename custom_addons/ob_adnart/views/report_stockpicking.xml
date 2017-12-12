@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_picking">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h2><center>PACKING SLIP</center></h2>
+                            <br/><br/>
+                            <div class="row">
+                                <div class="col-xs-3" style="color:orange;">
+                                    <strong><img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height: 100px;"/></strong>
+                                </div>
+                                <div class="col-xs-3">
+                                    <table class="details">
+                                            <tr><td>
+                                                <span t-field="o.company_id.name"/>
+                                            </td></tr>
+                                            <tr><td>
+                                                <span t-field="o.company_id.street"/>
+                                            </td></tr>
+                                            <tr><td>
+                                                <span t-field="o.company_id.city"/>
+                                            </td></tr>
+                                            <tr><td>
+                                                <span t-field="o.company_id.zip"/>
+                                            </td></tr>
+                                        </table>
+                                </div>
+                                <div class="col-xs-6 color: #ddf;">
+                                    <table class="table table-bordered">
+                                            <tr style="max-height:10px;">
+                                                <td>Ps: # </td>
+                                                <td>Status:</td>
+                                                <td>Po # </td>
+                                             </tr>
+                                             <tr style="max-height:10px;">
+                                                <td><span t-esc="o.name"/></td>
+                                                <td><span t-field="o.state"/></td>
+                                                <td><span t-field="o.origin"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td name="td_sched_date_h">Scheduled Date:</td>
+                                                <td>Entered By:</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td name="td_sched_date">
+                                                    <span t-esc="time.strftime('%d/%m/%Y',time.strptime(o.min_date,'%Y-%m-%d %H:%M:%S'))"/>
+                                                </td>
+                                                <td style="max-width: 20px;word-warp:break-word"><span t-field="o.create_uid"/></td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th><strong>Bill To:</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr><td>
+                                        <div t-if="o.sale_id.partner_invoice_id" name="partner_header">
+                                             <div t-field="o.sale_id.partner_invoice_id" 
+                                                t-field-options='{"widget": "contact", "fields": ["address", "name", "zip" ,"phone", "fax"], "no_marker": true}'/>
+                                        </div>
+                                    </td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xs-6 col-xs-offset-0">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th><strong>Ship To:</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr><td>
+                                        <div t-if="o.partner_id" name="partner_header">
+                                             <div t-field="o.partner_id" 
+                                                t-field-options='{"widget": "contact", "fields": ["address", "name", "zip" ,"phone", "fax"], "no_marker": true}'/>
+                                        </div>
+                                    </td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            <br/>
+                            <br/>
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th><strong>Item</strong></th>
+                                    <th><strong>Description</strong></th>
+                                    <th class="text-right"><strong>Quantity</strong></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr t-foreach="o.move_lines" t-as="move">
+                                    <td><span t-field="move.product_id"/></td>
+                                    <td><span t-field="move.product_id.description"/></td>
+                                    <td class="text-right"><span t-esc='"%0.0f" % move.product_uom_qty'/></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-right"><strong>Total Qty: </strong>
+                                        <span t-field="o.total_qty" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Carton qty: </strong></td>
+                                    <td><strong>Shipped by: </strong><span t-field="o.carrier_id" /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pallet qty: </strong></td>
+                                    <td><strong>Tracking #: </strong><span t-field="o.carrier_tracking_ref" /></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        <div class="row" align="center" style="color:black;">
+                            Check your goods from this memo.<br/>
+                            Received above merchandise in good order.<br/>
+                            Claimes after 5 days will not be accepted.<br/>
+                            Shipping memo only.<br/>
+                            regular invoice will follow.<br/>
+                        </div>
+                      </div>
+                 </t>
+             </t>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="ob_sale_artwork_assets_backend" name="ob_sale_artwork assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                
+                <script type="text/javascript" src="/ob_sale_artwork/static/src/js/ob_sale_artwork.js"></script>
+                <script type="text/javascript" src="/ob_sale_artwork/static/src/js/ob_artwork_veri.js"></script>
+                <link rel="stylesheet" href="/ob_sale_artwork/static/src/css/ob_sale_artwork.css"/>
+            </xpath>
+        </template>
+        
+        <template id="ob_sale_artwork.verification" name="OrderLineNotify">
+            <t t-call="web.assets_common"/>
+            <t t-call="web.assets_backend"/>
+            <t t-call="web.layout">
+                <t t-set="head">
+                    <link href="/web/static/src/css/base.css" rel="stylesheet"/>
+                    <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+                </t>
+                <t t-set="body_classname" t-value="'oe_single_form'"/>
+                <div class="oe_single_form_container modal-content">
+                    <div class="oe_single_form_logo">
+                        <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"/>
+                    </div>
+                    <hr/>
+                    <t t-raw="0"/>
+
+                    <form name="artwork_veri_form" method="post"  >
+                        <div class="form-group field-login">
+                            <b style="color: white;" >Comments (Optional)</b>
+                            <textarea name="cmnt" id="cmnt" placeholder="Enter your comment" autofocus="true"  rows="5" cols="40" />
+                        </div>
+                        <div class="form-group field-login">
+                            <b style="color:white;" >ADDITIONAL ART/DOCUMENTS TO UPLOAD (Optional)</b>
+                            <input name="attach" id="attach" type="file" style="color: white;" />
+                        </div>
+                        <div class="form-group field-login">
+                            <b style="color: white;" >Enter Your Full Name <span style="color:red">*</span></b><br/>
+                            <input name="uname" id="uname" type="text" />
+                            <input name="res_id" type="hidden" t-att-value="res_id"/>
+                            <input name="db" type="hidden" t-att-value="db"/>
+                            <input name="virtual_state" type="hidden" t-att-value="virtual_state"/>
+                            <input name="data_key" type="hidden" t-att-value="data_key"/>
+                        </div>                              
+                        <div class="clearfix oe_login_buttons">
+                            <button type="button" class="btn btn-primary" onclick="validateForm(attach)">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </t>
+        </template>
+        <template id="ob_sale_artwork.veri_done" name="VerificationDone" >
+            <t t-call="web.layout">
+                <t t-set="head">
+                    <link href="/web/static/src/css/base.css" rel="stylesheet"/>
+                    <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+                    <script type="text/javascript" src="/ob_web_replace/static/src/js/ob_web_replace.js"></script>
+                    <link rel="stylesheet" href="/ob_web_replace/static/src/css/ob_web_replace.css"/>
+                </t>
+                <t t-set="body_classname" t-value="'oe_single_form'"/>
+                <div class="oe_single_form_container modal-content">
+                    <div class="oe_single_form_logo">
+                        <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"/>
+                    </div>
+                    <br/>
+                    <t t-raw="0"/>
+                    <span style="color:white;"  class="old_msg">
+                        <h4><t t-esc="message"/></h4>
+                    </span>
+                    <!--<h6><t t-esc="massage1"/></h6>
+                    <h6><t t-esc="massage2"/></h6>
+                    <h6><t t-esc="massage3"/></h6> -->
+                </div>
+            </t>
+        </template>
+        
+    </data>
+</openerp>

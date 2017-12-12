@@ -1,0 +1,103 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">ArtWork Management</h2>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="configure_parameter.png">
+                <div class="oe_demo_footer oe_centeralign">Configure System Parameters</div>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class='oe_mt32'>
+               Need to add two System Parameters as follow:
+            </p>
+            <p class='oe_mt32'>
+               global.path : path of the openerp where openerp-server file exists.
+               global.web.path : path where web module exists.
+           </p>
+        </div>
+      </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+    <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="artwork_menu1.png">
+                <div class="oe_demo_footer oe_centeralign">ArtWork Approval Menu</div>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class='oe_mt32'>
+                It will manages multiple images for the particular product.
+            </p>
+        </div>
+    </div>
+    
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+               <div class="oe_span6">
+                    <div class="oe_demo oe_picture oe_screenshot">
+                        <img src="artworl_SOL.png">
+                        <div class="oe_demo_footer oe_centeralign">Display Artwork in Sale Order Line</div>
+                    </div>
+                </div>
+            <div class="oe_span6">
+                <p class='oe_mt32'>
+                    In sale order line, you can add multiple artworks.
+                    and also attch virtual file to send it to client for approval.
+                    It will manage all history of virtuals.
+                </p>
+            </div>
+        </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row ">
+               <div class="oe_span6">
+                    <div class="oe_demo oe_picture oe_screenshot">
+                        <img src="virtual_SOL.png">
+                        <div class="oe_demo_footer oe_centeralign">Display Virtual in Sale Order Line</div>
+                    </div>
+                </div>
+            <div class="oe_span6">
+                <p class='oe_mt32'>
+                    For upload multiple viruals in sale order line.
+                </p>
+            </div>
+        </div>
+</section>
+<section class="oe_container">
+        <div class="oe_row">
+               <div class="oe_span6">
+                    <div class="oe_demo oe_picture oe_screenshot">
+                        <img src="virtual_in_purchase.png">
+                        <div class="oe_demo_footer oe_centeralign">Pass virtual files to Purchase Order Line from Sale Order Line</div>
+                    </div>
+                </div>
+            <div class="oe_span6">
+                <p class='oe_mt32'>
+                    When Purchase Order create from Sale Order,And if sale order line have virtual files.
+                    then it will pass that value to purchase Order Line.
+                </p>
+            </div>
+        </div>
+</section>
+<section class="oe_container oe_dark">
+    <div class="oe_row ">
+               <div class="oe_span6">
+                    <div class="oe_demo oe_picture oe_screenshot">
+                        <img src="virtual_in_mo.png">
+                        <div class="oe_demo_footer oe_centeralign">Pass virtual files to Manufacturing Order from Sale Order Line</div>
+                    </div>
+                </div>
+            <div class="oe_span6">
+                <p class='oe_mt32'>
+                   When Manufacturing Order create from Sale Order,And if sale order line have virtual files.
+                   then it will pass that value to manufacturing order.
+                </p>
+            </div>
+        </div>
+</section>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <!-- Label Change  -->
+         <record id="view_purchase_requisition_form_inherit" model="ir.ui.view">
+             <field name="name">purchase.requisition.form.inherit</field>
+             <field name="model">purchase.requisition</field>
+             <field name="priority">1000</field>
+             <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+             <field name="arch" type="xml">
+
+                <xpath expr="//label[@for='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//h1/field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//h1/label[@string=',']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>                
+             </field>
+        </record>
+ 
+    </data>
+</openerp>

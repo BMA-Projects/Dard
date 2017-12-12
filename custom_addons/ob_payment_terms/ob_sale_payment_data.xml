@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_payment_form" model="ir.ui.view">
+            <field name="name">view.accont.payment.term.form</field>
+            <field name="model">account.payment.term</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_payment_term_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="prepay_payment" />
+                </xpath>
+            </field>
+        </record>
+
+
+                        <!-- Sale Order -->
+
+        <record id="view_sale_payment_form" model="ir.ui.view">
+            <field name="name">view.sale.payment.term.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="before">
+                    <field name="payment_green" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree[@string='Sales Orders']" position="attributes">
+                    <attribute name="colors">green:payment_green==True;grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except');</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+                                <!-- Quatation -->
+
+        <record id="view_sale_quatation_payment_form" model="ir.ui.view">
+            <field name="name">view.sale.quatation.payment.term.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="before">
+                    <field name="payment_green" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree[@string='Quotation']" position="attributes">
+                    <attribute name="colors">green:payment_green==True;grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except');</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sale_order_filter_form" model="ir.ui.view">
+            <field name="name">view.sale.order.payment.filter.term.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='My']" position="after">
+                    <filter string="Prepay Payment Term" domain="[('payment_green','=',True)]" name="my_sale_orders_payment_filter"/>
+                </xpath>
+                <xpath expr="//filter[@string='Salesperson']" position="after">
+                    <filter string="Payment Term" domain="[]" context="{'group_by':'payment_term'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+                                <!-- Customer -->
+
+        <record id="view_customer_payment_form" model="ir.ui.view">
+            <field name="name">view.customer.payment.term.form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='phone']" position="before">
+                    <field name="payment_green" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree[@string='Contacts']" position="attributes">
+                    <attribute name="colors">green:payment_green==True;</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_customer_payment_filter_form" model="ir.ui.view">
+            <field name="name">view.customer.payment.filter.term.form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Persons']" position="after">
+                    <filter string="Prepay Payment Term" domain="[('payment_green','=',True)]" name="my_sale_orders_payment_filter"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

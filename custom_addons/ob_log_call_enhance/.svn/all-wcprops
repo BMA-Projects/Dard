@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/officebeacon/!svn/ver/51601/BMA/V8/branches/bma8_qa/bma/ob_log_call_enhance
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/officebeacon/!svn/ver/51601/BMA/V8/branches/bma8_qa/bma/ob_log_call_enhance/__init__.py
+END
+crm_phoncall.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/officebeacon/!svn/ver/51601/BMA/V8/branches/bma8_qa/bma/ob_log_call_enhance/crm_phoncall.py
+END
+crm_phon_call_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/officebeacon/!svn/ver/51601/BMA/V8/branches/bma8_qa/bma/ob_log_call_enhance/crm_phon_call_view.xml
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/officebeacon/!svn/ver/51601/BMA/V8/branches/bma8_qa/bma/ob_log_call_enhance/__openerp__.py
+END

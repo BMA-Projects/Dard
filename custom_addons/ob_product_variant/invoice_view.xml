@@ -1,0 +1,30 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_account_invoice_charges_inherited_form">
+            <field name="name">account.invoice.form.charges.inherited.</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@string='Invoice Lines']/field[@name='invoice_line']/tree" position="attributes">
+                    <attribute name="editable"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_invoice_charges_form">
+            <field name="name">account.invoice.line.charges.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//field[@name='price_unit']" position="after">
+                    <field name="is_variant" invisible="1"/>
+                    <field name="setup_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                    <field name="run_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                    <field name="up_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                    <field name="ltm_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                    <field name="pms_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

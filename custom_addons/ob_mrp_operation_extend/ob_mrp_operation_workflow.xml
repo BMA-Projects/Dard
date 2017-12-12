@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Production -->
+        
+        <record model="workflow.activity" id="mrp_operations.prod_act_wc_start">
+        	<field name="wkf_id" ref="mrp_operations.wkf_prod_workcenter"/>
+        	<field name="name">startworking</field>
+        	<field name="kind">function</field>
+        	<field name="action">action_start_working()</field>
+        	<field name="action_id" ref="ob_mrp_operation_extend.action_send_mail_on_mo_operation_perform"/>
+    	</record>
+         
+        
+    	<record model="workflow.activity" id="mrp_operations.prod_act_wc_done">
+        	<field name="wkf_id" ref="mrp_operations.wkf_prod_workcenter"/>
+        	<field name="name">done</field>
+        	<field name="kind">function</field>
+        	<field name="flow_stop">True</field>
+        	<field name="action">action_done()</field>
+        	<field name="action_id" ref="ob_mrp_operation_extend.action_send_mail_on_mo_operation_perform"/>
+    	</record>
+    	
+
+    </data>
+</openerp>
+
+

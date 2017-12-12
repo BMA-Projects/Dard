@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="product_variant_setup_charge" model="product.charges">
+            <field name="name">Setup Charge</field>
+        </record>
+
+        <record id="product_variant_run_charge" model="product.charges">
+            <field name="name">Run Charge</field>
+        </record>
+
+    </data>
+</openerp>

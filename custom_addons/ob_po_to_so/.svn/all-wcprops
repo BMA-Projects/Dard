@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/officebeacon/!svn/ver/43473/BMA/V8/branches/bma8_qa/bma/ob_po_to_so
+END
+purchase.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/officebeacon/!svn/ver/42719/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/purchase.py
+END
+purchase_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/officebeacon/!svn/ver/43372/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/purchase_view.xml
+END
+mrp.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/officebeacon/!svn/ver/43455/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/mrp.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/officebeacon/!svn/ver/43372/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/__init__.py
+END
+mrp_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/officebeacon/!svn/ver/43455/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/mrp_view.xml
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/officebeacon/!svn/ver/43372/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/__openerp__.py
+END
+sale.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/officebeacon/!svn/ver/43473/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/sale.py
+END
+sale_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/officebeacon/!svn/ver/43455/BMA/V8/branches/bma8_qa/bma/ob_po_to_so/sale_view.xml
+END

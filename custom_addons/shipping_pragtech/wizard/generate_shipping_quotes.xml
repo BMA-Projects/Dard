@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_generate_shipping_quotes" model="ir.ui.view">
+            <field name="name">Generate Shipping Quotes</field>
+            <field name="model">generate.shipping.quotes</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Generate Shipping Quotes">
+                    <separator string="Get Quotes" colspan="4" col="2" />
+                    <group col="2" colspan="2">
+                        <button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                        <button name="action_get_quotes" string="Generate Shipping Quotes" type="object" icon="gtk-apply" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_generate_shipping_quotes" model="ir.actions.act_window">
+            <field name="name">Generate Shipping Quotes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">generate.shipping.quotes</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_generate_shipping_quotes"/>
+            <field name="target">new</field>
+            <!--<field name="groups" ref="shipping_report_bista.group_shipping_report_user" />-->
+        </record>
+
+        <record model="ir.values" id="delivery_order_generate_shipping_quotes">
+            <field name="model_id" ref="stock.model_stock_picking" />
+            <field name="object" eval="1" />
+            <field name="name">Generate Shipping Quotes</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_view_generate_shipping_quotes'))" />
+            <field name="key">action</field>
+            <field name="model">stock.picking</field>
+        </record>
+
+
+    </data>
+</openerp>

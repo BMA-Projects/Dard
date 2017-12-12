@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/officebeacon/!svn/ver/54019/BMA/V8/branches/bma8_development/bma/ob_live_support
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/officebeacon/!svn/ver/54019/BMA/V8/branches/bma8_development/bma/ob_live_support/__init__.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/officebeacon/!svn/ver/54019/BMA/V8/branches/bma8_development/bma/ob_live_support/__openerp__.py
+END
+access_live_support.xml
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/officebeacon/!svn/ver/54019/BMA/V8/branches/bma8_development/bma/ob_live_support/access_live_support.xml
+END
+ob_access_live_support.py
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/officebeacon/!svn/ver/54019/BMA/V8/branches/bma8_development/bma/ob_live_support/ob_access_live_support.py
+END

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="report_pricelist_xls" model="ir.ui.view">
+            <field name="name">Pricelists XLS Report</field>
+            <field name="model">xls.product.pricelist.wizard</field>
+            <field name="arch" type="xml">
+                <form string="XLS Report">
+                    <separator colspan="4" string="Pricelist XLS Report" />
+                    <footer>
+                        <button name="product_pricelist_xls" string="Product Pricelist" type="object" class="oe_highlight"/>                        
+                        <button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <act_window id="action_report_xls_pricelist"
+            name="Pricelist Report XLS"
+            src_model="product.pricelist"
+            res_model="xls.product.pricelist.wizard"
+            view_type="form" view_mode="form" 
+            key2="client_action_multi" target="new"/> 
+    </data>
+    
+</openerp>

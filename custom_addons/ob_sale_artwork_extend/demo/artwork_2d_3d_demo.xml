@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- An Artwork 2D/3D-->
+        <record id="artwork_2d_3d_1" model="artwork.master.2d.3d">
+            <field name="name">One Sided</field>
+        </record>
+        <record id="artwork_2d_3d_2" model="artwork.master.2d.3d">
+            <field name="name">2 Sided</field>
+        </record>
+        <record id="artwork_2d_3d_3" model="artwork.master.2d.3d">
+            <field name="name">Points Front</field>
+        </record>
+        <record id="artwork_2d_3d_4" model="artwork.master.2d.3d">
+            <field name="name">Points Back</field>
+        </record>
+        <record id="artwork_2d_3d_5" model="artwork.master.2d.3d">
+            <field name="name">Standard Texture Back</field>
+        </record>
+    </data>
+</openerp>

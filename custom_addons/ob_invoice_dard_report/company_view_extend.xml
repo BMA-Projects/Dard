@@ -1,0 +1,28 @@
+<openerp>
+    <data>
+      
+    	<record id="company_add_logo_form_view" model="ir.ui.view">
+            <field name="name">company.add.logo.form.view</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='company_registry']" position="after">
+                    <field name="ext_logo" />
+                </xpath>
+        	</field>
+        </record>
+
+        <record id="refund_number_extended_form_view" model="ir.ui.view">
+            <field name="name">refund.number.extended.form.view</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='origin']" position="after">
+                    <field name="refund_invoice_number" />
+                </xpath>
+        	</field>
+        </record>
+    </data>
+</openerp>

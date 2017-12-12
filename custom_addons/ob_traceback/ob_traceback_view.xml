@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_traceback_notifiers_tree">
+            <field name="name">res.traceback.notifiers.tree</field>
+            <field name="model">res.traceback.notifiers</field>
+            <field name="arch" type="xml">
+                <tree string="Traceback Notifiers Email" editable="bottom">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_traceback_notifiers_search">
+            <field name="name">res.traceback.notifiers.search</field>
+            <field name="model">res.traceback.notifiers</field>
+            <field name="arch" type="xml">
+                <search string="Traceback Notifier Search">
+                    <field name="name" string="Traceback Notifier"/>
+                    <field name="email" string="Email"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Active" name="is_active" domain="[]" context="{'group_by':'is_active'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_traceback_notifiers" model="ir.actions.act_window">
+            <field name="name">Traceback Notifiers</field>
+            <field name="res_model">res.traceback.notifiers</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'search_default_is_active': 1}</field>
+            <field name="search_view_id" ref="view_traceback_notifiers_search"/>
+        </record>
+
+        <!-- Add menu entry in Settings/Email -->
+        <menuitem name="Traceback Notifiers" id="menu_traceback_notifiers1" parent="base.menu_email" action="action_view_traceback_notifiers" groups="ob_traceback.group_traceback_manager"/>
+    </data>
+</openerp>

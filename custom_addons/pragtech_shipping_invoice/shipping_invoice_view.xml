@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<record id="view_picking_out_form_inherit_invoice2" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.inherit_invoice2</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="shipping_pragtech.view_picking_out_form_inherit1"/>
+            <field name="arch" type="xml">
+            	
+            	<page string="Shipping Info" position="after">
+            		<page string="Shipping Invoices" attrs="{'invisible':[('invoice_ids','=',False)]}">
+            			<field name="invoice_id" nolabel="1" widget="one2many_list"  colspan="2"/>
+            		</page>
+            	</page>
+            	<field name="shipping_type" position="after">
+					<field name="invoice_ids" invisible="1"/>
+				</field>
+				
+				<!-- <field name="weight_package" position="after">
+									<field name="carrier_rate_total"/>
+								</field> -->
+				
+            	
+				<xpath expr="/form/header//button[@name='action_cancel']" position="after">
+					<button name="create_supplier_invoice"  type="object" string="Create Supplier Invoice"  class="oe_highlight" attrs="{'invisible':['|',('invoice_ids','!=',False),('state','in',['draft','confirmed'])]}" />
+					<!-- <button name="view_supplier_invoice"  type="object" string="View Invoice"  class="oe_highlight" attrs="{'invisible':[('invoice_id','=',False)]}"/> -->
+				</xpath>
+				
+							
+            </field>
+         </record>
+         
+         
+     </data>
+</openerp>

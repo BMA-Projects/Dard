@@ -1,0 +1,13 @@
+.openerp .oe_form .oe_form_field_one2many > .oe_view_manager .oe_list_button_import_excel {
+    display: none !important;
+}
+.openerp .oe_form .oe_form_field_one2many > .oe_view_manager .oe_list_pager_single_page .oe_pager_value span: not[value="-"]{
+    display: none !important;
+}
+.openerp .oe_form .oe_form_field_many2many > .oe_view_manager .oe_list_button_import_excel {
+    display: none !important;
+}
+.openerp .oe_form .oe_form_field_many2many > .oe_view_manager .oe_list_pager_single_page .oe_pager_value span: not[value="-"]{
+    display: none !important;
+}
+

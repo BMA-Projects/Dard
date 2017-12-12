@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_voucher,access.account.voucher,account_voucher.model_account_voucher,base.group_sale_manager,1,1,1,1
+access_purchase_order,access.purchase.order,purchase.model_purchase_order,base.group_sale_manager,1,1,1,1
+access_purchase_order_line,access.purchase.order.line,purchase.model_purchase_order_line,base.group_sale_manager,1,1,1,1
+access_account_period,access.account.period,account.model_account_period,base.group_sale_manager,1,0,0,0
+access_account_voucher_line,access.account.voucher.line,account_voucher.model_account_voucher_line,base.group_sale_manager,1,0,0,0

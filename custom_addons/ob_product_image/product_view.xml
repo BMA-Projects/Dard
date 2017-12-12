@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record id="procuremnet_order_form_view_image" model="ir.ui.view">
+            <field name="name">procurement.order.form.image</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group/field[@name='product_id']" position="after">
+                    <field name="image_small" widget="image" class="oe_avatar oe_form_readonly"/>
+                </xpath> 
+            </field>
+        </record>
+        
+         <record id="invoice_image_form_change" model="ir.ui.view">
+            <field name="name">account.invoice.image</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Invoice Lines']/field[@name='invoice_line']/tree[@string='Invoice Lines']/field[@name='product_id']" position="after">
+                    <field name="image_small" widget="image" class="oe_avatar oe_form_readonly"/>
+                </xpath> 
+            </field>
+        </record>
+        
+        <record id="view_order_image_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.image</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
+                    <field name="image_small" widget="image" class="oe_avatar oe_form_readonly"/>
+                </xpath> 
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree[@string='Sales Order Lines']/field[@name='product_id']" position="after">
+                    <field name="image_small" widget="image" class="oe_avatar oe_left oe_form_readonly"/>
+                </xpath>
+            </field>
+         </record>
+         
+         <record id="view_move_form2" model="ir.ui.view">
+            <field name="name">stock.move.form2</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group/group/field[@name='product_id']" position="after">
+                        <field name="image_small" widget="image" class="oe_avatar oe_form_readonly"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+<data>
+
+<record id="customer_profile_form" model="ir.ui.view">
+	<field name="name">account.authnet.cim.form</field>
+	<field name="model">account.authnet.cim</field>
+	<field name="arch" type="xml">
+		<form string="Customer Profile" version="7.0">
+			<sheet>
+				<div class="oe_title">
+					<h2><field name="name"/></h2>
+				</div>
+				<group>
+					<group>
+						<field name="partner_id"/>
+						<field name="invoice_addr_id"/>
+					</group>
+					<group>
+						<field name="profile_id"/>
+						<field name="default_payprofile_id" options='{"create":False, "create_edit": False}' />
+					</group>
+				</group>
+				<button type="object" name="create_payment_profile" string="Register Payment Profile"/>
+				<button type="object" name="link_payment_profiles" string="View Payment Profiles" />
+				<notebook>
+<!-- 
+					<page string="Payment Profiles">
+						<field name="payprofile_ids" nolabel="1">
+							<tree create="0" delete="0">
+								<field name="name"/>
+								<field name="last_four"/>
+								<field name="payprofile_id"/>
+								<button name="cim_unlink" icon="gtk-remove" class="oe_highlight" string="Delete Record" confirm="Really delete this payment profile?"/>
+							</tree>
+						</field>
+					</page>
+-->
+					<page string="CC Transaction">
+						<field name="transaction_ids">
+							<tree>
+								<field name="trans_date" />
+								<field name="pim_id" />
+								<field name="trans_id" />
+								<field name="amount" />
+							</tree>
+						</field>
+					</page>
+				</notebook>
+				<div>
+				</div>
+			</sheet>
+		</form>
+	</field>
+</record>
+
+<record id="customer_payment_profile_tree" model="ir.ui.view">
+	<field name="name">account.authnet.cim.payprofile.tree</field>
+	<field name="model">account.authnet.cim.payprofile</field>
+	<field name="arch" type="xml">
+		<tree string="Payment Profile" create="0" edit="0" delete="0">
+			<field name="name"/>
+			<field name="last_four"/>
+			<field name="payprofile_id"/>
+		</tree>
+	</field>
+</record>
+
+<record id="customer_payment_profile_form" model="ir.ui.view">
+	<field name="name">account.authnet.cim.payprofile.form</field>
+	<field name="model">account.authnet.cim.payprofile</field>
+	<field name="arch" type="xml">
+		<form string="Payment Profile" version="7.0" create="0" delete="0">
+			<sheet>
+				<div class="oe_title">
+					<h2><field name="name"/></h2>
+				</div>
+				<group>
+					<group>
+						<field name="cim_id"/>
+						<field name="alt_invoice_addr_id"/>
+					</group>
+					<group>
+						<field name="last_four"/>
+						<field name="payprofile_id"/>
+						<field name="cc_exp_month" />
+						<field name="cc_exp_year" />
+					</group>
+					<group>
+						<button name="cim_unlink" type="object" string="Delete Record" confirm="Really delete this payment profile?"/>
+					</group>
+				</group>
+			</sheet>
+		</form>
+	</field>
+</record>
+
+           <record model="ir.ui.view" id="credit_card_transaction_form_view">
+                <field name="name">credit.card.transaction.sod_account_payment_cc_authorizenet</field>
+                <field name="model">credit.card.transaction</field>
+                <field name="arch" type="xml">
+                    <form string="Credit Card Transaction" version="7.0">
+                        <sheet>
+                        	<group col="4">
+                        		<group>
+	                        		<field name="cim_id" />
+	                        		<field name="pim_id" />
+                        		</group>
+                        		<group>
+                        			<field name="trans_date" />
+                        		</group>
+                        	</group>
+                        	<group col="4">
+                        		<field name="trans_id" />
+                        		<field name="amount" />
+                        	</group>
+                        	<group col="4">
+                        		<field name="message" />
+                        		<field name="authCode" />
+                        		<field name="avsResultCode" />
+                        		<field name="cvvResultCode" />
+                        	</group>
+                        	<group>
+                        		<field name="sale_id" />
+                        		<field name="payment_id" context="{'form_view_ref': 'account_voucher.view_vendor_receipt_form'}"/>
+                        		<field name="invoice_id" context="{'form_view_ref': 'account.invoice_form'}"/>
+                        	</group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+</data>
+</openerp>

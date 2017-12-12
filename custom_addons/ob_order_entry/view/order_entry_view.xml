@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Top menu item -->
+        <!--
+            This menu item's purpose is to overwrite another one defined in
+            the base module in order to set new groups.
+        -->
+        <menuitem name="Sales"
+            id="base.menu_base_partner"
+            groups="base.group_sale_salesman,base.group_sale_manager,ob_order_entry.group_virtual_data_entry_internal,ob_order_entry.group_virtual_data_entry_external"/>
+
+        <menuitem name="Sales Orders" id="sale.menu_sale_order" parent="base.menu_sales" groups="-base.group_sale_salesman,ob_order_entry.group_virtual_data_entry_internal,ob_order_entry.group_virtual_data_entry_external"/>
+        
+        <menuitem id="base.menu_so_tracking" name="Order Tracking" action="ob_sale_order_tracking.open_sale_tracking" parent="base.menu_sales" sequence="10" groups="base.group_sale_salesman,base.group_sale_manager,ob_order_entry.group_virtual_data_entry_internal,ob_order_entry.group_virtual_data_entry_external"/>
+
+        <menuitem id="base.menu_invoiced" name="Invoicing" parent="base.menu_base_partner" sequence="5" groups="account.group_account_user,account.group_account_manager,account.group_account_invoice"/>
+
+        <menuitem name="Opportunities" id="crm.menu_crm_opportunities" parent="base.menu_sales" sequence="4"   action="crm.crm_case_category_act_oppor11"
+            groups="base.group_sale_salesman,base.group_sale_manager,ob_order_entry.group_virtual_data_entry_internal,ob_order_entry.group_virtual_data_entry_external"/>
+
+ 
+         
+        <!--  <record id="ob_sale_order_extend.view_order_extensions_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.extensions.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//form/header/button[@name='action_button_confirm']" position="replace"/>
+                    <button name="cancel" position="before">
+                        <button name="action_button_confirm" states="prepared" string="Confirm Sale" type="object" class="oe_highlight" groups="base.group_sale_salesman,base.group_sale_manager,ob_order_entry.group_virtual_data_entry_external"/>
+                    </button>
+                    <xpath expr="//button[@name='action_view_delivery']" position="replace">
+                       <field name="picking_ids" invisible="1"/>
+                       <button name="action_view_delivery" string="View Delivery Order" type="object" class="oe_highlight"
+                           attrs="{'invisible': ['|','|',('picking_ids','=',False),('picking_ids','=',[]),('state','in',['draft','sent','prepared'])]}" groups="base.group_user"/>
+                    </xpath>
+                    <button name="action_quotation_send" position="before">
+                        <button name="prepare" states="draft,sent" string="Prepare" type="workflow" class="oe_highlight"/>
+                        <button name="action_draft" states="prepared" string="Set to Draft" type="object"/>
+                    </button>
+                    <field name="state" position="replace">
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,prepared,manual,invoiced,done" statusbar_colors="{&quot;exception&quot;:&quot;red&quot;,&quot;cancel&quot;:&quot;red&quot;}"/>
+                    </field>
+                </data>
+            </field>
+        </record> -->
+
+       <!--   <record id="view_order_extensions_form_inherit_order_entry" model="ir.ui.view">
+            <field name="name">sale.order.form.order.entry</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_tag_master.view_order_extensions_form_inherit_for_change_lable"/>
+            <field name="arch" type="xml">
+                <data>                                    
+                    <xpath expr="//button[@name='action_view_delivery']" position="replace">                       
+                       <button name="action_view_delivery" string="Shipping" type="object" class="oe_highlight"
+                           attrs="{'invisible': ['|','|',('picking_ids','=',False),('picking_ids','=',[]),('state','in',['draft','sent','prepared'])]}" groups="base.group_sale_salesman,base.group_sale_manager"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+ -->
+        <record id="action_partner_form_customers" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('customer','=',True)]</field>
+            <field name="context">{'default_customer':1, 'search_default_customer':1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a customer; discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+        <menuitem id="base.menu_partner_form" parent="base.menu_sales" action="base.action_partner_form" sequence="2" />
+        
+        <menuitem id="menu_partner_form_customer" parent="base.menu_sales" action="action_partner_form_customers" sequence="2" />
+
+        <record model="ir.ui.menu" id="ob_order_entry.menu_partner_form_customer">
+            <field name="groups_id" eval="[(6,0,[ref('ob_order_entry.group_virtual_data_entry_internal')])]"/>
+        </record>
+
+        <record model="ir.ui.menu" id="base.menu_partner_form">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_sale_salesman')])]"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,18 @@
+<Configuration>
+    <Header>
+        <NameValue Name="StarShip Input Path" Value="D:\test"/>
+        <NameValue Name="Input File Name Mask" Value="SO*.XML"/>
+        <NameValue Name="StarShip Shipment File Name" Value="ShipResult.XML"/>
+        <NameValue Name="StarShip Mode" Value="Respond"/>
+        <NameValue Name="Interface Name" Value="DARD"/>
+        <Document>
+            <NameValue Name="Name" Value="Order"/>
+            <NameValue Name="Type" Value="O"/>
+            <NameValue Name="Field List" Value="%AllUsersProfile%\Application Data\V-Technologies\StarShip Interface\SalesOrderFields.XML" />
+            <NameValue Name="Default Map" Value="%AllUsersProfile%\Application Data\V-Technologies\StarShip Interface\SalesOrderMap.XML" />
+        </Document>
+    </Header>
+    <Company>
+        <NameValue Name="Name" Value="DARD"/>
+    </Company>
+</Configuration>

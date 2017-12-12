@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <function model="res.partner" name="_user_as_employee"/>
+        <!--function model="res.partner" name="_assign_ids"/-->
+        <record id="view_partner_multiple_values_form" model="ir.ui.view">
+            <field name="name">res.partner.multiple.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <!--field name="inherit_id" ref="dard_customer_extention.view_partner_extention_form"/-->
+            <field name="arch" type="xml">
+                <!-- From dard_customer_extension -->
+                <xpath expr="//form[@string='Partners']/sheet/div/div" position="replace">
+                    <div>
+                        <label for="name" attrs="{'invisible': [('is_company','=', True)]}"/>
+                        <label for="name" string="Company Name" attrs="{'invisible': [('is_company','=', False)]}"/>
+                        <div class="oe_edit_only" style="display: inline">
+                            (<field name="is_company" on_change="onchange_type(is_company)"/> <label for="is_company" string="Is a Company?"/>)
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr="//label[@for='type']" version="7.0" position="before">
+                    <field name="account_id" string="Account Id" attrs="{'invisible': [('is_company','=', False)]}"/>
+                    <field name="contact_id" string="Contact Id" attrs="{'invisible': [('is_company','=', True)]}"/>
+                </xpath>
+
+                <field name="website" position="after" version="7.0">
+                    <field name="asi_number"/>
+                    <field name="pppc_number"/>
+                    <field name="sage_number"/>
+                    <field name="create_date"/>
+                </field>
+                <field name="ref" position="after" version="7.0">
+                    <field name="industry"/>
+                </field>
+
+
+            <xpath expr="//form[@string='Contact']/sheet/group/field[@name='function']" position="before">
+                    <field name="contact_id" string="Contact Id"/>
+            </xpath>
+
+
+                <!-- Adding Extension, Source and Source URL fields -->
+                <xpath expr="//form[@string='Partners']/sheet/group/group/field[@name='phone']" position="after">
+                     <field name="extension" placeholder="e.g. -007"/>
+                </xpath>
+                <xpath expr="//form[@string='Contact']/sheet/group/field[@name='phone']" position="after">
+                    <field name="extension" placeholder="e.g. -007"/>
+                </xpath>
+                <xpath expr="//form[@string='Partners']/sheet/notebook/page[@string='Sales &amp; Purchases']/group/group/field[@name='ref']" position="after">
+                     <field name="source"/>
+                     <field name="source_url" class="oe_breakword"/>
+                </xpath>
+
+                <!-- End of so_partners -->
+                <notebook position="inside">
+                    <page string="Additional Information">
+                        <group>
+                            <group colspan="2">
+                                <field name="partner_phone_id" nolabel="1">
+                                    <tree string="Phones" version="7.0" editable="bottom">
+                                        <field name='phone_selection'/>
+                                        <field name='partner_phone'/>
+                                        <field name='extension'/>
+                                     </tree>
+                                </field>
+                                <field name="partner_mobile_id" nolabel="1">
+                                    <tree string="Mobiles" version="7.0" editable="bottom">
+                                        <field name='mobile_selection'/>
+                                        <field name='mobile_number'/>
+                                     </tree>
+                                </field>
+                            </group>
+                            <group colspan="2">
+                                <field name="partner_fax_id" nolabel="1">
+                                    <tree string="Faxes" version="7.0" editable="bottom">
+                                        <field name='fax_selection'/>
+                                        <field name='partner_fax'/>
+                                     </tree>
+                                </field>
+                                <field name="partner_email_id" nolabel="1">
+                                    <tree string="Emails" version="7.0" editable="bottom">
+                                        <field name='email_selection'/>
+                                        <field name='partner_email'/>
+                                     </tree>
+                                </field>
+                            </group>
+                            <group colspan="2">
+                                <field name="partner_profile_id" nolabel="1">
+                                    <tree string="Social Media Links" version="7.0" editable="bottom">
+                                        <field name='profile_selection'/>
+                                        <field name='profile_link'/>
+                                     </tree>
+                                </field>
+                                <field name="association_id" nolabel="1">
+                                    <tree string="Associations" version="7.0" editable="bottom">
+                                        <field name='association_selection'/>
+                                        <field name='association_number'/>
+                                     </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+
+                <!-- Add inner contact form of child_ids -->
+                <xpath expr="//form[@string='Contact']/sheet/group[last()]" position="after">
+                    <notebook position="inside">
+                        <page string="Additional Information">
+                            <group>
+                                <group colspan="2">
+                                    <field name="partner_phone_id" nolabel="1">
+                                        <tree string="Phones" version="7.0" editable="bottom">
+                                            <field name='phone_selection'/>
+                                            <field name='partner_phone'/>
+                                            <field name='extension'/>
+                                         </tree>
+                                    </field>
+                                    <field name="partner_mobile_id" nolabel="1">
+                                        <tree string="Mobiles" version="7.0" editable="bottom">
+                                            <field name='mobile_selection'/>
+                                            <field name='mobile_number'/>
+                                         </tree>
+                                    </field>
+                                </group>
+                                <group colspan="2">
+                                    <field name="partner_fax_id" nolabel="1">
+                                        <tree string="Faxes" version="7.0" editable="bottom">
+                                            <field name='fax_selection'/>
+                                            <field name='partner_fax'/>
+                                         </tree>
+                                    </field>
+                                    <field name="partner_email_id" nolabel="1">
+                                        <tree string="Emails" version="7.0" editable="bottom">
+                                            <field name='email_selection'/>
+                                            <field name='partner_email'/>
+                                         </tree>
+                                    </field>
+                                </group>
+                                <group colspan="2">
+                                    <field name="partner_profile_id" nolabel="1">
+                                        <tree string="Social Media Links" version="7.0" editable="bottom">
+                                            <field name='profile_selection'/>
+                                            <field name='profile_link'/>
+                                         </tree>
+                                    </field>
+                                    <field name="association_id" nolabel="1">
+                                        <tree string="Associations" version="7.0" editable="bottom">
+                                            <field name='association_selection'/>
+                                            <field name='association_number'/>
+                                         </tree>
+                                    </field>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+
+                <xpath expr="//form/sheet/group/group/div/field[@name='use_parent_address']" position="replace">
+                    <field name="use_parent_address" class="oe_edit_only oe_inline"
+                           on_change="onchange_use_address(use_parent_address, parent_id)"
+                           attrs="{'invisible': ['|', ('is_company', '=', True),('parent_id', '=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//form/sheet/group/group/div/label[@for='use_parent_address']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('is_company', '=', True), ('parent_id', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//form/sheet/notebook/page[@string='Contacts']/field[@name='child_ids']" position="attributes">
+                    <attribute name="context">{'default_use_parent_address': True}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Add filters State/City to partner view -->
+        <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+            <field name="name">res.partner.filter.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="city"/>
+                    <field name="state_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

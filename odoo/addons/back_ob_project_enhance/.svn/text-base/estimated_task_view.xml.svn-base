@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <!-- Estimated Task Search View -->
+
+        <record model="ir.ui.view" id="view_task_estimated_search">
+            <field name="name">Task Estimated</field>
+            <field name="model">task.estimated</field>
+            <field name="arch" type="xml">
+                <search string="Task Estimated">
+                    <field name="estimated_task_type_id" widget="selection"/>
+                    <field name="name" string="Task"/>
+                    <field name="est_start_date"/>
+                    <field name="est_end_date"/>
+                    <field name="allocated_id"/>
+                    <filter string="Allocated To" domain="[('allocated_id','=',uid)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Projects" context="{'group_by': 'project_id'}"/>
+                        <filter string="Stories" context="{'group_by': 'estimated_task_id'}"/>
+                        <filter string="Start Date" context="{'group_by': 'est_start_date'}"/>
+                        <filter string="End Date" context="{'group_by':'est_end_date'}"/>
+                        <filter string="Allocated To" context="{'group_by':'allocated_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Estimated Task -->
+         <record id="estimated_task_tree_view" model="ir.ui.view">
+            <field name="name">task.estimated.tree</field>
+            <field name="model">task.estimated</field>
+            <field name="arch" type="xml">
+                <tree string="Estimated Task" create="1" edit="1">
+                    <field name="project_id" />
+                    <!--<field name="task_id"/>-->
+                    <field name="estimated_task_id"/>
+                    <field name="task_number"/>
+                    <!--<field name="task_type_id" required = "1"/>-->
+                    <field name="estimated_task_type_id" widget="selection"/>
+                    <field name="name" string="Task"/>
+                    <field name="date"/>
+                    <field name="hours" sum="Total Hours to be Spent"  widget="float_time" help="This field automatically convert decimal into time. i.e if you enter 1.5 it will consider as 1:30 hour."/>
+                    <field name="est_start_date"/>
+                    <field name="est_end_date"/>
+                    <!-- <field name="user_id" invisible="1"/>-->
+                    <field name="allocated_id"/>
+                    <field name="total_time_spent" sum="Total Hours Spent"  widget="float_time" help="This field automatically convert decimal into time. i.e if you enter 1.5 it will consider as 1:30 hour."/>
+                     <button name="%(action_add_work_summury_by_user)d" string="Log Time" type="action" icon="gtk-media-play"/>
+                </tree>
+            </field>
+         </record>
+
+
+         <record id="estimated_task_form_view" model="ir.ui.view">
+            <field name="name">task.estimated.form</field>
+            <field name="model">task.estimated</field>
+            <field name="arch" type="xml">
+                <form string="Estimated Task" groups="project.group_project_manager,ob_project_enhance.group_project_sprint_master">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="task_number" readonly="1"/>
+                            <field name="estimated_task_id" options="{'no_create': True}" attrs="{'readonly': [('project_id','=', False)]}" />
+                            <field name="hours"  widget="float_time" help="This field automatically convert decimal into time. i.e if you enter 1.5 it will consider as 1:30 hour."/>
+                            <field name="allocated_id" options="{'no_create': True}" />
+                        </group>
+                        <group>
+                            <field name="project_id" options="{'no_create': True}"/>
+                            <field name="date"/>
+                            <field name="estimated_task_type_id" options="{'no_create': True}"/>
+                            <field name="est_start_date"/>
+                            <field name="est_end_date"/>
+                            <field name="total_time_spent" readonly="1"  widget="float_time" help="This field automatically convert decimal into time. i.e if you enter 1.5 it will consider as 1:30 hour."/>
+                        </group>
+                    </group>
+                    <!--<button name="%(action_add_work_summury_by_user)d" string="Log Time" type="action" icon="gtk-media-play"/>-->
+                    </sheet>
+                </form>
+            </field>
+         </record>
+
+
+
+
+        <record model="ir.actions.act_window" id="action_estimated_task">
+            <field name="name">Estimated Task</field>
+            <field name="res_model">task.estimated</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_estimated_task" id="menu_estimated_task" name="Estimated Task" parent="project.menu_project_management" sequence="10"/>
+
+
+        <!-- My Estimated Task -->
+
+        <record model="ir.ui.view" id="my_estimated_task_tree_view">
+            <field name="name">my.task.estimated.tree</field>
+            <field name="model">task.estimated</field>
+            <field name="arch" type="xml">
+                <tree string="My Estimated Task">
+                    <field name="project_id"/>
+                    <!--<field name="task_id"/>-->
+                    <field name="estimated_task_id"/>
+                    <field name="task_number"/>
+                    <!--<field name="task_type_id" required = "1"/>-->
+                    <field name="estimated_task_type_id" widget="selection"/>
+                    <field name="name" string="Task"/>
+                    <field name="date" invisible="1"/>
+                    <field name="hours" sum="Total Hours to be Spent"  widget="float_time"/>
+                    <field name="est_start_date"/>
+                    <field name="est_end_date"/>
+                    <!-- <field name="user_id" invisible="1"/>-->
+                    <field name="allocated_id"/>
+                    <field name="total_time_spent" sum="Total Hours Spent"  widget="float_time"/>
+                    <button name="%(action_add_work_summury_by_user)d" string="Log Time" type="action" icon="gtk-media-play"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_my_estimated_task">
+            <field name="name">My Estimated Task</field>
+            <field name="res_model">task.estimated</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('allocated_id','=',uid)]</field>
+        </record>
+
+        <menuitem action="action_my_estimated_task" id="menu_my_estimated_task" name="My Estimated Task" parent="project.menu_project_management" sequence="10"/>
+
+
+
+    </data>
+</openerp>

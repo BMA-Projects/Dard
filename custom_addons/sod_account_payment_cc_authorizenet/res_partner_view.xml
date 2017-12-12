@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="view_partner_property_form_cim" model="ir.ui.view">
+	<field name="name">res.partner.form.cim</field>
+	<field name="model">res.partner</field>
+	<field name="inherit_id" ref="account.view_partner_property_form"/>
+	<field name="arch" type="xml">
+		<xpath expr="//page[@name='accounting']" position="after">
+			<page string="Credit Card Details" attrs="{'invisible':[('customer','=',False)]}">
+				<group>
+					<field name="cim_id" readonly="1" attrs="{'invisible':[('cim_id','=',False)]}"/>
+				</group>
+				<group></group>
+				<group>
+					<button type="object" name="create_customer_profile" string="Create Customer Profile" attrs="{'invisible':[('cim_id','!=',False)]}" />
+					<button type="object" name="create_payment_profile" string="Register Payment Profile" attrs="{'invisible':[('cim_id','=',False)]}" />
+				</group>
+				<group></group>
+			</page>
+		</xpath>
+	</field>
+</record>
+
+<record model="ir.ui.view" id="base_view_partner_form_inherit">
+    <field name="name">res.partner.form.default.addresses</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form" />
+    <field name="arch" type="xml">
+        <field name="zip" position="attributes">
+            <attribute name="required">1</attribute>
+        </field>
+        <field name="email" position="attributes">
+            <attribute name="required">1</attribute>
+        </field>
+    </field>
+</record>
+
+</data>
+</openerp>

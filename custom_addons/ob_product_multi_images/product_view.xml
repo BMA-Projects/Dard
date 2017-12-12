@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <!-- Product Master Form View -->
+        <record id="product_template_only_form_view" model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Sales']" position="after">
+                    <page name="images" string="Images">
+                        <field name="product_images" widget="image_multi" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+       <!--  <record id="sale_order_master_form_view_inherited" model="ir.ui.view">
+            <field name="name">sale.order.view.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//field[@name='name']" position="replace" />
+                <xpath expr="//field[@name='order_line']//label[@for='name']" position="replace" />
+                <xpath expr="//field[@name='order_line']//field[@name='invoice_lines']" position="replace" />
+                <xpath expr="//field[@name='order_line']//label[@for='invoice_lines']" position="replace" />
+                <xpath expr="//field[@name='order_line']//group" position="after" >
+                    <notebook>
+                        <page string="Images">
+                            <field name="product_images" widget="image_grid" />
+                        </page>
+                        <page string="Description">
+                            <field name="name"/>
+                        </page>
+                        
+                        <page string="Invoice Lines">
+                            <field name="invoice_lines"/>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record> -->
+        
+        <!-- Sale Order Master Form View -->
+        <!-- <record model="ir.ui.view" id="sale_order_master_form_view_inherited">
+            <field name="name">sale.order.view.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
+                   <notebook>
+                    <page string="Images">
+                        <field name="product_images" widget="image_grid" />
+                    </page>
+                   </notebook>
+                </xpath>
+            </field>
+        </record> -->
+    </data>
+</openerp>

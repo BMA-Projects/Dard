@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="inherit_res_partner_for_salesperson">
+            <field name="name">inherit.res.partner.for.salesperson</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='type']" position="replace">
+                    <field class="oe_inline" name="type" on_change="onchange_address_type(parent_id, customer, supplier, type)"/>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="before">
+                    <field name="attention" attrs="{'invisible':[('is_company','=',False)]}" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_res_partner_filter_old_customer_inherit" model="ir.ui.view">
+            <field name="name">Search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <filter string="Suppliers" position="after">
+                    <field name="old_customer_number" string="Old Customer/Supplier #"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_production_mo">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2>Production Order N° : <span t-field="o.name"/></h2>
+
+                    <div class="row mt32 mb32">
+                        <div class="col-xs-3">
+                            <strong>Source Document:</strong><br/>
+                            <span t-field="o.origin"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Product:</strong><br/>
+                            <span t-field="o.product_id.code"/>
+                            <span t-field="o.product_id.name"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Quantity:</strong><br/>
+                            <span t-field="o.product_qty"/>
+                            <span t-field="o.product_uom.name" groups="product.group_uom"/>
+                        </div>
+                    </div>
+
+                    <div class="row mt32 mb32">
+                        <div class="col-xs-3">
+                            <strong>Scheduled Date:</strong><br/>
+                            <span t-field="o.date_planned"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <strong>Printing date:</strong><br/>
+                            <span t-esc="time.strftime('%Y-%m-%d')"/>
+                        </div>
+                        <div class="col-xs-3" t-if="'sale_ref' in o._columns.keys()">
+                            <strong>Partner Ref:</strong><br/>
+                            <span t-esc="'sale_ref' in o._columns.keys() and o.sale_ref"/>
+                        </div>
+                        <div class="col-xs-3" t-if="'sale_name' in o._columns.keys()">
+                            <strong>SO Number:</strong><br/>
+                            <span t-esc="'sale_name' in o._columns.keys() and o.sale_name"/>
+                        </div>
+                    </div>
+
+                    <div t-if="o.workcenter_lines">
+                        <strong>Work Orders</strong>
+                        <table class="table table-condensed">
+                            <tr>
+                                <td class="text-center"><strong>Sequence</strong></td>
+                                <td class="text-center"><strong>Name</strong></td>
+                                <td class="text-center"><strong>WorkCenter</strong></td>
+                                <td class="text-center"><strong>No. Of Cycles</strong></td>
+                                <td class="text-center"><strong>No. Of Hours</strong></td>
+                            </tr>
+                            <tr t-foreach="o.workcenter_lines" t-as="line2">
+                                <td class="text-center"><span t-field="line2.sequence"/></td>
+                                <td class="text-center"><span t-field="line2.name"/></td>
+                                <td class="text-center"><span t-field="line2.workcenter_id.name"/></td>
+                                <td class="text-center"><span t-field="line2.cycle"/></td>
+                                <td class="text-center"><span t-field="line2.hour"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3 t-if="o.move_lines">Bill Of Material</h3>
+
+                    <table class="table table-condensed" t-if="o.move_lines or o.move_lines2">
+                        <thead>
+                            <tr>
+                                <th><strong>Product</strong></th>
+                                <th class="text-right"><strong>Quantity</strong></th>
+                                <th class="text-center" groups="stock.group_locations">
+                                    <strong>Source Location</strong>
+                                </th>
+                                <th class="text-center" groups="stock.group_locations">
+                                    <strong>Destination Location</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-if="o.move_lines">
+                                <tr>
+                                    <td colspan="4"><strong>Products to Consume</strong></td>
+                                </tr>
+                                <tr t-foreach="o.move_lines" t-as="line">
+                                    <td>
+                                        <span t-field="line.product_id.code"/>
+                                        <span t-field="line.product_id.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.product_uom_qty"/>
+                                        <span t-field="line.product_uom.name" groups="product.group_uom"/>
+                                    </td>
+                                    <td class="text-center" groups="stock.group_locations">
+                                        <span t-field="line.location_id.name"/>
+                                    </td>
+                                    <td class="text-center" groups="stock.group_locations">
+                                        <span t-field="line.location_dest_id.name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-if="o.move_lines2">
+                                <tr>
+                                    <td colspan="4"><strong>Consumed Products</strong></td>
+                                </tr>
+                                <tr t-foreach="o.move_lines2" t-as="line2">
+                                    <td>
+                                        <span t-field="line2.product_id.code"/>
+                                        <span t-field="line2.product_id.name"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line2.product_uom_qty"/>
+                                        <span t-field="line2.product_uom.name"/>
+                                    </td>
+                                    <td class="text-center" groups="stock.group_locations">
+                                        <span t-field="line2.location_id.name"/>
+                                    </td>
+                                    <td class="text-center" groups="stock.group_locations">
+                                        <span t-field="line2.location_dest_id.name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div class="oe_structure"/>
+                    
+                    <div class="row mt32 mb32">
+                        
+                        <t t-if="o.sub_origin">
+                            <t t-if="get_so_line_obj_ref(o.sub_origin) and get_so_line_obj_ref(o.sub_origin).imprint_method">
+                                <div class="col-xs-3">
+                                    <strong>Imprint Method:</strong><br />
+                                    <span t-esc="get_so_line_obj_ref(o.sub_origin).imprint_method.name"/>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-if="o.sub_origin">                        
+                            <t t-if="get_dimension_field(o.sub_origin)">
+                                <t t-foreach="get_dimension_field(o.sub_origin)" t-as="lin">
+                                    <div class="col-xs-3">
+                                        <strong><span t-esc="lin.get('field')"/></strong><br />
+                                        <t t-if="lin.get('value')">
+                                            <t t-foreach="lin.get('value')" t-as="line_line">
+                                                <span t-esc="line_line.name"/>,
+                                            </t>
+                                        </t>
+                                    </div>
+                                </t>
+                            </t>
+                        </t>
+                        <t t-if="o.sub_origin">
+                            <t t-if="get_so_line_obj_ref(o.sub_origin) and get_so_line_obj_ref(o.sub_origin).product_id and get_so_line_obj_ref(o.sub_origin).product_id.apply_pms_charge == True">
+                                <div class="col-xs-3">
+                                    <strong>PMS Code:</strong><br />
+                                    <t t-foreach="get_so_line_obj_ref(o.sub_origin).pms_code" t-as="pms">
+                                        <span t-esc="pms.name"/>,
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+
+                    <div class="row zero_min_height">
+                        <div class="col-xs-3">
+                            <strong>Artwork Image:</strong>
+                        </div>
+                        <div class="col-xs-4">
+                            <t t-if="get_image(o) != 1">
+                                <table width="100%">
+                                    <tr>
+                                        <td class="text-right">
+                                            <img t-att-src="get_image(o)" style="margin-left:-14px;" width="293px;" height="250px"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- An Artwork Type-->
+        <record id="artwork_type_1" model="artwork.master.type">
+            <field name="name">Metal Only</field>
+        </record>
+        <record id="artwork_type_2" model="artwork.master.type">
+            <field name="name">Metal with colour</field>
+        </record>
+        <record id="artwork_type_3" model="artwork.master.type">
+            <field name="name">Hybrid</field>
+        </record>
+        <record id="artwork_type_4" model="artwork.master.type">
+            <field name="name">Pewter</field>
+        </record>
+        <record id="artwork_type_5" model="artwork.master.type">
+            <field name="name">Mag.Die</field>
+        </record>
+        <record id="artwork_type_6" model="artwork.master.type">
+            <field name="name">Hot Stamped</field>
+        </record>
+        <record id="artwork_type_7" model="artwork.master.type">
+            <field name="name">Die Struck</field>
+        </record>
+        <record id="artwork_type_8" model="artwork.master.type">
+            <field name="name">Laser Engraving</field>
+        </record>
+        <record id="artwork_type_9" model="artwork.master.type">
+            <field name="name">Photoart</field>
+        </record>
+        <record id="artwork_type_10" model="artwork.master.type">
+            <field name="name">Photo action</field>
+        </record>
+        <record id="artwork_type_11" model="artwork.master.type">
+            <field name="name">Photocast</field>
+        </record>
+        <record id="artwork_type_12" model="artwork.master.type">
+            <field name="name">Zinc</field>
+        </record>
+        <record id="artwork_type_13" model="artwork.master.type">
+            <field name="name">Orient</field>
+        </record>
+        <record id="artwork_type_14" model="artwork.master.type">
+            <field name="name">Print Only</field>
+        </record>
+        <!--<record id="artwork_type_15" model="artwork.master.type">-->
+            <!--<field name="name">Other</field>-->
+        <!--</record>-->
+    </data>
+</openerp>

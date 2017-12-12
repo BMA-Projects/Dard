@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_issue_severity_form">
+            <field name="name">view.issue.severity.form</field>
+            <field name="model">issue.severity</field>
+            <field name="arch" type="xml">
+                <form string="Issue Severity">
+                    <group col="4">
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inherit_view_project_issue_form">
+            <field name="name">inherit.view.project.issue.form</field>
+            <field name="model">project.issue</field>
+            <field name="inherit_id" ref="project_issue.project_issue_form_view"/>
+            <field name="arch" type="xml">
+              <field name="user_id" position="after">
+                <field name="severity_id" widget="selection"/>
+                <field name="created_by" />
+              </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

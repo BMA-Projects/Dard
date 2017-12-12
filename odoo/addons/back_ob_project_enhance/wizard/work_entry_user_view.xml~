@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+    <!-- Phonecall to Phonecall view -->
+    
+        <record model="ir.ui.view" id="work_entry_by_user_form">
+            <field name="name">work.entry.by.user.form</field>
+            <field name="model">work.entry.user</field>
+            <field name="arch" type="xml">
+                <form string="Work Entry by User">
+                    <group col="4">
+                        <field name="time_spent"/>
+                    </group>
+                    <footer>
+                        <button name="work_entry_log" type="object" string="Log entry" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="add_work_summury_by_user">
+            <field name="name">Work Entry By User</field>
+            <field name="res_model">project.task.work</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_entry_by_user_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp> 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="prepayment_email_notification_template" model="email.template">
+            <field name="name">Prepayment Notification Template</field>
+            <field name="email_from">${object.company_id.partner_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Prepayment Notification</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="report_sale_order_prepayment"/>
+            <field name="report_name">sale_order_prepayment</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 14px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hello ${object.partner_id.name},</p>
+
+    <p> Thank you for your order. We greatly appreciate your business. <br/><br/>
+
+        Because you are on a prepay status with us, we require a prepayment for the estimated costs listed below: <br/>
+        <ul>
+            <li> Payment may be made by check or credit card. </li>
+            <li> Final charges may be differ and balance due to on this order will be payable upon completion of production.</li>
+            <li> Please send us your prepayment as soon as possible so that this order may be put into production. </li>
+            <li> This order is on Hold until payment is received. </li>
+            <li> If we do not receive a response to this request within 5 business days, this order will be cancelled. </li>
+        </ul>
+        <br/>
+        * We bill only in US Dollars. <br/>
+        ** We accept payment in US currency only. <br/>
+    </p>
+
+</div>
+            ]]></field>
+        </record>
+
+        </data>
+    </openerp>

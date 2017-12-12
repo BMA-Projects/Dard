@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_credit_days_form" model="ir.ui.view">
+            <field name="name">view.partner.credit.days.form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_partner_property_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='credit_limit']" position="before">
+                    <field name="credit_days" attrs="{'invisible':[('customer','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+       <record id="invoice_due_days_form" model="ir.ui.view">
+           <field name="name">view.account.invoice.due.days.form</field>
+           <field name="model">account.invoice</field>
+           <field name="type">form</field>
+           <field name="inherit_id" ref="account.invoice_form" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='date_due']" position="after">
+                   <field name="due_days"/>
+                   <field name="paid_after"/>
+               </xpath>
+            </field>
+        </record>
+    
+        <record id="invoice_due_days_tree" model="ir.ui.view">
+            <field name="name">view.account.invoice.due.days.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_due']" position="after">
+                    <field name="due_days"/>
+                    <field name="paid_after"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Search View -->
+
+        <record id="invoice_due_days_search" model="ir.ui.view">
+            <field name="name">view.account.invoice.due.days.filter</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Due Month']" position="after">
+                    <filter string="Due Days" context="{'group_by':'due_days'}"/>
+                    <filter string="Paid After" context="{'group_by':'paid_after'}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

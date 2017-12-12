@@ -1,0 +1,442 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <!-- Adding 3 Email fields in Partner Form View-->
+        <record id="view_partner_form_inherit_email" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath  expr="//field[@name='email']" position="after">
+                    <field name="confirm_email"/>
+                    <field name="ship_track_email"/>
+                    <field name="order_proof_email"/>
+                </xpath>
+                <xpath expr="//field[@name='notify_email']" position="after">
+                    <field name="allow_send_by_email"/>
+                </xpath>
+            </field>
+        </record>
+        
+         <record model="ir.ui.view" id="sale_order_inherit_tree">
+            <field name="name">sale.order.inherit.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree" position='attributes'>
+                    <attribute name='colors'>#00CC66:rush_order == True;grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except')</attribute>
+                </xpath>
+                <field name="state" position="after">
+                    <field name="rush_order" invisible="1" string='Is Rush Order?'/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_inherit_quotation_tree">
+            <field name="name">sale.order.inherit.quotation.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree" position='attributes'>
+                    <attribute name='colors'>#00CC66:rush_order == True;grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except')</attribute>
+                </xpath>
+                <field name="state" position="after">
+                    <field name="rush_order" invisible="1" string='Is Rush Order?'/>
+                </field>
+            </field>
+        </record>
+        
+        
+        <!-- Inherited form view of procurement order, Added sub origin field. -->
+        <record id="view_procurement_form_sub_origin" model="ir.ui.view">
+            <field name="name">procurement.order.form.sub.origin</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view"/>
+            <field name="arch" type="xml">
+            <data>
+                <field name="origin" position="after">
+                    <field name="sub_origin"/>
+                </field>
+               </data>
+            </field>
+        </record>
+        
+         <record id="view_purchase_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath  expr="/form/sheet/notebook/page[@string='Products']/field[@name='order_line']/tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+            </field>
+          </record>
+          
+          <record id="view_purchase_order_line_form" model="ir.ui.view">
+            <field name="name">view.purchase.order.line.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@string='Notes']" position="after">
+                    <page string="ArtWork">
+                        <field name="art_approval_file_ids">
+                            <tree string="ArtWork Files" create="0" edit="0" >
+                                <field name="order_line_id"/>
+                                <field name="art_image_name"/>
+                                <field name="virtual_file_name"/>
+                                <field name="virtual_file" filename="virtual_file_name_url" options='{"virtual_img": true}' invisible="1"/>
+                                <button string="Download Virtual" name="download_virtual" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                <field name="virtual_file_name_url" invisible="1"/>
+                                <field name="is_url" invisible="1"/>
+                                <field name="external_link" class="oe_link" attr="{'invisible':[('is_url','=',False)]" />
+                                <field name="state"/>
+                            </tree>
+                            <form string="ArtWork Files" create="0" edit="0" >
+                                <group col="2" colspan="1">
+                                    <field name="order_line_id"/>
+                                    <field name="art_image_name"/>
+                                    <field name="virtual_file" filename="virtual_file_name_url" options='{"virtual_img": true}' invisible="1"/>
+                                    <field name="virtual_file_name_url" invisible="1"/>
+                                    <field name="is_url" invisible="1"/>
+                                    <field name="external_link" class="oe_link" attr="{'invisible':[('is_url','=',False)]" />
+                                    <field name="virtual_file_name"/>
+                                    <button string="Download Virtual" name="download_virtual" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Virtuals">
+                        <field name="virtual_file_ids">
+                            <tree string="Virtual Files" create="0" edit="0" readonly="0">
+                                <field name="name"/>
+                                <field name="description" required="1"/>
+                                <field name="file" filename="file_url" invisible="1"/>
+                                <button string="Download Virtual" name="download_virtual_file" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                <field name="file_url" invisible="1"/>
+                            </tree>
+                            <form string="Virtual Files" >
+                                <group>
+                                    <field name="name" invisible="1"/>
+                                    <field name="description" required="1"/>
+                                    <field name="file" filename="file_url" options='{"custom_img": true}' widget='my_widget'/>
+                                    <field name="file_url" invisible="1" />
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='company_id']" position="replace">
+                    <field name='company_id' readonly="1"/>
+                </xpath>
+             </field>
+             </record>
+         
+         <!-- Inherited form view of manufecturing order, Added virtual file ids field. -->
+        <record id="mrp_production_form_virtual_file" model="ir.ui.view">
+            <field name="name">mrp.production.form.virtual.file</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Extra Information']" position="after">
+                    <page string="ArtWork">
+                        <field name="art_approval_file_ids">
+                            <tree string="ArtWork Files" editable="False" create="0" edit="0" readonly="0">
+                                <field name="order_line_id"/>
+                                <field name="art_image_name" />
+                                <field name="virtual_file" filename="virtual_file_name_url" options='{"virtual_img": true}' invisible="1"/>
+                                <button string="Download Virtual" name="download_virtual" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                <field name="virtual_file_name" />
+                                <field name="virtual_file_name_url" invisible="1"/>
+                                <field name="is_url" invisible="1"/>
+                                <field name="external_link" class="oe_link" attr="{'invisible':[('is_url','=',False)]" />
+                                <field name="state"/>
+                            </tree>
+                            <form string="ArtWork Files" editable="False" create="0" edit="0" >
+                                <group col="2" colspan="1">
+                                    <field name="order_line_id"/>
+                                    <field name="art_image_name"/>
+                                    <field name="virtual_file" filename="virtual_file_name_url" options='{"virtual_img": true}' invisible="1"/>
+                                    <field name="virtual_file_name_url" invisible="1"/>
+                                    <field name="is_url" invisible="1"/>
+                                    <field name="external_link" class="oe_link" attr="{'invisible':[('is_url','=',False)]" />
+                                    <field name="virtual_file_name"/>
+                                    <button string="Download Virtual" name="download_virtual" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Virtuals" >
+                        <field name="virtual_file_ids" >
+                            <tree string="Virtual Files" create="0" edit="0" readonly="0">
+                                <field name="name"/>
+                                <field name="description" required="1"/>
+                                <field name="file" filename="file_url" invisible="1"/>
+                                <button string="Download Virtual" name="download_virtual_file" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                <field name="file_url" invisible="1"/>
+                            </tree>
+                            <form string="Virtual Files" >
+                                <group>
+                                    <field name="name" invisible="1"/>
+                                    <field name="description" required="1"/>
+                                    <field name="file" filename="file_url" options='{"custom_img": true}' widget='my_widget'/>
+                                    <field name="file_url" invisible="1"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+                <field name='origin' position="after">
+                    <field name='sub_origin'/>
+                </field>
+            </field>
+        </record>
+        
+        
+         <record id="view_order_form_artwork_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.artwork.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//group" position="before" >
+                    <div>
+                        <h2>
+                            <field name="sol_seq" readonly="1"/>
+                        </h2>
+                    </div>
+                </xpath>
+                <field name="date_order" position="after">
+                    <field name="confirm_date" readonly="1"/>
+                    <field name="rush_order" />
+                </field>
+                <xpath expr="//field[@name='client_order_ref']" position="before">
+                     <field name="client_po_ref" on_change="onchange_client_po_ref(client_po_ref, partner_id)" attrs="{'required': [('state','not in',['draft','prepared'])]}"/>
+               </xpath>
+                <xpath expr="//field[@name='order_line']//field[@name='address_allotment_id']" position="after">
+                    <field name="virtual_proofing_required"/>
+                    <field name="needed_by" attrs="{'invisible': [('virtual_proofing_required', '=', False)]}"/>
+                    <field name="manual_approval" attrs="{'invisible': [('virtual_proofing_required', '=', False)]}"/>
+                </xpath>
+               <xpath expr="//notebook/page[@string='Order Lines']/field[@name='order_line']/form//field[@name='name']" position="replace" />
+                <xpath expr="//notebook/page[@string='Order Lines']/field[@name='order_line']/form//label[@for='name']" position="replace" />
+                <xpath expr="//notebook/page[@string='Order Lines']/field[@name='order_line']/form//field[@name='invoice_lines']" position="replace" />
+                <xpath expr="//notebook/page[@string='Order Lines']/field[@name='order_line']/form//label[@for='invoice_lines']" position="replace" />
+                
+                <xpath expr="//field[@name='order_line']//group" position="after" >
+                    <notebook>
+                        <page string="Images">
+                           <field name="product_images" widget="image_grid" />
+                        </page>
+                        <page string="Description">
+                            <field name="name"/>
+                        </page>
+                        <page string="Invoice Lines">
+                            <field name="invoice_lines"/>
+                        </page>
+                        <page string="Artwork">
+                            <field name="order_line_image_ids" >
+                                <tree string="Upload Files">
+                                    <field name="art_image_name" />
+                                    <!-- <button string="Download" name="download_img" class="oe_download_file" type="object" icon="gtk-goto-bottom"/> -->
+                                    <field name="virtual_file_name" />
+                                    <button string="Download Virtual" name="download_virtual" type="object" class="oe_download_file" icon="gtk-goto-bottom"/>
+                                    <field name="is_url" />
+                                    <field name="external_link" />
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Virtuals">
+                            <field name="virtual_file_ids">
+                                <tree string="Virtual Files" >
+                                    <field name="name"/>
+                                    <field name="description" required="1"/>
+                                    <field name="file" filename="file_url" invisible="1"/>
+                                    <button string="Download Virtual" name="download_virtual_file" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                                    <field name="file_url" invisible="1"/>
+                                </tree>
+                                <form string="Virtual Files" >
+                                    <group>
+                                        <field name="name" invisible="1"/>
+                                        <field name="description" required="1"/>
+                                        <field name="file" filename="file_url" options='{"custom_img": true}' widget='my_widget'/>
+                                        <field name="file_url" invisible="1"/>
+                                    </group>
+                               </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+                
+                <xpath expr="//form[@string='Sales Order Lines']//field[@name='tax_id']" position="after">
+                    <field name="size" />
+                </xpath>
+            </field>
+        </record> 
+
+
+        <!-- Tree View for Virtual File History -->
+        <record id="virtual_history_tree" model="ir.ui.view">
+            <field name="name">virtual.history.tree</field>
+            <field name="model">virtual.history</field>
+            <field name="arch" type="xml">
+                <tree string="Virtual File History">
+                   <field name="sent_date" />
+                   <field name="name" />
+                   <button string="Download Image" name="download_virtual" type="object" icon="gtk-goto-bottom"/>                   
+                   <field name="name_url" invisible="1"/>
+                   <field name="is_url" />
+                   <field name="external_link" />
+                   <!--button name="download_virtual" type="object" string="Download Image" icon="terp-stock_effects-object-colorize"/-->
+                </tree>
+            </field>
+        </record>
+        
+        <!-- ==================================== -->
+        <!--    Sale Order Line Image Views       -->
+        <!-- ==================================== -->
+        
+        <record id="view_order_line_image_form" model="ir.ui.view">
+            <field name="name">sale.order.line.images.form</field>
+            <field name="model">sale.order.line.images</field>
+            <field name="arch" type="xml">
+                <form string="Sales Order Line Images" version="7.0" create="false">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="sol_id" invisible="1"/>
+                            <field name="art_image_name" />
+                        </group>
+                        <group>
+                            <field name="art_image" widget="image_pdf_multi"/>
+                        </group>
+                        <group colspan="2" col="4">
+                            <newline/>
+                             <field name="is_url" on_change="onchange_is_url(is_url)"
+                                attrs="{'invisible':[('art_image','=',False)],'readonly': [('state','=','send_for_approval'),('state','=','confirmed')]}" 
+                                />
+                            <field name="external_link" attrs="{'invisible':['|',('art_image','=',False),('is_url','=',False)],'readonly': [('state','=','send_for_approval'),('state','=','confirmed')]}" groups ="ob_sale_artwork.group_virtual_team"/>
+                            <field name="virtual_file" widget='my_widget' options="{'custom_img': True}" on_change="onchange_virtual_file(virtual_file,virtual_file_name)" attrs="{'invisible':['|',('art_image','=',False),('is_url','=',True)],'readonly': [('state','=','send_for_approval'),('state','=','confirmed')]}" filename="virtual_file_name"  groups="ob_sale_artwork.group_virtual_team"/>
+                            <img id="myImg" src="#" height="100" width="100"/>                            
+                            <field name="art_image_local_name" invisible="1"/>
+                            <field name="virtual_file_name" invisible="1"/>
+                            <field name="virtual_file_name_url" invisible="1"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="data_key" invisible="1"/>
+                            <field name="approval_link" invisible="1"/>
+                            <field name="semi_approval_link" invisible="1"/>
+                            <field name="send_another_link" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <h2 id="h2">
+                            <group>
+                                <field name="order_id" readonly="1"/>
+                            </group>
+                        </h2>
+                        <group col="4" colspan="2" attrs="{'invisible':[('art_image','=',False)]}" groups="ob_sale_artwork.group_virtual_team">
+                            <group col="1" colspan="1">
+                                <div>
+                                    <button name="sent_for_approval" type="object" string="Send for Approval" class="oe_highlight"/>
+                                </div>
+                            </group>
+                            
+                            <group col="1" colspan="1">
+                                <div>
+                                    <button name="do_confirm" class="art_confirm" string="Approve" groups="ob_sale_artwork.group_virtual_team,base.group_portal"/>
+                                    <button name="do_semi_confirm" class="art_semi_confirm" string="Approve with Change" groups="ob_sale_artwork.group_virtual_team,base.group_portal"/>
+                                    <button name="do_cancel" class="art_cancle" string="Send Another Virtual" groups="ob_sale_artwork.group_virtual_team,base.group_portal"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description" nolabel="1" placeholder="Enter Description Here..." required="1"/>
+                            <newline />
+                            <field name="history_ids" readonly="1" nolabel='1'/>
+                        </group>
+                      </sheet>
+                      <div class="oe_chatter">
+                          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                          <field name="message_ids" widget="mail_thread"/>
+                      </div>
+                  </form>
+            </field>
+        </record>
+        
+        <!--menuitem id="menu_virtuals" name="Virtual" parent="base.menu_base_partner" sequence="2"/>
+        <menuitem id="menu_all_virtuals" name="Virtuals" parent="menu_virtuals" action="action_virtuals" sequence="9"/-->
+        
+        <!-- Tree View for Artwork -->
+        <record id="view_order_line_image_tree_artwork" model="ir.ui.view">
+            <field name="name">sale.order.line.images.tree</field>
+            <field name="model">sale.order.line.images</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork" create="false" colors="red:state in ('draft','sent_for_approval') and (red_bool == True);">
+                   <field name="partner_id" />
+                   <field name="order_id" />
+                   <field name="sol_id" />
+                   <field name="art_image_name" />
+                   <!-- <button string="Download Image" name="download_img" type="object" icon="gtk-goto-bottom" class="oe_download_file"/> -->
+                   <field name="virtual_file_name" />
+                   <button name="sent_for_approval" type="object" string="Send for Approval" icon="terp-mail-message-new" />
+                   <button string="Download Virtual" name="download_virtual" type="object" icon="gtk-goto-bottom" class="oe_download_file"/>
+                   <field name="is_url" />
+                   <field name="external_link" />
+                   <field name="state"/>
+                   <field name="red_bool" invisible="1"/>
+                   <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search View for Artwork-->
+        <record id="artwork_search_view" model="ir.ui.view">
+            <field name="name">sale.order.line.images.search</field>
+            <field name="model">sale.order.line.images</field>
+            <field name="arch" type="xml">
+                <search string="Search Artwork">
+                    <field name="partner_id" />
+                    <field name="order_id" />
+                    <field name="art_image_name" />
+                    <field name="virtual_file_name" />
+
+                    <filter string="Customer" icon="terp-stock_effects-object-colorize" domain="[]"/>
+                    <filter string="Sale Order" icon="terp-stock_effects-object-colorize" domain="[]" />
+                    <filter string="Art Image" icon="terp-stock_effects-object-colorize" domain="[]" />
+                    <filter string="Virtual File Name" icon="terp-stock_effects-object-colorize" domain="[]" />
+                    
+                    <group expand="0" string="Group By...">
+                        <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Sale Order" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'order_id'}"/>
+                        <filter string="Order Line #" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'sol_id'}" />
+                        <filter string="Customer" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'partner_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_virtuals">
+            <field name="name">Artworks</field>
+            <field name="res_model">sale.order.line.images</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_order_line_image_tree_artwork"/>
+            <field name="search_view_id" ref="artwork_search_view"/>
+        </record>
+        
+        <menuitem id="menu_virtual" name="Artwork Approvals" parent="base.menu_base_partner" sequence="2"/>
+        <menuitem id="menu_all_virtual" name="Artworks" parent="menu_virtual" action="action_virtuals" sequence="9" />
+
+    </data>
+    <data noupdate="1">
+        <!-- Multi - Company Rules -->
+        <record model="ir.rule" id="sale_artwork_comp_rule">
+            <field name="name">Sale Artwork multi-company</field>
+            <field name="model_id" ref="model_sale_order_line_images"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+    </data>
+    
+    
+</openerp>

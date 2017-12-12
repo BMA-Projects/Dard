@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="release_management_form" model="ir.ui.view">
+            <field name="name">release.management.form</field>
+            <field name="model">release.management</field>
+            <field name="arch" type="xml">
+                <form string="Release management">
+                    <header>
+                        <button name="set_planning" string="Planning" type="object" states="progress,waiting" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <button name="set_progress" string="In Progress" type="object" states="planning,waiting" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <button name="set_waiting" string="Ready For Release" type="object" states="progress" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <button name="set_progress_release" string="Release In Progress" type="object" states="waiting" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <button name="set_live" string="Live" type="object" states="progress_release" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <button name="set_cancel" string="Cancel" type="object" states="planning,progress,waiting,progress_release" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <button name="set_planning" string="Re-open Release" type="object" states="cancel" class="oe_highlight" groups="ob_project_enhance.group_release_manager"/>
+                        <field name="state" widget="statusbar" statusbar_visible="planning,progress,waiting,progress_release,live" statusbar_colors='{"pending":"blue"}' readonly="1"/>
+
+                    </header>
+                    <sheet >
+                        <h1>
+                            <field name="name" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}"/>
+                        </h1>
+                       <group attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}">
+                            <field name="release_date" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}"/>
+                            <field name="project_id" context="{'current_model': 'release.management'}" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}"/>
+                        </group>
+                        <group attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}">    
+                            <field name="start_date" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}" />
+                            <field name="end_date" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}" />
+                        </group >
+
+                        <notebook attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}">
+                        <page string="Team" name="team_ids">
+                            <field colspan="4" name="member_ids" widget="many2many_kanban" context="{'current_model': 'release.management'}" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}">
+                            <!-- <field colspan="4" name="members" widget="many2many_kanban" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'project.group_project_user']}"> -->
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div style="position: relative">
+                                                <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                                                <div class="oe_module_vignette">
+                                                    <img t-att-src="kanban_image('res.users', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+                                                    <div class="oe_module_desc">
+                                                        <field name="name"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+<!--                         <field name="parent_id" string="Parent" help="Append this project to another one using analytic accounts hierarchy" domain="[('id','!=',analytic_account_id)]" context="{'current_model': 'project.project'}" /> -->
+                        <page string= " Stories">
+                            <field name='story_ids' domain="[('project_id','=',project_id)]" context="{'current_model': 'release.management'}" attrs="{'readonly': [('state','in',['waiting','progress_release','live','cancel'])]}">
+                            <tree string= "Story">
+                                <field name= "id"/>
+                                <field name= "name"/>
+                                <field name= "user_id"/>
+                                <field name="stage_id"/>
+                                <field name="progress" widget="progressbar" invisible="context.get('set_visible',False)"/>
+                            </tree>
+                        </field>
+                        </page>
+                        </notebook>
+                    </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" help="Follow this project to automatically track the events associated to tasks and issues of this project." />
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_release_management_filter" model="ir.ui.view">
+            <field name="name">release.management.select</field>
+            <field name="model">release.management</field>
+            <field name="arch" type="xml">
+                <search string="Search Release">
+                    <field name="name" string="Release Name"/>
+                    <filter string="Planning" name="Planning" domain="[('state', '=','planning')]"/>
+                    <filter string="Progress" name="In Progress" domain="[('state', '=','progress')]"/>
+                    <filter string="Ready For Release" name="Ready For Release" domain="[('state', '=','waiting')]"/>
+                    <filter string="Release In Progress" name="Release In Progress" domain="[('state', '=','progress_release')]"/>
+                    <filter string="Live" name="live" domain="[('state', '=','live')]"/>
+                    <filter string="Release Date" context="{'group_by':'release_date:day'}" help="Release Date"/>
+                    <filter string="Release Month" context="{'group_by':'release_date:month'}" help="Release Month"/>
+                    <filter string="Release Year" context="{'group_by':'release_date:year'}" help="Release Year"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Project" name="Project" context="{'group_by':'project_id'}"/>
+                        <filter string="Start Date" name="Start Date" context="{'group_by':'start_date'}"/>
+                        <filter string="End Date" name="End Date" context="{'group_by':'end_date'}"/>
+                        <filter string="Release Date" context="{'group_by':'release_date:day'}" help="Release Date"/>
+                        <filter string="Release Month" context="{'group_by':'release_date:month'}" help="Release Month"/>
+                        <filter string="Release Year" context="{'group_by':'release_date:year'}" help="Release Year"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="release_management_tree" model="ir.ui.view">
+            <field name="name">release.management.tree</field>
+            <field name="model">release.management</field>
+            <!-- <field name="field_parent">child_ids</field> -->
+            <field name="arch" type="xml">
+                <!-- <tree fonts="bold:message_unread==True" colormessage_unreads="red:date and (date&lt;current_date) and (state == 'open');blue:state in ('draft','pending');grey: state in ('close','cancelled')" string="Projects"> -->
+                <tree string="Release Management">
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="release_date"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="release_management_calendar" model="ir.ui.view">
+            <field name="name">release.management.calendar</field>
+            <field name="model">release.management</field>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <calendar date_start="release_date" color="name" string="Release">
+                    <field name="name"/>
+                    <field name="project_id"/>
+                </calendar>
+            </field>
+        </record>
+
+
+         <record model="ir.actions.act_window" id="release_management_action">
+            <field name="name">Release</field>
+            <field name="res_model">release.management</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+
+        <menuitem action="release_management_action" id="release_management_action_menu" name="Release" parent="project.menu_project_management" sequence="8" groups='group_release_manager,group_release_user'/>
+
+    </data>
+</openerp>
+
+<!--                 <xpath expr="//sheet/notebook/page[@string='Project Stages']" position="attributes">
+                    <attribute name="groups">ob_project_enhance.grp_project_stages</attribute>
+                </xpath> -->

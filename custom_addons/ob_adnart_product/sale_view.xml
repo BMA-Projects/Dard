@@ -1,0 +1,103 @@
+<openerp>
+    <data>
+    
+<!--     	<record id="view_sale_prod_att_tree" model="ir.ui.view">
+            <field name="name">view.sale.prod.att.tree</field>
+            <field name="model">sale.line.attachemnt</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment Product" editable="bottom">
+                    <field name="att_product_id" />
+                    <field name="prod_uom_qty"/>
+                    <field name="prod_unit_price"/>
+                    <field name="prod_discount"/>
+                    <field name="prod_tax_id" widget="many2many_tags"/>
+               </tree>
+            </field>
+        </record> -->
+        
+    	<record id="view_sale_prod_pack_tree" model="ir.ui.view">
+            <field name="name">view.sale.prod.pack.tree</field>
+            <field name="model">sale.line.packaging</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment Product" editable="bottom">
+                    <field name="pack_product_id" />
+                    <field name="prod_uom_qty"/>
+                    <field name="prod_unit_price"/>
+                    <field name="prod_discount"/>
+                    <field name="prod_tax_id" widget="many2many_tags"/>
+               </tree>
+            </field>
+        </record>
+    
+        <record id="adnart_view_order_form_inherit" model="ir.ui.view">
+            <field name="name">.view.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='order_line']/form/div[@groups='base.group_no_one']" position="inside">
+            		<group invisible="True">
+            			<field name="temp_fiscal_position" />
+	            		<field name="temp_price_list_id"/>
+	            		<field name="temp_date_order" />
+	            		<field name="temp_partner_id" />
+	            		<field name="temp_warehouse_id" />
+            		</group>
+            	</xpath >
+            	
+            	<xpath expr="//field[@name='order_line']/form/group/group/div/field[@name='product_uom_qty']" position="attributes">
+            		<attribute name="context">{'partner_id':parent.partner_id, 
+            								   'quantity':product_uom_qty,
+            								   'pricelist':parent.pricelist_id,
+            								   'uom':product_uom, 
+            								   'sale_prod_att_ids' : sale_prod_att_ids,
+            								   'sale_prod_pack_ids' : sale_prod_pack_ids
+            								   }
+          			</attribute>
+            	</xpath>
+            	
+             	<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+            		<field name="sale_prod_att_id" invisible="1"/>
+            		<field name="sale_prod_pack_id" invisible="1"/>
+            	</xpath> 
+            	
+                <xpath expr="//field[@name='order_line']/form/div[@groups='base.group_no_one']" position="before">
+                	<notebook>
+                		<page string="Attachment">
+                			<field name="sale_prod_att_ids">
+                				<tree string="Attachment Product" editable="bottom">
+				                    <field name="att_product_id" context="{'quantity': parent.product_uom_qty,  'parent_prod_att_id':parent.product_id,'from_att':True}"
+				                    on_change="att_product_id_change(att_product_id, parent.temp_price_list_id, parent.product_uom_qty, parent.discount, parent.product_uom,
+				                    parent.temp_date_order, parent.temp_partner_id, True, parent.temp_fiscal_position, parent.product_packaging, parent.temp_warehouse_id,
+				                      context)" />
+				                    <field name="prod_uom_qty"/>
+				                    <field name="prod_uom" />
+				                    <field name="prod_unit_price"/>
+				                    <field name="prod_discount"/>
+				                    <field name="prod_tax_id" widget="many2many_tags"/>
+               					</tree>
+                			</field>
+                		</page>
+                	</notebook>
+                	<notebook>
+                		<page string="Packaging">
+                			<field name="sale_prod_pack_ids">
+                				<tree string="Packaging Product" editable="bottom">
+				                    <field name="pack_product_id" context="{'quantity': parent.product_uom_qty,'parent_prod_pack_id':parent.product_id,'from_att':True}"
+				                    on_change="pack_product_id_change(pack_product_id, parent.temp_price_list_id, parent.product_uom_qty, parent.discount, parent.product_uom,
+				                    parent.temp_date_order, parent.temp_partner_id, True, parent.temp_fiscal_position, parent.product_packaging, parent.temp_warehouse_id,
+				                    context)"/>
+				                    <field name="prod_uom_qty"/>
+				                    <field name="prod_uom" />
+				                    <field name="prod_unit_price"/>
+				                    <field name="prod_discount"/>
+				                    <field name="prod_tax_id" widget="many2many_tags"/>
+               					</tree>
+                			</field>
+                		</page>
+                	</notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

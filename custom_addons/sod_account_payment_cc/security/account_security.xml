@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="group_cc_mgr" model="res.groups">
+	<field name="name">CreditCard / Manager</field>
+</record>
+
+</data>
+</openerp>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+          
+        <template id="assets_backend" name="ob_web_replace assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/ob_web_replace/static/src/js/ob_web_replace.js"></script>
+                <link rel="stylesheet" href="/ob_web_replace/static/src/css/ob_web_replace.css"/>
+            </xpath>
+        </template>
+
+
+        <template id="login_layout_replace" inherit_id="web.login_layout" name="Website Login Layout">
+	    <xpath expr="t" position="replace">
+		<t t-call="web.layout">
+                <t t-set="head">
+                    <link href="/web/static/src/css/base.css" rel="stylesheet"/>
+                    <link href="/web/static/lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+                    <link rel="stylesheet" href="/ob_web_replace/static/src/css/ob_web_replace.css"/>
+                </t>
+                <t t-set="body_classname" t-value="'oe_single_form'"/>
+                
+                <div class="oe_single_form_container modal-content">
+                    <div class="oe_single_form_logo">
+                        <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"/>
+                    </div>
+                    <hr/>
+                    <t t-raw="0"/>
+
+                    <div class="oe_single_form_footer" t-if="not disable_footer">
+                        <t t-if="not disable_database_manager">
+                            <a class="oe_login_manage_db" t-attf-href="/web/database/manager{{ '?debug' if debug else '' }}">Manage Databases</a>
+                            <!-- <span class="oe_footer_seperator"> | </span> -->
+                        </t>
+                       <!--  <a href="https://www.odoo.com" target="_blank">Powered by <span>OfficeBrain</span></a> -->
+                    </div>
+                </div>
+                <div class="business">
+                    <h1>Business Management Made Simple.</h1>
+                    <p>It's a new way of business organization. Try it for free!</p> 
+                </div>
+            	</t>
+         
+        </xpath>
+        </template>
+
+
+        <template id="login_layout_replace1" inherit_id="web.layout" name="Web layout">
+            <xpath expr="html/head" position="replace">
+                <head>
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+                    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+                    <title>OfficeBrain</title>
+                    <link rel="shortcut icon" href="/ob_web_replace/static/src/img/favicon.ico" type="image/x-icon"/>
+                    <link rel="stylesheet" href="/web/static/src/css/full.css" />
+                    <t t-raw="head or ''"/>
+                </head>
+            </xpath>
+        </template>
+        
+        <template id="menu_secondary_replace" inherit_id="web.menu_secondary" name="Submenu">
+            <xpath expr="//div[@class='oe_footer']" position="replace">
+                <div class="oe_footer">
+                    Powered by <a href="http://www.officebrain.com" target="_blank"><span>OfficeBrainBMA</span></a>
+                </div>
+            </xpath>
+        </template>
+        
+</data>
+</openerp>
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <record id="view_email_template_send" model="ir.ui.view">
+        <field name="model">email.template</field>
+        <field name="inherit_id" ref="email_template.email_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='auto_delete']" position="after">
+                <field name="auto_send"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_email_send" model="ir.ui.view">
+        <field name="name">account.invocie.form.send</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="date_due" position="after">
+                <field name="send_email"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_email_send" model="ir.ui.view">
+        <field name="name">sale.order.form.send</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="invoiced" position="after">
+                <field name="send_email"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_order_send_form_inherit">
+        <field name="name">purchase.order.form.send.email</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="validator" position="before">
+                <field name="send_email"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_partner_send_email_form">
+        <field name="name">res.partner.send.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="send_email"/>
+            </xpath>
+        </field>
+        </record>
+    </data>
+</openerp>

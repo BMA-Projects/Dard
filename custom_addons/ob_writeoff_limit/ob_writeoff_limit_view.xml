@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Add Field Write-Off limit to the User for view -->
+        <record id="view_users_form_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath  expr="/form/sheet/notebook/page[@string='Preferences']/group" position="after">
+                    <group string="Accounting" name="account">
+                        <field name="writeoff_limit" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

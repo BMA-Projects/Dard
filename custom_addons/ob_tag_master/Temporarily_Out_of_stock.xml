@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="ob_tag_master_out_of_stock_temp" model="email.template">
+            <field name="name">Temporarily Out of stock - Email Template</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">*Temporarily Out of Stock*</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="report_template" ref="ob_product_variant.report_sale_order_product"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<p>Hello!</p>
+<p>Again thank you for your order! Unfortunately we cannot proceed with your order for the following reason(s).</p>
+
+
+<p>*Temporarily Out of Stock*</p>
+
+
+<p>We apologize in advance however we are notifying you because we are temporarily out of stock on the (item #)${object.order_line.product_id}. Fortunately we are expected</p>
+<p>to receive more stock on approximately (Stock Arrival Date)${object.in_hand_date}. We can re-schedule your order to ship on (Estimated Ship Date Based On</p>
+<p>Stock Arrival Date)${object.ship_dt}.  If that does not work please advise as soon as possible so we can find another solution.</p>
+
+
+<p>We also have this item in the following item colors to satisfy your order quantity: (Item Colors Available In Stock)${object.product_uom_qty}. Please contact </p>
+<p><a href="mailto:${object.user_id.email or ''}">${object.user_id.email}</a> or call <a href="mailto:${object.user_id.phone or ''}">${object.user_id.phone}</a> to advise the change in item color. Be sure to reference your purchase order number</p>
+<p>in your reply. We will be happy to assist you in making your decision! Either way please advise on how we are to proceed with your order.</p>
+
+
+<p>* Your ship date is subject to change as standard production time begins the day after artwork is received and proof is approved.</p>
+<p>Standard Production Times</p>
+
+
+<p>* Silk Screened /Pad Printed /Hot Stamped: 1-5 business days</p>
+<p>* 4 Color Process / Epoxy Dome Items: 5-10 business days</p>
+<p>* Drinkware / Blankets / Tote Bags: 5-7 business days</p>
+<p>* Power Banks: 10-15 business days</p>
+<p>* Wearables: 15-20 business days</p>
+<p>**NOTE** Increase production times (1) day if proof is requested</p>
+
+
+
+<p>We really do appreciate and value your business! We understand you do have many choices of promotional product suppliers and we thank</p>
+<p>you for choosing DARD Products Inc. / Tagmaster!</p>
+
+        ]]></field>
+        </record>
+
+   </data>
+</openerp>

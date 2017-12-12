@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+  <!-- Activity  for sale -->
+    <record id="act_sale_send_email" model="workflow.activity">
+        <field name="wkf_id" ref="sale.wkf_sale"/>
+        <field name="name">send_email</field>
+        <field name="kind">dummy</field>
+        <field name="action_id" ref="action_send_email_server"/>
+    </record>
+
+    <record id="trans_order_end_sent_mal" model="workflow.transition">
+        <field name="act_from" ref="sale.act_router"/>
+        <field name="act_to" ref="act_sale_send_email"/>
+    </record>
+
+<!-- Activity  for stock -->
+    <!-- <record id="act_stock_send_email" model="workflow.activity">
+        <field name="wkf_id" ref="stock.wkf_picking"/>
+        <field name="name">send_email</field>
+        <field name="kind">dummy</field>
+        <field name="action_id" ref="action_send_email_server"/>
+    </record> -->
+
+    <!-- <record id="trans_move_sent" model="workflow.transition">
+        <field name="act_from" ref="stock.act_move"/>
+        <field name="act_to" ref="act_stock_send_email"/>
+        <field name="condition">test_finished()</field>
+    </record>
+
+    <record id="stock.trans_move_done" model="workflow.transition">
+        <field name="act_from" ref="act_stock_send_email"/>
+        <field name="act_to" ref="stock.act_done"/>
+        <field name="condition">True</field>
+    </record> -->
+        
+<!-- Activity  for account -->
+
+    <record id="account.act_open" model="workflow.activity">
+        <field name="wkf_id" ref="account.wkf"/>
+        <field name="name">open</field>
+        <field name="action">action_date_assign()
+            action_move_create()
+            action_number()
+            invoice_validate()</field>
+        <field name="action_id" ref="action_send_email_server"/>
+        <field name="kind">function</field>
+    </record>
+        
+<!-- Activity  for Purchase -->
+
+    <record id="act_purchase_send_email" model="workflow.activity">
+        <field name="wkf_id" ref="purchase.purchase_order"/>
+        <field name="name">send_email</field>
+        <field name="kind">dummy</field>
+        <field name="action_id" ref="action_send_email_server"/>
+    </record>
+    
+    <record id="trans_purchase_end_sent_mail" model="workflow.transition">
+        <field name="act_from" ref="purchase.act_confirmed"/>
+        <field name="act_to" ref="act_purchase_send_email"/>
+    </record>
+<!--Activity for Payment-->
+
+    <record id="account_voucher.act_done" model="workflow.activity">
+        <field name="wkf_id" ref="account_voucher.wkf"/>
+        <field name="name">done</field>
+        <field name="action">proforma_voucher()</field>
+        <field name="kind">function</field>
+        <field name="flow_stop">True</field>
+        <field name="action_id" ref="action_send_email_server"/>
+    </record>
+
+    </data>
+</openerp>

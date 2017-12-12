@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_user_group_tree" model="ir.ui.view">
+        <field eval="1" name="priority"/>
+        <field name="name">user.group.tree</field>
+        <field name="model">user.group</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Analysis" create="0" delete="0">
+                <field name="group_id"/>
+                <field name="rule_id"/>
+                <field name="model_id"/>
+                <field name="r"/>
+                <field name="w"/>
+                <field name="c"/>
+                <field name="u"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_user_group_search" model="ir.ui.view">
+        <field name="name">user.group.search</field>
+        <field name="model">user.group</field>
+        <field name="arch" type="xml">
+            <search string="User Group Analysis">
+                <field name="group_id"/>
+                <field name="rule_id"/>
+                <field name="model_id"/>
+                <field name="r"/>
+                <field name="w"/>
+                <field name="c"/>
+                <field name="u"/>
+                <group expand="0" string="Group By...">
+                    <filter string="Group(s)" domain="[]" context="{'group_by':'group_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_user_group_all" model="ir.actions.act_window">
+        <field name="name">User Group Analysis</field>
+        <field name="res_model">user.group</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('user_id','=',active_id)]</field>
+        <field name="search_view_id" ref="view_user_group_search"/>
+        <field name="view_id" ref="view_user_group_tree"/>
+        <field name="help">This report performs analysis on user's group.</field>
+    </record>
+
+</data>
+</openerp>

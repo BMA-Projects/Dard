@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Add GroupBy/Filters to Sales Quotation/Order view. -->
+        <record id="view_sales_order_filter_inherit1" model="ir.ui.view">
+            <field name="name">sale.order.filter.inherit1</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                    <field name="partner_id"/>
+                </xpath>
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <field name="client_order_ref" string="Customer Reference"/>
+                </xpath>
+                <xpath expr="//group//filter[@string='Order Month']" position="after">
+                    <filter string="Customer Reference" domain="[]" context="{'group_by':'client_order_ref'}"/>
+                    <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

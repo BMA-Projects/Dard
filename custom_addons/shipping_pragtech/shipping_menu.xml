@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+<!-- 		<menuitem id="menu_shipping_service" name="Shipping Service Management" parent="stock.menu_stock_configuration" sequence="1" groups="base.group_extended"/> -->
+			<menuitem id="menu_shipping_service" name="Shipping Service Management" parent="stock.menu_stock_configuration" sequence="1"/>	
+                <menuitem id="menu_usps_setting" name="USPS Settings" parent="menu_shipping_service" action="shipping_usps_action" />
+                <menuitem id="menu_fedex_setting" name="Fedex Settings" parent="menu_shipping_service" action="shipping_fedex_action" />
+                <menuitem id="menu_ups_setting" name="UPS Settings" parent="menu_shipping_service" action="shipping_ups_action" />
+                
+       </data>
+</openerp>

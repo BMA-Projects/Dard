@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/officebeacon/!svn/ver/54607/BMA/V8/branches/bma8_qa/bma/ob_web_replace
+END
+ob_web_replace_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/officebeacon/!svn/ver/37243/BMA/V8/branches/bma8_qa/bma/ob_web_replace/ob_web_replace_view.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/officebeacon/!svn/ver/36987/BMA/V8/branches/bma8_qa/bma/ob_web_replace/__init__.py
+END
+res_company_data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/officebeacon/!svn/ver/45873/BMA/V8/branches/bma8_qa/bma/ob_web_replace/res_company_data.xml
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/officebeacon/!svn/ver/55065/BMA/V8/branches/bma8_qa/bma/ob_web_replace/__openerp__.py
+END
+ob_web_replace.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/officebeacon/!svn/ver/46583/BMA/V8/branches/bma8_qa/bma/ob_web_replace/ob_web_replace.py
+END

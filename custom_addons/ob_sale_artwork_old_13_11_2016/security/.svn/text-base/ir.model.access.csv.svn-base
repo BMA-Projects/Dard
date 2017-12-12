@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_images,sale.order.line.images,model_sale_order_line_images,base.group_sale_salesman,1,1,1,1
+access_virtual_history,access.virtual.history,model_virtual_history,base.group_sale_salesman,1,1,1,1
+access_virtual_file,access.virtual.file,model_virtual_file,base.group_sale_salesman,1,1,1,1
+access_virtual_file_mrp_user,access.virtual.file.mrp.user,model_virtual_file,mrp.group_mrp_user,1,0,0,0
+access_virtual_file_mrp_manager,access.virtual.file.mrp.manager,model_virtual_file,mrp.group_mrp_manager,1,1,1,1
+access_sale_order_line_portal1,sale.order.line,sale.model_sale_order_line,base.group_portal,1,1,1,1
+access_sale_order_portal1,sale.order,sale.model_sale_order,base.group_portal,1,1,1,1
+access_virtual_file_portal,virtual.file,model_virtual_file,base.group_portal,1,1,1,0

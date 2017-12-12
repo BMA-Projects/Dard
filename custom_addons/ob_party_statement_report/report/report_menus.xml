@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="account_party_statement_report_print"
+            model="party.statement.report"
+            string="Party Statement"
+            report_type="qweb-pdf"
+            name="ob_party_statement_report.account_party_statement_report_template"
+            file="ob_party_statement_report.account_party_statement_report_template"
+            />
+
+         <record id="paper_format_for_party_statement_report" model="report.paperformat">
+            <field name="name">Party Statement Format</field>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="account_party_statement_report_print" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ob_party_statement_report.paper_format_for_party_statement_report"/>
+        </record>
+	</data>
+</openerp>

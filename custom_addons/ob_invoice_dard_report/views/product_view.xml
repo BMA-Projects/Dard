@@ -1,0 +1,16 @@
+ <!-- <?xml version="1.0" encoding="utf-8"?> -->
+<openerp>
+    <data>
+        <record id="view_template_property_form2" model="ir.ui.view">
+            <field name="name">product.template.stock.property.form.inherit2</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='store']" position="attributes">
+                    <attribute name='colspan'>4</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

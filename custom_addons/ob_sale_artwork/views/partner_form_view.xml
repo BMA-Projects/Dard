@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Activity logs in Partner formview -->
+        <!-- Quotations and Sales -->
+        <record id="sale.act_res_partner_2_sale_order" model="ir.actions.act_window">
+            <field name="context">{'search_default_partner_id': active_id, 'is_res_partner': 1, 'default_partner_id': active_id}</field>
+        </record>
+
+        <!-- Add Samples Action,filter and button -->
+        <record id="view_sales_samples_filter" model="ir.ui.view">
+            <field name="name">sale.sample.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="filter[@string='Quotations']" position="after">
+                    <filter string="Samples" name="is_sample" domain="[('is_sample', '=', True)]" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="act_res_partner_2_sample" model="ir.actions.act_window">
+            <field name="name">Samples and Sales</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{'search_default_partner_id': active_id, 'search_default_is_sample': 1,}</field>
+            <field name="search_view_id" ref="view_sales_samples_filter"/>
+            <field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a samples for this customer.
+              </p><p>
+                OpenERP will help you efficiently handle the complete sale flow:
+                sample, quotation, sales order, delivery, invoicing and
+                payment.
+              </p><p>
+                The social feature helps you organize discussions on each sample , and allow your customer to keep track of the evolution
+                of the sample.
+              </p>
+            </field>
+        </record>
+
+        <record id="res_partner_view_buttons" model="ir.ui.view">
+            <field name="name">res.partner.view.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button name="%(act_res_partner_2_sample)d" type="action"
+                        string="Samples"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        groups="base.group_sale_salesman"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

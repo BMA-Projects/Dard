@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="update_last_year_qty_form_view" model="ir.ui.view">
+   			<field name="name">update.last.year.qty</field>
+   			<field name="model">update.last.year.qty</field>
+   			<field name="arch" type="xml">
+   			<form string="Update Last Year Quantity">
+    			<group>
+     				<field name="update_last_year_qty"/>
+    			</group>
+    		<footer>
+     			<button name="update_qty" string="Yes" type="object" class="oe_highlight"/>
+     			or
+ 				<button string="Cancel" class="oe_link" special="cancel"/>
+			</footer>
+   			</form>
+   			</field>
+		</record>
+
+		<record id="action_update_last_year_qty" model="ir.actions.act_window">
+			<field name="name">Update Last Year Quantity</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">update.last.year.qty</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</openerp>

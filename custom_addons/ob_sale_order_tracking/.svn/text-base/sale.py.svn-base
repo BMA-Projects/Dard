@@ -1,0 +1,149 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OfficeBeacon Administrative Pvt. Ltd
+#    RTL Code
+#    Copyright (C) 2012 (http://www.officebeacon.com)
+#
+##############################################################################
+
+from openerp import models,fields,api,SUPERUSER_ID
+
+class sale_order(models.Model):
+    _inherit = 'sale.order'
+
+    so_tracking_id = fields.Many2one('so.tracking', string='SO Tracking', readonly='1')
+    so_tracking_stage_id = fields.Many2one('so.tracking.stage', string='SO Tracking Stage', readonly='1')
+
+    @api.model
+    def create(self, vals):
+        track_stage_obj = self.env['so.tracking.stage']
+        track_obj = self.env['so.tracking']
+        sale_id = super(sale_order, self).create(vals)
+        tracking_vals = {}
+        sale_vals = {}
+        stage_id = False
+        if not vals.get('so_tracking_id', False):
+            if not stage_id:
+                stage = track_stage_obj.search([('case_default', '=', True)])
+                if stage:
+                    stage_id = stage[0].id
+            if not stage_id:
+                stage_id = track_stage_obj.search([])
+            if stage_id and isinstance(stage_id, (list)):
+                stage_id = stage_id[0]
+            sale_vals.update({'so_tracking_stage_id': stage_id})
+            # tracking_vals.update({'sale_order_id': sale_id, 'partner_id': vals['partner_id'], 'confirm_date': vals['confirm_date'], \
+            #             'client_order_ref': vals['client_order_ref'],'invoiced': vals['invoiced'], \
+            #             'shipped': vals['shipped'], 'user_id': vals['user_id'], 'stage_id': stage_id, #'order_line': [(0, )], \
+            #             'amount_untaxed': sale.amount_untaxed, 'amount_tax': sale.amount_tax, 'amount_total': sale.amount_total, 'date_order': sale.date_order})
+            tracking_vals.update({'sale_order_id': sale_id.id, 'partner_id': vals.get('partner_id', False), \
+                          'client_order_ref': vals.get('client_order_ref', False),'invoiced': vals.get('invoiced', False), \
+                          'shipped': vals.get('shipped',False), 'user_id': vals.get('user_id', False), 'stage_id': stage_id, #'order_line': [(0, )], \
+                          'amount_untaxed': sale_id.amount_untaxed, 'amount_tax': sale_id.amount_tax, 'amount_total': sale_id.amount_total, 'date_order': sale_id.date_order})
+            track_id = self.env['so.tracking'].create(tracking_vals)
+            if track_id:
+                sale_vals.update({'so_tracking_id': track_id.id})
+                self.browse(sale_id.id).write(sale_vals)
+        return sale_id
+
+    @api.one
+    def write(self, vals):
+        tracking_vals = {}
+        so_tracking_obj = self.env['so.tracking']
+        res = super(sale_order, self).write(vals)
+        if self.ids and not isinstance(self.ids, (list)):
+            self.ids = [self.ids]
+        # tarcking_fields = ['sale_order_id', 'partner_id', 'confirm_date', 'client_order_ref', 'rush_order', 'invoiced', 'shipped', 'user_id', 'stage_id']    
+        tarcking_fields = ['sale_order_id', 'partner_id', 'client_order_ref', 'invoiced', 'shipped', 'user_id', 'stage_id']
+        for order in self:
+            so_tracking_id = order.so_tracking_id and order.so_tracking_id.id
+            if so_tracking_id:
+                tracking_vals.update({'amount_untaxed': order.amount_untaxed, 'amount_tax': order.amount_tax, 'amount_total': order.amount_total})
+                for tfield in tarcking_fields:
+                    if vals.has_key(tfield) and vals.get(tfield, False):
+                        tracking_vals.update({tfield: vals.get(tfield, False)})
+                if vals.get('so_tracking_stage_id'):
+                    if self._context.has_key('params'):
+                        self._context['params'].update({'stage_from_sale': True})
+                    tracking_vals.update({'stage_id': vals.get('so_tracking_stage_id', False)})
+        return res
+
+    @api.multi
+    def copy(self,default=None):
+        if default is None:
+            default = {}
+        track_stage_obj = self.env['so.tracking.stage']
+        stage_id = track_stage_obj.search([('case_default', '=', True)])
+        if not stage_id:
+            stage_id = track_stage_obj.search([])
+        if stage_id and isinstance(stage_id, (list)):
+            stage_id = stage_id[0]
+        default.update({
+            'so_tracking_stage_id': stage_id.id,
+        })
+        return super(sale_order, self).copy(default)
+
+    @api.multi
+    def create_tracking(self, vals):
+        tracking_obj = self.env['so.tracking']
+        track_stage_obj = self.env['so.tracking.stage']
+        tracking_vals = {}
+        sale_vals = {}
+        stage_id = False
+        if not stage_id:
+            stage_id = track_stage_obj.search([('case_default', '=', True)])
+            if stage_id:
+                stage_id = stage_id[0].id
+        if not stage_id:
+            stage_id = track_stage_obj.search([])
+        if stage_id and isinstance(stage_id, (list)):
+            stage_id = stage_id[0]
+            sale_vals.update({'so_tracking_stage_id': stage_id})
+            self.write(sale_vals)
+        for so in self:
+            if not so.so_tracking_id:
+                # tracking_vals.update({'sale_order_id': so.id, 'partner_id': so.partner_id.id, 'confirm_date': so.confirm_date, \
+       #                        'client_order_ref': so.client_order_ref, 'rush_order': so.rush_order, 'invoiced': so.invoiced, \
+       #                        'shipped': so.shipped, 'user_id': so.user_id.id, 'stage_id': stage_id,
+       #                        'amount_untaxed': so.amount_untaxed, 'amount_tax': so.amount_tax, 'amount_total': so.amount_total, 'date_order': so.date_order})
+                tracking_vals.update({'sale_order_id': so.id, 'partner_id': so.partner_id.id,\
+                              'client_order_ref': so.client_order_ref, 'invoiced': so.invoiced, \
+                              'shipped': so.shipped or False, 'user_id': so.user_id.id, 'stage_id': stage_id,
+                              'amount_untaxed': so.amount_untaxed, 'amount_tax': so.amount_tax, 'amount_total': so.amount_total, 'date_order': so.date_order})
+                track_id = tracking_obj.create(tracking_vals)
+                if track_id:    
+                    if isinstance(track_id, (long, int)):
+                        self.write({'so_tracking_id':track_id})
+                    else:
+                        self.write({'so_tracking_id':track_id.id})
+
+        return True
+
+    def message_post(self, cr, uid, thread_id, body='', subject=None, type='notification', subtype=None, parent_id=False, attachments=None, context=None, \
+            content_subtype='html', **kwargs):
+        """ To post Sales Order messages in related Tracking
+        """
+        message_obj = self.pool.get('mail.message')
+        sale_obj = self.pool.get('so.tracking')
+        values ={}
+        if context is None:
+            context = {}
+        res = super(sale_order, self).message_post(cr, uid, thread_id, body=body, subject=subject, type=type, subtype=subtype, parent_id=parent_id, \
+            attachments=attachments, context=context, content_subtype=content_subtype, **kwargs)
+        if res:
+            data = message_obj.browse(cr, uid, res, context=context)
+            so_data = self.browse(cr, uid, thread_id)
+            values.update({
+                'model': 'so.tracking',
+                'res_id': so_data.so_tracking_id.id,
+                'body' : data.body,
+                'parent_id': False,
+                'author_id': data.author_id.id
+            })
+            if values:
+                message_obj.create(cr, SUPERUSER_ID, values=values, context=context)
+        return res
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

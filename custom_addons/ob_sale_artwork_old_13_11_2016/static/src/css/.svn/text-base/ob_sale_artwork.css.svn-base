@@ -1,0 +1,20 @@
+/*.openerp .oe_orderline_notify{
+    color:#aaa !important;
+}*/
+.openerp .oe_orderline_notify .ui-dialog-titlebar {
+    display:none
+}
+.openerp .oe_orderline_notify .ui-dialog-content {
+    background-color: black;
+}
+.openerp .oe_orderline_notify .ui-dialog-footer {
+    background-color: black;
+}
+.openerp .oe_orderline_notify ul
+{
+    list-style-type: none;
+    margin-right: 40px;
+}
+.openerp .oe_orderline_notify ul li:nth-child(even) { 
+    margin-bottom: 10px; 
+}

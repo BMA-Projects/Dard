@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_model_menu_form_inherit_menu_access">
+            <field name="name">ir.ui.menu</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='groups_id']" position="replace">
+                    <group string="Visible Menu Groups">
+                        <field name="groups_id" nolabel="1"/>
+                    </group>
+                    <group string="Invisible Menu Groups">
+                        <field name="invisible_groups" nolabel="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem action="base.action_country" id="base.menu_country_partner" parent="base.menu_localisation" sequence="0" groups="base.group_no_one" name="OB COUNTRY"/>
+
+        <record id="base.grant_menu_access" model="ir.actions.act_window">
+            <field name="name">Menu Items</field>
+            <field name="res_model">ir.ui.menu</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="base.edit_menu"/>
+            <field name="context">{'ir.ui.menu.full_list':True, 'ob_noupdate': True}</field>
+            <field name="search_view_id" ref="base.edit_menu_access_search"/>
+            <field name="help">Manage and customize the items available and displayed in your Odoo system menu. You can delete an item by clicking on the box at the beginning of each line and then delete it through the button that appeared. Items can be assigned to specific groups in order to make them accessible to some users within the system.</field>
+        </record>
+    </data>
+</openerp>

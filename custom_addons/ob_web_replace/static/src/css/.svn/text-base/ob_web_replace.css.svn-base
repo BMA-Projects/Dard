@@ -1,0 +1,59 @@
+
+.openerp div.oe_form_field_one2many{
+    overflow:auto;
+}
+
+ @-moz-document url-prefix() {
+.openerp .oe_searchview_drawer .col-md-5 {
+       padding-top: 15px;
+  }
+}
+
+.openerp .openerp_webclient_container{
+    height:100% !important;
+}
+
+body.oe_single_form {
+  background: #eee url(/ob_web_replace/static/src/img/bg3.jpg) !important;
+  background-size:cover !important;
+  height: 100%;
+}
+
+div.oe_login_buttons > .btn-primary {
+color:##FFFFFF !important;
+background-color: #f05b2a !important;
+}
+
+label.control-label{
+    color:#FFFFFF;
+}
+
+#announcement_bar_table {
+    visibility: hidden;
+    display:none;
+}
+
+body.oe_single_form .oe_single_form_container {
+  background-color: rgba(0,0,0,0.62) !important;
+    position: absolute !important;
+    left: 100px !important;
+    top: 100px !important;
+    width: 400px !important;
+    height: auto !important;
+    padding: 35px !important;
+    border-radius: 10px !important;
+    margin: 0px !important;
+}
+
+div.business{position:absolute;left:605px;top:235px;font-family:'Open Sans', sans-serif;}
+div.business h1{margin:0 0 5px 0;font-size:50px;color:#FFF; text-shadow:none; font-weight:normal;}
+div.business p{margin: 0 0 5px 0;font-size:25px;color:#FFF; text-shadow:none; font-weight:normal;}
+
+footer.footer{position:absolute; width:98%; bottom:0px;height:auto;padding:1%;background-color:#FFF;}
+.display_table{display:table;width:100%;}
+.display_table_cell{display:table-cell;vertical-align:middle;}
+footer.footer .left_side_footer{width:250px;text-align:left;}
+footer.footer .center_footer{text-align:center;}
+footer.footer .right_side_footer{text-align:right;width:158px;}
+footer.footer .copy_right{color:#585a5c;font-size:11px;}
+footer.footer .copy_right a{color:#585a5c;}

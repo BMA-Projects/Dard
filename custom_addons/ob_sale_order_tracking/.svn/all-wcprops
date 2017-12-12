@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/officebeacon/!svn/ver/36573/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/officebeacon/!svn/ver/36371/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking/__init__.py
+END
+ob_so_tracking.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/officebeacon/!svn/ver/36571/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking/ob_so_tracking.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/officebeacon/!svn/ver/36515/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking/__openerp__.py
+END
+sale.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/officebeacon/!svn/ver/36518/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking/sale.py
+END
+ob_so_tracking_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/officebeacon/!svn/ver/36573/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking/ob_so_tracking_view.xml
+END
+sale_tracking_sequence.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/officebeacon/!svn/ver/36371/BMA/V8/branches/bma8_qa/bma/ob_sale_order_tracking/sale_tracking_sequence.xml
+END

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sample_type_sale_salesman,Read-Write-Create access on sample.type for Own Leads,model_sample_type,base.group_sale_salesman,1,1,1,0
+access_sample_type_sale_manager,Full rights on sample.type for sale manager,model_sample_type,base.group_sale_manager,1,1,1,1

@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+        
+         <!-- Support Ticket -related subtypes for messaging / Chatter -->
+         <record id="mt_st_stage" model="mail.message.subtype">
+            <field name="name">Stage Changed</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="default" eval="False"/>
+            <field name="description">Stage changed</field>
+        </record>
+        <record id="mt_st_new" model="mail.message.subtype">
+            <field name="name">Support Ticket Created</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="default" eval="True"/>
+            <field name="description">Support Ticket is Created</field>
+        </record>
+        <record id="mt_st_in_progress" model="mail.message.subtype">
+            <field name="name">Support Ticket In Progress</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="default" eval="False"/>
+            <field name="description">Support Ticket is In Progress</field>
+        </record>
+        <record id="mt_st_pending" model="mail.message.subtype">
+            <field name="name">Support Ticket Pending</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="default" eval="False"/>
+            <field name="description">Support Ticket is Pending</field>
+        </record>
+        <record id="mt_st_done" model="mail.message.subtype">
+            <field name="name">Support Ticket Closed</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="default" eval="False"/>
+            <field name="description">Support Ticket is Closed</field>
+        </record>
+        <record id="mt_st_cancel" model="mail.message.subtype">
+            <field name="name">Support Ticket Cancelled</field>
+            <field name="res_model">crm.helpdesk</field>
+            <field name="default" eval="False"/>
+            <field name="description">Support Ticket is Cancelled</field>
+        </record>
+        
+        <!--
+            Server Action
+        -->
+        <record id="action_send_support_email_server" model="ir.actions.server">
+            <field name="name">Support Ticket Email</field>
+            <field name="model_id" ref="crm_helpdesk.model_crm_helpdesk"/>
+            <field name="state">code</field>
+            <field name="code">self.action_send_confirm(cr, uid,context=context)</field>
+        </record>
+        
+        <record id="email_template_helpdesk_support_process" model="email.template">
+            <field name="name">Support Ticket - Send by Email</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Support Ticket</field>
+            <field name="email_to">${object.email_from|safe}</field>
+            <field name="model_id" ref="crm_helpdesk.model_crm_helpdesk"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>
+                    Hello ${object.partner_id.name or ''},<br/>
+                </p> 
+                <p>
+                    A request for support has been created and assigned ticket to Support Team. <br/>
+                    Your Support Ticket number is <b> ${object.id} </b>.<br/> 
+                    A representative will follow-up with you as soon as possible.<br/>
+                </p>
+                <p>
+                    Thanks & Regards, <br/>
+                    Support Team.
+                </p>
+                ]]></field>
+        </record>
+        
+        <record id="email_template_helpdesk_support_open" model="email.template">
+            <field name="name">Support Ticket - Open</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Support Ticket</field>
+            <field name="email_to">${object.email_from|safe}</field>
+            <field name="model_id" ref="crm_helpdesk.model_crm_helpdesk"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>
+                    Hello ${object.partner_id.name or ''},<br/>
+                </p> 
+                <p>
+                    Your Support Ticket number <b> ${object.id} </b> is Opened.<br/> 
+                    A representative will follow-up with you as soon as possible.<br/>
+                </p>
+                <p>
+                    Thanks & Regards, <br/>
+                    Support Team.
+                </p>
+                ]]></field>
+        </record>
+
+		<record id="email_template_helpdesk_support_pending" model="email.template">
+            <field name="name">Support Ticket - Pending</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Support Ticket</field>
+            <field name="email_to">${object.email_from|safe}</field>
+            <field name="model_id" ref="crm_helpdesk.model_crm_helpdesk"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>
+                    Hello ${object.partner_id.name or ''},<br/>
+                </p> 
+                <p>
+                    Your Support Ticket number <b> ${object.id} </b> is Pending.<br/> 
+                    A representative will follow-up with you as soon as possible.<br/>
+                </p>
+                <p>
+                    Thanks & Regards, <br/>
+                    Support Team.
+                </p>
+                ]]></field>
+        </record>
+        
+		<record id="email_template_helpdesk_support_cancel" model="email.template">
+            <field name="name">Support Ticket - Cancel</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Support Ticket</field>
+            <field name="email_to">${object.email_from|safe}</field>
+            <field name="model_id" ref="crm_helpdesk.model_crm_helpdesk"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>
+                    Hello ${object.partner_id.name or ''},<br/>
+                </p> 
+                <p>
+                    Your Support Ticket number <b> ${object.id} </b> is Cancelled.<br/>
+                </p>
+                <p>
+                    Thanks & Regards, <br/>
+                    Support Team.
+                </p>
+                ]]></field>
+        </record>	
+
+		<record id="email_template_helpdesk_support_close" model="email.template">
+            <field name="name">Support Ticket - Close</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Support Ticket</field>
+            <field name="email_to">${object.email_from|safe}</field>
+            <field name="model_id" ref="crm_helpdesk.model_crm_helpdesk"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>
+                    Hello ${object.partner_id.name or ''},<br/>
+                </p> 
+                <p>
+                    Your Support Ticket number <b> ${object.id} </b> is Closed.<br/> 
+                </p>
+                <p>
+                    Thanks & Regards, <br/>
+                    Support Team.
+                </p>
+                ]]></field>
+        </record>
+	
+        <record id="order_entry_department_category" model="crm.case.categ">
+            <field name="name">Order Entry</field>
+            <!-- <field name="section_id" ref="sales_team.section_sales_department"/> -->
+            <field name="object_id" search="[('model','=','crm.helpdesk')]" model="ir.model"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_starship_request,access.starship.request,ob_starship.model_starship_request,,1,1,1,1
+access_shipping_charges_line,access.shipping.charges.line,ob_starship.model_shipping_charges_line,,1,1,1,1

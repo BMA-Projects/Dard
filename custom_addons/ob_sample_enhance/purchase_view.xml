@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Sample Type -->
+
+        <record model="ir.ui.view" id="purchase_sample_type_tree_view">
+            <field name="name">purchase.sample.type.tree</field>
+            <field name="model">purchase.sample.type</field>
+            <field name="arch" type="xml">
+                <tree string="Sample Type">
+                  <field name="name" />
+                  <field name="desc"/>
+                  <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="purchase_sample_type_form_view">
+            <field name="name">purchase.sample.type.form</field>
+            <field name="model">purchase.sample.type</field>
+            <field name="arch" type="xml">
+                <form string="Sample Type" version="7.0">
+                    <sheet>
+                       <group>
+                          <field name="name" />
+                          <field name="desc"/>
+                          <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="purchase_sample_type_action">
+            <field name="name">Purchase Sample Type</field>
+            <field name="res_model">purchase.sample.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+       </record>
+
+        <menuitem action="purchase_sample_type_action" id="menu_purchase_sample_type_main" name="Sample Type" parent="purchase.menu_purchase_config_purchase" groups="base.group_erp_manager" sequence="80"/>
+
+        <!-- Sample Order -->
+
+        <record model="ir.ui.view" id="sample_order_line_purchase_tree_view">
+            <field name="name">purchase.sample.order.line.tree</field>
+            <field name="model">purchase.sample.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="Sample Info">
+                  <field name="sample_type" widget="selection" options="{'no_create': True, 'no_create_edit':True}"/>
+                  <field name="product_id"/>
+                  <field name="partner_id"/>
+                  <field name="order_id" />
+                  <field name="product_qty"/>
+                  <field name="receive_date"/>
+                  <field name="follow_up"/>
+                  <field name="alarm_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sample_order_line_purchase_form_view">
+            <field name="name">purchase.sample.order.line.form</field>
+            <field name="model">purchase.sample.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Sample Info" version="7.0">
+                    <sheet>
+                       <group>
+                          <field name="sample_type" widget="selection" options="{'no_create': True, 'no_create_edit':True}"/>
+                          <field name="order_id"/>
+                          <field name="product_id"/>
+                          <field name="product_qty"/>
+                          <field name="receive_date"/>
+                          <field name="follow_up"/>
+                          <field name="alarm_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sample_order_line_purchase_filter" model="ir.ui.view">
+            <field name="name">purchase.sample.order.line.select</field>
+            <field name="model">purchase.sample.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Sample Order">
+                    <group expand="0" string="Group By...">
+                        <filter string="Sample Type" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'sample_type'}"/>
+                        <filter string="Purchase Orders" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'order_id'}"/>
+                        <filter string="Products" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Supplier" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="sample_order_line_action2">
+            <field name="name">Purchase Sample Orders</field>
+            <field name="res_model">purchase.sample.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="sample_order_line_action2" id="menu_sample_order_line_purchase" parent="purchase.menu_procurement_management" sequence="6" groups="purchase.group_purchase_manager,purchase.group_purchase_user"/>
+
+        <record model="ir.ui.view" id="purchase_order_inherit_form">
+            <field name="name">purchase.order.inherit.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@string='Deliveries &amp; Invoices']" position="after">
+                    <page string="Sample Information">
+                        <field name="sample_line_id">
+                                <form string="Sample Order Lines" version="7.0">
+                                    <group>
+                                      <field name="sample_type" widget="selection" options="{'no_create': True, 'no_create_edit':True}"/>
+                                      <field name="product_id"/>
+                                      <field name="order_id" invisible="1"/>
+                                      <field name="product_qty"/>
+                                      <field name="receive_date"/>
+                                      <field name="follow_up"/>
+                                      <field name="alarm_id"/>
+                                    </group>
+                                </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

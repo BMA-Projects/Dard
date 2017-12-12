@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+	<record model="ir.ui.view" id="ob_sale_wise_shipping_partner">
+	    <field name="name">ob.sale.wise.shipping.partner</field>
+	    <field name="model">res.partner</field>
+	    <field name="inherit_id" ref="base.view_partner_form" />
+	    <field name="arch" type="xml">
+	        <field name="name" position="after">
+            	<field name="cust_number" placeholder="Customer Number"/>
+            </field>
+	    </field>
+	</record>
+
+    <record id="res_partner_search_view" model="ir.ui.view">
+        <field name="name">Search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+        	<filter string="Suppliers" position="after" >
+        		<field name="cust_number" string="Customer Number" filter_domain="[('cust_number','ilike',self)]"/>
+            </filter>
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">['|','|','|',('name','ilike',self),('parent_id','ilike',self),('ref','=',self),('cust_number','ilike',self)]
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_partner_remove_is_customer_true">
+            <field name="name">res.partner.remove.is.customer.true</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group" position="before">
+                    <group rowspan="1">
+                        <field name="customer"/>
+                        <field name="supplier"/>
+                    </group>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sales_purchases']/group/group/field[@name='supplier']" position="replace">
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sales_purchases']/group/group/field[@name='customer']" position="replace">
+                </xpath>
+           </field>
+        </record>
+</data>
+</openerp>

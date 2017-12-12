@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="ob_adnart_images assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/ob_adnart_images/static/lib/jq-tiles/css/jquery.tiles.min.css"/>
+                <link rel="stylesheet" href="/ob_adnart_images/static/lib/jq-tiles/css/styles.css"/>
+                <script type="text/javascript" src="/ob_adnart_images/static/src/js/ob_adnart_images.js"></script>
+                <script src="/ob_adnart_images/static/lib/jq-tiles/js/jquery.tiles.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

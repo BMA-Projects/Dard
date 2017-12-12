@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_campare_rates_tree" model="ir.ui.view">
+			<field name="name">view.campare.rates.tree</field>
+			<field name="model">compare.shipping.rates</field>
+			<field name="arch" type="xml">
+				<tree string="Shipping Rate Comparision">
+					<field name="pack_info" />
+					<field name="name" />
+					<field name="type" />
+					<field name="weight"/>
+					<field name="rate" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="compare_rate_search_view" model="ir.ui.view">
+			<field name="name">compare.rate.search.view</field>
+			<field name="model">compare.shipping.rates</field>
+			<field name="arch" type="xml">
+				<search string="Compare Rates">
+					<field name="type" />
+					<field name="name" />
+					<group expand="1" string="Group By">
+						<filter name="group_by_type" string="Type" icon="terp-accessories-archiver" context="{'group_by':'type'}" />
+						<filter name="group_by_name" string="Name" icon="terp-accessories-archiver" context="{'group_by':'name'}" />
+					</group>
+				</search>
+			</field>
+
+		</record>
+
+
+		<!-- <record id="action_label_onshipping" model="ir.actions.act_window">
+			<field name="name">Compare Rates</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">compare.shipping.rates</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,search</field>
+			<field name="target">current</field>
+			<field name="context">{ 'search_default_group_by_type': 1, 'search_default_group_by_name' : 1, }</field>
+			<field name="search_view_id" ref="compare_rate_search_view" />
+		</record> -->
+
+	</data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_inherit_create_po" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.create.po</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='product_uom_qty']" position="before">
+                    <field name="is_create_po_enable" invisible='1'/>
+                </xpath>
+                <xpath expr="//field[@name='address_allotment_id']" position="after">
+                    <field name="po_ref"/>
+                    <field name="po_line_ref"/>
+                </xpath>
+                <xpath expr="//tree[@string='Sales Order Lines']/field[@name='price_subtotal']" position="after">
+                    <field name="po_ref"/>
+                    <field name="po_line_ref"/>
+                    <field name="is_create_po_enable" invisible='1'/>
+                    <button name="%(get_po_details)d" string="Create PO" states="draft" type="action" class="oe_link" attrs="{'invisible': ['|', ('is_create_po_enable','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

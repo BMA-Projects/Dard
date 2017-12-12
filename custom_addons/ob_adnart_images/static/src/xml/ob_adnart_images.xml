@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="FieldBinarySliderImage">
+        <div class="slider-wrap"></div>
+    </t>
+    <t t-name="MultiImages">
+        <div class="slider">
+             <t t-foreach="image_list" t-as="row">
+                  <img class="product_image" t-att-src='row.image'><p>Status:<t t-esc="row.state"/><br/><t t-esc="row.name"/></p></img>
+             </t>
+        </div>
+    </t>
+</templates>

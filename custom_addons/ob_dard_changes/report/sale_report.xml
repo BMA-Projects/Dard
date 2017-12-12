@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="report_generate_ticket"
+            string="Generate Tickets"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="ob_dard_changes.report_generateticket"
+            name="ob_dard_changes.report_generateticket"
+            menu="True"
+        />
+
+        <record id="paper_format_generate_ticket" model="report.paperformat">
+            <field name="name">A4 Paper Format Ticket Generate</field>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">70</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_spacing">3</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="report_generate_ticket" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ob_dard_changes.paper_format_generate_ticket"/>
+        </record>
+
+    </data>
+</openerp>

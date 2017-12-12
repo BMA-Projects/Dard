@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="product_category_form_view_ext" model="ir.ui.view">
+            <field name="name">product.category.form.view.ext</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+               	<data>
+               	    <xpath expr="/form/sheet/group/group/field[@name='type']" position="after">
+               	    	<field name="percent_commission"/>
+               	    	<label string=""/>
+               	    </xpath>
+               	</data>
+            </field>
+        </record>
+
+        <record id="product_normal_form_view_ext" model="ir.ui.view">
+            <field name="name">product.normal.form.view.ext</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+               	<data>
+               	    <xpath expr="/form/sheet/notebook/page[@string='Sales']/group[@name='sale']/group[@string='Sale Conditions']" position="inside">
+	                    <label for="percent_commission"/>
+	                    <div>
+	                        <field name="percent_commission" class="oe_inline"/>
+	                    </div>
+               	    </xpath>
+               	</data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

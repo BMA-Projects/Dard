@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="ir.sequence.type" id="seq_type_cust_id">
+            <field name="name">customer number</field>
+            <field name="code">res.partner.cust</field>
+        </record>
+
+        <record model="ir.sequence" id="seq_cust_id">
+            <field name="name">Customer Number</field>
+            <field name="code">res.partner.cust</field>
+            <field name="prefix">C</field>
+            <field name="padding">0</field>
+        </record>
+
+        <record model="ir.sequence.type" id="seq_type_supp_id">
+            <field name="name">supplier number</field>
+            <field name="code">res.partner.supp</field>
+        </record>
+
+        <record model="ir.sequence" id="seq_supp_id">
+            <field name="name">Supplier Number</field>
+            <field name="code">res.partner.supp</field>
+            <field name="prefix">S</field>
+            <field name="padding">0</field>
+        </record>
+
+        <record model="ir.sequence.type" id="seq_type_custsupp_id">
+            <field name="name">customer/supplier Number</field>
+            <field name="code">res.partner.custSupp</field>
+        </record>
+
+        <record model="ir.sequence" id="seq_custsupp_id">
+            <field name="name">customer/supplier Number</field>
+            <field name="code">res.partner.custSupp</field>
+            <field name="prefix">CS</field>
+            <field name="padding">0</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tag_master_sale_manager,tag.master.sale.manager,ob_tags.model_tag_master,base.group_sale_manager,1,1,1,1
+access_tag_master_salesman_all_lead,tag.master.salesman.all.lead,ob_tags.model_tag_master,base.group_sale_salesman_all_leads,1,1,1,1

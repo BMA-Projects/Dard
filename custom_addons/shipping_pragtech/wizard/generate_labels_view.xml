@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_generate_labels" model="ir.ui.view">
+            <field name="name">generate.labels.form</field>
+            <field name="model">generate.labels</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Generate Shipping Quotes Labels">
+                    <separator string="Shipping Quotes"/>
+                    <field name="picking_id" invisible="1"/>
+                    <group>
+                        <field name="shipping_type" on_change="onchange_shipping_type(shipping_type,picking_id)" required="1"/>
+                    </group>
+                    <group attrs="{'invisible':[('shipping_type','!=','UPS')]}">
+						<field name="service_type_ups" on_change="onchange_ups_type(shipping_type,service_type_ups,picking_id)" attrs="{'required':[('shipping_type','=','UPS')]}"/>                        
+                    </group>
+                    <group attrs="{'invisible':[('shipping_type','!=','FedEx')]}">
+                        <field name="service_type_fedex" on_change="onchange_fedex_type(shipping_type,service_type_fedex,picking_id)" attrs="{'required':[('shipping_type','=','FedEx')]}"/>
+                    </group>
+                    <group attrs="{'invisible':[('shipping_type','!=','USPS')]}">
+                        <field name="service_type_usps" on_change="onchange_usps_type(shipping_type,service_type_usps,picking_id)" attrs="{'required':[('shipping_type','=','USPS')]}"/>
+                    </group>
+                    <group>
+                        <field name="shipping_labels_ids" nolabel="1" widget="one2many_list">
+                            <tree colors="blue:cust_default==True;red:sys_default==True;green:label_genrated==True" editable="bottom" string="Shipping Quotes" >
+                                    <!-- <button name="generate_tracking_no" string="Accept and Generate Label" type="object" confirm="Are you Sure to generate a label..?" icon="terp-camera_test" /> -->
+                                    <!-- <field name="is_label_genrated"/>	
+                                    <field name="sequence"/> -->
+                					<field name="pack_info"/>
+                					<field name="type" />
+                                    <field name="name"/>
+                                   	<field name="label_genrated" invisible="1"/>
+                                    <field name="rate" sum="Total Amount"/>
+                                    <field name="cust_default" invisible="1"/>
+                                    <field name="sys_default" invisible="1" />
+                                    
+                                </tree>
+                         </field>
+                               
+                    </group>
+                     <footer>
+                         <group>
+                    	  	<button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                      		<!-- <button name="generate_labels" string="Generate Labels" type="object" confirm="Are you Sure to generate a label..?" icon="terp-camera_test" /> TEMP SOLUTION-->
+                            <button id='generate_labels' name="generate_labels" string="Generate Labels" type="object" onclick="this.addEventListener('click', clickStopper);"/>
+
+                      	</group>
+                     </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_generate_shipping_labels" model="ir.actions.act_window">
+            <field name="name">Generate Shipping Labels</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">generate.labels</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_generate_labels"/> 
+            <field name="target">new</field>
+        </record>
+
+
+
+    </data>
+</openerp>

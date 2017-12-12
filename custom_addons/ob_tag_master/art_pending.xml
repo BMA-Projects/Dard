@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="ob_tag_master_email_notification" model="email.template">
+            <field name="name">Art Pending</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Missing Artwork for ${object.name}</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="report_template" ref="ob_product_variant.report_sale_order_product"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<p>Hello!</p>
+<p>Again thank you for your order! Unfortunately we cannot proceed with your order for the following reason(s).</p>
+
+
+<p>*Missing Artwork*</p>
+
+
+<p>Your order is currently on hold because we are missing artwork.</p>
+<p>Please send your art to <a href="mailto:${object.user_id.email or ''}">${object.user_id.email}</a> or call <a href="mailto:${object.user_id.phone or ''}">${object.user_id.phone or ''}</a></p>
+<p>and be sure to reference your purchase order number in your reply.</p>
+
+
+
+
+
+
+<p>* Your ship date is subject to change as standard production time begins the day after artwork is received and proof is approved.</p>
+<p>Standard Production Times</p>
+
+<p> *Silk Screened /Pad Printed /Hot Stamped: 1-5 business days</p>
+<p> * 4 Color Process / Epoxy Dome Items: 5-10 business days</p>
+<p> * Drinkware / Blankets / Tote Bags: 5-7 business days</p>
+<p> * Power Banks: 10-15 business days</p>
+<p> * Wearables: 15-20 business days</p>
+<p> **NOTE** Increase production times (1)day if proof is requested.</p>
+
+
+<p> We really do appreciate and value your business! We understand you do have many choices of promotional product suppliers and we thank</p>
+<p>you for choosing DARD Products Inc. / Tagmaster!</p>
+
+
+        ]]></field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/officebeacon/!svn/ver/68701/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/views
+END
+ob_product_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/officebeacon/!svn/ver/67241/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/views/ob_product_view.xml
+END
+res_user_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/officebeacon/!svn/ver/68115/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/views/res_user_view.xml
+END
+sale_order_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/officebeacon/!svn/ver/68701/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/views/sale_order_view.xml
+END

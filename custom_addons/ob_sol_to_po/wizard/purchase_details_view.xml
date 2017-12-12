@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_get_purchase_details_wizard" model="ir.ui.view">
+            <field name="name">purchase.details.wizard</field>
+            <field name="model">purchase.details</field>
+            <field name="arch" type="xml">
+            <form string="Purchase Details" version="7.0">
+                <!--separator string="Purchase Details"/-->
+                <group>
+                    <field name="supplier_id"/>
+                    <field name="quantity"/>
+                    <field name="shipping_id" on_change="onchange_shipping_id(shipping_id)"/>
+                </group>
+                <group string="Shipper Details" attrs="{'invisible': [('shipping_id', '=', False)]}">
+                    <group>
+                        <field name="street" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="street2" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="city" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="state_id" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="website" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                    </group>
+                    <group>
+                        <field name="country_id" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="email" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="phone" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="mobile" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                        <field name="fax" readonly="1" attrs="{'invisible': [('shipping_id', '=', False)]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="create_po" string="Create PO" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="get_po_details" model="ir.actions.act_window">
+            <field name="name">Purchase Details</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

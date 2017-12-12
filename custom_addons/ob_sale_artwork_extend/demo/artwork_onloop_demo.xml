@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- An Artwork On loop-->
+        <record id="artwork_onloop_1" model="artwork.master.onloop">
+            <field name="name">Made in Canada</field>
+        </record>
+       <record id="artwork_onloop_2" model="artwork.master.onloop">
+            <field name="name">Solid Pewter</field>
+        </record>
+        <record id="artwork_onloop_3" model="artwork.master.onloop">
+            <field name="name">Fait au Canada</field>
+        </record>
+        <record id="artwork_onloop_4" model="artwork.master.onloop">
+            <field name="name">Fait au Quebec</field>
+        </record>
+        <record id="artwork_onloop_5" model="artwork.master.onloop">
+            <field name="name">Etain Massif</field>
+        </record>
+        <record id="artwork_onloop_6" model="artwork.master.onloop">
+            <field name="name">PPBI</field>
+        </record>
+        <record id="artwork_onloop_7" model="artwork.master.onloop">
+            <field name="name">Botrophee (418-623-9942)</field>
+        </record>
+        <record id="artwork_onloop_8" model="artwork.master.onloop">
+            <field name="name">A. Tags</field>
+        </record>
+        <record id="artwork_onloop_9" model="artwork.master.onloop">
+            <field name="name">S. Tags (902-452-8714)</field>
+        </record>
+        <!--<record id="artwork_onloop_10" model="artwork.master.onloop">-->
+            <!--<field name="name">Other</field>-->
+        <!--</record>-->
+
+    </data>
+</openerp>
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- An Artwork Type-->
+        <record id="artwork_attachment_1" model="artwork.master.attachment">
+            <field name="name">Standard</field>
+        </record>
+        <record id="artwork_attachment_2" model="artwork.master.attachment">
+            <field name="name">Four-Link Chain</field>
+        </record>
+        <record id="artwork_attachment_3" model="artwork.master.attachment">
+            <field name="name">Swivel</field>
+        </record>
+        <record id="artwork_attachment_4" model="artwork.master.attachment">
+            <field name="name">Magic K/C</field>
+        </record>
+        <record id="artwork_attachment_5" model="artwork.master.attachment">
+            <field name="name">Ball Chain</field>
+        </record>
+        <record id="artwork_attachment_6" model="artwork.master.attachment">
+            <field name="name">Slide Clip</field>
+        </record>
+        <record id="artwork_attachment_7" model="artwork.master.attachment">
+            <field name="name">Money Clip</field>
+        </record>
+        <record id="artwork_attachment_8" model="artwork.master.attachment">
+            <field name="name">Magnet</field>
+        </record>
+        <!--<record id="artwork_attachment_9" model="artwork.master.attachment">-->
+            <!--<field name="name">L/O Blade</field>-->
+        <!--</record>-->
+        <!--<record id="artwork_attachment_10" model="artwork.master.attachment">-->
+            <!--<field name="name">Deluxe</field>-->
+        <!--</record>-->
+        <record id="artwork_attachment_11" model="artwork.master.attachment">
+            <field name="name">3 pt.Bar pin</field>
+        </record>
+        <record id="artwork_attachment_12" model="artwork.master.attachment">
+            <field name="name">Bar/Safety pin</field>
+        </record>
+        <record id="artwork_attachment_13" model="artwork.master.attachment">
+            <field name="name">Alligator Clip</field>
+        </record>
+        <record id="artwork_attachment_14" model="artwork.master.attachment">
+            <field name="name">8" Leather Strap</field>
+        </record>
+        <record id="artwork_attachment_15" model="artwork.master.attachment">
+            <field name="name">Zipper Pull clip</field>
+        </record>
+        <record id="artwork_attachment_16" model="artwork.master.attachment">
+            <field name="name">R/W/B ribbon with clip</field>
+        </record>
+        <!--<record id="artwork_attachment_17" model="artwork.master.attachment">-->
+            <!--<field name="name">Solid Rib. (Colour)</field>-->
+        <!--</record>-->
+        <!--<record id="artwork_attachment_18" model="artwork.master.attachment">-->
+            <!--<field name="name">Other</field>-->
+        <!--</record>-->
+
+    </data>
+</openerp>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="create_payment_profile_form" model="ir.ui.view">
+	<field name="name">cim.create.payment.profile.form</field>
+	<field name="model">cim.create.payment.profile</field>
+	<field name="arch" type="xml">
+		<form string="Create Payment Profile" version="7.0">
+			<sheet>
+			<div class="oe_title">
+				<h2><field name="name" placeholder="Name will auto-generate, can override here"/></h2>
+			</div>
+			<group>
+				<group>
+					<field name="partner_id" readonly="1"/>
+					<field name="cim_id" readonly="1" on_change="onchange_invoice(cim_id, alt_invoice_addr_id, cc_number)"/>
+					<field name="alt_invoice_addr_id" on_change="onchange_invoice(cim_id, alt_invoice_addr_id, cc_number)"/>
+				</group>
+				<group string="Card Info">
+					<field name="cc_number" default_focus="1" placeholder="Card number..." on_change="onchange_invoice(cim_id, alt_invoice_addr_id, cc_number)"/>
+					<label for="cc_exp_month" string="Expiry Date"/>
+					<div>
+						<field name="cc_exp_month" style="width: 20%%" placeholder="MM"/>
+						<span style='margin-right:.5em;'> </span><label string="/"/>
+						<field name="cc_exp_year" style="width: 20%%" placeholder="YY"/>
+					</div>
+					<field name="cc_cvv" style="width: 30%%" placeholder="CVV" password="True" required="True"/>
+				</group>
+				<group></group>
+				<group string="Billing Info">
+					<div>
+						<div>
+							<field name="bill_firstname" style="width: 45%%" placeholder="First name"/>
+							<field name="bill_lastname" style="width: 45%%" placeholder="Last name"/>
+						</div>
+						<div>
+							<field name="bill_street" placeholder="Street"/>
+							<field name="city_state_zip"/>
+						</div>
+					</div>
+				</group>
+			</group>
+			<footer>
+				<button name="send_request" string="Register Payment Profile" type="object" class="oe_highlight"/>
+				or
+				<button string="Cancel" class="oe_link" special="cancel"/>
+			</footer>
+			</sheet>
+		</form>
+	</field>
+</record>
+
+</data>
+</openerp>

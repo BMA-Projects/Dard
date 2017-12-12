@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        
+        <record id="email_template_partner_create_notification" model="email.template">
+            <field name="name">Partner E-mail Template</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">New Contact ${object.name} is created</field>
+<!--            <field name="email_to">${object.company_id.partner_id.email}</field>-->
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+
+		<div>
+            <p>
+            <strong>Hello</strong> Account Department,
+            </p>  
+            <p>
+            New Contact <strong> ${object.name} </strong> is created. <br/>
+            Please set credit limit for this customer if required.
+            </p>
+            <p>
+                Thank You, <br/>
+                ${object.company_id.name}
+            </p>
+		</div>
+
+            ]]></field>
+        </record>
+
+                
+        <record id="email_template_credit_limit_notification" model="email.template">
+                <field name="name">Limit - Update Credit Limit</field>
+                <field name="email_from">${object.company_id.partner_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+                <field name="subject">Credit Limit of ${object.name} need to update</field>
+                <field name="model_id" ref="model_res_partner"/>
+                <field name="auto_delete" eval="True"/>
+                <field name="body_html"><![CDATA[
+                    <div>
+                        <p>
+                            Dear ${object.name},
+                            <br/><br/>
+                            We have set the credit limit to ${object.company_id.currency_id.symbol} ${object.credit_limit}.
+                            % if object.advance_allow:
+                            Your Advance amount to ${object.company_id.currency_id.symbol} ${object.remain_amount}
+                            % endif
+                            <br/><br/>
+                            Thanks & Regards,
+                            <br/>
+                            Account Department.
+                        </p>
+                    </div>
+                                ]]>
+                </field>
+            </record>
+        </data>
+    </openerp>
+
+
+       <!-- <record id="email_template_credit_limit_notification" model="email.template">
+                <field name="name">Limit - Update Credit Limit</field>
+                <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+                <field name="subject">Regarding : Credit Limit Updation</field>
+                <field name="model_id" ref="model_res_partner"/>
+                <field name="auto_delete" eval="True"/>
+                <field name="body_html"><![CDATA[
+                    <div>
+                        <p>
+                            Dear ${object.name},
+                            <br/>
+                            ${object.company_id.logo_web}
+                            <br/>
+                            ${object.company_id.logo}
+                            
+                        </p>
+                    </div>
+                    <table width="730" align="center" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    We have set the credit limit to ${object.company_id.currency_id.symbol} ${object.credit_limit}.
+                                    Thank You.
+                                    Regards,
+                                    Account Department
+                                </td>
+                            </tr>
+                            <tr style="background-color: #E8E8E8">
+                                <td width="38">&nbsp;</td>
+                                <td valign="top">
+                                <div style="float: left;width: 100%;">
+                                    
+                                        <img src="data:image/png;base64, ${object.company_id.logo_web}" height="40px" width="100px"/> 
+                                    
+                                  
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                ]]></field>
+            </record>
+
+    </data>
+</openerp> -->

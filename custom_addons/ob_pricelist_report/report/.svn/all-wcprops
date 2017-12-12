@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/officebeacon/!svn/ver/69786/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_pricelist_report/report
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/officebeacon/!svn/ver/69776/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_pricelist_report/report/__init__.py
+END
+pricelist_xls_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/officebeacon/!svn/ver/69786/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_pricelist_report/report/pricelist_xls_report.py
+END

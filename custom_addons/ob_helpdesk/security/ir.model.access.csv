@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_helpdesk_manager,crm.helpdesk,crm_helpdesk.model_crm_helpdesk,group_support_manager,1,1,1,1
+access_crm_helpdesk_support_user,crm.helpdesk,crm_helpdesk.model_crm_helpdesk,group_support_user,1,1,1,0
+access_crm_helpdesk,crm.helpdesk,crm_helpdesk.model_crm_helpdesk,base.group_sale_manager,1,1,0,0
+crm_helpdesk.access_crm_helpdesk_user,crm.helpdesk.user,model_crm_helpdesk,base.group_sale_salesman,1,1,0,0

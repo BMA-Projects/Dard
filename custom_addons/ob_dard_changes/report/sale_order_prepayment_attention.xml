@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_sale_prepayment_updated_attention" inherit_id="ob_tag_master.report_saleorder_prepayment_document">
+            <xpath expr="//div[@class='mt8']" position="after">
+                <div class="mt8">
+                    <p t-if="o.partner_shipping_id.attention"><b>Attention : </b><span t-field="o.partner_shipping_id.attention"/></p>
+                </div>
+            </xpath>
+       </template>
+    </data>
+</openerp>

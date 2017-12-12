@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- An Artwork Shape-->
+        <record id="artwork_shape_1" model="artwork.master.shape">
+            <field name="name">Square</field>
+        </record>
+        <record id="artwork_shape_2" model="artwork.master.shape">
+            <field name="name">Oval</field>
+        </record>
+        <record id="artwork_shape_3" model="artwork.master.shape">
+            <field name="name">Circle</field>
+        </record>
+        <record id="artwork_shape_4" model="artwork.master.shape">
+            <field name="name">Cut in</field>
+        </record>
+        <record id="artwork_shape_5" model="artwork.master.shape">
+            <field name="name">Rectangle</field>
+        </record>
+        <record id="artwork_shape_6" model="artwork.master.shape">
+            <field name="name">Custom</field>
+        </record>
+        <record id="artwork_shape_7" model="artwork.master.shape">
+            <field name="name">Cut out + 1mm lip</field>
+        </record>
+        <record id="artwork_shape_8" model="artwork.master.shape">
+            <field name="name">Cut out raised border</field>
+        </record>
+        <record id="artwork_shape_9" model="artwork.master.shape">
+            <field name="name">Cut out without border</field>
+        </record>
+    </data>
+</openerp>

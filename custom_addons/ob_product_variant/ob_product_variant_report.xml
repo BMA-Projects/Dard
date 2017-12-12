@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--<report auto="False" id="report_sale_order_product" model="sale.order" name="sale.order.product.varient"-->
+                <!--rml="ob_product_variant/report/sale_order_update.rml" string="Order / Order More Details"-->
+                <!--usage="default"/>-->
+
+        <!--<report auto="False" id="report_account_invoice_product" model="account.invoice" name="account.invoice.product.varient"-->
+            <!--rml="ob_product_variant/report/account_print_invoice.rml" string="Invoices with more Detail"-->
+            <!--attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"-->
+            <!--attachment_use="True" usage="default" />-->
+
+    </data>
+</openerp>

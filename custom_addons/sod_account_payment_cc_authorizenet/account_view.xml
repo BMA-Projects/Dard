@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+<data>
+
+	<record id="view_vendor_receipt_form_authnet" model="ir.ui.view">
+		<field name="name">account.voucher.receipt.form</field>
+		<field name="model">account.voucher</field>
+		<field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+		<field name="arch" type="xml">
+			<!-- Change from a workflow button to a functional button -->
+			<xpath expr="//button[@name='proforma_voucher']" position="replace">
+				<button name="proforma_voucher" string="Validate" type="object" states="draft,dispute" class="oe_highlight"/>
+			</xpath>
+			<xpath expr="//button[@string='Cancel Receipt']" position="replace">
+				<button name="cancel_voucher" string="Cancel Receipt" states="draft,proforma,dispute"/>
+			</xpath>
+			<xpath expr="//button[@string='Unreconcile']" position="replace">
+				<button name="cancel_voucher" string="Unreconcile" type="object"
+					confirm="Are you sure to unreconcile and cancel this record?"
+					attrs="{'invisible':['|',('use_cc','=',True),('state','!=','posted')]}"/>
+				<button name="void_voucher" string="Void" type="object"
+					confirm="Are you sure to void this credit card transaction?"
+					attrs="{'invisible':['|',('use_cc','=',False),('state','!=','posted')]}"/>
+			</xpath>
+			<xpath expr="//field[@name='name']" position="after">
+				<field name="transId" invisible="1"/>
+			</xpath>
+		</field>
+	</record>
+
+
+	<!-- CC API Credential views -->
+	<record id="form_authorize_cred" model="ir.ui.view">
+		<field name="name">account.authnet.form</field>
+		<field name="model">account.authnet</field>
+		<field name="arch" type="xml">
+			<form string="API Credentials" version="7.0">
+				<sheet>
+					<label for="name" class="oe_edit_only"/>
+					<h1><field name="name"/></h1>
+					<group>
+						<group>
+							<field name="gateway_id"/>
+							<field name="login"/>
+							<field name="key"/>
+						</group>
+						<group>
+							<field name="active"/>
+							<field name="test"/>
+							<field name="url"/>
+							<field name="create_profile"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="tree_authorize_cred" model="ir.ui.view">
+		<field name="name">account.authnet.tree</field>
+		<field name="model">account.authnet</field>
+		<field name="arch" type="xml">
+			<tree string="API Credentials">
+				<field name="name"/>
+				<field name="active"/>
+				<field name="test"/>
+			</tree>
+		</field>
+	</record>
+	<!-- Action for CC API login -->
+	<record id="action_authorize_cred1" model="ir.actions.act_window">
+        <field name="name">CC API Credentials</field>
+        <field name="res_model">account.authnet</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        sequence="100"
+        parent="account.menu_finance_configuration"
+        id="menu_sod_account_payment_cc"
+        action="action_authorize_cred1"/>
+
+</data>
+</openerp>

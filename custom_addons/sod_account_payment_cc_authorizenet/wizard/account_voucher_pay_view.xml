@@ -1,0 +1,34 @@
+<openerp>
+    <data noupdate="1">
+		<record id="default_message_without_cc" model="account.voucher.pay">
+			<field name="name">The payment was processed</field>
+		</record>
+		<record id="default_message_with_cc" model="account.voucher.pay">
+			<field name="name">The transaction was successful</field>
+		</record>
+	</data>
+	<data>
+        <record id="view_account_voucher_pay" model="ir.ui.view">
+            <field name="name">Successful</field>
+            <field name="model">account.voucher.pay</field>
+            <field name="arch" type="xml">
+                <form string="Payment Successful" version="7.0">
+                    <group>
+                        <field name="name" readonly="1" class="oe_inline" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button name="send_status" string="Ok" type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_account_voucher_pay" model="ir.actions.act_window">
+               <field name="name">Successful</field>
+               <field name="res_model">account.voucher.pay</field>
+               <field name="view_type">form</field>
+               <field name="view_mode">form</field>
+               <!-- <field name="context">{'record_id' : active_id}</field> -->
+               <field name="target">new</field>
+        </record>
+	</data>
+</openerp>

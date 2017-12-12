@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="action_refund_customer_wizard" model="ir.ui.view">
+            <field name="name">refund.customer.wizrad</field>
+            <field name="model">refund.customer</field>
+            <field name="arch" type="xml">
+                <form string="Refund">
+                    <group colspan="3" col="6" string="Transaction Response Fields">
+                        <field name="cc_number" readonly="1"/>
+                        <field name="auth_transaction_id" readonly="1"/>
+                        <field name="authorization_code" readonly="1"/>
+                        <field name="customer_payment_profile_id" readonly="1"/>
+                    </group>
+                    <newline/>
+                    <group colspan="4" col="4">
+                        <button name="refund_customer" string="Refund" type="object" icon="terp-gtk-go-back-rtl"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_refund_customer" model="ir.actions.act_window">
+            <field name="name">Refund</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">refund.customer</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="action_refund_customer_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_saleorder_prepayment_document">
+    <t t-call="report.external_layout">
+        <div class="page">
+            <div class="oe_structure"/>
+
+            <div style="text-align: -webkit-center;">
+                <h2><center><strong>ORDER PRE-PAYMENT REQUEST</strong></center></h2>
+            </div>
+
+            <div class="row mt32">
+                <div class="col-xs-6">
+                    <strong t-if="o.partner_shipping_id == o.partner_invoice_id">Invoice and shipping address:</strong>
+                    <strong t-if="o.partner_shipping_id != o.partner_invoice_id">Bill To:</strong>
+                    <div t-field="o.partner_invoice_id" 
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                    <div t-if="o.partner_invoice_id.phone">P: <t t-esc="o.partner_invoice_id.phone"/></div>
+                    <div t-if="o.partner_invoice_id.fax">F:  <t t-esc="o.partner_invoice_id.fax"/></div>
+                    <div t-if="o.partner_invoice_id.email">E:  <t t-esc="o.partner_invoice_id.email"/></div>
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    <div t-if="o.partner_shipping_id != o.partner_invoice_id" class="mt8">
+                        <strong>Ship To:</strong>
+                        <div t-field="o.partner_shipping_id" 
+                            t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                        <div t-if="o.partner_shipping_id.phone">P: <t t-esc="o.partner_shipping_id.phone"/></div>
+                    	<div t-if="o.partner_shipping_id.fax">F:  <t t-esc="o.partner_shipping_id.fax"/></div>
+                    	<div t-if="o.partner_shipping_id.email">E:  <t t-esc="o.partner_shipping_id.email"/></div>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <strong>Customer Address:</strong>
+                    <div t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}' />
+                    <!-- <div t-if="o.partner_id.phone">P: <t t-esc="o.partner_id.phone"/></div>
+                    <div t-if="o.partner_id.fax">F:  <t t-esc="o.partner_id.fax"/></div>
+                    <div t-if="o.partner_id.email">E:  <t t-esc="o.partner_id.email"/></div> -->
+                </div>
+            </div>
+
+            <h2>
+                <span t-if="o.state not in ['draft','sent']">Order N° </span>
+                <span t-if="o.state in ['draft','sent']">Order N° </span>
+                <span t-field="o.name"/>
+            </h2>
+
+            <table class="table table-bordered" align="center">
+                <tr>
+                    <th>Customer PO number</th>
+                    <th>Ship Date</th>
+                    <th>In Hand Date</th>
+                    <th>Shipping Method</th>
+                </tr>
+                <tr>
+                    <td> <p t-field="o.client_po_ref"/> </td>
+                    <td> <p t-field="o.ship_dt"/> </td>
+                    <td> <p t-field="o.in_hand_date"/> </td>
+                    <td> <p t-field="o.carrier_id.name"/> </td>
+                </tr>
+            </table>
+
+            <table class="table table-bordered" align="justify">
+                <tr>
+                    <th><span t-if="o.date_order">
+                           <strong t-if="o.state not in ['draft','sent']">Date Ordered</strong>
+                           <strong t-if="o.state in ['draft','sent']">Order Date</strong>
+                        </span>
+                    </th>
+                    <th>Salesperson</th>
+                    <th>Order Payment Term</th>
+                    <th>Customer Number</th>
+                </tr>
+                <tr>
+                    <td> <p t-field="o.date_order"  t-field-options='{"format": "MM/dd/yyyy"}'/> </td>
+                    <td> <span t-field="o.user_id.name"/> </td>
+                    <td> <span t-field="o.payment_term.name"/> </td>
+                    <td> <span t-field="o.partner_id.cust_number"/> </td>
+                </tr>
+            </table>
+
+            <table class="table table-bordered" style="width: auto;">
+                <tr>
+                    <th>Description</th>
+                    <th>Product Details</th>
+                    <th>Setup Charge</th>
+                    <th>Run Charge</th>
+                    <th>UP Charge</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                    <th>Price</th>
+                </tr>
+                <tr t-foreach="o.order_line" t-as="l">
+                    <td>
+                       <span t-field="l.name"/>
+                    </td>
+                    <td>
+                       <span t-field="l.name"/>
+                    </td>
+                    <td>
+                       <span t-field="l.setup_charge"/>
+                    </td>
+                    <td>
+                       <span t-field="l.run_charge"/>
+                    </td>
+                    <td>
+                       <span t-field="l.up_charge"/>
+                    </td>
+                    <td>
+                        <span t-field="l.product_uom_qty"/>
+                        <span groups="product.group_uom" t-field="l.product_uom"/>
+                    </td>
+                    <td>
+                        <span t-field="l.price_unit"/>
+                    </td>
+                    <td groups="sale.group_discount_per_so_line">
+                        <span t-field="l.discount"/>
+                    </td>
+                    <td>
+                        <span t-field="l.price_subtotal"
+                            t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p t-field="o.note" />
+            <div class="oe_structure"/>
+        </div>
+    </t>
+</template>
+
+<template id="report_saleorder_prepayment">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'ob_tag_master.report_saleorder_prepayment_document')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

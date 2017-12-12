@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+        <!--
+        Bank Types (cc type)
+        -->
+        <record id="bank_cc" model="res.partner.bank.type">
+            <field name="name">Credit Card</field>
+            <field name="code">cc</field>
+            <field name="format_layout">CC: %(last_four)s</field>
+        </record>
+    
+    </data>
+</openerp>

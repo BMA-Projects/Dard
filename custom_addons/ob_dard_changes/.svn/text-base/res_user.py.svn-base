@@ -1,0 +1,88 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OfficeBeacon Administrative Pvt. Ltd
+#    RTL Code
+#    Copyright (C) 2012 (http://www.officebeacon.com)
+#
+##############################################################################
+
+from openerp import models, fields, api, _
+from datetime import datetime, timedelta
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT, DEFAULT_SERVER_DATE_FORMAT
+from openerp.exceptions import Warning
+from datetime import date
+
+class res_partner(models.Model):
+    _inherit = "res.users"
+
+
+    is_salesperson = fields.Boolean(string="Is Salesperson") 
+
+class mrp_production(models.Model):
+    _inherit = "mrp.production"
+
+    _defaults = {
+    	'user_id': False,
+    }
+
+class account_invoices(models.Model):
+    _inherit = "account.invoice"
+
+    _defaults = {
+    	'user_id': False,
+    }
+
+class sale_order(models.Model):
+    _inherit = "sale.order"
+
+    _defaults = {
+    	'user_id': False,
+        'in_hand_date_visible': True,
+        'ship_dt': datetime.now().today() + timedelta(days=1)
+    }
+
+    @api.model
+    def create(self, vals):
+        if vals.get('ship_dt', False):
+            ship_dt = vals.get('ship_dt', False)
+            date_order = datetime.now()
+            date_order_new = date_order.date()
+
+            if isinstance(ship_dt, str):
+                ship_dt = datetime.strptime(ship_dt, DEFAULT_SERVER_DATE_FORMAT)
+                ship_dt_new = ship_dt.date()
+                if ship_dt_new <= date_order_new:
+                    raise Warning(_('Ship Date should be after the Order Creation Date'))
+        result = super(sale_order, self).create(vals)
+        result.ship_dt = datetime.now().today() + timedelta(days=1)
+        return result
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('ship_dt', False):
+            ship_dt = vals.get('ship_dt', False)
+            date_order = datetime.now()
+            date_order_new = date_order.date()
+            ship_dt = datetime.strptime(ship_dt, DEFAULT_SERVER_DATE_FORMAT)
+            ship_dt_new = ship_dt.date()
+            if ship_dt_new <= date_order_new:
+                raise Warning(_('Ship Date cannot be empty, also should be after the Order Creation Date'))
+        result = super(sale_order, self).write(vals)
+        return result
+
+class res_partner(models.Model):
+    _inherit = "res.partner"
+
+    _defaults = {
+    	'user_id': False,
+    }
+
+class purchase_requisition(models.Model):
+    _inherit = "purchase.requisition"
+
+    _defaults = {
+    	'user_id': False,
+    }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

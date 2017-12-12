@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_product_turn_report_wizard" model="ir.ui.view">
+            <field name="name">Product Turn Report Wizard</field>
+            <field name="model">ob.product.turn.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Product Turn Report" version="7.0">
+                	<span class="oe_grey">Turn calculated from given date to previous year.</span>
+                	<group> 
+                    	<field name="date_from" class="oe_inline" />
+                    	<field name="location_id" />                           
+                    </group>
+                    <footer>
+                        <button name="action_open_window" string="View Products Inventory" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                   	</footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_product_turn_report_wizard" model="ir.actions.act_window">
+            <field name="name">Product Turn</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ob.product.turn.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_product_turn_report_wizard"
+            id="menu_product_turn_report"
+            parent="stock.next_id_61" sequence="5" icon="STOCK_PRINT"/>
+    </data>
+</openerp>

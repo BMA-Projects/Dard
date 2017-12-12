@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="order_acknowledgement_template" model="email.template">
+            <field name="name">Order Acknowledgement Template</field>
+            <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Order Confirmation ${object.name}</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="order_ack"/>
+            <field name="report_name">order_acknowledgement</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hello ${object.partner_id.name},</p>
+    <p>Thank you for your order ${object.name}, We appreciate your Business!</p>
+    <p>Attached document acknowledges receipt of your order. <br/>Please review the information presented here and advise us of any errors you notice or discrepancies you have at your earliest convienience. <br/>Please refer to our order number and your purchase order number in all correspondences, if this acknowledgement does not your reuirements, <br/>please contact us at ${object.company_id.support_email} or call ${object.company_id.support_phone}, also note production time is currently 5 business days this does not include 1 day service order. </p>
+    <br/>
+    <br/>
+
+</div>
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

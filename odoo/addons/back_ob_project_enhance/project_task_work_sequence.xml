@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for project.task.work -->
+        <record id="seq_project_task_work" model="ir.sequence.type">
+            <field name="name">Project Task Work</field>
+            <field name="code">project.task.work</field>
+        </record>
+
+        <record id="seq_project_task_work1" model="ir.sequence">
+            <field name="name">Project Task Work</field>
+            <field name="code">project.task.work</field>
+            <field name="prefix">T-</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+        <!--work -->
+        <record id="seq_task_work" model="ir.sequence.type">
+            <field name="name">Task Work</field>
+            <field name="code">task.work</field>
+        </record>
+
+        <record id="seq_task_work1" model="ir.sequence">
+            <field name="name">Task Work</field>
+            <field name="code">task.work</field>
+            <field name="prefix">WR-</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

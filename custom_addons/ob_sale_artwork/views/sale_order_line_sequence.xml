@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for sale.order.line -->
+        <record id="seq_type_sale_order_line" model="ir.sequence.type">
+            <field name="name">Sales Order Line</field>
+            <field name="code">sale.order.line</field>
+        </record>
+
+        <record id="seq_sale_order_line" model="ir.sequence">
+            <field name="name">Sales Order Line</field>
+            <field name="code">sale.order.line</field>
+            <field name="prefix">SOL</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

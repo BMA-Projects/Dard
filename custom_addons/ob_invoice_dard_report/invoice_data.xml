@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="sequence_type_check_number_dard" model="ir.sequence.type">
+            <field name="name">Dard Check Number</field>
+            <field name="code">dard.check.number</field>
+        </record>
+
+        <record id="sequence_check_number_dard" model="ir.sequence">
+            <field name="name">Dard Check Number</field>
+            <field name="code">dard.check.number</field>
+        </record>
+    </data>
+</openerp>

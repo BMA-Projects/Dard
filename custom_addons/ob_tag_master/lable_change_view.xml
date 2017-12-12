@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>    
+
+        <record id="view_account_invoice_filter1" model="ir.ui.view">
+            <field name="name">account.invoice.select</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice">
+                    <field name="number" string="Invoice" filter_domain="['|','|','|', ('number','ilike',self), ('origin','ilike',self), ('supplier_invoice_number', 'ilike', self), ('partner_id', 'child_of', self)]"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]" help="Draft Invoices"/>
+                    <filter name="proforma" string="Proforma" domain="[('state','=','proforma2')]" help="Proforma Invoices" groups="account.group_proforma_invoices"/>
+                    <filter name="invoices" string="Invoices" domain="[('state','not in',['draft','cancel'])]" help="Proforma/Open/Paid Invoices"/>
+                    <filter name="unpaid" string="Unpaid" domain="[('state','=','open')]" help="Unpaid Invoices"/>
+                    <separator/>
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="user_id" string="Salesperson"/>
+                    <field name="period_id" string="Period"/>
+                    <separator/>
+                    <filter domain="[('user_id','=',uid)]" help="My Invoices"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_partner_id" string="Customer" context="{'group_by':'partner_id'}"/>
+                        <filter string="Salesperson" context="{'group_by':'user_id'}"/>
+                        <filter string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter string="Period" context="{'group_by':'period_id'}"/>
+                        <filter string="Due Month" context="{'group_by':'date_due'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_invoice_tree11" model="ir.actions.act_window">
+            <field name="name">Customer Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','out_invoice')]</field>
+            <field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale'}</field>
+            <field name="search_view_id" ref="view_account_invoice_filter1"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a customer invoice.
+              </p><p>
+                Odoo's electronic invoicing allows to ease and fasten the
+                collection of customer payments. Your customer receives the
+                invoice by email and he can pay online and/or import it
+                in his own system.
+              </p><p>
+                The discussions with your customer are automatically displayed at
+                the bottom of each invoice.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_invoice_tree11_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="action_invoice_tree11"/>
+        </record>        
+
+        <record id="action_invoice_tree11_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="act_window_id" ref="action_invoice_tree11"/>
+        </record>
+
+        <menuitem action="action_invoice_tree11" id="account.menu_action_invoice_tree1" parent="account.menu_finance_receivables"/>
+
+
+        <record id="action_invoice_tree33" model="ir.actions.act_window">
+            <field name="name">Customer Refunds</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','out_refund')]</field>
+            <field name="context">{'default_type':'out_refund', 'type':'out_refund', 'journal_type': 'sale_refund'}</field>
+            <field name="search_view_id" ref="view_account_invoice_filter1"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a customer refund.
+              </p><p>
+                A refund is a document that credits an invoice completely or
+                partially.
+              </p><p>
+                Instead of manually creating a customer refund, you
+                can generate it directly from the related customer invoice.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_invoice_tree3_view11" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="action_invoice_tree33"/>
+        </record>
+
+        <record id="action_invoice_tree3_view22" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="act_window_id" ref="action_invoice_tree33"/>
+        </record>
+
+        <menuitem action="action_invoice_tree33" id="account.menu_action_invoice_tree3" parent="account.menu_finance_receivables"/>
+
+        
+        <record id="view_account_invoice_filter2" model="ir.ui.view">
+            <field name="name">account.invoice.select</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice">
+                    <field name="number" string="Invoice" filter_domain="['|','|','|', ('number','ilike',self), ('origin','ilike',self), ('supplier_invoice_number', 'ilike', self), ('partner_id', 'child_of', self)]"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]" help="Draft Invoices"/>
+                    <filter name="proforma" string="Proforma" domain="[('state','=','proforma2')]" help="Proforma Invoices" groups="account.group_proforma_invoices"/>
+                    <filter name="invoices" string="Invoices" domain="[('state','not in',['draft','cancel'])]" help="Proforma/Open/Paid Invoices"/>
+                    <filter name="unpaid" string="Unpaid" domain="[('state','=','open')]" help="Unpaid Invoices"/>
+                    <separator/>
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="user_id" string="Salesperson"/>
+                    <field name="period_id" string="Period"/>
+                    <separator/>
+                    <filter domain="[('user_id','=',uid)]" help="My Invoices"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_partner_id" string="Supplier" context="{'group_by':'partner_id'}"/>
+                        <filter string="Salesperson" context="{'group_by':'user_id'}"/>
+                        <filter string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter string="Period" context="{'group_by':'period_id'}"/>
+                        <filter string="Due Month" context="{'group_by':'date_due'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_invoice_tree22" model="ir.actions.act_window">
+            <field name="name">Supplier Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','in_invoice')]</field>
+            <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase'}</field>
+            <field name="search_view_id" ref="view_account_invoice_filter2"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to record a new supplier invoice.
+              </p><p>
+                You can control the invoice from your supplier according to
+                what you purchased or received. Odoo can also generate
+                draft invoices automatically from purchase orders or receipts.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_invoice_tree22" id="account.menu_action_invoice_tree2" parent="account.menu_finance_payables"/>
+
+        <record id="action_invoice_tree44" model="ir.actions.act_window">
+            <field name="name">Supplier Refunds</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','in_refund')]</field>
+            <field name="context">{'default_type': 'in_refund', 'type': 'in_refund', 'journal_type': 'purchase_refund'}</field>
+            <field name="search_view_id" ref="view_account_invoice_filter2"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to register a refund you received from a supplier.
+              </p><p>
+                Instead of creating the supplier refund manually, you can generate
+                refunds and reconcile them directly from the related supplier invoice.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_invoice_tree44" id="account.menu_action_invoice_tree4" parent="account.menu_finance_payables"/>
+
+		<record model="ir.ui.view" id="view_write_checks_filter_change_lable">
+            <field name="name">view.write.checks.filter.change.lable</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="/search/group/filter" position="replace">                        
+                    <filter name="group_by_partner_id" string="Supplier" context="{'group_by':'partner_id'}"/>
+               </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_write_checks_tree_view_change_lable">
+            <field name="name">view.write.checks.tree.view.change.lable</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_tree"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='partner_id']" position="replace">                        
+            		<field name="partner_id" string="Partner"/>                    
+               </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_extensions_form_inherit_for_change_lable" model="ir.ui.view">
+            <field name="name">sale.order.extensions.form.inherit.for.change.lable</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <data>                                    
+                    <xpath expr="//button[@string='View Delivery Order']" position="replace">                       
+                       <button name="action_view_delivery" string="Shipping" type="object" class="oe_highlight"
+                           attrs="{'invisible': ['|','|',('picking_ids','=',False),('picking_ids','=',[]),('state','in',['draft','sent','prepared'])]}" groups="base.group_user"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

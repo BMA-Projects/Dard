@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<templates xml:space="preserve">
+
+    <t t-extend="FieldChar">
+        <t t-jquery="input" t-operation="replace">
+	    <input t-att-type="widget.password ? 'password' : 'text'"
+            	t-att-name="widget.name"
+                t-att-id="widget.id_for_label"
+                t-att-tabindex="widget.node.attrs.tabindex"
+                t-att-autofocus="widget.node.attrs.autofocus"
+                t-att-placeholder="widget.node.attrs.placeholder"
+                t-att-maxlength="widget.field.size"
+            />	
+        </t>
+    </t>
+
+    <t t-extend="FieldMany2One">
+        <t t-jquery="input" t-operation="replace">
+	   <input type="text"
+		t-att-name="widget.name"
+		t-att-id="widget.id_for_label"
+		t-att-tabindex="widget.node.attrs.tabindex"
+		t-att-autofocus="widget.node.attrs.autofocus"
+		t-att-placeholder="widget.node.attrs.placeholder"
+	   />
+        </t>
+    </t>
+    
+   <t t-extend="KanbanView.group_header">
+	    <t t-jquery="span.oe_tag" t-operation="replace">
+	    	 <span class="oe_tag">
+                 <t t-esc="widget.group.get('length')"/>
+             </span>
+        </t>
+        <t t-jquery="div.oe_tag" t-operation="replace">
+	    	 <div class="oe_kanban_group_length oe_tag">
+                 <t t-esc="widget.group.get('length')"/>
+             </div>
+        </t>
+    </t>	
+   <!-- <t t-extend="FieldMany2ManyTags">
+       <t t-jquery="textarea" t-operation="replace">
+          <textarea rows="1" style="width: 100%"
+	       	t-att-name="widget.name"
+            t-att-placeholder="widget.node.attrs.placeholder">
+          </textarea>
+	   </t>
+	</t> -->
+	
+</templates>
+

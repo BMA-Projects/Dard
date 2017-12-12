@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record model="ir.ui.view" id="product_charges_tree_view">
+            <field name="name">product.charges.tree</field>
+            <field name="model">product.charges</field>
+            <field name="arch" type="xml">
+                <tree string="Product Charges">
+                  <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_charges_form_view">
+            <field name="name">product.charges.form</field>
+            <field name="model">product.charges</field>
+            <field name="arch" type="xml">
+                <form string="Product Charges" version="7.0">
+                    <sheet>
+                       <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_charges_action">
+            <field name="name">Charges</field>
+            <field name="res_model">product.charges</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+       </record>
+
+       <menuitem action="product_charges_action" id="menu_product_charges" parent="product.prod_config_main" />
+
+
+        <!-- DIMENSION OPTION -->
+        <record model="ir.ui.view" id="product_variant_dimension_option_form_view">
+            <field name="name">product.variant.dimension.option.form</field>
+            <field name="model">product.variant.dimension.option</field>
+            <field name="arch" type="xml">
+                <form string="Dimension Option" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="dimension_id" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_variant_dimension_option_tree_view">
+            <field name="name">product.variant.dimension.option.tree.view</field>
+            <field name="model">product.variant.dimension.option</field>
+            <field name="arch" type="xml">
+                <tree string="Dimension Option">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="sequence"/>
+                    <field name="dimension_id" required="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_variant_dimension_option_action">
+            <field name="name">Dimension Option</field>
+            <field name="res_model">product.variant.dimension.option</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Product Variant Dimension Option.
+              </p><p>
+                Product Variant Dimension option should be imprint colors and position/area's option value.
+                For e.g. Red,Blue,Green and small,large,2.5mm X 4.5mm etc...
+              </p>
+            </field>
+       </record>
+
+       <menuitem action="product_variant_dimension_option_action" id="menu_product_variant_dimension_option" parent="product.prod_config_main" sequence="12" />
+
+        <record id="product_variant_multi_product_template_charge_form_view" model="ir.ui.view">
+            <field name="name">product.variant.multi.product.template.charge.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <field name="list_price" position="after">
+                    <field name="ltm_charge"/>
+                    <field name="min_qty_ltm"/>
+                    <field name="apply_pms_charge"/>
+                    <field name="pms_charge"/>
+                </field>
+                <field name="active" position="after">
+                	<field name="is_variant"/>
+                </field>
+				<xpath expr="//group[@name='store']" position="attributes">
+	             	<attribute name='invisible'>1</attribute>   
+                </xpath>
+            </field>
+        </record>
+
+	   <!-- New version of the product variant of Odoo v8 inherits the form view of product template so no need to add it here. --> 
+       <record model="ir.ui.view" id="product_charge_service_form_view">
+            <field name="name">product_charge_service_form_view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="is_charge_service"/>
+                </field>
+                <field name="lst_price" position="after">
+                    <field name="up_charge" readonly="1"/>
+                </field>
+				<xpath expr="//group[@name='store']" position="replace">
+	                <group name="store" string="Storage Location" attrs="{'invisible':[('type','=','service')]}">
+	                    <field name="variant_loc_rack"/>
+	                    <field name="variant_loc_row"/>
+	                    <field name="variant_loc_case"/>
+	                </group>
+                </xpath>
+            </field>
+       </record>
+       
+       <record id="variants_template_tree_view_inherit_variant" model="ir.ui.view">
+            <field name="name">variants.template.tree</field>
+            <field name="model">product.attribute.value</field>
+            <field name="inherit_id" ref='product.variants_template_tree_view'/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price_extra']" position="after">
+                    <field name="up_charge" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_variant_multi_product_template_form_view_modified" model="ir.ui.view">
+            <field name="name">product.variant.multi.product.template.form.modified</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@string='Variants']" position="after">
+                	<page string="Dimensions" attrs="{'invisible': [('is_variant','=',False)]}">
+                    	<field name="product_dimension_type_ids" nolabel="1" colspan="4" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_dimension_type_form_view">
+            <field name="name">product.dimension.type.form</field>
+            <field name="model">product.dimension.type</field>
+            <field name="arch" type="xml">
+                <form string="product Dimension Type" version="7.0">
+                    <sheet>
+                        <group>
+
+                            <field name="product_dimension_id2" required="1"
+                                   on_change="onchange_product_dimension(product_dimension_id2)"
+                                   options="{'no_create': True, 'no_create_edit':True}" />
+                            <field name="product_dimension_option_id"
+                                   widget="many2many_tags"
+                                   domain="[('dimension_id','=',product_dimension_id2)]"
+                                   options="{'no_create': True, 'no_create_edit':True}"
+                                   attrs="{'invisible': [('attribute_field_type','=','none')],'required': [('attribute_field_type','!=','none')]}"/>
+                            <field name="dimension_type" invisible="1"/>
+                            <field name="product_dim_id" invisible="1"/>
+                            <field name="product_dimension_child_ids"
+                                   widget="many2many_tags" context="{'from_child':True,'product_tmpl_id':product_dim_id,'product_dimension_child_ids':product_dimension_child_ids}"
+                                   attrs="{'invisible': [('attribute_field_type','=','none')]}"
+                                   options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="attribute_max_value"
+                                   attrs="{'invisible':[('attribute_field_type','!=','multiselection')]}"/>
+                        </group>
+                            <group attrs="{'invisible': [('attribute_field_type','=','none')]}">
+                                <label for="attribute_to_charge_ids"/><newline/>
+                                <field name="attribute_to_charge_ids"
+                                       context="{'from_charge':True, 'attribute_field_type':attribute_field_type}"
+                                       nolabel="1" colspan="2">
+                                    <form string="Product Attribute for Charges" version="7.0" >
+                                      <sheet>
+                                          <group>
+                                              <field name="product_charges_id" />
+                                              <field name="product_dim_op_id"
+                                                     widget="many2many_tags"
+                                                     options="{'no_create': True, 'no_create_edit':True}"
+                                                     context="{'from_charges':True,'product_dim_option_id':parent.product_dimension_option_id,'product_dim_op_id':product_dim_op_id}"/>
+                                              <field name="product_dimension_type_id" invisible="1"/>
+                                              <field name="attribute_field_type" invisible="1"/>
+                                              <field name="per_qty"/>
+                                              <field name="per_dim_value"
+                                                      attrs="{'invisible':[('attribute_field_type','!=','multiselection')]}"/>
+                                              <field name="max_free_attributes"
+                                                     attrs="{'invisible':[('attribute_field_type','!=','multiselection')]}"/>
+                                              <field name="benefit"/>
+                                              <field name="is_both_side"/>
+                                              <field name="amount_charge"/>
+                                          </group>
+                                          <field name="charges_id" />
+                                      </sheet>
+                                    </form>
+                                </field>
+                            </group>
+                        <field name="attribute_field_type" invisible="1"/>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_dimension_type_tree_view">
+            <field name="name">product.dimension.type.tree</field>
+            <field name="model">product.dimension.type</field>
+            <field name="arch" type="xml">
+                <tree string="Product Dimension Type">
+                    <field name="product_dimension_id2" />
+                    <field name="product_dimension_child_ids" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="charges_charges_tree_view">
+            <field name="name">charges.charges.tree</field>
+            <field name="model">charges.charges</field>
+            <field name="arch" type="xml">
+                <tree string="Charge Rules" editable="top">
+                  <field name="from_qty" />
+                  <field name="attribute_to_charge_id" invisible="True"/>
+                  <field name="to_qty"/>
+                  <field name="charge_amount" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="attr_to_charge_tree_view">
+            <field name="name">attribute.to.charge.tree</field>
+            <field name="model">attribute.to.charge</field>
+            <field name="arch" type="xml">
+                <tree string="User Type" >
+                        <field name="product_charges_id" />
+                        <field name="product_dim_op_id" widget="many2many_tags"/>
+                        <field name="per_qty" />
+                        <field name="product_dimension_type_id" invisible="True"/>
+                        <field name="per_dim_value" />
+                        <field name="benefit"/>
+                        <field name="is_both_side"/>
+                        <field name="max_free_attributes"/>
+                        <field name="amount_charge"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="product_attribute_to_charge_form_view">
+            <field name="name">product.attribute.to.charge.form</field>
+            <field name="model">attribute.to.charge</field>
+            <field name="arch" type="xml">
+                <form string="Product Attribute for Charges" version="7.0">
+                  <sheet>
+                      <group>
+                          <field name="product_charges_id"/>
+                          <field name="product_dim_op_id"
+                                 widget="many2many_tags"
+                                 options="{'no_create': True, 'no_create_edit':True}"/>
+                          <field name="product_dimension_type_id" invisible="True"/>
+                          <field name="per_qty"/>
+                          <field name="per_dim_value"/>
+                          <field name="benefit"/>
+                          <field name="is_both_side"/>
+                          <field name="max_free_attributes"/>
+                          <field name="amount_charge"/>
+                      </group>
+                      <field name="charges_id" />
+                  </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_search_form_view_inherit_variant" model="ir.ui.view">
+            <field name="name">product.search.form.variant.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="filter[@name='consumable']" position="after">
+                      <filter string="Is Variant" name="is_variant" icon="terp-accessories-archiver" domain="[('is_variant','=',1)]" help="It will filters varaint products."/>
+                </xpath>
+            </field>
+        </record>
+
+	    <record id="product_variant_multi_dimension_type_form" model="ir.ui.view">
+            <field name="name">product.variant.multi.dimension.type.form</field>
+            <field name="model">product.variant.dimension.type</field>
+            <field name="arch" type="xml">
+                <form string="Dimension Types" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Dimension Type Name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="description" />
+                            <field name="attribute_field_type" required="1"/>
+                            <field name="dimension_type" attrs="{'invisible': [('attribute_field_type','=','none')]}"/>
+                            <field name="option_ids" nolabel="1" colspan="4" attrs="{'invisible': [('attribute_field_type','=','none')]}">
+                            	<tree editable="top">
+                            		<field name="name"/>
+                            		<field name="sequence"/>
+                            		<field name="code"/>
+                            	</tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_variant_dimension_type_tree_view">
+            <field name="name">product.variant.dimension.type.tree</field>
+            <field name="model">product.variant.dimension.type</field>
+            <field name="arch" type="xml">
+                <tree string="Product variant Dimension Type">
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="attribute_field_type" required="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="product_variant_dimension_type_action">
+            <field name="name">Dimension Type</field>
+            <field name="res_model">product.variant.dimension.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Product Variant Dimension Type.
+              </p><p>
+                Product Variant Dimension Type should be imprint methods,imprint colors and imprint postions/areas.
+                For e.g. pad print, pad print colors etc...
+              </p>
+            </field>
+       </record>
+
+       <menuitem action="product_variant_dimension_type_action" id="menu_product_variant_dimension_type" parent="product.prod_config_main" sequence="11"/>
+
+
+    </data>
+</openerp>

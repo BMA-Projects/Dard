@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+   <data>
+      <template id="report_workorder">
+         <!--<t t-call="report.html_container">-->
+         <!--<t t-call="report.internal_layout">-->
+         <t t-foreach="docs" t-as="o">
+            <t t-call="ob_work_order_report.work_order_report_layout">
+               <div class="page">
+                  <!--<h2>Work Order Report</h2>-->
+                  <!--<table border="1" style= "border: 1px solid black">-->
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif">
+                     <thead>
+                        <!--<meta charset="utf-8">-->
+                        <title>:: welcome to ::</title>
+                        <style>
+                           .border-tbl tr td {border:1px solid #000;}
+                           .border-inner tr td {border:2px solid #000;}
+                           .pad tr td { padding:5px; }
+                           .pad-sm tr td { padding:1px 5px; }
+                           .pad0 tr td { padding:0px; }
+                           .pad2 tr td { padding:3px; }
+                        </style>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td colspan="2">
+                              <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                 <tr>
+                                    <td valign="middle">
+                                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                          <tr>
+                                             <td align="left" valign="middle" style="font-size:20px; padding-top:30px;">
+                                                <b style="font-size:20px; padding-top:30px;">Work Order Sheet:</b> <u><b><span t-field="o.company_id"/></b></u>
+                                             </td>
+                                             <td t-if="o.metal_ids" align="left" valign="top" style="padding-left:20px; padding-top:30px;">
+                                                <u><b style="font-size:20px;"><span t-esc="get_metal_ids(o.metal_ids)"/></b></u>
+                                             </td>
+                                          </tr>
+                                       </table>
+                                    </td>
+                                    <td>
+                                       <table width="100%" border="1" cellspacing="0" cellpadding="0">
+                                          <tr>
+                                             <td align="left" valign="top">
+                                                <table width="100%" border="1" cellspacing="0" cellpadding="0" class="border-tbl">
+                                                   <tr>
+                                                      <td align="center" valign="top" colspan="2">
+                                                         <b>SHIP</b>
+                                                      </td>
+                                                      <td align="center" valign="top" colspan="3">
+                                                         <b> RECEIVE</b>
+                                                      </td>
+                                                      <td align="left" valign="top">
+                                                         <b>PRINTING</b>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align="center" valign="top">
+                                                         <b>Date</b>
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         <b>Quality</b>
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         <b>Date</b>
+                                                      </td>
+                                                      <!--<td align="center" valign="top">-->
+                                                      <!--Time-->
+                                                      <!--</td>-->
+                                                      <td align="center" valign="top">
+                                                         <b>Quality</b>
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         <b>Complete</b>
+                                                      </td>
+                                                      <td rowspan="4"> </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <!--<td align="center" valign="top">-->
+                                                      <!--0-->
+                                                      <!--</td>-->
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <!--<td align="center" valign="top">-->
+                                                      <!--0-->
+                                                      <!--</td>-->
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <!--<td align="center" valign="top">-->
+                                                      <!--0-->
+                                                      <!--</td>-->
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                      <td align="center" valign="top">
+                                                         0
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                             <td align="center" valign="middle">
+                                                <b><u><span t-field="o.company_id"/></u></b>
+                                             </td>
+                                          </tr>
+                                       </table>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:#000 3px solid;">
+                                 <tr>
+                                    <td width="50%">
+                                       <table cellpadding="0" cellspacing="5" border="0" width="100%">
+                                          <tr>
+                                             <td colspan="2" class="pad">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                                   <tr>
+                                                      <td align="left" valign="middle">
+                                                         Production Dep.:
+                                                      </td>
+                                                      <td t-if="o.origin" align="left" valign="middle">
+                                                         Job#:<b><span t-esc="get_so_ref(o.origin).name"/></b>
+                                                      </td>
+                                                      <td t-if="o.origin" align="left" valign="middle">
+                                                         P.O.#:<b><span t-esc="get_so_ref(o.origin).client_po_ref"/></b>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td width="50%" class="pad" style="min-height:400px;">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:#000 2px solid">
+                                                   <tr>
+                                                      <td width="50%" align="left" valign="top" style="border-right:#000 2px solid; border-bottom:#000 2px solid; ">
+                                                         S-Mould : <b> <span t-field="o.s_mould"/></b>
+                                                      </td>
+                                                      <td align="left" valign="top" style="border-bottom:#000 2px solid; ">
+                                                         P-Mould : <b><span t-field="o.p_mould"/></b>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <t t-if="o.origin">
+                                                         <td  style="border-bottom:#000 2px solid" colspan="2">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                               <tr>
+                                                                  <td align="center"><img t-att-src= "get_image_ref(o.origin,o.product_id)" height="150px" width="150px" valign="top"/></td>
+                                                               </tr>
+                                                               <tr>
+                                                                  <td>Size : <b><span t-field="o.size"/></b></td>
+                                                               </tr>
+                                                            </table>
+                                                         </td>
+                                                      </t>
+                                                   </tr>
+                                                   <tr>
+                                                      <td colspan="2">
+                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad-sm">
+                                                            <tr>
+                                                               <td t-if="o.origin" align="left" valign="top">
+                                                                  Customer : <b><span t-esc="get_so_ref(o.origin).partner_id.name"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Size: <b><span t-field="o.size"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Item : <b><span t-field="o.product_id.name"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td t-if="o.metal_ids" align="left" valign="top" >
+                                                                  Metal : <b><span t-esc="get_metal_ids(o.metal_ids)"/></b>
+                                                               </td>
+                                                               <!--<td align="left" valign="top">-->
+                                                               <!--Metal : <b>36</b>-->
+                                                               <!--</td>-->
+                                                            </tr>
+                                                            <tr>
+                                                               <td t-if="o.origin" align="left" valign="top" >
+                                                                  Order Date : <b><span t-esc="get_entered_date(get_so_ref(o.origin).create_date)"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Entered Date : <b><span t-esc="get_entered_date(o.create_date)"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  <t t-if="not o.prod_sample">
+                                                                     Sample : <b>No</b>
+                                                                  </t>
+                                                                  <t t-if="o.prod_sample">
+                                                                     Sample : <b>Yes</b>
+                                                                  </t>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top" >
+                                                                  <t t-if="not o.prod_approval">
+                                                                     S. Approved : <b>No</b>
+                                                                  </t>
+                                                                  <t t-if="o.prod_approval">
+                                                                     S. Approved : <b>Yes</b>
+                                                                  </t>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top" >
+                                                                  Sample Del. Date : <b><span t-field="o.prod_del_date"/></b>
+                                                                  <!--Sample Del. Date : <b><span t-esc="time.strftime('%A, %d %B %Y',time.strptime(o.prod_del_date,'%Y-%m-%d'))"/></b>-->
+                                                               </td>
+                                                            </tr>
+                                                            <!--<span t-esc="time.strftime('%A, %d %B %Y',time.strptime(o.date_order,'%Y-%m-%d %H:%M:%S'))"/>-->
+                                                            <tr>
+                                                               <t t-if="not o.origin">
+                                                                  <td align="left" valign="top" >
+                                                                     Ent. By : <b><span t-field="o.create_uid.name"/></b>
+                                                                  </td>
+                                                               </t>
+                                                               <t t-if="o.origin">
+                                                                  <td align="left" valign="top" >
+                                                                     Ent. By : <b><span t-esc="get_so_ref(o.origin).create_uid.name"/></b>
+                                                                  </td>
+                                                               </t>
+                                                            </tr>
+                                                            <tr>
+                                                               <t t-if="not o.origin">
+                                                                  <td align="left" valign="top" >
+                                                                     Country :
+                                                                  </td>
+                                                               </t>
+                                                               <t t-if="o.origin">
+                                                                  <td align="left" valign="top" >
+                                                                     Country : <b><span t-esc="get_partner_rec(o.origin)"/></b>
+                                                                  </td>
+                                                               </t>
+                                                               <!--<td t-if="o.origin" align="left" valign="middle">-->
+                                                               <!--Job#:<b><span t-esc="get_so_ref(o.origin).name"/></b>-->
+                                                               <!--</td>-->
+                                                            </tr>
+                                                            <t t-if="o.origin">
+                                                               <tr t-if="get_so_ref(o.origin).rush_order">
+                                                                  <td>
+                                                                    <span><b>Event:</b></span>                      
+                                                                  </td>
+                                                                  <td>
+                                                                    <t t-if="o.origin">
+                                                                      <b><span></span></b>
+                                                                    </t>
+                                                                  </td>
+                                                               </tr>
+                                                            </t>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                             <td style="min-height:400px;">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad" style="border:#000 2px solid">
+                                                   <tr>
+                                                      <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                         Production Delivery Date: <b> <span t-esc="o.prod_del_dt"/> </b>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                         <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+                                                            <tr>
+                                                               <!--<tr t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line">-->
+                                                               <t t-if="not o.origin">
+                                                                  <td align="left" valign="top">
+                                                                     Qty.:
+                                                                  </td>
+                                                               </t>
+                                                               <t t-if="o.origin">
+                                                                  <td t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line" align="left" valign="top">
+                                                                     Qty.: <b><span t-field="att_line.product_uom_qty"/></b>
+                                                                  </td>
+                                                               </t>
+                                                               <td align="left" valign="top">
+                                                                  OverRun: <b> <span t-field="o.over_run"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="right" valign="top" colspan="2">
+                                                                  <b><span t-field="o.overrun_qty"/></b>
+                                                               </td>
+                                                            </tr>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+                                                            <tr>
+                                                               <td  align="left" valign="top">
+                                                                  Specs : 
+                                                                  <t t-if="o.line_specs_ids">
+                                                                    <span t-esc="get_specs_ids(o.line_specs_ids)"/>
+                                                                  </t>
+                                                                  <t t-if="o.line_specs">
+                                                                    <span t-field="o.line_specs"/>
+                                                                  </t>
+                                                               </td>
+                                                               <td align="left" valign="top">
+                                                                  <t t-if="o.origin">
+                                                                     <t t-if="get_so_ref(o.origin).repeat_order">
+                                                                     Repeat:
+                                                                  
+                                                                        <b><span t-esc="get_so_ref(o.origin).repeat_order"/></b>
+                                                                     </t>
+                                                                  </t>
+                                                               </td>
+                                                            </tr>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                               <td>
+                                                                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad0">
+                                                                     <tr>
+                                                                        <td align="left" valign="top">
+                                                                           Plating:
+                                                                        </td>
+
+                                                                     </tr>
+                                                                  </table>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td>
+                                                                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="border-inner pad">
+                                                                     <tr>
+                                                                        <td align="left" valign="top">
+                                                                           Plating
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           Qty
+                                                                        </td>
+                                                                     </tr>
+                                                                     <tr t-foreach="o.mrp_plating_ids" t-as="plating_line" >
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="plating_line.plating_id.name"/>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="plating_line.plating_qty"/>
+                                                                        </td>
+                                                                     </tr>
+                                                                  </table>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                
+                                                               <td align="left" valign="top">
+                                                                  <t t-if="o.mrp_plating_ids">
+                                                                     <span>Date :</span>
+                                                                     <span style="margin-left:10px;" t-esc="get_plating_date(o.mrp_plating_ids)"/>
+                                                                  </t>
+                                                               </td>   
+                                                               <td>
+                                                                  
+                                                               </td>  
+                                                            </tr>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         <table width="105%" border="0" cellspacing="0" cellpadding="0" style="margin:0 -8px;" class="border-inner">
+                                                            <t t-if="o.origin">
+                                                               <tr t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line" >
+                                                                  <td>  </td>
+                                                                  <td t-if="att_line.sale_prod_att_ids" align="left" valign="top">
+                                                                     Att - Pkg
+                                                                  </td>
+                                                               </tr>
+                                                            </t>
+                                                            <t t-if="o.origin">
+                                                               <tr t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line" style="border-bottom:1px solid black;">
+                                                                  <td style="padding-left:5px;border-right:1px solid black;">Att</td>
+                                                                  <td align="left" valign="top" colspan='2'>
+                                                                     <span t-foreach="att_line.sale_prod_att_ids" t-as='att'>
+                                                                     <span t-field="att.prod_uom_qty"/><span> - </span><span t-field="att.att_product_id"/><span> [ <span t-field="att.att_product_id.qty_available"/> ] </span><br></br>
+                                                                     </span>
+                                                                  </td>
+                                                               </tr>
+                                                               <tr t-if="o.origin" t-foreach="get_line_ref(o.product_id, o.origin)" t-as="pkg_line" style="border-bottom:1px solid black;">
+                                                                  <td style="padding-left:5px;border-right:1px solid black;" >Pkg</td>
+                                                                  <td align="left" valign="top" colspan='2'>
+                                                                     <span t-foreach="pkg_line.sale_prod_pack_ids" t-as='pkg'>
+                                                                     <span t-field="pkg.prod_uom_qty"/><span> - </span><span t-field="pkg.pack_product_id"/><span> [ <span t-field="pkg.pack_product_id.qty_available"/> ] </span><br></br>
+                                                                     </span>
+                                                                  </td>
+                                                               </tr>
+                                                            </t>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td colspan="2">
+                                                <table cellpadding="0" cellspacing="5" border="0" width="100%" class="border-inner pad2">
+                                                   <tr>
+                                                      <td colspan="2" align="center"><b>SHIP</b></td>
+                                                      <td colspan="4" align="center"><b>RECEIVE</b></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>Date</td>
+                                                      <td>Quality</td>
+                                                      <td>Date</td>
+                                                      <td>Time</td>
+                                                      <td>Quality</td>
+                                                      <td>Compate</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                      <td><font color="white">.</font></td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td colspan="2">
+                                                <table cellpadding="0" cellspacing="5" border="0" width="100%" class="pad">
+                                                   <tr>
+                                                      <td><input type="checkbox" name="vehicle" value="1">TipTon</input></td>
+                                                      <td><input type="checkbox" name="vehicle" value="2">Vib</input></td>
+                                                      <td><input type="checkbox" name="vehicle" value="3">Tmb</input></td>
+                                                      <td><input type="checkbox" name="vehicle" value="4">Ceramic</input></td>
+                                                      <td><input type="checkbox" name="vehicle" value="5">Plastic</input></td>
+                                                      <td><input type="checkbox" name="vehicle" value="6">Prcelan</input></td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                       </table>
+                                    </td>
+                                    <td width="50%">
+                                       <table cellpadding="0" cellspacing="5" border="0" width="100%">
+                                          <tr>
+                                             <td colspan="2" class="pad">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                   <tr>
+                                                      <td t-if="o.origin" align="left" valign="middle">
+                                                         Painting Dep.: Job#:<b><span t-esc="get_so_ref(o.origin).name"/></b>
+                                                      </td>
+                                                      <td t-if="o.origin" align="left" valign="middle">
+                                                         P.O.#:<b><span t-esc="get_so_ref(o.origin).client_po_ref"/></b>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td width="50%" class="pad">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:#000 2px solid; ">
+                                                   <tr>
+                                                      <td style="border-bottom:#000 2px solid;">Production Delivery Date: <span t-esc="o.prod_del_dt"/></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <t t-if="o.origin">
+                                                         <td  style="border-bottom:#000 2px solid;">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                               <tr>
+                                                                  <td align="center"><img t-att-src= "get_image_ref(o.origin,o.product_id)" height="150px" width="150px" valign="top"/></td>
+                                                               </tr>
+                                                               <tr>
+                                                                  <td class="pad">
+                                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="border-inner">
+                                                                        <tr>
+                                                                           <td align="left" valign="top">
+                                                                              Plating
+                                                                           </td>
+                                                                           <td align="left" valign="top">
+                                                                              Qty
+                                                                           </td>                                                                          
+                                                                        </tr>
+                                                                        <tr t-foreach="o.mrp_plating_ids" t-as="plating_line" >
+                                                                           <td align="left" valign="top">
+                                                                              <span t-field="plating_line.plating_id.name"/>
+                                                                           </td>
+                                                                           <td align="left" valign="top">
+                                                                              <span t-field="plating_line.plating_qty"/>
+                                                                           </td>
+                                                                        </tr>
+                                                                     </table>
+                                                                  </td>
+                                                               </tr>
+                                                            </table>
+                                                         </td>
+                                                      </t>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad-sm">
+                                                            <tr>
+                                                               <td t-if="o.origin" align="left" valign="top">
+                                                                  Customer : <b><span t-esc="get_so_ref(o.origin).partner_id.name"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Size: <b><span t-field="o.size"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Item : <b><span t-field="o.product_id.name"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td t-if="o.metal_ids" align="left" valign="top">
+                                                                  Metal : <b><span t-esc="get_metal_ids(o.metal_ids)"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td t-if="o.origin" align="left" valign="top">
+                                                                  Order Date : <b><span t-esc="get_entered_date(get_so_ref(o.origin).create_date)"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Entered Date : <b><span t-esc = "get_entered_date(o.create_date)"/></b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  <t t-if="not o.prod_sample">
+                                                                     Sample : <b>No</b>
+                                                                  </t>
+                                                                  <t t-if="o.prod_sample">
+                                                                     Sample : <b>Yes</b>
+                                                                  </t>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  <t t-if="not o.prod_approval">
+                                                                     S. Approved : <b>No</b>
+                                                                  </t>
+                                                                  <t t-if="o.prod_approval">
+                                                                     S. Approved : <b>Yes</b>
+                                                                  </t>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  Sample Del. Date : <b><span t-field="o.prod_del_date"/></b>
+                                                                  <!--Sample Del. Date : <b><span t-esc="time.strftime('%A, %d %B %Y',time.strptime(o.prod_del_date,'%Y-%m-%d'))"/></b>-->
+                                                               </td>
+                                                            </tr>
+                                                            <!--<span t-esc="time.strftime('%A, %d %B %Y',time.strptime(o.date_order,'%Y-%m-%d %H:%M:%S'))"/>-->
+                                                            <tr>
+                                                               <t t-if="not o.origin">
+                                                                  <td align="left" valign="top">
+                                                                     Ent. By : <b><span t-field="o.create_uid.name"/></b>
+                                                                  </td>
+                                                               </t>
+                                                               <t t-if="o.origin">
+                                                                  <td align="left" valign="top">
+                                                                     Ent. By : <b><span t-esc="get_so_ref(o.origin).create_uid.name"/></b>
+                                                                  </td>
+                                                               </t>
+                                                            </tr>
+                                                            <tr>
+                                                               <t t-if="not o.origin">
+                                                                  <td align="left" valign="top">
+                                                                     Country :
+                                                                  </td>
+                                                               </t>
+                                                               <t t-if="o.origin">
+                                                                  <td align="left" valign="top">
+                                                                     Country : <b><span t-esc="get_partner_rec(o.origin)"/></b>
+                                                                  </td>
+                                                               </t>
+                                                            </tr>
+                                                            <t t-if="o.origin">
+                                                               <tr t-if="get_so_ref(o.origin).rush_order">
+                                                                  <td>
+                                                                    <span><b>Event:</b></span>                      
+                                                                  </td>
+                                                                  <td>
+                                                                    <t t-if="o.origin">
+                                                                      <b><span></span></b>
+                                                                    </t>
+                                                                  </td>
+                                                               </tr>
+                                                            </t>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                             <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                   <tr>
+                                                      <td>
+                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad" style="border:#000 2px solid">
+                                                            <tr>
+                                                               <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                                  Delivery Date: <b> <span t-esc="o.line_ship_dt"/> </b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                                  In Hand Date: 
+                                                                  <b>
+                                                                     <t t-if="o.origin">
+                                                                        <t t-if="get_so_ref(o.origin).in_hand_date_visible == True">
+                                                                           <span t-esc="get_so_ref(o.origin).in_hand_date"/> 
+                                                                        </t>
+                                                                     </t>   
+                                                                  </b>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                                  <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+                                                                     <tr>
+                                                                        <!--<tr t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line">-->
+                                                                        <t t-if="not o.origin">
+                                                                           <td align="left" valign="top">
+                                                                              Qty.:
+                                                                           </td>
+                                                                        </t>
+                                                                        <t t-if="o.origin">
+                                                                           <td t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line" align="left" valign="top">
+                                                                              Qty.: <b><span t-field="att_line.product_uom_qty"/></b>
+                                                                           </td>
+                                                                        </t>
+                                                                        <td align="left" valign="top">
+                                                                           OverRun: <b> <span t-field="o.over_run"/></b>
+                                                                        </td>
+                                                                     </tr>
+                                                                     <tr>
+                                                                        <td align="right" valign="top" colspan="2">
+                                                                           <b><span t-field="o.overrun_qty"/></b>
+                                                                        </td>
+                                                                     </tr>
+                                                                  </table>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top" style="border-bottom:#000 2px solid">
+                                                                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+                                                                     <tr>
+                                                                        <td align="left" valign="top">
+                                                                           Specs : 
+                                                                          <t t-if="o.line_specs_ids">
+                                                                           <span t-esc="get_specs_ids(o.line_specs_ids)"/>
+                                                                          </t>
+                                                                          <t t-if="o.line_specs">
+                                                                            <span t-field="o.line_specs"/>
+                                                                          </t>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <t t-if="o.origin">
+                                                                              <t t-if="get_so_ref(o.origin).repeat_order">
+                                                                              Repeat:
+                                                                                 <b><span t-esc="get_so_ref(o.origin).repeat_order"/></b>
+                                                                              </t>
+                                                                           </t>
+                                                                        </td>
+                                                                     </tr>
+
+                                                                  </table>
+                                                               </td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td align="left" valign="top">
+                                                                  <table width="100%" border="1" cellspacing="0" cellpadding="0" class="border-inner">
+                                                                     <tr>
+                                                                        <td align="left" valign="top">
+                                                                           <b>Color/Print:</b>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <b>Type</b>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <b>Qty</b>
+                                                                        </td>
+                                                                     </tr>
+                                                                     <tr t-foreach="o.mrp_color_ids" t-as="color_line">
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="color_line.sale_color"/>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="color_line.sale_color_type"/>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="color_line.sale_color_qty"/>
+                                                                        </td>
+                                                                     </tr>
+                                                                     <tr t-foreach="o.mrp_color_print_ids" t-as="print_line">
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="print_line.sale_color_print"/>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="print_line.sale_color_print_type"/>
+                                                                        </td>
+                                                                        <td align="left" valign="top">
+                                                                           <span t-field="print_line.sale_color_print_qty"/>
+                                                                        </td>
+                                                                     </tr>
+
+                                                                  </table>
+                                                               </td>
+                                                            </tr>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="border-inner pad">
+                                                            <t t-if="o.origin">
+                                                               <tr t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line" >
+                                                                  <td>  </td>
+                                                                  <td t-if="att_line.sale_prod_att_ids" align="left" valign="top">
+                                                                     Att - Pkg
+                                                                  </td>
+                                                               </tr>
+                                                            </t>
+                                                            <t t-if="o.origin">
+                                                               <tr t-foreach="get_line_ref(o.product_id, o.origin)" t-as="att_line" style="border-bottom:1px solid black;">
+                                                                  <td style="padding-left:5px;border-right:1px solid black;">Att</td>
+                                                                  <td align="left" valign="top" colspan='2'>
+                                                                     <span t-foreach="att_line.sale_prod_att_ids" t-as='att'>
+                                                                     <span t-field="att.prod_uom_qty"/><span> - </span><span t-field="att.att_product_id"/><span> [ <span t-field="att.att_product_id.qty_available"/> ] </span><br></br>
+                                                                     </span>
+                                                                  </td>
+                                                               </tr>
+                                                               <tr t-if="o.origin" t-foreach="get_line_ref(o.product_id, o.origin)" t-as="pkg_line" style="border-bottom:1px solid black;">
+                                                                  <td style="padding-left:5px;border-right:1px solid black;" >Pkg</td>
+                                                                  <td align="left" valign="top" colspan='2'>
+                                                                     <span t-foreach="pkg_line.sale_prod_pack_ids" t-as='pkg'>
+                                                                     <span t-field="pkg.prod_uom_qty"/><span> - </span><span t-field="pkg.pack_product_id"/><span> [ <span t-field="pkg.pack_product_id.qty_available"/> ] </span><br></br>
+                                                                     </span>
+                                                                  </td>
+                                                               </tr>
+                                                            </t>
+                                                         </table>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <td colspan="2">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="pad">
+                                                   <t t-if="o.sub_origin">
+                                                      <t t-if="get_so_line_obj_ref(o.sub_origin).shipping_address_id">
+                                                      <tr>
+                                                        <td class="col-xs-5" style="border-left: 2px solid black;">
+                                                          <t t-if="o.sub_origin">
+                                                            <t t-if="get_so_line_obj_ref(o.sub_origin).shipping_address_id.is_company != True"> 
+                                                              <span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.parent_id.name" style="margin-left:10px;"/>
+                                                            </t>
+                                                          </t>
+                                                          <t t-if="o.sub_origin">
+                                                            <t t-if="get_so_line_obj_ref(o.sub_origin).shipping_address_id.is_company == True"> 
+                                                              <span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.name" style="margin-left:10px;"/>
+                                                            </t>
+                                                          </t> <font color="white">.</font>
+                                                        </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td class="col-xs-5" style="border-left: 2px solid black;"> <t t-if="o.sub_origin"><span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.street" style="margin-left:10px;"></span></t> <font color="white">.</font> </td>
+                                                      </tr>
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-5" style="border-left: 2px solid black;"> <t t-if="o.sub_origin"><span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.street2" style="margin-left:10px;"></span></t> <font color="white">.</font> </td>
+                                                      </tr>
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-3"> <t t-if="o.sub_origin"><span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.city" style="margin-left:10px;"></span></t> <font color="white">.</font></td>
+                                                        <td class="col-xs-2"> <t t-if="o.sub_origin"><span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.state_id" style="margin-left:10px;"></span></t> </td>
+                                                      </tr>
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-3"> <t t-if="o.sub_origin"><span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.country_id" style="margin-left:10px;"></span></t> <font color="white">.</font> </td>
+                                                        <td class="col-xs-2"> <t t-if="o.sub_origin"><span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.zip" style="margin-left:10px;"></span></t> </td>
+                                                      </tr>
+                                                      <t t-if="o.sub_origin">
+                                                         <t t-if="get_so_line_obj_ref(o.sub_origin).shipping_address_id.is_company != True"> 
+                                                            <tr style="border-left: 2px solid black;">
+                                                              <td class="col-xs-3" style="margin-left:10px;"> Contact : 
+                                                                  <span t-field="get_so_line_obj_ref(o.sub_origin).shipping_address_id.name"/>
+                                                              </td>
+                                                              <td class="col-xs-2"> <font color="white">.</font> </td>
+                                                            </tr>
+                                                         </t>
+                                                      </t>
+                                                   </t>
+                                                   </t>
+                                                   <t t-if="o.sub_origin">
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-3">
+                                                           <t t-if="get_so_line_obj_ref(o.sub_origin).carrier_id_by_line">Ship Via:<span t-field="get_so_line_obj_ref(o.sub_origin).carrier_id_by_line" style="margin-left:10px;"></span></t> <font color="white">.</font>
+                                                        </td>
+                                                      </tr>
+                                                   </t>
+
+                                                   <t t-if="get_so_line_obj_ref(o.sub_origin)">
+                                                   <t t-if="not get_so_line_obj_ref(o.sub_origin).shipping_address_id">
+                                                      <tr>
+                                                        <td class="col-xs-5" style="border-left: 2px solid black;">
+                                                          <t t-if="o.origin">
+                                                            <t t-if="get_so_ref(o.origin).partner_shipping_id.is_company != True"> 
+                                                              <span t-field="get_so_ref(o.origin).partner_shipping_id.parent_id.name" style="margin-left:10px;"/>
+                                                            </t>
+                                                          </t>
+                                                          <t t-if="o.origin">
+                                                            <t t-if="get_so_ref(o.origin).partner_shipping_id.is_company == True"> 
+                                                              <span t-field="get_so_ref(o.origin).partner_shipping_id.name" style="margin-left:10px;"/>
+                                                            </t>
+                                                          </t> <font color="white">.</font>
+                                                        </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td class="col-xs-5" style="border-left: 2px solid black;"> <t t-if="o.origin"><span t-field="get_so_ref(o.origin).partner_shipping_id.street" style="margin-left:10px;"></span></t> <font color="white">.</font> </td>
+                                                      </tr>
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-5" style="border-left: 2px solid black;"> <t t-if="o.origin"><span t-field="get_so_ref(o.origin).partner_shipping_id.street2" style="margin-left:10px;"></span></t> <font color="white">.</font> </td>
+                                                      </tr>
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-3"> <t t-if="o.origin"><span t-field="get_so_ref(o.origin).partner_shipping_id.city" style="margin-left:10px;"></span></t> <font color="white">.</font></td>
+                                                        <td class="col-xs-2"> <t t-if="o.origin"><span t-field="get_so_ref(o.origin).partner_shipping_id.state_id" style="margin-left:10px;"></span></t> </td>
+                                                      </tr>
+                                                      <tr style="border-left: 2px solid black;">
+                                                        <td class="col-xs-3"> <t t-if="o.origin"><span t-field="get_so_ref(o.origin).partner_shipping_id.country_id" style="margin-left:10px;"></span></t> <font color="white">.</font> </td>
+                                                        <td class="col-xs-2"> <t t-if="o.origin"><span t-field="get_so_ref(o.origin).partner_shipping_id.zip" style="margin-left:10px;"></span></t> </td>
+                                                      </tr>
+                                                      <t t-if="o.origin">
+                                                         <t t-if="get_so_ref(o.origin).partner_shipping_id.is_company != True"> 
+                                                            <tr style="border-left: 2px solid black;">
+                                                              <td class="col-xs-3" style="margin-left:10px;"> Contact : 
+                                                                  <span t-field="get_so_ref(o.origin).partner_shipping_id.name"/>
+                                                              </td>
+                                                              <td class="col-xs-2"> <font color="white">.</font> </td>
+                                                            </tr>
+                                                         </t>
+                                                      </t>
+                                                   </t>
+                                                </t>
+                                                </table>
+                                             </td>
+                                          </tr>
+                                       </table>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </t>
+         </t>
+      </template>
+   </data>
+</openerp>

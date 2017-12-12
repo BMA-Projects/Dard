@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="a4_paper_format" model="report.paperformat">
+            <field name="name">A4 Paper Format</field>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <template id="invoice_report_layout">
+        <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+
+            <t t-call="ob_invoice_dard_report.invoice_header" />
+            <t t-raw="0" />
+            <t t-call="ob_invoice_dard_report.invoice_footer" />
+        </template>
+
+        <template id="invoice_header">
+            <div class="header">
+            <div class="row">
+		        	<img src="/ob_dard_changes/static/src/img/DARD-Banner.jpg" />
+	        </div>
+            </div>
+        </template>
+
+        <template id="invoice_footer">
+            <div class="footer">
+                <div class="row zero_min_height">
+                    <div class="col-xs-12" style="font-size:17px;">
+                        <b>Any Invoice discrepancies have to be resolved within 90 days from the invoice date. Credits will not </b>
+                        <b>be issued after 90 days from the the invoice date.</b>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+
+        <report 
+            id="account.account_invoices"
+            model="account.invoice"
+            string="Invoices Report"
+            report_type="qweb-pdf"
+            name="ob_invoice_dard_report.report_invoice_document"
+            file="ob_invoice_dard_report.report_invoice_document"
+            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+            
+        />
+
+        <record id="account.account_invoices" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ob_invoice_dard_report.a4_paper_format"/>
+        </record>
+
+    </data>
+</openerp>

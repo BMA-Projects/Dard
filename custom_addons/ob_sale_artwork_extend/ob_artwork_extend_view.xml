@@ -1,0 +1,335 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="artwork_master_type_form" model="ir.ui.view">
+            <field name="name">artwork.master.type.form</field>
+            <field name="model">artwork.master.type</field>
+            <field name="arch" type="xml">
+                <form string="Artwork Type" >
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="artwork_master_type_tree" model="ir.ui.view">
+            <field name="name">artwork.master.type.tree</field>
+            <field name="model">artwork.master.type</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="artwork_type_action">
+            <field name="name">Artwork Type</field>
+            <field name="res_model">artwork.master.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="artwork_master_shape_form" model="ir.ui.view">
+            <field name="name">artwork.master.shape.form</field>
+            <field name="model">artwork.master.shape</field>
+            <field name="arch" type="xml">
+                <form string="Artwork Shape" >
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="artwork_master_shape_tree" model="ir.ui.view">
+            <field name="name">artwork.master.shape.tree</field>
+            <field name="model">artwork.master.shape</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork Shape">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="artwork_shape_action">
+            <field name="name">Artwork Shape</field>
+            <field name="res_model">artwork.master.shape</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="artwork_master_onloop_form" model="ir.ui.view">
+            <field name="name">artwork.master.onloop.form</field>
+            <field name="model">artwork.master.onloop</field>
+            <field name="arch" type="xml">
+                <form string="Artwork On Loop" >
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="artwork_master_onloop_tree" model="ir.ui.view">
+            <field name="name">artwork.master.onloop.tree</field>
+            <field name="model">artwork.master.onloop</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork On Loop">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="artwork_onloop_action">
+            <field name="name">Artwork On Loop</field>
+            <field name="res_model">artwork.master.onloop</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="artwork_master_attachment_form" model="ir.ui.view">
+            <field name="name">artwork.master.attachment.form</field>
+            <field name="model">artwork.master.attachment</field>
+            <field name="arch" type="xml">
+                <form string="Artwork Attachment" >
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="artwork_master_attachment_tree" model="ir.ui.view">
+            <field name="name">artwork.master.attachment.tree</field>
+            <field name="model">artwork.master.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork Attachment">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="artwork_attachment_action">
+            <field name="name">Artwork Attachment</field>
+            <field name="res_model">artwork.master.attachment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="artwork_master_2d_3d_form" model="ir.ui.view">
+            <field name="name">artwork.master.2d.3d.form</field>
+            <field name="model">artwork.master.2d.3d</field>
+            <field name="arch" type="xml">
+                <form string="Artwork 2d/3d" >
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="artwork_master_2d_3d_tree" model="ir.ui.view">
+            <field name="name">artwork.master.2d.3d.tree</field>
+            <field name="model">artwork.master.2d.3d</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork 2d/3d">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="artwork_2d_3d_action">
+            <field name="name">Artwork 2d/3d</field>
+            <field name="res_model">artwork.master.2d.3d</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="artwork_master_platting_form" model="ir.ui.view">
+            <field name="name">artwork.master.platting.form</field>
+            <field name="model">artwork.master.platting</field>
+            <field name="arch" type="xml">
+                <form string="Artwork Platting" >
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="artwork_master_platting_tree" model="ir.ui.view">
+            <field name="name">artwork.master.platting.tree</field>
+            <field name="model">artwork.master.platting</field>
+            <field name="arch" type="xml">
+                <tree string="Artwork Platting">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="artwork_platting_action">
+            <field name="name">Artwork Platting</field>
+            <field name="res_model">artwork.master.platting</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--<record id="artwork_master_decoration_form" model="ir.ui.view">-->
+            <!--<field name="name">artwork.master.decoration.form</field>-->
+            <!--<field name="model">artwork.master.decoration</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Artwork decoration" >-->
+                    <!--<sheet >-->
+                        <!--<h1>-->
+                            <!--<field name="name"/>-->
+                        <!--</h1>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="artwork_master_decoration_tree" model="ir.ui.view">-->
+            <!--<field name="name">artwork.master.decoration.tree</field>-->
+            <!--<field name="model">artwork.master.decoration</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Artwork Decoration">-->
+                    <!--<field name="name"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+         <record model="ir.actions.act_window" id="artwork_decoration_action">
+            <field name="name">Artwork Decoration</field>
+            <field name="res_model">artwork.master.decoration</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <record id="view_order_line_image_form_inherited" model="ir.ui.view">
+            <field name="name">view.order.line.image.form.inherited</field>
+            <field name="model">sale.order.line.images</field>
+            <field name="inherit_id" ref="ob_sale_artwork.view_order_line_image_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='history_ids']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='description']" position="replace">
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                            <field name="history_ids"/>
+                        </page>
+                        <page string="Type">
+                            <group col="4">
+                                <group colspan="2">
+                                    <field name="type_ids" widget="many2many_checkboxes" nolabel="1"/>
+                                </group>
+                                <group colspan="2">
+                                    <group col="3">
+                                        <field name="other_type_bool"/>
+                                        <!--<label string="Other"/>-->
+
+                                        <field name="other_type_val" nolabel="1" attrs="{'invisible':[('other_type_bool','=',False)]}"/>
+                                    </group>
+                                </group>
+                            </group>
+
+                            <!--<field name="other_type_val" attrs="{'invisible':[('other','=',False)]}"/>-->
+
+                        </page>
+                        <page string="Shape">
+                            <field name="shape_ids" widget="many2many_checkboxes"/>
+                        </page>
+                        <page string="On Loop">
+                            <!--<field name="onloop_ids" widget="many2many_checkboxes"/>-->
+                            <group col="4">
+                                <group colspan="2">
+                                    <field name="onloop_ids" widget="many2many_checkboxes" nolabel="1"/>
+                                </group>
+                                <group colspan="2">
+                                    <group col="3">
+                                        <field name="other_onloop_bool"/>
+                                        <field name="other_onloop_val" nolabel="1" attrs="{'invisible':[('other_onloop_bool','=',False)]}"/>
+                                    </group>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Attachment">
+
+                            <!--<field name="attachment_ids" widget="many2many_checkboxes"/>-->
+                            <group col="4">
+                                <group colspan="2">
+                                    <field name="attachment_ids" widget="many2many_checkboxes" nolabel="1"/>
+                                </group>
+                                <group colspan="2">
+                                    <group col="3">
+
+                                        <field name="solid_attachment_bool"/>
+                                        <field name="solid_attachment_val" nolabel="1" attrs="{'invisible':[('solid_attachment_bool','=',False)]}"/>
+                                        <field name="deluxe_attachment_bool"/>
+                                        <field name="deluxe_attachment_val" nolabel="1" attrs="{'invisible':[('deluxe_attachment_bool','=',False)]}"/>
+                                        <field name="blade_attachment_bool"/>
+                                        <field name="blade_attachment_val" nolabel="1" attrs="{'invisible':[('blade_attachment_bool','=',False)]}"/>
+                                        <field name="other_attachment_bool"/>
+                                        <field name="other_attachment_val" nolabel="1" attrs="{'invisible':[('other_attachment_bool','=',False)]}"/>
+                                    </group>
+                                </group>
+                            </group>
+
+                        </page>
+                        <page string="2D/3D">
+                            <field name="dim_ids" widget="many2many_checkboxes"/>
+                        </page>
+                        <page string="Platting">
+                            <!--<field name="platting_ids" widget="many2many_checkboxes"/>-->
+                            <group col="4">
+                                <group colspan="2">
+                                    <field name="platting_ids" widget="many2many_checkboxes" nolabel="1"/>
+                                </group>
+                                <group colspan="2">
+                                    <group col="3">
+                                        <field name="other_platting_bool"/>
+                                        <field name="other_platting_val" nolabel="1" attrs="{'invisible':[('other_platting_bool','=',False)]}"/>
+                                    </group>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Decoration">
+                            <field name="decoration_ids" widget="many2many_checkboxes"/>
+                            <group>
+                                <field name="location_ids" widget="many2many_tags"/>
+                                <field name="imprint_color_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="artwork_configuration_menu" name="Artwork Configuration" parent="base.menu_base_partner" sequence="10"/>
+        <menuitem action="artwork_type_action" id="artwork_type_action_menu" name="Artwork Type" parent="artwork_configuration_menu" sequence="1"/>
+        <menuitem action="artwork_shape_action" id="artwork_shape_action_menu" name="Artwork Shape" parent="artwork_configuration_menu" sequence="2"/>
+        <menuitem action="artwork_onloop_action" id="artwork_onloop_action_menu" name="Artwork On Loop" parent="artwork_configuration_menu" sequence="3"/>
+        <menuitem action="artwork_attachment_action" id="artwork_attachment_action_menu" name="Artwork Attachment" parent="artwork_configuration_menu" sequence="4"/>
+        <menuitem action="artwork_2d_3d_action" id="artwork_2d_3d_action_menu" name="Artwork 2D/3D" parent="artwork_configuration_menu" sequence="5"/>
+        <menuitem action="artwork_platting_action" id="artwork_platting_action_menu" name="Artwork Platting" parent="artwork_configuration_menu" sequence="6"/>
+        <!--<menuitem action="artwork_decoration_action" id="artwork_decoration_action_menu" name="Artwork Decoration" parent="artwork_configuration_menu" sequence="7"/>-->
+
+    </data>
+</openerp>
+

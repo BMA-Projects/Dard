@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/officebeacon/!svn/ver/68701/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/officebeacon/!svn/ver/68701/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/__openerp__.py
+END
+res_user.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/officebeacon/!svn/ver/68701/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/res_user.py
+END
+ob_product_variant_report_inherit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/officebeacon/!svn/ver/68115/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/ob_product_variant_report_inherit.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/officebeacon/!svn/ver/67241/BMA/V8/branches/bma8_qa_ob_ecommerce/bma/ob_dard_changes/__init__.py
+END

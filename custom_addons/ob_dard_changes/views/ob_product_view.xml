@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <!-- Label Change  -->
+<!--          Commented because purchase requisition no more required in  Project:DARD -->
+<!--          <record id="view_purchase_requisition_form_inherit" model="ir.ui.view">
+             <field name="name">purchase.requisition.form.inherit</field>
+             <field name="model">purchase.requisition</field>
+             <field name="priority">1000</field>
+             <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+             <field name="arch" type="xml">
+
+                <xpath expr="//label[@for='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//h1/field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//h1/label[@string=',']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>
+             </field>
+        </record> -->
+<!--
+    Add field for Product Import Purpose
+-->
+        <record id="product_normal_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="priority">1000</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="old_sku" invisible="1"/>
+                </xpath>
+                <xpath expr="//page[@string='Information']/group/group[last()]" position="after">
+                    <group string="Quantity Status">
+                        <field name="total_sold_qty_this_year"/>
+                        <field name="qty_write_date" invisible="1"/>
+                        <label for="total_sold_qty_last_year"/>
+                        <div>
+                            <field name="total_sold_qty_last_year" class="oe_inline"/>
+                            <button name="%(action_update_last_year_qty)d" string="⇒ Update" type="action" class="oe_link" invisible="1"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_tree_view_inherit" model="ir.ui.view">
+            <field name="name">product.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="priority">10000</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price']" position="after">
+                    <field name="min_qty_ror"/>
+                    <field name="total_sold_qty_this_year"/>
+                    <field name="total_sold_qty_last_year"/>
+                </xpath>
+                <field name="lst_price" position="after">
+                    <field name="allocated_quantity"/>
+                    <field name="purchased_quantity"/>
+                    <field name="consumed_quantity"/>
+                </field>
+
+                <field name="ean13" position="attributes">
+                    <attribute name="invisible">1</attribute> 
+                </field>
+
+                <field name="uom_id" position="attributes">
+                    <attribute name="invisible">1</attribute> 
+                </field>
+            </field>
+        </record>
+
+        <record id="view_stock_product_tree_inherits" model="ir.ui.view">
+            <field name="name">product.product.stock.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+            <field name="arch" type="xml">
+                <field name="virtual_available" position="attributes">
+                    <attribute name="invisible">1</attribute>                 
+                </field>
+            </field>
+        </record>
+ 
+    </data>
+</openerp>

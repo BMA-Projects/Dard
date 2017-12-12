@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_extensions_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.extensions.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//form/header/button[@name='action_button_confirm']" position="replace"/>
+                    <button name="cancel" position="before">
+                        <button name="action_button_confirm" states="prepared" string="Confirm Sale" type="object" class="oe_highlight" groups="base.group_user"/>
+                    </button>
+                    <xpath expr="//button[@name='action_view_delivery']" position="replace">
+                       <field name="picking_ids" invisible="1"/>
+                       <button name="action_view_delivery" string="View Delivery Order" type="object" class="oe_highlight"
+                           attrs="{'invisible': ['|','|',('picking_ids','=',False),('picking_ids','=',[]),('state','in',['draft','sent','prepared'])]}" groups="base.group_user"/>
+                    </xpath>
+                    <button name="action_quotation_send" position="before">
+                        <button name="prepare" states="draft,sent" string="Prepare" type="workflow" class="oe_highlight"/>
+                        <button name="action_draft" states="prepared" string="Set to Draft" type="object"/>
+                    </button>
+                    <field name="state" position="replace">
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,prepared,manual,invoiced,done" statusbar_colors="{&quot;exception&quot;:&quot;red&quot;,&quot;cancel&quot;:&quot;red&quot;}"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

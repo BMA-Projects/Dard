@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="view_rsa_key_tree" model="ir.ui.view">
+	<field name="name">rsa.encryption.tree</field>
+	<field name="model">rsa.encryption</field>
+	<field name="arch" type="xml">
+		<tree string="RSA Key Sets">
+			<field name="name"/>
+			<field name="active"/>
+			<field name="primary"/>
+		</tree>
+	</field>
+</record>
+
+<record id="action_rsa_key" model="ir.actions.act_window">
+	<field name="name">RSA Keys</field>
+	<field name="type">ir.actions.act_window</field>
+	<field name="res_model">rsa.encryption</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="rsa_menu" parent="base.menu_security" sequence="15" string="RSA Keys" action="action_rsa_key"/>
+<menuitem id="rsa_generate_menu" parent="base.menu_security" sequence="16" string="Generate New Keys" action="action_key_generator"/>
+
+</data>
+</openerp>

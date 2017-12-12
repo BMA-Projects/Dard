@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="ob_product_multi_image assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/ob_product_multi_images/static/src/css/hoverbox.css"/>
+                <link rel="stylesheet" href="/ob_product_multi_images/static/lib/lightbox/css/lightbox.css"/>
+                <script type="text/javascript" src="/ob_product_multi_images/static/lib/lightbox/js/jquery.lightbox.js"></script>
+                <script type="text/javascript" src="/ob_product_multi_images/static/src/js/multi_images.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,809 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+    <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+        
+        <pageTemplate id="first">
+            <frame id="first" x1="1.3cm" y1="3.0cm" height="22.6cm" width="19.0cm"/>
+            <pageGraphics>
+            </pageGraphics>
+    	</pageTemplate>
+    
+    
+            <stylesheet>
+                <!-- Set here the default font to use for all <para> tags -->
+                <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
+                <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+                <paraStyle name="P7" fontName="Helvetica" fontSize="12.0" leading="12" alignment="CENTER" textColor="#19a24b"/>
+                
+                <blockTableStyle id="Table11">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#008000" start="0,0" stop="0,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#008000" start="0,0" stop="0,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="0,0" stop="0,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="0,-1" stop="0,-1"/>
+                    <blockBackground colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+                </blockTableStyle>
+                <blockTableStyle id="Table2">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="0,0" stop="0,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="1,0" stop="1,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="2,0" stop="2,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="3,0" stop="3,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+                </blockTableStyle>
+                <blockTableStyle id="table_border">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="0,0" stop="0,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="0,0" stop="0,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="0,-1" stop="0,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="1,0" stop="1,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#FFFFFF" start="1,0" stop="1,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="1,0" stop="1,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="1,-1" stop="1,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="2,0" stop="2,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="2,0" stop="2,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="2,-1" stop="2,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="3,0" stop="3,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#FFFFFF" start="3,0" stop="3,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="3,0" stop="3,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="3,-1" stop="3,-1"/>
+                </blockTableStyle>
+                    <blockTableStyle id="table_border_temp">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                    <lineStyle kind="GRID" colorName="#FFFFFF" />
+                </blockTableStyle>
+                <blockTableStyle id="Table1_1">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#19a24b" start="0,0" stop="0,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#19a24b" start="0,0" stop="0,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#19a24b" start="0,-1" stop="0,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="1,0" stop="1,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#19a24b" start="1,0" stop="1,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#19a24b" start="1,0" stop="1,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#19a24b" start="1,-1" stop="1,-1"/>
+                    <blockBackground colorName="#0e9a49" start="0,0" stop="0,-1"/>
+                    <blockBackground colorName="#0e9a49" start="1,0" stop="1,-1"/>
+                    </blockTableStyle>
+                    <blockTableStyle id="aligned_table">
+                    <alignment>LEFT</alignment>
+                </blockTableStyle>
+                <blockTableStyle id="Table_Outer_Notes">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                </blockTableStyle>
+                <blockTableStyle id="Table5">
+                    <blockAlignment value="LEFT"/>
+                    <blockValign value="TOP"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#008000" start="0,0" stop="0,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="0,0" stop="0,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="0,-1" stop="0,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="1,0" stop="1,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="1,0" stop="1,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="1,-1" stop="1,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="2,0" stop="2,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="2,0" stop="2,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="2,-1" stop="2,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="3,0" stop="3,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="3,0" stop="3,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="3,-1" stop="3,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="4,0" stop="4,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#008000" start="4,0" stop="4,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="4,0" stop="4,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="4,-1" stop="4,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="5,0" stop="5,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#008000" start="5,0" stop="5,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="5,0" stop="5,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="5,-1" stop="5,-1"/>
+                    <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="6,0" stop="6,-1"/>
+                    <lineStyle kind="LINEAFTER" colorName="#008000" start="6,0" stop="6,-1"/>
+                    <lineStyle kind="LINEABOVE" colorName="#008000" start="6,0" stop="6,0"/>
+                    <lineStyle kind="LINEBELOW" colorName="#008000" start="6,-1" stop="6,-1"/>
+                    <blockBackground colorName="#19a24b" start="0,0" stop="0,-1"/>
+                    <blockBackground colorName="#19a24b" start="1,0" stop="1,-1"/>
+                    <blockBackground colorName="#19a24b" start="2,0" stop="2,-1"/>
+                    <blockBackground colorName="#19a24b" start="3,0" stop="3,-1"/>
+                    <blockBackground colorName="#19a24b" start="4,0" stop="4,-1"/>
+                    <blockBackground colorName="#19a24b" start="5,0" stop="5,-1"/>
+                    <blockBackground colorName="#19a24b" start="6,0" stop="6,-1"/>
+                </blockTableStyle>
+                <blockTableStyle id="Table6">
+                  <blockAlignment value="LEFT"/>
+                  <blockValign value="TOP"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="0,0" stop="0,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="0,0" stop="0,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="0,-1" stop="0,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="1,0" stop="1,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="1,0" stop="1,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="1,-1" stop="1,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="2,0" stop="2,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="2,0" stop="2,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="2,-1" stop="2,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="3,0" stop="3,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="3,0" stop="3,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="3,-1" stop="3,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="4,0" stop="4,-1"/>
+                  <lineStyle kind="LINEAFTER" colorName="#008000" start="4,0" stop="4,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="4,0" stop="4,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="4,-1" stop="4,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="5,0" stop="5,-1"/>
+                  <lineStyle kind="LINEAFTER" colorName="#008000" start="5,0" stop="5,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="5,0" stop="5,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="5,-1" stop="5,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="6,0" stop="6,-1"/>
+                  <lineStyle kind="LINEAFTER" colorName="#008000" start="6,0" stop="6,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="6,0" stop="6,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="6,-1" stop="6,-1"/>
+                </blockTableStyle>
+    
+                <blockTableStyle id="Table23">
+                  <blockAlignment value="LEFT"/>
+                  <blockValign value="TOP"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#008000" start="0,0" stop="0,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="0,0" stop="0,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="0,-1" stop="0,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="1,0" stop="1,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="1,0" stop="1,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="1,-1" stop="1,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="2,0" stop="2,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="2,0" stop="2,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="2,-1" stop="2,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="3,0" stop="3,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="3,0" stop="3,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="3,-1" stop="3,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="4,0" stop="4,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="4,0" stop="4,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="4,-1" stop="4,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="5,0" stop="5,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="5,0" stop="5,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="5,-1" stop="5,-1"/>
+                  <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="6,0" stop="6,-1"/>
+                  <lineStyle kind="LINEAFTER" colorName="#008000" start="6,0" stop="6,-1"/>
+                  <lineStyle kind="LINEABOVE" colorName="#008000" start="6,0" stop="6,0"/>
+                  <lineStyle kind="LINEBELOW" colorName="#008000" start="6,-1" stop="6,-1"/>
+                  <blockBackground colorName="#19a24b" start="0,0" stop="0,-1"/>
+                  <blockBackground colorName="#19a24b" start="1,0" stop="1,-1"/>
+                  <blockBackground colorName="#19a24b" start="2,0" stop="2,-1"/>
+                  <blockBackground colorName="#19a24b" start="3,0" stop="3,-1"/>
+                  <blockBackground colorName="#19a24b" start="4,0" stop="4,-1"/>
+                  <blockBackground colorName="#19a24b" start="5,0" stop="5,-1"/>
+                  <blockBackground colorName="#19a24b" start="6,0" stop="6,-1"/>
+                </blockTableStyle>
+                <blockTableStyle id="Table24">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+        </blockTableStyle>
+        <blockTableStyle id="Table7">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+        </blockTableStyle>
+        <blockTableStyle id="Table8">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+        </blockTableStyle>
+        <initialize>
+            <paraStyle name="all" alignment="justify"/>
+        </initialize>
+        <paraStyle name="P1" fontName="Helvetica" fontSize="8.0" leading="10"/>
+        <paraStyle name="P2" fontName="Helvetica" fontSize="8.0" leading="10"/>
+        <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P4" fontName="Helvetica" fontSize="8.0" leading="10"/>
+        <paraStyle name="P5" fontName="Helvetica" fontSize="7.0" leading="9" textColor="#ffffff"/>
+        <paraStyle name="P6" fontName="Helvetica" fontSize="7.0" leading="9" alignment="CENTER" textColor="#ffffff"/>
+        <paraStyle name="P8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+        <paraStyle name="P9" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+        <paraStyle name="P10" fontName="Helvetica" fontSize="7.0" leading="9" textColor="#ffffff"/>
+        <paraStyle name="P11" fontName="Helvetica" fontSize="7.0" leading="9" alignment="CENTER" textColor="#ffffff"/>
+        <paraStyle name="P12" fontName="Helvetica" fontSize="9.0" leading="9" textColor="#00ae00" alignment="LEFT"/>
+        <paraStyle name="P12_1" fontName="Helvetica" fontSize="7.0" leading="9" textColor="#00ae00" alignment="CENTER"/>
+        <paraStyle name="P13" fontName="Helvetica" fontSize="8.0" leading="10"/>
+        <paraStyle name="P14" fontName="Helvetica" fontSize="7.0" leading="9" alignment="CENTER"/>
+        <paraStyle name="P14_1" fontName="Helvetica" fontSize="7.0" leading="9" alignment="CENTER"/>
+        <paraStyle name="Standard" fontName="Helvetica"/>
+        <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+        <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+        <paraStyle name="Index" fontName="Helvetica"/>
+        <paraStyle name="Table Contents" fontName="Helvetica"/>
+        <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+        <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+        <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+        <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+        <paraStyle name="terp_default_right_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+        <paraStyle name="terp_default_Centre_9" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+        <paraStyle name="main_footer" fontSize="8.0" alignment="CENTER"/>
+        <images/>
+    </stylesheet>
+        
+        <pageTemplate id="second">
+            <frame id="second" x1="1.3cm" y1="0.5cm" height="27.3cm" width="19.0cm"/>
+            <pageGraphics> 
+                
+            </pageGraphics>
+            <stylesheet>
+                <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+            </stylesheet>
+            
+        </pageTemplate>
+
+    </template>
+    <story>
+            <para style="P1">[[repeatIn(objects,'o')]]</para>
+             <blockTable colWidths="196.0" style="Table11">
+                <tr>
+                    <td>
+                        <para style="P7">PURCHASE ORDER</para>
+                    </td>
+                </tr>
+            </blockTable>
+                  		<blockTable rowHeights="0.2cm">
+                          <tr>
+                            <td>
+                              <para style="P4"><font color="white"> </font></para>                              
+                            </td>
+                          </tr>
+                        </blockTable>
+                  		
+                        <blockTable style="aligned_table">
+                            <tr>
+                                <td>
+                                    <blockTable style="Table1_1" rowHeights="0.5cm">
+	                                    <tr>
+	                                        <td>
+	                                            <para style="P6">P/O Number</para>
+	                                            <para style="P6">
+	                                                <font color="white"> </font>
+	                                            </para>
+	                                        </td>
+	                                        <td>
+	                                            <para style="P6">PAGE</para>
+	                                        </td>
+	                                    </tr>
+	                                </blockTable>
+	                                
+	                                <blockTable  style="Table6" rowHeights="0.5cm">
+	                                    <tr>
+	                                        <td>
+	                                            <para style="P14">[[o.name]]</para>
+	                                        </td>
+	                                        <td>
+	                                            <para style="P14"><font color="white"> </font></para>
+	                                        </td>
+	                                    </tr>
+	                                </blockTable>
+                                </td>
+                                
+                                <td>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                                
+                                <td>
+                                    <blockTable  style="Table1_1" rowHeights="0.5cm">
+                                        <tr>
+                                            <td>
+                                                <para style="P6">PO DATE</para>
+                                                <para style="P6">
+                                                    <font color="white"> </font>
+                                                </para>
+                                            </td>
+                                            <td>
+                                                <para style="P6">ORDER TYPE</para>
+                                            </td>
+                                        </tr>
+                                    </blockTable>
+                                    <blockTable  style="Table6">
+                                        <tr>
+                                            <td>
+                                                <para style="P14">[[formatLang(o.date_order,date=True)]]</para>
+                                            </td>
+                                            <td>
+                                                <para style="P14">
+                                                    <font color="white"> </font>
+                                                </para>
+                                            </td>
+                                        </tr>
+                                    </blockTable>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                            </tr>
+                        </blockTable>
+                        
+                        <blockTable rowHeights="0.6cm">
+                          <tr>
+                            <td>
+                              <para style="P4"><font color="white"> </font></para>                              
+                            </td>
+                          </tr>
+                        </blockTable>
+                        
+                        <blockTable  style="table_border">
+                            <tr>
+                                <td>
+                                    <para style="P12">ORDERED FROM</para>
+                                </td>
+                                <td>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                                <td>
+                                    <para style="P12">SHIP TO</para>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <para style="P9">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
+                                    <para style="P9">[[ display_address(o.partner_id,False) or '' ]] </para>
+                                </td>
+                                <td>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                                <td>
+                                    <para style="P9">[[ (o.partner_id and o.dest_address_id.title and o.dest_address_id.title.name) or '' ]] [[ (o.dest_address_id and o.dest_address_id.name) or '' ]] </para>
+                                    <para style="P9">[[ display_address(o.dest_address_id,False) or '']] </para>
+                                </td>
+                            </tr>
+                        </blockTable>
+           
+                        <blockTable colWidths="90,124.0,50.0,40.0,90.0,85.0,47.0" style="Table5">
+                          <tr>
+                            <td>
+                                <para style="P6">BUYER</para>
+                                <para style="P6">
+                                    <font color="white"> </font>
+                                </para>
+                            </td>
+                            <td>
+                                <para style="P6">TERMS</para>
+                            </td>
+                            <td>
+                                <para style="P6">Ackno-wledge</para>
+                            </td>
+                            <td>
+                                <para style="P6">Confirm</para>
+                            </td>
+                            <td>
+                                <para style="P6">FOB</para>
+                            </td>
+                            <td>
+                                <para style="P6">SHIP VIA</para>
+                            </td>
+                            <td>
+                                <para style="P6">COL/PPD</para>
+                            </td>
+                          </tr>
+                        </blockTable>
+                        <blockTable colWidths="90,124.0,50.0,40.0,90.0,85.0,47.0" style="Table6">
+                            <tr>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[ (o.create_uid and o.create_uid.title and o.create_uid.title.name) or '' ]] [[ (o.create_uid and o.create_uid.name) or '' ]] </para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[(o.payment_term_id and o.payment_term_id.name) or '' ]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[ get_ack_confirm(o).get('ack') ]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[ get_ack_confirm(o).get('conf') ]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[(o.fob or '')]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[(o.ship_via or '')]]</para>
+                                </td>
+                                <td>
+                                    <para style="P14">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                            </tr>
+                        </blockTable>
+                        <blockTable colWidths="46.0,83.0,40.0,105.0,78.0,99.0,75.0" style="Table23">
+                          <tr>
+                            <td>
+                              <para style="P6">LINE NUMBER</para>
+                              <para style="P6">
+                                <font color="white"> </font>
+                              </para>
+                            </td>
+                            <td>
+                              <para style="P6">QUANTITY ORDERED BLANKET TYPE</para>
+                            </td>
+                            <td>
+                              <para style="P6">UOM</para>
+                            </td>
+                            <td>
+                              <para style="P6">OUR ITEM NUMBER
+                              DESCRIPTION/COMMENTS</para>
+                            </td>
+                            <td>
+                              <para style="P6">YOUR ITEM NUMBER</para>
+                            </td>
+                            <td>
+                              <para style="P6">EXPECTED SHIP DATE / UNIT PRICE</para>
+                            </td>
+                            <td>
+                              <para style="P6">CHANGE/ CANCEL</para>
+                              <para style="P6">
+                                <font color="white"> </font>
+                              </para>
+                            </td>
+                          </tr>
+                        </blockTable>
+            <pto>
+                <pto_header>
+            <blockTable colWidths="196.0" style="Table11">
+                        <tr>
+                            <td>
+                                <para style="P7">PURCHASE ORDER</para>
+                            </td>
+                        </tr>
+                    </blockTable>
+						<blockTable rowHeights="0.2cm">
+                          <tr>
+                            <td>
+                              <para style="P4"><font color="white"> </font></para>                              
+                            </td>
+                          </tr>
+                        </blockTable>
+                        
+                        <blockTable style="aligned_table">
+                            <tr>
+                                <td>
+                                    <blockTable style="Table1_1" rowHeights="0.5cm">
+                                        <tr>
+                                            <td>
+                                                <para style="P6">P/O Number</para>
+                                                <para style="P6">
+                                                    <font color="white"> </font>
+                                                </para>
+                                            </td>
+                                            <td>
+                                                <para style="P6">PAGE</para>
+                                            </td>
+                                        </tr>
+                                    </blockTable>
+                                    <blockTable  style="Table6" rowHeights="0.5cm">
+                                        <tr>
+                                            <td>
+                                                <para style="P14">[[o.name]]</para>
+                                            </td>
+                                            <td>
+                                                <para style="P4"><font color="white"> </font></para>
+                                            </td>
+                                        </tr>
+                                    </blockTable>
+                                </td>
+                                <td>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                                <td>
+                                    <blockTable  style="Table1_1" rowHeights="0.5cm">
+                                        <tr>
+                                            <td>
+                                                <para style="P6">PO DATE</para>
+                                                <para style="P6">
+                                                    <font color="white"> </font>
+                                                </para>
+                                            </td>
+                                            <td>
+                                                <para style="P6">ORDER TYPE</para>
+                                            </td>
+                                        </tr>
+                                    </blockTable>
+                                    <blockTable  style="Table6">
+                                        <tr>
+                                            <td>
+                                                <para style="P14">[[formatLang(o.date_order,date=True)]]</para>
+                                            </td>
+                                            <td>
+                                                <para style="P14">
+                                                    <font color="white"> </font>
+                                                </para>
+                                            </td>
+                                        </tr>
+                                    </blockTable>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                            </tr>
+                        </blockTable>
+                        <blockTable rowHeights="0.6cm">
+                          <tr>
+                            <td>
+                              <para style="P4"><font color="white"> </font></para>                              
+                            </td>
+                          </tr>
+                        </blockTable>
+                        <blockTable  style="table_border">
+                            <tr>
+                                <td>
+                                    <para style="P12">ORDERED FROM</para>
+                                </td>
+                                <td>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                                <td>
+                                    <para style="P12">SHIP TO</para>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <para style="P9">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]] </para>
+                                    <para style="P9">[[ display_address(o.partner_id,False) or '' ]] </para>
+                                </td>
+                                <td>
+                                    <para style="P4">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                                <td>
+                                    <para style="P9">[[ (o.partner_id and o.dest_address_id.title and o.dest_address_id.title.name) or '' ]] [[ (o.dest_address_id and o.dest_address_id.name) or '' ]] </para>
+                                    <para style="P9">[[ display_address(o.dest_address_id,False) or '']] </para>
+                                </td>
+                            </tr>
+                        </blockTable>
+           
+                        <blockTable colWidths="90,124.0,50.0,40.0,90.0,85.0,47.0" style="Table5">
+                          <tr>
+                            <td>
+                                <para style="P6">BUYER</para>
+                                <para style="P6">
+                                    <font color="white"> </font>
+                                </para>
+                            </td>
+                            <td>
+                                <para style="P6">TERMS</para>
+                            </td>
+                            <td>
+                                <para style="P6">Ackno-wledge</para>
+                            </td>
+                            <td>
+                                <para style="P6">Confirm</para>
+                            </td>
+                            <td>
+                                <para style="P6">FOB</para>
+                            </td>
+                            <td>
+                                <para style="P6">SHIP VIA</para>
+                            </td>
+                            <td>
+                                <para style="P6">COL/PPD</para>
+                            </td>
+                          </tr>
+                        </blockTable>
+                        <blockTable colWidths="90,124.0,50.0,40.0,90.0,85.0,47.0" style="Table6">
+                            <tr>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[ (o.create_uid and o.create_uid.title and o.create_uid.title.name) or '' ]] [[ (o.create_uid and o.create_uid.name) or '' ]] </para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[(o.payment_term_id and o.payment_term_id.name) or '' ]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[ get_ack_confirm(o).get('ack') ]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[ get_ack_confirm(o).get('conf') ]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[(o.fob or '')]]</para>
+                                </td>
+                                <td>
+                                    <para style="terp_default_Centre_9">[[(o.ship_via or '')]]</para>
+                                </td>
+                                <td>
+                                    <para style="P14">
+                                        <font color="white"> </font>
+                                    </para>
+                                </td>
+                            </tr>
+                        </blockTable>
+                        <blockTable colWidths="46.0,83.0,40.0,105.0,78.0,99.0,75.0" style="Table23">
+                          <tr>
+                            <td>
+                              <para style="P6">LINE NUMBER</para>
+                              <para style="P6">
+                                <font color="white"> </font>
+                              </para>
+                            </td>
+                            <td>
+                              <para style="P6">QUANTITY ORDERED BLANKET TYPE</para>
+                            </td>
+                            <td>
+                              <para style="P6">UOM</para>
+                            </td>
+                            <td>
+                              <para style="P6">OUR ITEM NUMBER
+                              DESCRIPTION/COMMENTS</para>
+                            </td>
+                            <td>
+                              <para style="P6">YOUR ITEM NUMBER</para>
+                            </td>
+                            <td>
+                              <para style="P6">EXPECTED SHIP DATE / UNIT PRICE</para>
+                            </td>
+                            <td>
+                              <para style="P6">CHANGE/ CANCEL</para>
+                              <para style="P6">
+                                <font color="white"> </font>
+                              </para>
+                            </td>
+                          </tr>
+                        </blockTable>
+                        <spacer length="10" width="72"/>
+            </pto_header>
+
+            </pto>
+             <section>
+                <spacer length="10" width="72"/>
+                <para style="P1">[[repeatIn(o.order_line,'line')]]</para>
+
+                    <blockTable colWidths="46.0,83.0,45.0,100.0,78.0,99.0,75.0" style="table_border_temp">
+                      <tr>
+                        <td>
+                            <para style="terp_default_Centre_9"><seq id="seq_1"/></para>
+                        </td>
+                        <td>
+                            <para style="terp_default_Centre_9">[[formatLang(line.product_qty)]]</para>
+                        </td>
+                        <td>
+                            <para style="terp_default_9">[[line.product_uom.name]]</para>
+                        </td>
+                        <td>
+                            <para style="terp_default_9">[[line.name]]</para>
+                            <para style="P4">
+                                <font color="white"> </font>
+                            </para>                       
+                        </td>
+                        <td>
+                          <para style="terp_default_9">[[ line.product_id.default_code or '' ]]</para>
+                        </td>
+                        <td>
+                          <para style="terp_default_right_9">[[formatLang(line.date_planned,date=True)]]</para>
+                          <para style="terp_default_right_9">[[ o.pricelist_id.currency_id. symbol ]][[formatLang(line.price_unit,digits=get_digits(dp='Account'))]]</para>
+                        </td>
+                        <td>
+                          <para style="P4">
+                            <font color="white"> </font>
+                          </para>
+                        </td>
+                      </tr>
+                    </blockTable>
+        
+                    <blockTable colWidths="37.0,83.0,39.0,100.0,69.0,153.0" style="Table7">
+                      <tr>
+                        <td>
+                          <para style="P4">
+                            <font color="white"> </font>
+                          </para>
+                        </td>
+                        <td>
+                          <para style="P4">
+                            <font color="white"> </font>
+                          </para>
+                        </td>
+                        <td>
+                          <para style="P4">
+                            <font color="white"> </font>
+                          </para>
+                        </td>
+                        <td>
+                          <para style="P4">
+                            <font color="white"> </font>
+                          </para>
+                        </td>
+                        <td>
+                          <para style="P4">
+                            <font color="white"> </font>
+                          </para>
+                        </td>
+                        <td>
+                          <para style="terp_default_9">Ext Price = [[ o.pricelist_id.currency_id. symbol ]][[ formatLang(line.price_subtotal, digits=get_digits(dp='Account') ) ]] </para>
+                        </td>
+                      </tr>
+                    </blockTable>
+                    <para style="P1">
+                      <font color="white"> </font>
+                    </para>
+            </section>
+        
+            <blockTable colWidths="38.0,99.0,69.0,55.0,52.0,168.0" style="Table8">
+                    <tr>
+                      <td>
+                        <para style="P4">
+                          <font color="white"> </font>
+                        </para>
+                      </td>
+                      <td>
+                        <para style="P4">
+                          <font color="white"> </font>
+                        </para>
+                      </td>
+                      <td>
+                        <para style="P4">
+                          <font color="white"> </font>
+                        </para>
+                      </td>
+                      <td>
+                        <para style="P4">
+                          <font color="white"> </font>
+                        </para>
+                      </td>
+                      <td>
+                        <para style="P4">
+                          <font color="white"> </font>
+                        </para>
+                      </td>
+                      <td>
+                        <para style="terp_default_9">Ext Price Total = [[ o.pricelist_id.currency_id. symbol ]][[ formatLang(o.amount_total, digits=get_digits(dp='Account') ) ]] </para>
+                      </td>
+                    </tr>
+                </blockTable>
+                <blockTable colWidths="535.0" style="Table_Outer_Notes">
+                    <tr>
+                      <td>
+                        <condPageBreak height="22.6cm"/>
+                        <para style="P4">
+                          <font color="white"> </font>
+                        </para>
+                        <para style="terp_default_9">[[ format(o.notes or '') ]]</para>
+                      </td>
+                    </tr>
+                  </blockTable>
+      <para>
+        <seqReset id="seq_1"/>
+      </para>
+      <!-- <setNextTemplate name="second"/> -->
+      <!-- <nextFrame/> -->
+      
+      
+      <para style="terp_default_9">
+            Terms and Condition:
+            By accepting and confirming this order, Manufacturer hereby warrants, represents, covenants and agrees that the Authorized Articles shall be manufactured in full compliance with all applicable laws of the country of manufacture without the use of child labor (as defined under the United States Fair Labor Standards Act, as amended from time to time; or, in the event of manufacture overseas, as defined under the International Labor Organization, convention 138, 1973, as may be amended from time to time; but in no event under the age of 15, prison labor or slave labor. Manufacturer further warrants, represents, covenants, and agrees that it has a business policy, code of ethics, or other form of procedure by which it complies with and monitors compliance with applicable labor regulations.
+
+            Instructions:
+            1. EXPRESS RELEASE THIS ORDER.
+            2. Email copies of shipping documents to PURCHASING@TAGMASTER.NET and ANDREW.MANCIONE@PLATINUMCARGO.COM
+            3. For remittance of this invoice, please email invoice to apinvoices@tagmasternet. All items must be made according to the item specifications listed in the DARD Quality Inspection report and specifications provided with the purchase order.
+            4. All required inspections, initial, in-process, and final, using the Item Specifications Form provided with this purchase order, must be completely filled out according to instructions prior to shipping. Dard Products, Inc. reserves the right to refuse and return the product at the supplier's expense. Email all Item Specifications Form reports to inspections@tagmaster.net, referencing the PO# in subject line.
+            5. Please mark cartons as follows: P.O. #, QTY, # Of Cartons, Item Number, Color, Description, Country of Origin, DATE OF MANUFACTURE, master carton weight, master carton measurements, and SUPPLIER NAME.
+            6. Please confirm this purchase order via email or fax within 24 hours. Our fax number is 847-328-7835 OR use the following email to confirm your receipt of this order: PURCHASING@TAGMASTER.NET.
+            7. Any changes whether on the product material, color, design, packaging or maker/source, pricing etc. must be approved in advanced by Dard Products, Inc.
+            8. Item must be marked with country of origin.
+            9. Prior to production, all items must be tested to conform to the Consumer Product Safety Commission's (CPSC) standards regarding product safety. Notify DARD Products, Inc. prior to sending items to STR lab.
+            10. SEND A BILL OF MATERIALS REPORT FOR EACH LINE ITEM ALONG WITH THE SALES CONFIRMATION.
+
+        Manufacturer warrants and represents to DARD Products, Inc. that all of the products sold under this purchase order are free from Pb, Cr, As, Se, Br, Cd, Sb, Ba, Hg and agrees to indemnify, defend and hold harmless DARD Products, Inc. from any claims against DARD Products Inc. relating to the products content of elements mentioned. (The elements mentioned above are restricted by the Consumer Product Safety Commission in the CPSIA).
+        </para>
+        <!--setNextTemplate name="first"/ -->
+  </story>
+     
+</document>
+

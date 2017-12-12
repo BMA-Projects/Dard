@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.module.category" id="module_category_helpdesk_support">
+            <field name="name">Helpdesk Support</field>
+            <field name="description">Helps you to handle your Queries, Issues.</field>
+            <field name="sequence">1</field>
+        </record>
+        
+        <record model="res.groups" id="group_support_user">
+            <field name="category_id" ref="module_category_helpdesk_support"/>
+            <field name="name">User</field>
+            <field name="comment">the user will have access own support tickets.</field>
+        </record>
+        
+        <record model="res.groups" id="group_support_manager">
+            <field name="category_id" ref="module_category_helpdesk_support"/>
+            <field name="name">Manager</field>
+            <field name="implied_ids" eval="[(4, ref('group_support_user'))]"/>
+            <field name="comment">the manager will have access all support tickets.</field>
+        </record>
+        
+        <record model="ir.rule" id="helpdesk_support_user_rule">
+            <field name="name">Support Ticket User</field>
+            <field name="model_id" search="[('model','=','crm.helpdesk')]" model="ir.model"/>
+            <field name="global" eval="False"/>
+            <field name="domain_force"> [('user_id','=',user.id)] </field>
+            <field name="groups" eval="[(4,ref('ob_sale_artwork.group_virtual_data_entry')), (4,ref('base.group_sale_salesman')), (4,ref('group_support_user')), (4,ref('base.group_sale_manager'))]"/>
+            <field eval="0" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+        </record>
+        
+        <record model="ir.rule" id="helpdesk_support_manager_rule">
+            <field name="name">Support Ticket Manager</field>
+            <field name="model_id" search="[('model','=','crm.helpdesk')]" model="ir.model"/>
+            <field name="global" eval="False"/>
+            <field name="groups" eval="[(4,ref('group_support_manager'))]"/>
+            <field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Form View for Sale Order -->
+        <record model="ir.ui.view" id="sale_order_inherit_form2">
+            <field name="name">sale.order.inherit.form2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="/form/sheet/h1/label[@string='Quotation ']" position="replace">
+                        <label string="Order Entry " attrs="{'invisible': [('state','not in',('draft','sent'))]}"/>
+               </xpath>
+               <xpath expr="/form/sheet/group/group/field[@name='partner_shipping_id']" position="attributes">
+                     <attribute name="string">Ship To Address</attribute>
+		     <attribute name="context">{'is_customer_shipped':True, 'readonly_customer': 1, 'tree_view_ref': 'ob_tag_master.partner_shipping_id_tree_view'}</attribute>
+               </xpath>
+               <xpath expr="//field[@name='date_order']" position="attributes">
+                     <attribute name="readonly">True</attribute>
+               </xpath>
+               <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                     <attribute name="invisible">True</attribute>
+               </xpath>
+               <xpath expr="//field[@name='client_po_ref']" position="attributes">
+                     <attribute name="string">Customer PO Number</attribute>
+               </xpath>
+               <xpath expr="//button[@name='cancel']" position="attributes">
+                     <attribute name="string">Cancel Order</attribute>
+               </xpath>
+               <xpath expr="//field[@name='user_id']" position="attributes">
+                     <attribute name="string">Order processor</attribute>
+               </xpath>
+               <xpath expr="//field[@name='client_po_ref']" position="replace">
+                     <field name="client_po_ref" on_change="onchange_client_po_ref(client_po_ref, partner_id)" attrs="{'required': [('state','not in',['draft','prepared'])]}"/>
+               </xpath>
+
+               <xpath expr="/form/header/button[3]" position="attributes">
+                    <attribute name="invisible">True</attribute>
+               </xpath>
+
+               <xpath expr="/form/header/button[2]" position="attributes">
+                    <attribute name="invisible">True</attribute>
+               </xpath>
+
+               <xpath expr="/form/header/button[@string='Send by Email']" position="after">
+                    <button name="action_quotation_send" string="Send by Email" type="object" states="cancel,waiting_date,invoice_except,done,prepared" class="oe_highlight" groups="base.group_user"/>
+               </xpath>
+
+               <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='th_weight']" position="attributes">
+                   <attribute name="invisible">True</attribute>
+               </xpath>
+               <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='address_allotment_id']" position="attributes">
+                   <attribute name="invisible">True</attribute>
+               </xpath>
+
+           </field>
+        </record>
+
+	<record id="partner_shipping_id_tree_view" model="ir.ui.view">
+			    <field name="name">res.partner.inherit.tree.partner.shipping</field>
+			    <field name="model">res.partner</field>
+			    <field name="arch" type="xml">
+			        <tree string="Ship To Address">
+			            <field name="name"/>
+			            <field name="phone"/>
+			            <field name="street"/>
+			            <field name="street2"/>
+			            <field name="zip"/>
+			            <field name="city"/>
+			            <field name="state_id"/>
+			            <field name="country_id"/>
+			        </tree>
+			    </field>
+			</record>
+
+        <record model="ir.ui.view" id="view_quotation_tree_inherit">
+            <field name="name">view.quotation.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='name']" position="attributes">
+                     <attribute name="string">Order Number</attribute>
+               </xpath>
+            </field>
+        </record>
+
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="name">Draft Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="context">{'search_default_my_sale_orders_filter': 1}</field>
+            <field name="domain">[('state','in',('draft','sent','cancel'))]</field>
+            <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a quotation, the first step of a new sale.
+              </p><p>
+                Odoo will help you handle efficiently the complete sale flow:
+                from the quotation to the sales order, the
+                delivery, the invoicing and the payment collection.
+              </p><p>
+                The social feature helps you organize discussions on each sales
+                order, and allow your customers to keep track of the evolution
+                of the sales order.
+              </p>
+            </field>
+        </record>
+
+	<record id="view_res_partner_filter_inherit_for_zip" model="ir.ui.view">
+            <field name="name">res.partner.filter.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="zip"/>
+                </field>
+            </field>
+        </record>
+
+        <menuitem id="sale.menu_sale_quotations"
+                action="sale.action_quotations"  string="Draft Orders"  parent="base.menu_sales"
+                sequence="5"/>
+
+
+
+        <record model="ir.ui.view" id="sale_notification_inherit_form">
+            <field name="name">sale.notification.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_notification_screen_ready.sale_order_inherit_form_for_screen_notify"/>
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='product_type_2']" position="before">
+                   <field name="screen_ready" attrs="{'invisible': [('is_screen_ready', '=', False)], 'required':[('is_screen_ready', '=', True)]}" />
+               </xpath>
+            </field>
+        </record>
+
+        <!-- Property ids invisible -->
+        <record id="view_sale_stock_inherit" model="ir.ui.view">
+            <field name="name">sale.stock.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_mrp.view_order_form_inherit_mrp"/>
+            <field name="arch" type="xml">
+                <xpath  expr="//field[@name='property_ids']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Adding 3 Email fields in Partner Form View-->
+        <record id="view_partner_form_inherit_email" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!--xpath  expr="//field[@name='email']" position="after">
+                    <field name="sales_goal"/>
+                </xpath-->
+                <xpath  expr="//field[@name='email']" position="attributes">
+                    <attribute name="required">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="delivery_order_123_inherit_form">
+            <field name="name">delivery.order.123.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="delivery.view_order_withcarrier_form"/>
+            <field name="arch" type="xml">
+              <!-- temp solution!! for carrier_id & delivery set button >> not can not be located in parent view ERROR -->
+                <xpath  expr="//field[@name='carrier_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath  expr="//label[@for='carrier_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath  expr="//button[@name='delivery_set']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+<!--                 <button name="delivery_set" position="replace"/> -->
+                <label string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)." position="replace" />
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="delivery_order_123_inherit_form2">
+            <field name="name">delivery.order.123.inherit.form2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_scheduled_date.view_order_form_scheduled_dt"/>
+            <field name="arch" type="xml">
+            <xpath expr="//field[@name='in_hand_date']" position="after">
+                <label for="carrier_id"/>
+                <div>
+                    <field name="carrier_id" context="{'order_id':active_id or False}"/>
+                    <button name="delivery_set" string="Add in Quote" type="object"
+                        class="oe_edit_only"
+                        attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                    <br/>
+                    <label string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+                        class="oe_edit_only"
+                        attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                </div>
+           </xpath>
+          </field>
+        </record>
+
+        <!-- String change in report -->
+        <template id="report_sale_order_document_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='page']/h2/span[2]" position="replace">
+                <span t-if="o.state in ['draft','sent']">Order N° </span>
+            </xpath>
+        </template>
+
+        <!-- PrePayment Report -->
+        <report 
+            id="report_sale_order_prepayment"
+            string="Prepayment Request"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="ob_tag_master.report_saleorder_prepayment" 
+            name="ob_tag_master.report_saleorder_prepayment" 
+        />
+
+        <!-- Sale Order Report with Rush Order -->
+
+         <report 
+            id="sale.report_sale_order"
+            string="Quotation / Order"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="ob_tag_master.report_saleorder" 
+            name="ob_tag_master.report_saleorder" 
+        />
+
+        <!-- 2 fields Added in Accounting Tab of Partner form -->
+
+        <!-- <record id="view_partner_form_inherit_account" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Accounting']/group/group/field[@name='credit_limit']" position="after">
+                    <field name="federal_id" />
+                    <field name="federal_type" />
+                    <field name="categ_code_id" />
+                </xpath>
+            </field>
+        </record> -->
+
+        <record id="view_partner_form_inherit_account" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="ob_due_payment.view_partner_credit_days_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Accounting']/group/group/field[@name='credit_days']" position="after">
+                    <field name="federal_id" />
+                    <field name="federal_type" />
+                    <field name="categ_code_id" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_line_image_form_extend_dard" model="ir.ui.view">
+            <field name="name">sale.order.line.images.extended</field>
+            <field name="model">sale.order.line.images</field>
+            <field name="inherit_id" ref="ob_sale_artwork.view_order_line_image_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='do_semi_confirm']" position="attributes">
+                  <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

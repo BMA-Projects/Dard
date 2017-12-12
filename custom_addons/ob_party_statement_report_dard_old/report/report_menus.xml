@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="ob_party_statement_report.account_party_statement_report_print"
+            model="party.statement.report"
+            string="Party Statement"
+            report_type="qweb-pdf"
+            name="ob_party_statement_report_dard.account_party_statement_report_template_dard"
+            file="ob_party_statement_report_dard.account_party_statement_report_template_dard"
+            />
+
+        <!--  <record id="landscape_paper_format_for_invoice_margin_report" model="report.paperformat">
+            <field name="name">A3 Paper Format</field>
+            <field name="format">A3</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">35</field>
+            <field name="margin_bottom">8</field>
+            <field name="margin_left">2</field>
+            <field name="margin_right">2</field>
+            <field name="header_spacing">30</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="account_invoice_margin_report_print" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="ob_invoice_margin_report.landscape_paper_format_for_invoice_margin_report"/>
+        </record> -->
+	</data>
+</openerp>

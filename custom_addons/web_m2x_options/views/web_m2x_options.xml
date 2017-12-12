@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <template id="web_m2x_options_assets_backend" name="web_m2x_options assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/web_m2x_options/static/src/js/form.js"></script>
+            </xpath>
+        </template>
+   </data>
+</openerp>
