@@ -1,0 +1,72 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="res_partner_vendor_risklevel_form_view">
+            <field name="name">res.partner.vendor.risklevel.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Partners']/sheet/notebook/page[@string='Sales &amp; Purchases']/group/group/field[@name='supplier']" position="after">
+                    <field name="risk_level" attrs="{'invisible': [('supplier', '=', False)]}" groups="purchase.group_purchase_manager"/>
+                    <field name='is_approved' attrs="{'invisible': [('supplier', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_right oe_button_box']" position="inside">
+                    <button name="supplier_approved" string="Approved" type="object" attrs="{'invisible':['|',('is_approved','=',True),('supplier', '=', False)]}" 
+                    invisible="context.get('from_purchase',False)" groups="purchase.group_purchase_manager" icon="fa-check-square-o" class="oe_inline oe_stat_button"/>
+                    <button name="supplier_dis_approved" string="Disapproved" type="object" attrs="{'invisible':['|',('is_approved','=',False),('supplier', '=', False)]}"
+                    invisible="context.get('from_purchase',False)" groups="purchase.group_purchase_manager" icon="fa-remove" class="oe_inline oe_stat_button"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vendor_approval_purchase_order_form">
+            <field name="name">vendor.approval.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">[('is_approved','=',True)]</attribute>
+                    <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vendor_approval_product_form_view">
+            <field name="name">vendor.approval.product.form.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@string='Information']/group/group/field[@name='default_code']" position="after">
+                    <field name="last_review_date"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited Purchase Requisition view -->
+        <record model="ir.ui.view" id="vendor_approval_purchase_requisition_form_view">
+            <field name="name">vendor.approval.purchase.requisition.form.view</field>
+            <field name="model">purchase.requisition.partner</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_partner"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">[('is_approved','=',True)]</attribute>
+                    <attribute name="options">{'no_create': True, 'no_create_edit': True}</attribute> 
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited Supplier info view -->
+        <record model="ir.ui.view" id="vendor_approval_supplierinfo_form_view">
+            <field name="name">vendor,approval.supplierinfo.form.view</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="domain">[('is_approved','=',True)]</attribute>
+                    <attribute name="options">{'no_create': True, 'no_create_edit': True}</attribute> 
+                </xpath> 
+            </field>
+        </record> 
+
+    </data>
+</openerp>

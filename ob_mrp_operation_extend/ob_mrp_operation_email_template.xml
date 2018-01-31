@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    	
+        <record id="email_template_mo_operation_notification" model="email.template">
+            <field name="name">MO Operation E-mail Template</field>
+            <field name="email_from">${object.production_id.user_id.email or object.production_id.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">MRP operations of ${object.production_id.name}</field>
+            <field name="model_id" ref="mrp.model_mrp_production_workcenter_line"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+            <div>
+            <p><br><strong>Hello,</strong></p> 
+            <p><strong>For ${object.production_id.name},</strong></p> 
+            <p><strong>Work Order :</strong> ${object.name}</p> 
+            <p><strong>Work Center :</strong> ${object.workcenter_id.name}</p> 
+            <p><strong>State :</strong> ${object.state}</p>
+            </div>
+
+
+            ]]></field>
+        </record>
+    </data>
+</openerp>

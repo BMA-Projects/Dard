@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_sale_order_inherit" model="ir.ui.view">
+            <field name="name">view.sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="po_tracking_id" invisible="True" />
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- Tracking Stage view -->
+        <record id="po_tracking_stage_form" model="ir.ui.view">
+            <field name="name">po.tracking.stage.form</field>
+            <field name="model">po.track.stage</field>
+            <field name="arch" type="xml">
+                <form string="Tracking Stages">
+                	<sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="case_default"/>
+                            <field name="sequence"/>
+                            <field name="fold"/>
+                            <field name="company_id"/>
+                            <field name="max_time_limit" />
+                        </group>
+                        <group attrs="{'invisible': [('case_default','=', True)]}">
+                            <field name="is_mail" />
+                            <field name="email_from_id" attrs="{'required': [('is_mail','=', True)]}" widget="many2many_tags" />
+                            <field name="email_type_id" attrs="{'required': [('is_mail','=', True)]}" />
+                            <field name="email_template_id" attrs="{'required': [('is_mail','=', True)]}" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="description" placeholder="Add a description..."/>
+                        </group>
+                    </group>
+                   </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="po_tracking_stage_tree" model="ir.ui.view">
+            <field name="name">po.tracking.stage.tree</field>
+            <field name="model">po.track.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Tracking Stage">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="max_time_limit" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_po_tracking_stage" model="ir.actions.act_window">
+            <field name="name">PO Tracking Stages</field>
+            <field name="res_model">po.track.stage</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="po_tracking_stage_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a stage to track sales orders.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="base.menu_po_tracking_stages" name="PO Tracking Stages" action="action_po_tracking_stage" parent="purchase.menu_purchase_config_purchase" sequence="1" groups="base.group_no_one"/>
+		
+        <record id="po_stage_email_type_form" model="ir.ui.view">
+            <field name="name">po.stage.email.type.form</field>
+            <field name="model">po.stage.email.type</field>
+            <field name="arch" type="xml">
+                <form string="Email Type">
+                	<sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="po_stage_email_type_tree" model="ir.ui.view">
+            <field name="name">po.tracking.stage.tree</field>
+            <field name="model">po.stage.email.type</field>
+            <field name="arch" type="xml">
+                <tree string="Email Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_po_tracking_email_type" model="ir.actions.act_window">
+            <field name="name">PO Tracking Email Type</field>
+            <field name="res_model">po.stage.email.type</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="po_stage_email_type_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a email type for stage.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="po_tracking_email_type" name="PO Tracking Email Type" action="action_po_tracking_email_type" parent="purchase.menu_purchase_config_purchase" sequence="1" />
+        
+       <record id="po_stage_email_form" model="ir.ui.view">
+            <field name="name">po.stage.email.form</field>
+            <field name="model">po.stage.email.from</field>
+            <field name="arch" type="xml">
+                <form string="Email From">
+                	<sheet>
+                    	<group>
+                        	<field name="name" />
+                    	</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="po_stage_email_tree" model="ir.ui.view">
+            <field name="name">po.stage.email.tree</field>
+            <field name="model">po.stage.email.from</field>
+            <field name="arch" type="xml">
+                <tree string="Email From">
+                	<field name="name" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_po_tracking_email_from" model="ir.actions.act_window">
+            <field name="name">PO Tracking Email From</field>
+            <field name="res_model">po.stage.email.from</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="po_stage_email_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a email type for stage.
+              </p>
+            </field>
+        </record>
+      <menuitem id="po_tracking_email_from" name="PO Tracking Email From" action="action_po_tracking_email_from" parent="purchase.menu_purchase_config_purchase" sequence="1" />
+
+       <record id="view_po_line_tree_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.inherit</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Order Lines" create="false" colors="red:since1&gt;max_time_limit1 and max_time_limit1&gt;0">
+                    <field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,False,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+                    <field name="name"/>
+                    <field name="so_ref" readonly="1"/>
+                    <field name="so_line_ref" readonly="1"/>
+                    <field name="po_tracking_id"/>
+                    <button name="open_tracking" string="Track" type="object" icon="gtk-apply"/>
+                    <field name="po_tracking_stage_id"/>
+                    <field name="since1"/>
+                    <field name="max_time_limit1" />  
+                    <field name="order_id" />
+                    <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+                    <field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+                    <field name="price_unit"/>
+                    <field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+                    <field name="price_subtotal"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+ 
+        <record id="view_po_track_form" model="ir.ui.view">
+            <field name="name">po.track.form</field>
+            <field name="model">po.track</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order Tracking" create="false" edit="false">
+                    <header> 
+                        <field name="stage_id" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" class="oe_inline" readonly="1"/>
+                        </h1>
+                        <h2>
+                            <field name="purchase_order_id"/>
+                        </h2>
+<!--                    <h2>
+                            <field name="sale_order_id"/>
+                        </h2>  -->
+                        <field name="update_time"/>
+                        <span><field name="since" />Hours</span>
+                        <notebook>
+                            <page string="Purchase Order">
+                                <group>
+                                    <group>
+                                        <field name="partner_id"/>
+                                        <field name="dest_add_id" />
+                                        <field name="partner_ref"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_order"/>
+                                        <field name="company_id"/>
+                                        <field name="confirm_date"/>
+                                        <field name="currency" />
+                                     </group>
+                                </group>
+                                <field name="order_line">
+                                	<tree string="Purchase Order Lines" create="false">
+						                    <field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,False,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+						                    <field name="name"/>
+						                    <field name="order_id" />
+						                    <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+						                    <field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,False,parent.state,context)"/>
+						                    <field name="price_unit"/>
+						                    <field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+						                    <field name="price_subtotal"/>
+						                    <field name="state" invisible="1"/>
+                					</tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="purchase_total">
+                                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <div class="oe_subtotal_footer_separator oe_inline">
+                                        <label for="amount_total"/>
+                                    </div>
+                                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                                <div class="oe_clear"/>
+                                <!-- <div class="oe_chatter">
+                                    <field name="purchase_message_ids" widget="mail_thread" options='{"from_po_msg": True}'/>
+                                </div> -->
+                                <div class="oe_chatter">
+                                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                                    <field name="message_ids" widget="mail_thread"/>
+                                </div>
+                            </page>
+         <!--                    <page string="Related Sale Order">
+                                  <field name="sale_order_ids" nolabel="1" />
+                            </page> -->
+<!--                             <page string="Sale Order" attrs="{'invisible': [('sale_order_id','=', False)]}">
+                                <group>
+                                    <group>
+                                        <field name="sale_partner_id"/>
+                                        <field name="supplier_order_ref"/>
+                                        <field name="sale_cust_po" />
+                                        <field name="sale_order_processor" />
+                                    </group>
+                                    <group>
+                                        <field name="sale_date_order"/>
+                                        <field name="sale_confirm_on"/>
+                                        <field name="is_rush_order" />
+                                        <field name="is_sample" />
+                                        <field name="is_paid" />
+                                        <field name="is_delivered" />
+                                     </group>
+                                </group>
+                                <field name="sale_order_line" context="{'tree_view_ref' : 'ob_purchase_order_tracking.view_order_line_tree_inherit'}" /> 
+                       
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                    <field name="sale_amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="sale_amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <div class="oe_subtotal_footer_separator oe_inline">
+                                        <label for="sale_amount_total"/>
+                                    </div>
+                                    <field name="sale_amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                                <div class="oe_clear"/>
+                                <div class="oe_chatter">
+                                    <field name="sale_message_ids" widget="mail_thread" context="{'sale_msg':active_id}" options='{"from_so_msg": True}'/>
+                                </div>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_po_track_tree" model="ir.ui.view">
+            <field name="name">po.track.tree</field>
+            <field name="model">po.track</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Orders Tracking" create="false" edit="false" expand="0">
+                    <field name="name" string="Tracking Number"/>
+                    <field name="purchase_order_id"/>
+                    <field name="partner_id"/>
+                    <field name="date_order"/>
+                    <field name="partner_ref"/>
+                    <field name="confirm_date"/>
+                    <field name="since"  string="Since(Hrs)." />
+                    <field name="stage_id" string="Stages"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_po_track_kanban">
+            <field name="name">po.track.kanban</field>
+            <field name="model">po.track</field>
+            <field name="arch" type="xml"> 
+                <kanban  default_group_by="stage_id" create="false" quick_create="false">
+                    <field name="name"/>
+                    <field name="purchase_order_id"/>
+                    <field name="stage_id" />
+                    <field name="color" />
+                    <field name="since" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_semantic_html_override">
+                                <div class="oe_kanban_content">
+                                    <div><b><field name="purchase_order_id"/></b></div>
+                                    <div>
+                                        <field name="partner_id"/><br/>
+                                        <field name="date_order"/><br/>
+                                        <field name="partner_ref"/>
+                                        <field name="update_time" invisible="1"/>
+                                        <field name="since" invisible="1"/>
+                                    </div>
+                                    <div class="oe_kanban_footer_left">
+                                        <span title="Since hours">
+                                            <span class="oe_e">N</span>
+                                            <t t-esc="Math.round(record.since.raw_value)"/>
+                                        </span>
+                                        <button name='open_view' type='object' string="View Details" style="color: #7C7BAD;font-weight: bold;float:right;border: none;padding: 0;margin: 0;background: none;-moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;">View Detail</button>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+         </record>
+
+
+        <!-- Add GroupBy/Filters to Order Tracking view.-->
+        <record id="view_po_order_track_filter" model="ir.ui.view">
+            <field name="name">po.track.filter</field>
+            <field name="model">po.track</field>
+            <field name="arch" type="xml">
+                <search string="Search Order Tracking">
+                    <field name="name" string="Order Tracking" filter_domain="[('name','ilike',self)]"/>
+                    <field name="company_id" string="Company" />
+                  <!--   <field name="sale_order_id" filter_domain="[('sale_order_id', 'ilike', self)]"/>  -->
+                    <field name="purchase_order_id" string="Purchase Order" filter_domain="[('purchase_order_id', 'ilike', self)]"/>
+                    <group expand="0" string="Group By...">
+                    <!--      <filter string="Sale Order" icon="terp-personal" domain="[]" context="{'group_by':'sale_order_id'}"/> -->
+                    	<filter string="Company" icon="terp-personal" context="{'group_by':'company_id'}"/>
+                        <filter string="Purchase Order" icon="terp-personal" domain="[]" context="{'group_by':'purchase_order_id'}"/>
+                        <filter name="group_by_stage_id" string="Stage" icon="terp-personal" domain="[]" context="{'group_by':'stage_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+        
+        <record id="view_po_order_filter" model="ir.ui.view">
+            <field name="name">view.po.order.filter</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Purchase Order Line">
+                    <field name="name" string="Order Tracking" filter_domain="[('name','ilike',self)]"/>
+                  <!--   <field name="sale_order_id" filter_domain="[('sale_order_id', 'ilike', self)]"/>  -->
+             <!--       <field name="purchase_order_id" string="Purchase Order" filter_domain="[('purchase_order_id', 'ilike', self)]"/>  -->
+                    <group expand="0" string="Group By...">
+                        <filter string="Sale Order" icon="terp-personal" domain="[]" context="{'group_by':'so_ref'}"/> -->
+                        <filter string="Purchase Order" icon="terp-personal" domain="[]" context="{'group_by':'order_id'}"/>
+                        <filter name="group_by_stage_id" string="Stage" icon="terp-personal" domain="[]" context="{'group_by':'po_tracking_stage_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+  
+
+        <record id="open_purchase_tracking" model="ir.actions.act_window">
+            <field name="name">Purchase Order Tracking</field>
+            <field name="res_model">po.track</field>
+            <field name="search_view_id" ref="view_po_order_track_filter"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="context">{'search_default_group_by_stage_id': 1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to track sales orders.
+              </p>
+            </field>
+        </record>
+
+		<record id="action_po_tracking_tree_stage" model="ir.actions.act_window">
+            <field name="name">SO wise PO Tracking</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="view_po_order_filter"/>
+            <field name="view_id" ref="view_po_line_tree_inherit"/>
+            <field name="domain">[('po_tracking_id','!=',False)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a stage to track sales orders.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="base.menu_po_so_track" name="Purchase Order Tracking" action="open_purchase_tracking" parent="purchase.menu_procurement_management" sequence="10" />
+		<menuitem id="base.menu_po_tracking_tree" name="SO wise PO Tracking" action="action_po_tracking_tree_stage" parent="purchase.menu_procurement_management"  sequence="11" groups="base.group_no_one"/>
+      
+    </data>
+    <data noupdate="1">
+	    
+	    <record model="ir.rule" id="po_track_comp_rule">
+	        <field name="name">PO Track multi-company</field>
+	        <field name="model_id" ref="model_po_track"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	    
+    </data>
+    <data noupdate="1">
+	    <!-- Multi - Company Rules -->
+	
+	    <record model="ir.rule" id="po_tracking_stage_comp_rule">
+	        <field name="name">PO Tracking Stage multi-company</field>
+	        <field name="model_id" ref="model_po_track_stage"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+	    </record>
+	    
+    </data>
+    
+</openerp>

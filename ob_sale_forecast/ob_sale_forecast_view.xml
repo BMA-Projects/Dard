@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="sale_forecast_form" model="ir.ui.view">
+            <field name="name">sale.forecast.form</field>
+            <field name="model">sale.forecast</field>
+            <field name="arch" type="xml">
+                <form string="Sale Forecast">
+                    <sheet >
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                       <group>
+
+                            <field name="start_date"/>
+                            <field name="period" />
+                            <field name="period_count" context="{'active_rec_id':active_id}"/>
+                            <field name="product_ids" widget="char_domain" options="{'model': 'product.product'}"/>
+                            <field name="warehouse_id" options="{'no_create': True, 'no_create_edit':True}" widget="selection"/>
+                            <field name="filter_visible" invisible="1"/>
+                            <field name="record_generated" invisible="1"/>
+                            <!-- <field name="create_action"/> -->
+                            <field name="forecast_filter_id"  domain="[('forecast_id', '=', active_id)]" attrs="{'invisible': [('filter_visible','=',False)]}" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"
+                                on_change="onchange_forecast_filter(forecast_filter_id)"/>
+                            <newline/>
+                        </group>
+                        <group>
+                            <div>
+<!--                                 <button name='generate_forecast' type='object' string='Generate' attrs="{'invisible': [('filter_visible','=',True)]}"/> -->
+                                <button name='generate_forecast' type='object' string='Generate' />
+                                <button name='update_action_qty' type='object' string='Calculate Quantity' attrs="{'invisible': [('filter_visible','=',False)]}"/>
+                                <!-- <field name="required_process" string="Required Process"/> -->
+                            </div>
+                        </group>
+                            <field name="forecast_product_ids" nolabel='1' context="{'active_rec_id':active_id}" domain="[('period_start_date','=', forecast_filter_id)]">
+                                <tree string= "Forecast" editable="top" delete="false" create="false">
+                                    <field name= "product_id" readonly='1'/>
+                                    <!-- <field name="id" invisible='1'/> -->
+                                    <field name= "period_start_date" readonly='1'/>
+                                    <field name= "period_end_date" readonly='1'/>
+                                    <field name="sales_person" options="{'no_create': True,'no_create_edit':True,'no_open':True}"/>
+                                    <field name="sales_team" options="{'no_create': True,'no_create_edit':True, 'no_open':True}"/>
+                                    <field name="forecast_qty"/>
+                                    <field name="onhand_qty" readonly='1'/>
+                                    <field name="incoming_qty" readonly='1'/>
+                                    <field name="outgoing_qty" readonly='1'/>
+                                    <field name="action_qty" readonly='1'/>
+<!--                                     <field name="action_required"/>
+                                    <field name="document_number"/> -->
+                                </tree>
+                            </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_forecast_tree" model="ir.ui.view">
+            <field name="name">sale.forecast.tree</field>
+            <field name="model">sale.forecast</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Forecast">
+                    <field name="name"/>
+                    <field name="period"/>
+                    <field name="period_count"/>
+                    <field name="start_date"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="sale_forecast_action">
+            <field name="name">Sale Forecast</field>
+            <field name="res_model">sale.forecast</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="sale_forecast_action" id="sale_forecast_action_menu" name="Sale Forecast" parent="base.menu_sales" sequence="8"/>
+
+    </data>
+</openerp>
+

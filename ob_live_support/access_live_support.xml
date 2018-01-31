@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_users_extend_support" model="ir.ui.view">
+            <field name="name">view.users.extend.support</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                            
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="live_support"/>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="po_tracking_purchase_form" model="ir.ui.view">
+            <field name="name">po.tracking.purchase.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='dest_address_id']" position="replace">
+                    <field name="related_location_id" invisible="1"/>
+                    <field name="dest_address_id" string="Customer Address" on_change="onchange_dest_address_id(dest_address_id, context)"
+                        attrs="{'required': [('picking_type_id','!=',False), ('related_location_id','=', False)]}"
+                        groups="stock.group_locations"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='account_analytic_id']" position="after">
+                    <field name="so_ref" readonly="1"/>
+                    <field name="so_line_ref" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

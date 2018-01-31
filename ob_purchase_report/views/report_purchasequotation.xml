@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_purchasequotation_document">
+    <t t-call="report.external_layout">
+        <div class="page">
+            <div class="oe_structure"/>
+
+            <div class="row mt32 mb32">
+                <div class="col-xs-6">
+                    <strong>Shipping address:</strong>
+                    <div t-if="o.dest_address_id">
+                        <div t-field="o.dest_address_id"
+                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    </div>
+                    <div t-if="not o.dest_address_id and o.picking_type_id.warehouse_id">
+                        <span t-field="o.picking_type_id.warehouse_id.name"/>
+                        <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                            t-field-options='{"widget": "contact", "fields": ["address", "phone", "fax"], "no_marker": true}'/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <strong>Supplier address:</strong>
+                    <div t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                </div>
+            </div>
+
+            <h2>Request for Quotation <span t-field="o.name"/></h2>
+
+            <table class="table table-condensed">
+                <tr>
+                    <th><strong>Description</strong></th>
+                    <th class="text-center"><strong>Expected Date</strong></th>
+                    <th class="text-right"><strong>Qty</strong></th>
+                </tr>
+                <tbody>
+                    <tr t-foreach="o.order_line" t-as="order_line">
+                        <td>
+                            <span t-field="order_line.name"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="order_line.date_planned"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="order_line.product_qty"/>
+                            <span t-field="order_line.product_uom" groups="product.group_uom"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            
+
+            <p t-field="o.notes"/>
+            <span>Regards,</span>
+            <span t-field="user.signature"/>
+
+            <div class="oe_structure"/>
+
+            <p style="page-break-after:always;"></p>
+            <p>
+               <strong> Terms and Condition </strong>
+               <p>
+                By accepting and confirming this order, Manufacturer hereby warrants, represents, covenants and agrees that the Authorized Articles shall be manufactured in full compliance with all applicable laws of the country of manufacture without the use of child labor (as defined under the United States Fair Labor Standards Act, as amended from time to time; or, in the event of manufacture overseas, as defined under the International Labor Organization, convention 138, 1973, as may be amended from time to time; but in no event under the age of 15, prison labor or slave labor. Manufacturer further warrants, represents, covenants, and agrees that it has a business policy, code of ethics, or other form of procedure by which it complies with and monitors compliance with applicable labor regulations.
+               </p>
+               <strong>Instructions:</strong>
+                <p>1. EXPRESS RELEASE THIS ORDER.</p>
+                <p>2. Email copies of shipping documents to PURCHASING@TAGMASTER.NET and ANDREW.MANCIONE@PLATINUMCARGO.COM</p>
+                <p>3. For remittance of this invoice, please email invoice to apinvoices@tagmasternet. All items must be made according to the item specifications listed in the DARD Quality Inspection report and specifications provided with the purchase order.</p>
+                <p>4. All required inspections, initial, in-process, and final, using the Item Specifications Form provided with this purchase order, must be completely filled out according to instructions prior to shipping. Dard Products, Inc. reserves the right to refuse and return the product at the supplier's expense. Email all Item Specifications Form reports to inspections@tagmaster.net, referencing the PO# in subject line.</p>
+                <p>5. Please mark cartons as follows: P.O. #, QTY, # Of Cartons, Item Number, Color, Description, Country of Origin, DATE OF MANUFACTURE, master carton weight, master carton measurements, and SUPPLIER NAME.</p>
+                <p>6. Please confirm this purchase order via email or fax within 24 hours. Our fax number is 847-328-7835 OR use the following email to confirm your receipt of this order: PURCHASING@TAGMASTER.NET.</p>
+                <p>7. Any changes whether on the product material, color, design, packaging or maker/source, pricing etc. must be approved in advanced by Dard Products, Inc.</p>
+                <p>8. Item must be marked with country of origin.</p>
+                <p>9. Prior to production, all items must be tested to conform to the Consumer Product Safety Commission's (CPSC) standards regarding product safety. Notify DARD Products, Inc. prior to sending items to STR lab.</p>
+                <p>10. SEND A BILL OF MATERIALS REPORT FOR EACH LINE ITEM ALONG WITH THE SALES CONFIRMATION.</p>
+               <p>
+                Manufacturer warrants and represents to DARD Products, Inc. that all of the products sold under this purchase order are free from Pb, Cr, As, Se, Br, Cd, Sb, Ba, Hg and agrees to indemnify, defend and hold harmless DARD Products, Inc. from any claims against DARD Products Inc. relating to the products content of elements mentioned. (The elements mentioned above are restricted by the Consumer Product Safety Commission in the CPSIA).
+               </p>
+               
+           </p>
+
+        </div>
+    </t>
+</template>
+
+<template id="report_purchasequotation">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'ob_purchase_report.report_purchasequotation_document')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
+    

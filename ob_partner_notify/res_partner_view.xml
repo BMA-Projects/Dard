@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+            <field name="name">res.partner.select</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//filter[@string='Company']" position="replace">
+                        <filter string="Company" domain="[('is_company','=',False)]" context="{'group_by': 'parent_id'}"/>
+                    </xpath>
+            </field>
+        </record>
+
+  </data>
+</openerp>

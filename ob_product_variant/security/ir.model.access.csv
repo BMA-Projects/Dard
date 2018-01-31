@@ -1,0 +1,27 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_product_dimension_type_user","Read access on product.dimension.type for employees","model_product_dimension_type","base.group_user",1,0,0,0
+"access_product_dimension_type_sale_salesman","Read,Write,Create access on product.dimension.type for Own Leads","model_product_dimension_type","base.group_sale_salesman",1,1,1,0
+"access_product_dimension_type_sale_manager","Full rights on product.dimension.type for sale manager","model_product_dimension_type","base.group_sale_manager",1,1,1,1
+
+"access_attribute_to_charge_user","Read access on attribute.to.charge for employees","model_attribute_to_charge","base.group_user",1,0,0,0
+"access_attribute_to_charge_sale_salesman","Read,Write,Create access on attribute.to.charge for Own Leads","model_attribute_to_charge","base.group_sale_salesman",1,1,1,0
+"access_attribute_to_charge_sale_manager","Full rights on attribute.to.charge for sale manager","model_attribute_to_charge","base.group_sale_manager",1,1,1,1
+
+"access_charges_charges_user","Read access on charges.charges for employees","model_charges_charges","base.group_user",1,0,0,0
+"access_charges_charges_sale_salesman","Read,Write,Create access on charges.charges for Own Leads","model_charges_charges","base.group_sale_salesman",1,1,1,0
+"access_charges_charges_sale_manager","Full rights on charges.charges for sale manager","model_charges_charges","base.group_sale_manager",1,1,1,1
+
+"access_pms_code_user","Read access on pms.code for employees","model_pms_code","base.group_user",1,0,0,0
+"access_pms_code_sale_salesman","Read,Write,Create access on pms.code for Own Leads","model_pms_code","base.group_sale_salesman",1,1,1,0
+"access_pms_code_sale_manager","Full rights on pms.code for sale manager","model_pms_code","base.group_sale_manager",1,1,1,1
+
+"access_product_charges_user","Read access on product.charges for employees","model_product_charges","base.group_user",1,0,0,0
+"access_product_charges_sale_salesman","Read,Write,Create access on product.charges for Own Leads","model_product_charges","base.group_sale_salesman",1,1,1,0
+"access_product_charges_sale_manager","Full rights on product.charges for sale manager","model_product_charges","base.group_sale_manager",1,1,1,1
+
+"access_product_variant_dimension_type_user","Read access on product.variant.dimension.type for employees","model_product_variant_dimension_type","base.group_user",1,0,0,0
+"access_product_variant_dimension_option_user","Read access on product.variant.dimension.option for employees","model_product_variant_dimension_option","base.group_user",1,0,0,0
+"access_product_variant_dimension_type_sale_manager","Full rights on product.variant.dimension.type for sale manager","model_product_variant_dimension_type","base.group_sale_manager",1,1,1,1
+"access_product_variant_dimension_option_sale_manager","Full rights on product.variant.dimension.option for sale manager","model_product_variant_dimension_option","base.group_sale_manager",1,1,1,1
+
+"access_calculate_charge","access_calculate_charge","model_calculate_charge",,1,1,1,1

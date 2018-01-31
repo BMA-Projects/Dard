@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_order_account_manager,purchase.order.account_manager,purchase.model_purchase_order,account.group_account_manager,1,1,1,1
+access_purchase_order_line_account_manager,purchase.order.line.account_manager,purchase.model_purchase_order_line,account.group_account_manager,1,1,1,1

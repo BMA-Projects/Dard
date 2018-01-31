@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+
+		<record id="product_category_charge_service" model="product.category">
+			<field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Charges Service</field>
+        </record>
+
+        <record id="product_product_setup_charge_service" model="product.product">
+            <field name="name">Setup Charge Service</field>
+            <field name="categ_id" ref="product_category_charge_service"/>
+            <field name="is_charge_service">1</field>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_hour"/>
+            <field name="uom_po_id" ref="product.product_uom_hour"/>
+        </record>
+        
+        <record id="product_product_run_charge_service" model="product.product">
+            <field name="name">Run Charge Service</field>
+            <field name="categ_id" ref="product_category_charge_service"/>
+            <field name="is_charge_service">1</field>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_hour"/>
+            <field name="uom_po_id" ref="product.product_uom_hour"/>
+        </record>
+        
+        <record id="product_product_up_charge_service" model="product.product">
+            <field name="name">Up Charge Service</field>
+            <field name="categ_id" ref="product_category_charge_service"/>
+            <field name="is_charge_service">1</field>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_hour"/>
+            <field name="uom_po_id" ref="product.product_uom_hour"/>
+        </record>
+        
+        <record id="product_product_ltm_charge_service" model="product.product">
+            <field name="name">LTM Charge Service</field>
+            <field name="categ_id" ref="product_category_charge_service"/>
+            <field name="is_charge_service">1</field>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_hour"/>
+            <field name="uom_po_id" ref="product.product_uom_hour"/>
+        </record>
+        
+        <record id="product_product_pms_charge_service" model="product.product">
+            <field name="name">PMS Charge Service</field>
+            <field name="categ_id" ref="product_category_charge_service"/>
+            <field name="is_charge_service">1</field>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_hour"/>
+            <field name="uom_po_id" ref="product.product_uom_hour"/>
+        </record>
+
+    </data>
+</openerp>

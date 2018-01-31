@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="web_ob_dard_assets_backend" name="ob dard assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/ob_dard_changes/static/src/js/web_widget_change_tabindex.js"></script>
+                 <script type="text/javascript" src="/ob_dard_changes/static/src/js/dateformate.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

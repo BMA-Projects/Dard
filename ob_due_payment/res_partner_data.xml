@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.cron" id="due_days_cron_id">
+            <field name="name">Calculate Due Days in Invoice</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True" />
+            <field name="model" eval="'account.invoice'" />
+            <field name="function" eval="'compute_payment_due_days'" />
+            <field name="args" eval="'()'" />
+            <field name="priority" eval="1" />
+        </record>
+
+    </data>
+</openerp>

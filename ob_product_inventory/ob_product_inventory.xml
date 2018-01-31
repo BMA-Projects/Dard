@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_artwork_inherit" model="ir.ui.view">
+                    <field name="name">sale.order.form.artwork.inherit</field>
+                    <field name="model">sale.order</field>
+                    <field name="inherit_id" ref="ob_sale_artwork.view_order_form_artwork_inherit"/>
+                    <field name="arch" type="xml">
+                        <xpath expr="//field[@name='order_line']/form/notebook/page[@string='Images']" position="before" >
+                            <page string="Inventory">
+                                <field name="product_inventory">
+                                    <tree string="Quants" create="false" delete="false">
+                                        <field name="warehouse_location_name"/>
+                                        <field name="location_id"/>
+                                        <field name="product_id"/>
+                                        <field name="qty"/>
+                                        <field name="inventory_value"/>
+                                    </tree>
+                                    <form string="Quants" create="false" edit="false">
+                                        <group>
+                                            <field name="warehouse_location_name" readonly="1"/>
+                                            <field name="location_id"/>
+                                            <field name="product_id"/>
+                                            <field name="qty"/>
+                                            <field name="inventory_value"/>
+                                            <field name="sale_order_line_ids" invisible="1"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </xpath>
+                    </field>
+        </record> 
+         </data>
+</openerp>

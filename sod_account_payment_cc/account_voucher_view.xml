@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- VOUCHER view -->
+<record id="view_vendor_receipt_form_cc" model="ir.ui.view">
+	<field name="name">account.voucher.receipt.form.cc</field>
+	<field name="model">account.voucher</field>
+	<field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name='journal_id']" position="after">
+			<field name="invoice_addr_id" string="Billing address" 
+				domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" on_change="onchange_invoice(use_cc, invoice_addr_id, new_card)"
+				attrs="{'readonly': [('state','not in',['draft'])]}" />
+		</xpath>
+		<field name="name" position="after">
+		      <field name="last_four" invisible = "True" />
+             <field name="use_cc" invisible = "True" />
+			<field name="new_card" on_change="onchange_invoice(use_cc, invoice_addr_id, new_card)" attrs="{'readonly': [('state','not in',['draft'])], 'invisible':[('use_cc','=',False)]}" />
+	
+		</field>
+		<xpath expr="//field[@name='writeoff_amount']" position="attributes">
+			<attribute name="invisible">1</attribute>
+		</xpath>
+		<!-- 
+			This xpath expression solves a problem of looking for a specific but nondescript
+			or identical tag.  Specifically I'm looking for the SECOND instance of a group tag
+			nested inside a group tag.  Without the [2], you'll always get the first tag, which
+			isn't right - it will push the content on the right down.  Using position="inside" on
+			the first group tag only works if you know there are only two group tags inside, since
+			that will insert at the end of the inside of the tag.
+			
+			<form>
+			  <group>
+			    <group></group>
+			    <group></group>
+			    - Insert here -
+			    <group></group>
+			    <group></group>
+			  </group>
+			  <notebook></notebook>
+			</form> 
+		-->
+		<xpath expr="(//group/group)[2]" position="after">
+		      <group string="Card Info" attrs="{'invisible': ['|','|',('state','not in',['draft']),('use_cc','=',False),('last_four','!=',False)]}">
+				<field name="cc_number" placeholder="Card number..." attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+				<label for="cc_exp_month" string="Expiry Date" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+				<div>
+					<field name="cc_exp_month" style="width: 20%%" placeholder="MM" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}" />
+					<label string="/" attrs="{'invisible': [('new_card','=',False)]}" />
+					<field name="cc_exp_year" style="width: 20%%" placeholder="YY" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}" />
+				</div>
+				<field name="cc_cvv" style="width: 30%%" placeholder="CVV" password="True" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+			</group>
+			<group string="Billing Info" attrs="{'invisible': ['|','|',('use_cc','=',False),('last_four','!=',False),('new_card','=',False)], 'required':[('new_card', '=', True)]}">
+				<div>
+					<div>
+						<field name="bill_firstname" style="width: 45%%" placeholder="First name"/>
+						<field name="bill_lastname" style="width: 45%%" placeholder="Last name"/>
+					</div>
+					<div>
+						<field name="bill_street" placeholder="Street"/>
+						<field name="city_state_zip" placeholder="City/State/Zip"/>
+					</div>
+				</div>
+			</group>
+		</xpath>
+	</field>
+</record>
+
+
+<!-- POPUP view (from invoice itself) -->
+<record model="ir.ui.view" id="view_vendor_receipt_dialog_form_cc">
+	<field name="name">account.voucher.receipt.dialog.form.cc</field>
+	<field name="model">account.voucher</field>
+	<field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name='journal_id']" position="after">
+			<field name="invoice_addr_id" string="Billing address" 
+				domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" on_change="onchange_invoice(use_cc, invoice_addr_id, new_card)"
+				attrs="{'readonly': [('state','not in',['draft'])]}" />
+		</xpath>
+		<field name="name" position="after">
+			 <field name="last_four" invisible = "True"/>
+             <field name="use_cc" invisible = "True"/>
+			<field name="new_card" on_change="onchange_invoice(use_cc, invoice_addr_id, new_card)" attrs="{'readonly': [('state','not in',['draft'])], 'invisible':[('use_cc','=',False)]}" />
+		   
+		</field>
+		<!-- Put the CC info after the **first** group tag -->
+		<xpath expr="/form/group" position="after">
+			<group>
+				<group string="Card Info" attrs="{'invisible': ['|','|',('state','not in',['draft']),('use_cc','=',False),('last_four','!=',False)]}">
+						<field name="cc_number" placeholder="Card number..." attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+						<label for="cc_exp_month" string="Expiry Date" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+						<div>
+							<field name="cc_exp_month" style="width: 20%%" placeholder="MM" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+							<label string="/" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+							<field name="cc_exp_year" style="width: 20%%" placeholder="YY" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+						</div>
+						<field name="cc_cvv" style="width: 30%%" placeholder="CVV" password="True" attrs="{'invisible': [('new_card','=',False)], 'required':[('new_card', '=', True)]}"/>
+				</group>
+				<group string="Billing Info" attrs="{'invisible': ['|','|',('use_cc','=',False),('last_four','!=',False),('new_card','=',False)], 'required':[('new_card', '=', True)]}">
+					<div>
+						<div>
+							<field name="bill_firstname" style="width: 45%%" placeholder="First name"/>
+							<field name="bill_lastname" style="width: 45%%" placeholder="Last name"/>
+						</div>
+						<div>
+							<field name="bill_street" placeholder="Street"/>
+							<field name="city_state_zip" placeholder="City/State/Zip"/>
+						</div>
+					</div>
+				</group>
+			</group>
+		</xpath>
+	</field>
+</record>
+
+</data>
+</openerp>

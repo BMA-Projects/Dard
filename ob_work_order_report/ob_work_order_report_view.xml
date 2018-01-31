@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="letter_paper_format" model="report.paperformat">
+            <field name="name">Letter Paper Format</field>
+            <field name="format">Letter</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <template id="work_order_report_layout">
+        <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+
+            <t t-call="ob_work_order_report.assembly_header" />
+            <t t-raw="0" />
+            <t t-call="ob_work_order_report.assembly_footer" />
+        </template>
+
+        <template id="assembly_header">
+            <div class="header">
+
+            </div>
+        </template>
+
+        <template id="assembly_footer">
+            <div class="footer">
+            </div>
+        </template>
+
+
+        <report
+            id="action_report_work_order"
+            model="mrp.production"
+            string="Work Order"
+            report_type="qweb-pdf"
+            name="ob_work_order_report.report_workorder"
+            file="ob_work_order_report.workorder_report"
+            />
+
+        <record id="action_report_work_order" model="ir.actions.report.xml" >
+            <field name="paperformat_id" ref="ob_work_order_report.letter_paper_format"/>
+        </record>
+
+        <record id="inherit_mrp_production_form_view" model="ir.ui.view">
+            <field name="name">inherit.mrp.production.form.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="create_date" invisible="1"/>
+                    <field name="create_uid" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_view_order_form_created_by" model="ir.ui.view">
+            <field name="name">inherit.view.order.form.created.by</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="create_uid" invisible="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_add_buttons">
+            <field name="name">sale.order.add.buttons</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Print']" position="after">
+                    <button name="print_workorder_report_so" type="object" string="Print WorkOrder" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

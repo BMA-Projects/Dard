@@ -1,0 +1,8 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_sample_order_line_sale_salesman","Read,Write,Create access on sample.order.line for Own Leads","model_sample_order_line","base.group_sale_salesman",1,1,1,0
+"access_sample_order_line_sale_manager","Full rights on sample.order.line for sale manager","model_sample_order_line","base.group_sale_manager",1,1,1,1
+"access_purchase_sample_order_line_purchase_user","Read,Write,Create access on purchase.sample.order.line for purchase user","model_purchase_sample_order_line","purchase.group_purchase_user",1,1,1,0
+"access_purchase_sample_order_line_purchase_manager","Full rights on purchase.sample.order.line for purchase manager","model_purchase_sample_order_line","purchase.group_purchase_manager",1,1,1,1
+"access_purchase_sample_type_purchase_user","Read,Write,Create access on purchase.sample.type for purchase user","model_purchase_sample_type","purchase.group_purchase_user",1,1,1,0
+"access_purchase_sample_type_purchase_manager","Full rights on purchase.sample.type for purchase manager","model_purchase_sample_type","purchase.group_purchase_manager",1,1,1,0
+"access_purchase_sample_type_erp_manager","Full rights on purchase.sample.type for erp manager","model_purchase_sample_type","base.group_erp_manager",1,1,1,1

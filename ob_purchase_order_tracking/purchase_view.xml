@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Add tracking reference to sales order -->
+        <record id="view_purchase_order_inherit" model="ir.ui.view">
+            <field name="name">view.purchase.order.form.inherited</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <label for="po_tracking_id"/>
+                    <div>
+                        <field name="po_tracking_id" readonly="1"/>
+                         <button name="create_tracking" string="create" type="object" class="oe_edit_only oe_link" attrs="{'invisible': ['|',('po_tracking_id', '!=', False), ('state','in', ['done', 'cancel'])]}"/>
+                    </div>
+                    <field name="po_tracking_stage_id" options="{'create': false, 'create_edit': false}"/>
+                </xpath>
+                <xpath expr="//field[@name='message_ids']" position="attributes">
+                	<attribute name="options">{"custom_flag":1}</attribute>
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</openerp>

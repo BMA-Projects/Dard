@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="party_statementreport" model="ir.ui.view">
+            <field name="name">Party Statement Report</field>
+            <field name="model">party.statement.report</field>
+            <field name="inherit_id" ref="ob_party_statement_report.party_statementreport"/>
+            <field name="arch" type="xml">
+                <xpath expr="////field[@name='sales_person']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="////field[@name='group_by_detail']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="////field[@name='group_by_partner']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

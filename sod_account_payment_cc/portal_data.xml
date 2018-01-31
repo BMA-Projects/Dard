@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="portal.paypal_acquirer" model="portal.payment.acquirer">
+            <field name="name">Paypal</field>
+            <field name="form_template"><![CDATA[
+
+ % if object._model._name == 'account.invoice' and object.testmode == 1 and object.company_id.paypal_account:
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+  <input type="hidden" name="cmd" value="_xclick"/>
+  <input type="hidden" name="business" value="${object.company_id.paypal_account}"/>
+  <input type="hidden" name="item_name" value="${object.company_id.name} ${kind.title()} ${reference}"/>
+  <input type="hidden" name="amount" value="${amount}"/>
+  <input type="hidden" name="currency_code" value="${currency.name}"/>
+  <input type="image" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif"/>
+</form>
+% elif object.company_id.paypal_account:
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+  <input type="hidden" name="cmd" value="_xclick"/>
+  <input type="hidden" name="business" value="${object.company_id.paypal_account}"/>
+  <input type="hidden" name="item_name" value="${object.company_id.name} ${kind.title()} ${reference}"/>
+  <input type="hidden" name="amount" value="${amount}"/>
+  <input type="hidden" name="currency_code" value="${currency.name}"/>
+  <input type="image" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif"/>
+</form>
+% endif
+
+
+            ]]></field>
+        </record>
+
+    </data>
+
+</openerp>

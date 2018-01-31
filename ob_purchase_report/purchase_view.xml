@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_form_inherit">
+            <field name="name">view.purchase.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@string='Deliveries &amp; Invoices']/group/group/field[@name='minimum_planned_date']" position="after">
+                        <field name='fob' />
+                        <field name='ship_via' />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Form View for Sale Order -->
+		<record model="ir.ui.view" id="sale_order_inherit_form_for_screen_notify">
+			<field name="name">sale.order.inherit.form.screen.notify</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='tax_id']" position="after">
+					<label for="is_screen_ready" attrs="{'invisible': [('product_type_2', '=', 'service')]}"/>
+					<div attrs="{'invisible': [('product_type_2', '=', 'service')]}">
+						<field name="is_screen_ready" />
+						<button name="set_screens_are_ready" type="object" string="Screens are Ready" attrs="{'invisible': ['|',('is_screen_ready', '=', True),('state', '!=', 'confirmed')]}" class="oe_link"/>
+					</div>
+					<field name="product_type_2" invisible="1"/>
+					<field name="is_notification_sent" invisible="1"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

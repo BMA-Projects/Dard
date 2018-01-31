@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            auto="False"
+            id="order_ack"
+            model="sale.order"
+            name="sale.order.ack"
+            rml="ob_order_confirmation/report/sale_order_ack_receipt.rml"
+            string="Order Confirmation"
+            usage="default"
+            />
+
+    </data>
+</openerp>

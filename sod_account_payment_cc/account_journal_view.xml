@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="view_account_journal_form_cc" model="ir.ui.view">
+	<field name="name">account.journal.form.cc</field>
+	<field name="model">account.journal</field>
+	<field name="priority">20</field>  <!-- Priority above check writing -->
+	<field name="inherit_id" ref="account.view_account_journal_form"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name='entry_posted']" position="after">
+			<field name="cc_processing"/>
+			<field name="cc_refunds"/>
+		</xpath>
+	</field>
+</record>
+
+</data>
+</openerp>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_generateticket_document">
+    <t t-call="ob_dard_changes.external_layout_sale_order">
+    	<div style="color:white;">
+    		<t t-esc="o.generate_ticket()"/>
+    	</div>
+        <div class="page">
+            <div t-foreach="o.order_line" t-as="l">
+                <div t-foreach="l.procurement_ids" t-as="p">
+                    <p t-if="p.production_id.name">
+                        <table style="font-weight:bold;font-size:10px;">
+                            <tr style="font-weight:bold;">
+                                <td style="width:20%;text-align:center;">PHONE 847-328-5000</td>
+                                <td style="width:30%;text-align:center;">FAX 847-328-7835</td>
+                                <td rowspan="3" style="width:20%;"><img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height: 75px;"/></td>
+                                <td rowspan="3" style="width:30%;border-top: 1px solid black;border-bottom: 1px solid black;">
+                                    <img style="width:300px;height:50px;padding-top:5px;" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', p.production_id.name, 600, 100)"/>
+                                    <span style="padding-left:60px;" t-field="p.production_id.name"/>
+                                </td>
+                            </tr>
+                            <tr style="font-weight:bold;">
+                                <td rowspan="2" style="width:20%;"><![CDATA[&nbsp;]]></td>
+                                <td style="font-weight:bold;"><![CDATA[&nbsp;]]></td>
+                            </tr>
+                            <tr style="font-weight:bold;">
+                                <td style="font-weight:bold;">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td style="width:35%;text-align:right;padding-right:5px;">ASI 48500</td>
+                                            <td style="height:25px;width:65%;font-size:15px;font-weight:bold;background-color:#4C4C4C;text-align:left;padding-top:4px;padding-left:5px"><font color="#fff"><span t-field="o.order_processor.name" ></span></font></td>
+                                        </tr>
+                                    </table>
+                            </td>
+                            </tr>
+                        </table>
+                        <table style="font-weight:bold;width:100%;margin-top:15px;border-top: 2px solid black;padding-left:1px !important;font-size:12px;">
+                            <tr style="font-weight:bold;">
+                                <td height="150">
+                                    <table style="font-weight:bold;">
+                                        <tr><td>S</td></tr>
+                                        <tr><td>O</td></tr>
+                                        <tr><td>L</td></tr>
+                                        <tr><td>D</td></tr>
+                                        <tr><td><![CDATA[&nbsp;]]></td></tr>
+                                        <tr><td>T</td></tr>
+                                        <tr><td>O</td></tr>
+                                    </table>
+                                </td>
+                                <td height="150" style="padding-left:20px;" width="55%">
+                                    <table>
+                                        <tr>
+                                            <td style="padding-top:10px;">
+                                                <div t-field="o.partner_id" 
+                                                    t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="150" >
+                                    <table style="font-weight:bold;margin-top:10px;">
+                                        <tr><td>S</td></tr>
+                                        <tr><td>H</td></tr>
+                                        <tr><td>I</td></tr>
+                                        <tr><td>P</td></tr>
+                                        <tr><td>P</td></tr>
+                                        <tr><td>E</td></tr>
+                                        <tr><td>D</td></tr>
+                                    </table>
+                                </td>
+                                <td height="150" style="padding-left:10px;">
+                                    <table style="font-weight:bold;">
+                                        <tr><td style="font-weight:bold;padding-top:15px;">T</td></tr>
+                                        <tr><td>O</td></tr>
+                                        <tr><td>/</td></tr>
+                                        <tr><td>F</td></tr>
+                                        <tr><td>O</td></tr>
+                                        <tr><td>R</td></tr>
+                                    </table>
+                                </td>
+                                <td height="150" style="padding-left:30px;">
+                                    <table style="padding-top:25px;">
+                                        <tr>
+                                            <td>
+                                                <div t-field="o.partner_shipping_id" 
+                                                    t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;border: 1px solid black;margin-top:5px;font-size:11px;">
+                            <tr height="25">
+                                <td colspan="3" style="text-align:center;border: 1px solid black;background-color:black;padding-top:6px"><font color="#fff">PAPER PROOF REQUESTED</font></td>
+                                <td colspan="3" style="text-align:center;background-color:black;padding-top:6px;border-left: 2px outset white;"><font color="#fff">SAMPLE PROOF REQUESTED</font></td>
+                            </tr>
+                            <tr height="35">
+                                <td style="width:5%;border: 1px solid black;text-align:center;padding-top:8px">Y</td>
+                                <td style="width:5%;border: 1px solid black;text-align:center;padding-top:8px">N</td>
+                                <td style="width:40%;border: 1px solid black;text-align:left;padding-top:10px;padding-left:10px;">DATE _______________________________________</td>
+                                <td style="width:5%;border: 1px solid black;text-align:center;padding-top:8px">Y</td>
+                                <td style="width:5%;border: 1px solid black;text-align:center;padding-top:8px">N</td>
+                                <td style="width:40%;border: 1px solid black;text-align:left;padding-top:10px;padding-left:10px;">DATE _______________________________________</td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;border: 1px solid black;font-size:11px;">
+                            <tr height="25" style="border: 1px solid black;text-align:center;font-size:11px;">
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">DATE ENTERED</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">YOUR ORDER NO.</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">YOUR ACCT. NO</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">APPROX. SHIP DATE</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">SHIP VIA</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">TERMS CODE</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">ORDER NO.</font></td>
+                                <td style="border: 1px solid black;background-color:gray;padding-top:5px;"><font color="black">DARD JOB NO.</font></td>
+                            </tr>
+                            <tr height="35" style="border: 1px solid black;text-align:center;font-size:13px;">
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-field="o.create_date" t-field-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-field="o.client_po_ref"/></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-if="o.partner_id.cust_number"><span t-field="o.partner_id.cust_number"/></span><span t-if="o.partner_id.search_contect"><span t-field="o.partner_id.search_contect"/></span></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-field="o.ship_dt"/></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-if="o.x_delivery_id"><span t-field="o.x_delivery_id.name"/></span></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-field="o.payment_term.name"/></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-field="o.name"/></td>
+                                <td style="border: 1px solid black;padding-top:8px;"><span t-field="p.production_id.name"/></td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;border: 1px solid black;font-size:11px;">
+                            <tr style="border: 1px solid black;">
+                                <td style="text-align:center;border: 1px solid black;background-color:black;padding-top:6px;width:10%"><font color="#fff">TOT.ORD'D.</font></td>
+                                <td style="text-align:center;background-color:black;padding-top:6px;border-style: solid;border-left: 2px outset white;width:10%"><font color="#fff">QTY. JOB</font></td>
+                                <td style="text-align:center;border: 1px solid black;background-color:black;padding-top:6px;border-left: 2px outset white;width:13%"><font color="#fff">QTY. SHIPPED</font></td>
+                                <td style="text-align:center;border: 1px solid black;background-color:black;padding-top:6px;border-left: 2px outset white;width:17%"><font color="#fff">ITEM NO.</font></td>
+                                <td style="text-align:center;border: 1px solid black;background-color:black;padding-top:6px;border-left: 2px outset white;width:50%"><font color="#fff">DESCRIPTION</font></td>
+                            </tr>
+                            <tr style="border: 1px solid black;font-size:13px;">
+                                <td height="100" style="text-align:center;border: 1px solid black;padding-top:6px;"><span t-if="not l.over_run"><span t-esc="int(l.product_uom_qty)"/></span>    <span t-if="l.over_run"><span style='text-decoration:line-through;' t-esc="int(l.product_uom_qty)"/><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><span style='color:red;font-weight:bold;' t-esc="int(l.overrun_qty)"/></span></td>
+                                <td height="100" style="text-align:center;border: 1px solid black;padding-top:6px"><![CDATA[&nbsp;]]></td>
+                                <td height="100" style="text-align:center;border: 1px solid black;padding-top:6px"><![CDATA[&nbsp;]]></td>
+                                <td height="100" style="text-align:center;border: 1px solid black;padding-top:6px"><span t-field="l.product_id.default_code"/></td>
+                                <td height="100" style="text-align:left;border: 1px solid black;padding-top:6px;padding-left:8px;">
+                                    <span t-field="l.product_id.name"/>
+                                    <br/>
+                                    <span t-field="l.additional_product_components"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;border: 1px solid black;font-weight:bold;font-size:11px;max-height: 50px;">
+                            <tr style="border: 1px solid black;">
+                                <td width="10%" style="border: 1px solid black;">SMPLS. TO JOBBER</td>
+                                <td width="5%" style="border: 1px solid black;"><![CDATA[&nbsp;]]></td>
+                                <td width="15%" style="border: 1px solid black;"><![CDATA[&nbsp;]]></td>
+                                <td width="10%" rowspan="3" style="padding-left:10px;">
+                                    <table style="font-weight:bold;">
+                                        <tr><td><font size="3">S</font></td></tr>
+                                        <tr><td><font size="3">P</font></td></tr>
+                                        <tr><td><font size="3">E</font></td></tr>
+                                        <tr><td><font size="3">C.</font></td></tr>
+                                        <tr><td><![CDATA[&nbsp;]]></td></tr>
+                                        <tr><td><font size="3">I</font></td></tr>
+                                        <tr><td><font size="3">N</font></td></tr>
+                                        <tr><td><font size="3">F</font></td></tr>
+                                        <tr><td><font size="3">O.</font></td></tr>
+                                    </table>
+                                </td>
+                                <td width="60%" rowspan="3" style="padding-left:10px">
+                                    <span style="font-weight:normal;" t-field="o.note"/>
+                                    <div style="padding-top:15px;max-height:90px !important;" t-if="not l.over_run">
+                                        <span  style="color:red;padding-left:300px;font-size:18px;max-height:50px !important;" >NO OVERRUNS</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border: 1px solid black;">
+                                <td colspan="2" style="border: 1px solid black;text-align:center;">BXS.</td>
+                                <td style="border: 1px solid black;text-align:center;">PKD. BY</td>
+                            </tr>
+                            <tr style="border: 1px solid black;">
+                                <td colspan="2" style="border: 1px solid black;" height="10"><![CDATA[&nbsp;]]></td>
+                                <td style="border: 1px solid black;" height="10"><![CDATA[&nbsp;]]></td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;border: 1px solid black;font-weight:bold;font-size:11px;">
+                            <tr style="border: 1px solid black;height:25px;">
+                                <td width="50%" style="text-align:center;border: 1px solid black;background-color:gray;padding-top:6px;">CUSTOMER SHIPPING NUMBER</td>
+                                <td width="50%" style="text-align:left;padding-top:6px;padding-left:12px;border-top-style:none;">DATE</td>
+                                <!-- <td width="10%" style="text-align:center;border: 1px solid black;">1450</td> -->
+                            </tr>
+                            <tr style="border: 1px solid black;height:35px;">
+                                <td style="text-align:center;border: 1px solid black;font-weight:normal;padding-top:20px;font-size:18px"><span t-if="o.x_3rd_party"><span t-if="o.x_delivery_id"><span t-field="o.x_delivery_id.name"/></span>- 3rd- ACCT# <span t-field="o.x_ups_fedex"/></span></td>
+                                <td>
+                                    <table >
+                                        <tr style="height:25px;border-left: 2px solid black; padding-left:50px;">
+                                            <td style="text-align:center;border: 1px solid black;padding:4px;" width="2%">B</td>
+                                            <td style="border: 1px solid black;" width="5%"><![CDATA[&nbsp;]]></td>
+                                            <td style="border: 1px solid black;" width="7%"><![CDATA[&nbsp;]]></td>
+                                            <td style="text-align:center;border: 1px solid black;padding:4px;" width="2%">M</td>
+                                            <td style="border: 1px solid black;" width="5%"><![CDATA[&nbsp;]]></td>
+                                            <td style="text-align:center;border: 1px solid black;padding:4px;" width="2%">P</td>
+                                            <td style="border: 1px solid black;" width="5%"><![CDATA[&nbsp;]]></td>
+                                        </tr>
+                                        <tr style="height:30px;border-left: 2px solid black; padding-left:50px;">
+                                            <td colspan="2" style="text-align:center;border: 1px solid black;" ><![CDATA[&nbsp;]]></td>
+                                            <td style="border: 1px solid black;"><![CDATA[&nbsp;]]></td>
+                                            <td colspan="2" style="text-align:center;border: 1px solid black;" ><![CDATA[&nbsp;]]></td>
+                                            <td colspan="2" style="border: 1px solid black;" ><![CDATA[&nbsp;]]></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+
+                    <p style="page-break-before:always;"> </p>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+
+<template id="ticket_header">
+    <div class="header">
+        <span><![CDATA[&nbsp;]]></span>
+    </div>
+</template>
+
+<template id="ticket_footer">
+    <div class="footer">
+        <table style="width:100%;">
+                <tr style="height:28px;font-size:16px;padding-top:4px;">
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;">Ink:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                    <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;">Parts Issued By:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+                <tr style="font-size:16px;height:28px;padding-top:4px;">
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Operator:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                    <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Date:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+                <tr style="font-size:16px;height:28px;padding-top:4px;">
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Manufacturing Manager:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                    <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Bin Location:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+                <tr style="font-size:16px;height:28px;padding-top:4px;">
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Art File Location:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                   <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Qty:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+                <tr style="font-size:16px;height:28px;padding-top:4px;">
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Setup distance from X:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                    <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Vendor PO:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+                <tr style="font-size:16px;height:28px;padding-top:4px;">
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Setup distance from Y:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                    <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td width="40%" style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Scrapped QTY:</td>
+                    <td width="5%" style="border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+                <tr style="font-size:16px;height:28px;padding-top:4px;">
+                    <td colspan="2" style="text-align:left;"><![CDATA[&nbsp;]]></td>
+                    <td width="5%"><![CDATA[&nbsp;]]></td>
+                    <td style="border-bottom:none;border-left: solid;"><![CDATA[&nbsp;]]></td>
+                    <td style="text-align:left;border-bottom: 2px dotted;padding-top:3px;">Sign:</td>
+                    <td style="text-align:left;border-bottom: 2px dotted;"><![CDATA[&nbsp;]]></td>
+                </tr>
+            </table>
+            <table style="width:100%;margin-top:13px">
+                <tr>
+                    <td style="padding-left:40px;padding-top:10px;text-align:right;">
+                        <img style="width:300px;height:50px;padding-top:10px;" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 250, 40)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight:bold;text-align:right;padding-left:600px;" t-field="o.name"/>
+                    </td>
+                </tr>
+            </table>
+    </div>
+</template>
+
+
+<template id="external_layout_sale_order">
+    <t t-call="ob_dard_changes.ticket_header" />
+    <t t-raw="0" />
+    <t t-call="ob_dard_changes.ticket_footer" />
+</template>
+
+<!-- <template id="template_temp"> -->
+<!-- 	<t t-esc="o.generate_ticket()" /> -->
+<!-- 	<t t-call="ob_dard_changes.report_generateticket_document"/> -->
+<!-- </template> -->
+
+<template id="report_generateticket">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+        	<t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'ob_dard_changes.report_generateticket_document')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

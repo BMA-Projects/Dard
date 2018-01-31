@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+
+		<record forcecreate="True" id="ir_cron_get_last_year_qty" model="ir.cron">
+			<field name="name">Product Last Year QTY</field>
+			<field eval="True" name="active" />
+			<field name="interval_number">12</field>
+			<field name="interval_type">months</field>
+			<field name="numbercall">-1</field>
+			<field name="nextcall" eval="datetime(year=datetime.now().year+1, month=1, day=1, hour=0)"/>
+			<field eval="'product.product'" name="model"/>
+			<field eval="'get_last_year_qty'" name="function" />
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="email_template_party_statement_report" model="email.template">
+            <field name="name">Party Statement Report</field>
+            <field name="email_from">${('accounts.receivable@dardproducts.com')|safe}</field>
+            <field name="subject">Current Statement</field>
+            <field name="email_to">${object.email or False}</field>
+            <field name="lang">${object.lang}</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="report_template" ref="ob_party_statement_report.account_party_statement_report_print"/>
+            <field name="report_name">party_statement_report_detail</field>
+            <field name="body_html"><![CDATA[
+            	<p>Attached is your monthly statement.</p>
+            	<p>If you have any questions or concerns, please contact the Accounting Department at accounts.receivable@ tagmaster.net or call 847-328-5000.</p>
+            	<p>Thank you for choosing Dard Products.</p>
+
+            	<p>
+		% if object.company_id.logo:
+	 		<img src="/web/binary/company_logo" style="width: 150px;height: 80px;" />
+		%endif
+		</p>  
+            	]]>
+	    </field>
+        </record>
+
+		<template id="party_statement_report_dard_external_layout_footer" inherit_id="ob_party_statement_report.party_statement_report_template_external_layout_footer">
+			<xpath expr="//div[@class='footer']" position="replace">
+				<div class="footer" style="width:100% !important;">
+					<div class="row zero_min_height">
+	                    <div class="col-xs-12" style="font-size:17px;">
+	                        <b>Any Invoice discrepancies have to be resolved within 90 days from the invoice date. Credits will not</b><br/>
+	                        <b>be issued after 90 days from the the invoice date.</b>
+	                    </div>
+	                </div>
+	                <div style="text-align:right">
+						<ul class="list-inline">
+			                <li>Page:</li>
+			                <li><span class="page"/></li>
+			                <li>/</li>
+			                <li><span class="topage"/></li>
+		            	</ul>
+	            	</div>
+	        	</div>
+			</xpath>
+		</template>
+		
+		<template id="account_party_statement_report_template_dard" inherit_id="ob_party_statement_report.account_party_statement_report_template">
+			<xpath expr="//div[@class='page']" position="replace">
+				<div class="page">
+					<div class="row">
+						<t t-if="not data and 'datas' in docs._context">
+							<t t-set="data" t-value="docs._context['datas']"/>
+						</t>
+						<t t-foreach="data['all_invoice_data']" t-as="invoice_datas"> 
+							<t t-if="invoice_datas['is_summery'] == False">
+								<table class="table table-condensed" style="margin-bottom:-1px;padding-bottom:-1px;" border="0">
+									<t t-if="invoice_datas['sales_keys_name'] != 'Nothing'">
+										<tr>
+										   <h4><b>Sales Person Name: <t t-esc="invoice_datas['sales_keys_name']"/></b></h4>
+										</tr>
+									</t>
+									<tr>
+										<td width="25%" style="text-align:left;">Account Number: <b><t t-esc="invoice_datas['code_name']"/></b></td>
+										<t t-if="invoice_datas['partner'] == 'customer'">
+										<td width="40%" style="text-align:left;">Customer Name: <b><t t-esc="invoice_datas['group_name']"/></b></td>
+										<t t-if="invoice_datas['group_by_salesper'] == False"><td width="35%" style="text-align:left;">Sales Person Name: <b><t t-esc="invoice_datas['sales_per']"/></b></td></t></t>
+										<t t-if="invoice_datas['partner'] == 'supplier'">
+										<td width="40%" style="text-align:left;">Supplier Name: <b><t t-esc="invoice_datas['group_name']"/></b></td></t>
+									</tr>
+								</table>
+							
+							<table class="table table-condensed" style="margin-top:-1px;padding-top:-1px;">
+								<tr>
+									<t t-foreach="data['table_header']" t-as="header_name">
+										<t t-if="header_name not in ['code', 'customer name', 'sales Person Name', 'Balance','Debit amount', 'Credit amount']">
+											<t t-if="header_name != 'amt' ">
+												<th><t t-esc="header_name" /></th>
+											</t>
+										</t>
+										<t t-if="header_name in ['Debit amount']">
+											<th style="text-align:right;">
+												<b>Dr.Amt.in</b><b>(<t t-esc="invoice_datas['curruncy']" />)</b>
+											</th>
+										</t>
+										<t t-if="header_name in ['Credit amount']">
+											<th style="text-align:right;">
+												<b>Cr.Amt.in</b><b>(<t t-esc="invoice_datas['curruncy']" />)</b>
+											</th>
+										</t>
+										<t t-if="header_name in ['amt']">
+											<th style="text-align:right;">
+												<b>Balance</b><b>(<t t-esc="invoice_datas['curruncy']" />)</b>
+											</th>
+										</t>
+									</t>
+								</tr>
+								<tbody>
+									<tr>
+										<t t-foreach="invoice_datas['opening_balance']" t-as="opening_line">
+											<t t-foreach="data['table_header']" t-as='header_opening'>
+												<td class="text-left" t-if="str(header_opening) in ['Tran. Date']">
+													<span t-esc="time.strftime('%m/%d/%Y', time.strptime(data['from_date'],'%Y-%m-%d'))"/>
+												</td>
+												<td class="text-left" t-if="str(header_opening) in ['Document Type']">
+													<t t-esc="opening_line.get(header_opening)"/>
+												</td>
+												<td class="text-right" t-if="str(header_opening) not in ['Tran. Date','code', 'customer name', 'sales Person Name','Document Type']">
+													<b><t t-esc="opening_line.get(header_opening)"/></b>
+												</td>	
+											</t>		
+										</t>					
+									</tr> 
+									<t t-foreach="invoice_datas['group_invoice_lines']" t-as="invoice_line">
+										<tr t-if="invoice_line['customer name']">
+											<t t-foreach="data['table_header']" t-as='header_name'>
+												<td style="text-align:right;" t-if="str(header_name) in ['Debit amount', 'Credit amount', 'amt']" >
+													<!-- <t t-esc="'%.2f'%float(invoice_line.get(header_name))"/> -->
+													<t t-if="str(header_name) == 'amt'">
+														<t t-if="invoice_line.get(header_name) &gt; 0">
+															<t t-esc="'%.2f'%float(abs(invoice_line.get(header_name)))"/> 
+															<t t-esc="invoice_line.get('i_amt_type')"/>
+														</t>
+														<t t-if="invoice_line.get(header_name) &lt; 0">
+															<t t-esc="'%.2f'%float(abs(invoice_line.get(header_name)))"/> 
+															<t t-esc="invoice_line.get('i_amt_type')"/>
+														</t>
+													</t>
+													<t t-if="not str(header_name) == 'amt'">
+														<t t-esc="'%.2f'%float(invoice_line.get(header_name))"/>
+													</t>
+												</td>
+												<t t-if="str(header_name) not in ['code', 'customer name', 'sales Person Name','Debit amount', 'Credit amount','Balance', 'amt']">		
+													<td style="text-align:left;" >
+														<t t-esc="invoice_line.get(header_name)"/>
+													</td>
+												</t>
+											</t>
+										</tr>
+										<t t-foreach="invoice_line.get('payment_dict', '')" t-as="payment_line">
+											<tr>
+												<t t-foreach="data['payment_header']" t-as='header_payment'>									
+													<td style="text-align:right;" t-if="str(header_payment) in ['Debit amount', 'Credit amount', 'amt']">
+														<!-- <t t-esc="'%.2f'%float(payment_line.get(header_payment))"/> -->
+														<t t-if="str(header_payment) == 'amt'">
+															<t t-if="payment_line.get(header_payment) &gt; 0">
+																<t t-esc="'%.2f'%float(abs(payment_line.get(header_payment)))"/> 
+																<t t-esc="payment_line.get('p_amt_type')"/>
+															</t>
+															<t t-if="payment_line.get(header_payment) &lt; 0">
+																<t t-esc="'%.2f'%float(abs(payment_line.get(header_payment)))"/>  
+																<t t-esc="payment_line.get('p_amt_type')"/>
+															</t>
+														</t>
+														<t t-if="not str(header_payment) == 'amt'">
+															<t t-esc="'%.2f'%float(payment_line.get(header_payment))"/>
+														</t>
+													</td>
+													<td style="text-align:left;" t-if="str(header_payment) not in ['Debit amount', 'Credit amount', 'amt', 'Balance']">
+														<t t-esc="payment_line.get(header_payment)"/>
+													</td>
+												</t>
+											</tr>
+										</t>
+									</t>
+									<t t-foreach="invoice_datas['final_amount_list']" t-as="final_line">
+										<tr>
+											<t t-foreach="data['table_header']" t-as='header_name'>
+												<td style="text-align:right;" t-if="str(header_name) in ['Debit amount', 'Credit amount']" >
+													<b><t t-esc="'%.2f'%float(final_line.get(header_name))"/></b>
+												</td>								
+												<td style="text-align:left;" t-if="str(header_name) not in ['code', 'customer name', 'sales Person Name','Debit amount', 'Credit amount','Balance']" >
+													<b><t t-esc="final_line.get(header_name)"/></b>
+												</td>
+											</t>
+										</tr>
+										<tr>
+											<t t-foreach="data['table_header']" t-as='header_name'>
+												<td class="text-right" t-if="str(header_name) in ['Balance']" colspan="7">
+													<b>Closing Balance:  &amp;nbsp;<t t-esc="invoice_datas['curruncy']" />&amp;nbsp;
+														<t t-esc="'%.2f'%float(abs(final_line.get(header_name)))"/>&amp;nbsp;<t t-esc="invoice_datas['cr_or_dr']"/></b>
+												</td>								
+											</t>
+										</tr>
+									</t>
+									<t t-foreach="invoice_datas['final_amount_list']" t-as="final_line">
+										<tr>
+											<td>Aged Total</td>
+											<td>Current</td>
+											<td>1-44 Days </td>
+											<td>45-60 Days</td>
+											<td>61-90 Days</td>
+											<td>Over 90 Days</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td><span t-esc="'%.2f'%float(abs(final_line['aged_total'].get('current_month')))"/></td>
+											<td><span t-esc="'%.2f'%float(abs(final_line['aged_total'].get('one_to_fourty_four')))"/></td>
+											<td><span t-esc="'%.2f'%float(abs(final_line['aged_total'].get('fourty_five_to_sixty')))"/></td>
+											<td><span t-esc="'%.2f'%float(abs(final_line['aged_total'].get('sixty_one_to_ninty')))"/></td>
+											<td><span t-esc="'%.2f'%float(abs(final_line['aged_total'].get('above_ninty')))"/></td>
+											<td></td>
+										</tr>
+									</t>
+								</tbody>
+							</table>
+							</t>
+						</t>
+					</div>
+				</div>
+			</xpath>
+		</template>
+	</data>
+</openerp>

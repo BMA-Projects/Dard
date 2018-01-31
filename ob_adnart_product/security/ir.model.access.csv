@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_line_attachment,sale.line.attachemnt,model_sale_line_attachemnt,base.group_sale_salesman,1,1,1,0
+access_sale_line_attachment_manager,sale.line.attachemnt,model_sale_line_attachemnt,base.group_sale_manager,1,1,1,1
+access_sale_line_packaging,sale.line.packaging,model_sale_line_packaging,base.group_sale_salesman,1,1,1,0
+access_sale_line_packaging_manager,sale.line.packaging,model_sale_line_packaging,base.group_sale_manager,1,1,1,1

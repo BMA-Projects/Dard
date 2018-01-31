@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+
+    <record id="group_sample_order" model="res.groups">
+        <field name="name">Sample Order</field>
+        <field name="comment">Create a Sample Order</field>
+    </record>
+
+</data>
+</openerp>

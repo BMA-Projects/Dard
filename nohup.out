@@ -1,0 +1,494 @@
+ERROR: couldn't create the logfile directory. Logging to the standard output.
+2017-05-15 11:31:45,393 30442 INFO ? openerp: OpenERP version 8.0
+2017-05-15 11:31:45,393 30442 INFO ? openerp: addons paths: ['/home/dard-live/.local/share/Odoo/addons/8.0', u'/opt/odoo/addons', u'/home/dard-bma/custom_addons', '/opt/odoo/openerp/addons']
+2017-05-15 11:31:45,393 30442 INFO ? openerp: database hostname: 127.0.0.1
+2017-05-15 11:31:45,393 30442 INFO ? openerp: database port: 5432
+2017-05-15 11:31:45,393 30442 INFO ? openerp: database user: dardlive
+2017-05-15 11:31:45,501 30445 INFO ? openerp.service.server: Worker WorkerHTTP (30445) alive
+2017-05-15 11:31:45,502 30446 INFO ? openerp.service.server: Worker WorkerHTTP (30446) alive
+2017-05-15 11:31:45,503 30447 INFO ? openerp.service.server: Worker WorkerHTTP (30447) alive
+2017-05-15 11:31:45,505 30448 INFO ? openerp.service.server: Worker WorkerHTTP (30448) alive
+2017-05-15 11:31:45,506 30449 INFO ? openerp.service.server: Worker WorkerHTTP (30449) alive
+2017-05-15 11:31:45,507 30450 INFO ? openerp.service.server: Worker WorkerHTTP (30450) alive
+2017-05-15 11:31:45,508 30451 INFO ? openerp.service.server: Worker WorkerHTTP (30451) alive
+2017-05-15 11:31:45,509 30452 INFO ? openerp.service.server: Worker WorkerHTTP (30452) alive
+2017-05-15 11:31:45,510 30453 INFO ? openerp.service.server: Worker WorkerHTTP (30453) alive
+2017-05-15 11:31:45,511 30454 INFO ? openerp.service.server: Worker WorkerHTTP (30454) alive
+2017-05-15 11:31:45,512 30455 INFO ? openerp.service.server: Worker WorkerHTTP (30455) alive
+2017-05-15 11:31:45,514 30456 INFO ? openerp.service.server: Worker WorkerHTTP (30456) alive
+2017-05-15 11:31:45,515 30457 INFO ? openerp.service.server: Worker WorkerHTTP (30457) alive
+2017-05-15 11:31:45,516 30458 INFO ? openerp.service.server: Worker WorkerHTTP (30458) alive
+2017-05-15 11:31:45,517 30459 INFO ? openerp.service.server: Worker WorkerHTTP (30459) alive
+2017-05-15 11:31:45,518 30460 INFO ? openerp.service.server: Worker WorkerHTTP (30460) alive
+2017-05-15 11:31:45,519 30461 INFO ? openerp.service.server: Worker WorkerHTTP (30461) alive
+2017-05-15 11:31:45,525 30463 INFO ? openerp.service.server: Worker WorkerCron (30463) alive
+2017-05-15 11:31:45,526 30464 INFO ? openerp.service.server: Worker WorkerCron (30464) alive
+ERROR: couldn't create the logfile directory. Logging to the standard output.
+2017-05-15 11:31:45,950 30462 INFO ? openerp: OpenERP version 8.0
+2017-05-15 11:31:45,950 30462 INFO ? openerp: addons paths: ['/home/dard-live/.local/share/Odoo/addons/8.0', u'/opt/odoo/addons', u'/home/dard-bma/custom_addons', '/opt/odoo/openerp/addons']
+2017-05-15 11:31:45,950 30462 INFO ? openerp: database hostname: 127.0.0.1
+2017-05-15 11:31:45,950 30462 INFO ? openerp: database port: 5432
+2017-05-15 11:31:45,950 30462 INFO ? openerp: database user: dardlive
+2017-05-15 11:31:46,062 30462 INFO ? openerp.service.server: Evented Service (longpolling) running on 127.0.0.1:8072
+2017-05-15 11:31:50,974 30449 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:31:51,183 30449 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:31:51,205 30449 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:31:51,521 30449 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.31s, 0 queries
+2017-05-15 11:31:51,588 30449 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:31:51,594 30449 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:31:51,594 30449 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:31:55,390 30449 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.80s, 0 queries
+2017-05-15 11:31:56,035 30449 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:31:56,054 30449 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:31:56,271 30449 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:31:56] "GET /web?debug= HTTP/1.0" 200 -
+2017-05-15 11:31:56,970 30445 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:31:56,982 30455 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:31:57,181 30445 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:31:57,193 30455 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:31:57,203 30445 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:31:57,214 30455 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:31:57,522 30445 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:31:57,542 30455 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.33s, 0 queries
+2017-05-15 11:31:57,590 30445 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:31:57,596 30445 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:31:57,597 30445 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:31:57,609 30455 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:31:57,615 30455 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:31:57,615 30455 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:32:01,328 30445 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.74s, 0 queries
+2017-05-15 11:32:01,358 30455 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.75s, 0 queries
+2017-05-15 11:32:02,019 30445 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:32:02,030 30455 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:32:02,040 30445 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:32:02,053 30455 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:32:02,273 30445 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:32:02] "GET /favicon.ico HTTP/1.0" 404 -
+2017-05-15 11:32:02,338 30455 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:32:02] "GET /web/login?debug&redirect=https%3A%2F%2Fdardbma281216.officebrain.com%2Fweb%3Fdebug%3D%23id%3D25%26view_type%3Dform%26model%3Daccount.voucher%26action%3D292 HTTP/1.0" 200 -
+2017-05-15 11:32:48,664 30463 INFO dard_live_production_qa openerp.modules.loading: loading 1 modules...
+2017-05-15 11:32:48,905 30463 INFO dard_live_production_qa openerp.modules.loading: 1 modules loaded in 0.24s, 0 queries
+2017-05-15 11:32:48,969 30463 INFO dard_live_production_qa openerp.modules.loading: loading 120 modules...
+2017-05-15 11:32:48,976 30463 INFO dard_live_production_qa passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:32:48,977 30463 INFO dard_live_production_qa passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:32:49,091 30463 INFO dard_live_production_qa openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:32:49,655 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:32:49,712 30464 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:32:49,955 30464 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.24s, 0 queries
+2017-05-15 11:32:50,019 30464 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:32:50,026 30464 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:32:50,027 30464 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:32:50,142 30464 INFO dard_live openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:32:53,118 30463 INFO dard_live_production_qa openerp.modules.loading: 120 modules loaded in 4.15s, 0 queries
+2017-05-15 11:32:53,762 30463 INFO dard_live_production_qa openerp.modules.loading: Modules loaded.
+2017-05-15 11:32:53,858 30463 ERROR dard_live_production_qa openerp.sql_db: Programming error: relation "check_print_wizard" does not exist
+LINE 1: SELECT id FROM check_print_wizard WHERE COALESCE(write_date,...
+                       ^
+, in query SELECT id FROM check_print_wizard WHERE COALESCE(write_date, create_date, (now() at time zone 'UTC'))::timestamp < ((now() at time zone 'UTC') - interval %s)
+2017-05-15 11:32:53,858 30463 ERROR dard_live_production_qa openerp.addons.base.ir.ir_cron: Call of self.pool.get('osv_memory.autovacuum').power_on(cr, uid, *()) failed in Job 1
+Traceback (most recent call last):
+  File "/opt/odoo/openerp/addons/base/ir/ir_cron.py", line 138, in _callback
+    getattr(model, method_name)(cr, uid, *args)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/addons/base/ir/osv_memory_autovacuum.py", line 31, in power_on
+    model._transient_vacuum(cr, uid, force=True)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/models.py", line 4992, in _transient_vacuum
+    self._transient_clean_rows_older_than(cr, self._transient_max_hours * 60 * 60)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/models.py", line 4954, in _transient_clean_rows_older_than
+    cr.execute(query, ("%s seconds" % seconds,))
+  File "/opt/odoo/openerp/sql_db.py", line 158, in wrapper
+    return f(self, *args, **kwargs)
+  File "/opt/odoo/openerp/sql_db.py", line 234, in execute
+    res = self._obj.execute(query, params)
+ProgrammingError: relation "check_print_wizard" does not exist
+LINE 1: SELECT id FROM check_print_wizard WHERE COALESCE(write_date,...
+                       ^
+
+2017-05-15 11:32:53,871 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 3 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:32:53,897 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:32:54,188 30464 INFO dard_live openerp.modules.loading: 124 modules loaded in 4.17s, 0 queries
+2017-05-15 11:32:54,837 30464 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:33:00,564 30464 ERROR dard_live openerp.addons.base.ir.ir_cron: Call of self.pool.get('osv_memory.autovacuum').power_on(cr, uid, *()) failed in Job 1
+Traceback (most recent call last):
+  File "/opt/odoo/openerp/addons/base/ir/ir_cron.py", line 138, in _callback
+    getattr(model, method_name)(cr, uid, *args)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/addons/base/ir/osv_memory_autovacuum.py", line 31, in power_on
+    model._transient_vacuum(cr, uid, force=True)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/models.py", line 4992, in _transient_vacuum
+    self._transient_clean_rows_older_than(cr, self._transient_max_hours * 60 * 60)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/models.py", line 4956, in _transient_clean_rows_older_than
+    self.unlink(cr, SUPERUSER_ID, ids)
+  File "/opt/odoo/openerp/api.py", line 237, in wrapper
+    return old_api(self, *args, **kwargs)
+  File "/opt/odoo/openerp/addons/base/module/module.py", line 339, in unlink
+    raise orm.except_orm(_('Error'), _('You try to remove a module that is installed or will be installed'))
+except_orm: (u'Error', u'You try to remove a module that is installed or will be installed')
+2017-05-15 11:33:00,572 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 3 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:33:57,001 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:33:57,028 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:34:04,699 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:34:04,724 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:35:00,154 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:35:00,180 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:35:08,852 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:35:08,877 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:35:10,081 30453 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:35:10,288 30453 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:35:10,324 30453 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:35:10,647 30453 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:35:10,716 30453 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:35:10,722 30453 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:35:10,722 30453 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:35:14,423 30453 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.71s, 0 queries
+2017-05-15 11:35:15,053 30453 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:35:15,072 30453 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:35:15,316 30453 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:35:15] "GET /web/database/selector HTTP/1.0" 200 -
+2017-05-15 11:35:16,083 30446 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:35:16,286 30446 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:35:16,309 30446 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:35:16,639 30446 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.33s, 0 queries
+2017-05-15 11:35:16,708 30446 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:35:16,714 30446 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:35:16,714 30446 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:35:19,107 30460 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:35:19,317 30460 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:35:19,339 30460 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:35:19,663 30460 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:35:19,730 30460 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:35:19,736 30460 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:35:19,737 30460 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:35:20,653 30446 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.94s, 0 queries
+2017-05-15 11:35:21,288 30446 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:35:21,307 30446 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:35:21,535 30446 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:35:21] "GET /favicon.ico HTTP/1.0" 404 -
+2017-05-15 11:35:23,440 30460 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.71s, 0 queries
+2017-05-15 11:35:24,083 30460 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:35:24,102 30460 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:35:24,319 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:35:24] "GET /web?db=dard_live HTTP/1.0" 200 -
+2017-05-15 11:35:25,079 30456 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:35:25,283 30456 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:35:25,305 30456 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:35:25,629 30456 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:35:25,696 30456 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:35:25,703 30456 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:35:25,703 30456 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:35:29,417 30456 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.72s, 0 queries
+2017-05-15 11:35:30,048 30456 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:35:30,066 30456 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:35:30,346 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:35:30] "GET /web/login?redirect=https%3A%2F%2Fdardbma281216.officebrain.com%2Fweb%3Fdb%3Ddard_live HTTP/1.0" 200 -
+2017-05-15 11:35:39,851 30456 INFO dard_live openerp.addons.base.res.res_users: Login failed for db:dard_live login:admin
+2017-05-15 11:35:39,857 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:35:39] "POST /web/login HTTP/1.0" 200 -
+2017-05-15 11:35:47,943 30456 INFO dard_live openerp.addons.base.res.res_users: Login failed for db:dard_live login:admin
+2017-05-15 11:35:47,950 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:35:47] "POST /web/login HTTP/1.0" 200 -
+2017-05-15 11:36:03,306 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:36:03,334 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:36:13,005 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:36:13,030 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:37:06,462 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:37:06,488 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:37:11,485 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:11] "POST /web/login HTTP/1.0" 303 -
+2017-05-15 11:37:12,155 30461 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:12,362 30461 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:12,388 30461 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:12,734 30461 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.34s, 0 queries
+2017-05-15 11:37:12,807 30461 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:12,813 30461 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:12,813 30461 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:16,522 30461 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.71s, 0 queries
+2017-05-15 11:37:17,148 30461 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:17,159 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:37:17,174 30461 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:17,185 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:37:18,903 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:18] "GET /web?db=dard_live HTTP/1.0" 200 -
+2017-05-15 11:37:19,449 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:19] "GET /web/css/web.assets_common/ffcccb8 HTTP/1.0" 200 -
+2017-05-15 11:37:19,658 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:19] "GET /web/js/web.assets_common/ffcccb8 HTTP/1.0" 200 -
+2017-05-15 11:37:20,081 30457 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:20,087 30459 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:20,287 30459 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:20,289 30457 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:20,310 30459 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:20,311 30457 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:20,630 30459 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:37:20,631 30457 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:37:20,698 30459 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:20,699 30457 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:20,705 30459 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:20,705 30459 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:20,705 30457 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:20,706 30457 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:24,479 30459 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.78s, 0 queries
+2017-05-15 11:37:24,547 30457 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.85s, 0 queries
+2017-05-15 11:37:25,155 30459 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:25,179 30459 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:25,221 30457 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:25,243 30457 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:26,193 30457 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:26] "GET /web/css/web.assets_backend/a680cfc HTTP/1.0" 200 -
+2017-05-15 11:37:27,408 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:27] "GET /web/js/web.assets_backend/a680cfc HTTP/1.0" 200 -
+2017-05-15 11:37:30,173 30461 INFO dard_live openerp.service.common: successful login from 'admin' using database 'dard_live'
+2017-05-15 11:37:30,178 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:30] "POST /web/session/get_session_info HTTP/1.0" 200 -
+2017-05-15 11:37:30,815 30455 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:30] "POST /web/proxy/load HTTP/1.0" 200 -
+2017-05-15 11:37:31,751 30452 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:31,963 30452 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:31,985 30452 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:32,311 30452 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:37:32,378 30452 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:32,384 30452 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:32,385 30452 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:36,109 30452 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.73s, 0 queries
+2017-05-15 11:37:36,742 30452 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:36,762 30452 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:37,338 30452 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:37] "POST /web/session/modules HTTP/1.0" 200 -
+2017-05-15 11:37:37,585 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:37] "POST /web/webclient/translations HTTP/1.0" 200 -
+2017-05-15 11:37:37,825 30455 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:37] "GET /web/static/lib/datejs/globalization/en-US.js HTTP/1.0" 200 -
+2017-05-15 11:37:38,189 30461 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "GET /web/static/src/img/user_menu_avatar.png HTTP/1.0" 200 -
+2017-05-15 11:37:38,431 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /web/dataset/call_kw/res.users/read HTTP/1.0" 200 -
+2017-05-15 11:37:38,448 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.0" 200 -
+2017-05-15 11:37:38,586 30447 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:38,666 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /web/dataset/call_kw/ir.config_parameter/get_param HTTP/1.0" 200 -
+2017-05-15 11:37:38,673 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /web/dataset/call_kw/res.users/read HTTP/1.0" 200 -
+2017-05-15 11:37:38,687 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "GET /web/binary/image?model=res.users&field=image_small&id=1 HTTP/1.0" 200 -
+2017-05-15 11:37:38,806 30447 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:38,828 30447 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:38,904 30460 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "GET /ob_live_support/static/src/img/officebrain.png HTTP/1.0" 200 -
+2017-05-15 11:37:38,927 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /calendar/notify HTTP/1.0" 200 -
+2017-05-15 11:37:38,927 30449 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /web/menu/load_needaction HTTP/1.0" 200 -
+2017-05-15 11:37:38,930 30445 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:38] "POST /web/dataset/call_kw/res.users/read HTTP/1.0" 200 -
+2017-05-15 11:37:39,146 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:39] "POST /im_chat/init HTTP/1.0" 200 -
+2017-05-15 11:37:39,163 30447 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.33s, 0 queries
+2017-05-15 11:37:39,239 30447 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:39,245 30447 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:39,245 30447 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:39,262 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:39] "POST /web/action/load HTTP/1.0" 200 -
+2017-05-15 11:37:39,344 30448 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:39,400 30460 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:39] "GET /web/static/src/font/entypo-webfont.ttf HTTP/1.0" 200 -
+2017-05-15 11:37:39,573 30448 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:39,576 30448 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:39] "GET /im_chat/static/src/img/green.png HTTP/1.0" 200 -
+2017-05-15 11:37:39,802 30462 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:39,802 30462 INFO ? openerp.addons.bus.bus: Bus.loop listen imbus on db postgres
+2017-05-15 11:37:39,807 30459 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:39] "GET /web/static/src/font/mnmliconsv21-webfont.ttf HTTP/1.0" 200 -
+2017-05-15 11:37:39,850 30454 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:39,984 30451 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:40,062 30454 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:40,065 30454 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:40] "GET /web/static/lib/fontawesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.0" 200 -
+2017-05-15 11:37:40,083 30462 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:40,115 30462 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:40,199 30451 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:40,203 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:40] "GET /web/static/src/img/search_reset.gif HTTP/1.0" 200 -
+2017-05-15 11:37:40,253 30446 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:40] "POST /web/dataset/call_kw/mail.message/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:37:40,292 30454 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:40,441 30462 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:37:40,507 30455 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:40] "POST /web/dataset/call_kw/ir.filters/get_filters HTTP/1.0" 200 -
+2017-05-15 11:37:40,508 30462 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:40,514 30462 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:40,515 30462 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:40,613 30454 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.32s, 0 queries
+2017-05-15 11:37:40,683 30454 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:40,689 30454 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:40,689 30454 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:40,723 30453 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:40] "POST /web/dataset/call_kw/mail.group/get_suggested_thread HTTP/1.0" 200 -
+2017-05-15 11:37:41,153 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:41] "POST /web/menu/load_needaction HTTP/1.0" 200 -
+2017-05-15 11:37:41,199 30450 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:41,410 30450 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:41,434 30450 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:41,471 30453 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:41] "POST /web/action/load HTTP/1.0" 200 -
+2017-05-15 11:37:41,751 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:41] "POST /web/dataset/call_kw/share.wizard/has_share HTTP/1.0" 200 -
+2017-05-15 11:37:41,770 30450 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.33s, 0 queries
+2017-05-15 11:37:41,838 30450 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:41,845 30450 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:41,845 30450 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:42,204 30458 INFO ? openerp.addons.report.models.report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2017-05-15 11:37:42,423 30458 INFO ? openerp.http: HTTP Configuring static files
+2017-05-15 11:37:42,448 30458 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:37:42,628 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:42] "POST /web/dataset/call_kw/res.partner/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:37:42,777 30458 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.33s, 0 queries
+2017-05-15 11:37:42,848 30458 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:37:42,855 30458 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:37:42,856 30458 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:37:43,074 30447 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.83s, 0 queries
+2017-05-15 11:37:43,734 30447 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:43,756 30447 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:44,271 30447 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:44] "GET /web/binary/company_logo?company=1 HTTP/1.0" 200 -
+2017-05-15 11:37:44,361 30462 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.85s, 0 queries
+2017-05-15 11:37:44,535 30454 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.85s, 0 queries
+2017-05-15 11:37:45,196 30454 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:45,216 30454 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:45,218 30462 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:45,227 30462 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:45,633 30450 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.79s, 0 queries
+2017-05-15 11:37:45,914 30454 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:45] "POST /web/dataset/call_kw/mail.message/message_read HTTP/1.0" 200 -
+2017-05-15 11:37:46,293 30450 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:46,314 30450 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:46,413 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:46] "GET /web/binary/image?model=res.partner&field=image_small&id=3&resize= HTTP/1.0" 200 -
+2017-05-15 11:37:46,464 30456 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:46] "GET /mail/static/src/img/mimetypes/print.png HTTP/1.0" 200 -
+2017-05-15 11:37:46,622 30458 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.77s, 0 queries
+2017-05-15 11:37:46,784 30450 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:46] "POST /web/dataset/call_kw/mail.message/fields_get HTTP/1.0" 200 -
+2017-05-15 11:37:47,253 30458 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:37:47,273 30458 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:37:48,070 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:48] "POST /web/dataset/call_kw/res.partner/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:37:48,351 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:48] "POST /web/dataset/call_kw/ir.filters/get_filters HTTP/1.0" 200 -
+2017-05-15 11:37:48,424 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:48] "POST /web/dataset/call_kw/res.partner/fields_get HTTP/1.0" 200 -
+2017-05-15 11:37:50,085 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:50] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:37:50,344 30453 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:50] "GET /base/static/src/img/company_image.png HTTP/1.0" 200 -
+2017-05-15 11:37:50,355 30453 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:37:50] "GET /base/static/src/img/avatar.png HTTP/1.0" 200 -
+2017-05-15 11:37:50,461 30453 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:50] "POST /web/dataset/call_kw/res.partner.category/name_get HTTP/1.0" 200 -
+2017-05-15 11:37:52,217 30455 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:52] "POST /web/action/load HTTP/1.0" 200 -
+2017-05-15 11:37:52,841 30453 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:52] "POST /web/dataset/call_kw/sale.order/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:37:52,845 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:52] "POST /web/dataset/call_kw/sale.order/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:37:53,219 30449 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:53] "POST /web/dataset/call_kw/ir.filters/get_filters HTTP/1.0" 200 -
+2017-05-15 11:37:53,234 30455 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:53] "POST /web/dataset/call_kw/sale.order/fields_get HTTP/1.0" 200 -
+2017-05-15 11:37:53,796 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:37:53] "POST /web/dataset/call_kw/sale.order/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:00,414 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:00] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:09,614 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:38:09,640 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:38:10,143 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:10] "POST /web/dataset/call_kw/sale.order/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:13,366 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:13] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:21,315 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:38:21,340 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:38:22,440 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:22] "POST /web/dataset/call_kw/sale.order/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:23,461 30449 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:23] "GET /web/static/src/img/form_sheetbg.png HTTP/1.0" 200 -
+2017-05-15 11:38:23,464 30449 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:23] "GET /web/static/lib/jquery.ui.bootstrap/css/custom-theme/images/ui-bg_glass_75_ffffff_1x400.png HTTP/1.0" 200 -
+2017-05-15 11:38:29,712 30449 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:29] "POST /web/dataset/call_kw/sale.order/read HTTP/1.0" 200 -
+2017-05-15 11:38:29,996 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:29] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:30,010 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:30,024 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:30,179 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/res.partner.category/name_get HTTP/1.0" 200 -
+2017-05-15 11:38:30,290 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/sample.type/name_search HTTP/1.0" 200 -
+2017-05-15 11:38:30,354 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/sale.order/read_followers_data HTTP/1.0" 200 -
+2017-05-15 11:38:30,403 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/mail.message/message_read HTTP/1.0" 200 -
+2017-05-15 11:38:30,421 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/stock.incoterms/name_search HTTP/1.0" 200 -
+2017-05-15 11:38:30,533 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:30,595 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/res.partner/name_get HTTP/1.0" 200 -
+2017-05-15 11:38:30,671 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "GET /web/binary/image?model=res.partner&field=image_small&id=39914&resize= HTTP/1.0" 200 -
+2017-05-15 11:38:30,677 30445 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "GET /web/binary/image?model=res.partner&field=image_small&id=39918&resize= HTTP/1.0" 200 -
+2017-05-15 11:38:30,797 30450 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/mail.message/set_message_read HTTP/1.0" 200 -
+2017-05-15 11:38:30,871 30460 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:30] "POST /web/dataset/call_kw/stock.picking/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:31,038 30450 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:31] "POST /web/dataset/call_kw/stock.picking/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:31,189 30445 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:31] "POST /web/dataset/call_kw/shipping.charges.line/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:31,372 30453 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:31] "POST /web/dataset/call_kw/sale.order.line/read HTTP/1.0" 200 -
+2017-05-15 11:38:31,775 30448 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:31] "GET /web/static/src/img/icons/terp-accessories-archiver+.png HTTP/1.0" 200 -
+2017-05-15 11:38:33,505 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:33] "GET /web HTTP/1.0" 200 -
+2017-05-15 11:38:34,616 30461 INFO dard_live openerp.service.common: successful login from 'admin' using database 'dard_live'
+2017-05-15 11:38:34,620 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:34] "POST /web/session/get_session_info HTTP/1.0" 200 -
+2017-05-15 11:38:34,999 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:34] "POST /web/proxy/load HTTP/1.0" 200 -
+127.0.0.1 - - [2017-05-15 11:38:35] "POST /longpolling/poll HTTP/1.0" 200 305 56.177039
+2017-05-15 11:38:35,841 30457 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:35] "POST /web/session/modules HTTP/1.0" 200 -
+2017-05-15 11:38:36,093 30452 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/webclient/translations HTTP/1.0" 200 -
+2017-05-15 11:38:36,467 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.0" 200 -
+2017-05-15 11:38:36,479 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/dataset/call_kw/res.users/read HTTP/1.0" 200 -
+2017-05-15 11:38:36,540 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/dataset/call_kw/res.users/read HTTP/1.0" 200 -
+2017-05-15 11:38:36,560 30454 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/action/load HTTP/1.0" 200 -
+2017-05-15 11:38:36,705 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/dataset/call_kw/ir.config_parameter/get_param HTTP/1.0" 200 -
+2017-05-15 11:38:36,719 30459 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /calendar/notify HTTP/1.0" 200 -
+2017-05-15 11:38:36,943 30452 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /web/menu/load_needaction HTTP/1.0" 200 -
+2017-05-15 11:38:36,947 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "GET /web/binary/image?model=res.users&field=image_small&id=1 HTTP/1.0" 304 -
+2017-05-15 11:38:36,972 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:36] "POST /im_chat/init HTTP/1.0" 200 -
+2017-05-15 11:38:37,026 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "POST /web/dataset/call_kw/share.wizard/has_share HTTP/1.0" 200 -
+2017-05-15 11:38:37,106 30456 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "POST /web/dataset/call_kw/ir.module.module/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:37,321 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "POST /web/dataset/call_kw/ir.module.module/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:37,378 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "POST /web/dataset/call_kw/ir.filters/get_filters HTTP/1.0" 200 -
+2017-05-15 11:38:37,398 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "POST /web/dataset/call_kw/ir.module.module/fields_get HTTP/1.0" 200 -
+2017-05-15 11:38:37,710 30461 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:37,972 30445 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "GET /base/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:37,972 30461 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:37] "GET /crm/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,005 30450 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /account_voucher/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,005 30445 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /mail/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,212 30447 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /point_of_sale/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,238 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /project/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,242 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /note/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,435 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /project_issue/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,454 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /account_accountant/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,476 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /sale/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,481 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /stock/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,674 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /im_chat/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,703 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /mrp/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,732 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /purchase/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,913 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /hr/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,937 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /hr_timesheet_sheet/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,950 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /hr_recruitment/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:38,964 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:38] "GET /hr_holidays/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,151 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /hr_expense/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,179 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /hr_evaluation/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,192 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /calendar/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,204 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /contacts/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,381 30455 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /gamification/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,421 30460 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /im_livechat/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,427 30446 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /lunch/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,622 30446 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /mass_editing/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,662 30446 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /ob_adnart_images/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:39,678 30446 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:39] "GET /ob_pricelist/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:41,527 30448 INFO dard_live openerp.modules.loading: loading 1 modules...
+2017-05-15 11:38:41,597 30449 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:41] "POST /web/menu/load_needaction HTTP/1.0" 200 -
+2017-05-15 11:38:41,862 30448 INFO dard_live openerp.modules.loading: 1 modules loaded in 0.33s, 0 queries
+2017-05-15 11:38:41,931 30448 INFO dard_live openerp.modules.loading: loading 124 modules...
+2017-05-15 11:38:41,937 30448 INFO dard_live passlib.registry: registered crypt handler 'pbkdf2_sha512': <class 'passlib.handlers.pbkdf2.pbkdf2_sha512'>
+2017-05-15 11:38:41,937 30448 INFO dard_live passlib.registry: registered crypt handler 'md5_crypt': <class 'passlib.handlers.md5_crypt.md5_crypt'>
+2017-05-15 11:38:43,111 30452 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:43] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:43,456 30461 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:43] "GET /account_asset/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:43,460 30451 INFO ? werkzeug: 127.0.0.1 - - [15/May/2017 11:38:43] "GET /hr_payroll/static/description/icon.png HTTP/1.0" 200 -
+2017-05-15 11:38:44,915 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:44] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:38:45,659 30448 INFO dard_live openerp.modules.loading: 124 modules loaded in 3.73s, 0 queries
+2017-05-15 11:38:46,298 30448 INFO dard_live openerp.modules.loading: Modules loaded.
+2017-05-15 11:38:46,320 30448 INFO dard_live openerp.addons.base.ir.ir_http: Generating routing map
+2017-05-15 11:38:46,873 30448 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:46] "POST /web/action/load HTTP/1.0" 200 -
+2017-05-15 11:38:47,242 30449 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:47] "POST /web/dataset/call_kw/ir.module.module/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:47,338 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:47] "POST /web/dataset/call_kw/ir.module.module/fields_view_get HTTP/1.0" 200 -
+2017-05-15 11:38:47,502 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:47] "POST /web/dataset/call_kw/ir.filters/get_filters HTTP/1.0" 200 -
+2017-05-15 11:38:47,509 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:47] "POST /web/dataset/call_kw/ir.module.module/fields_get HTTP/1.0" 200 -
+2017-05-15 11:38:47,839 30458 INFO dard_live werkzeug: 127.0.0.1 - - [15/May/2017 11:38:47] "POST /web/dataset/search_read HTTP/1.0" 200 -
+2017-05-15 11:39:12,766 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:39:12,791 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:39:25,465 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:39:25,490 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+127.0.0.1 - - [2017-05-15 11:39:25] "POST /longpolling/poll HTTP/1.0" 200 304 50.016728
+127.0.0.1 - - [2017-05-15 11:39:27] "POST /longpolling/poll HTTP/1.0" 200 305 50.012334
+2017-05-15 11:40:02,788 30462 INFO ? openerp.service.server: LongPolling (30462) Parent changed
+2017-05-15 11:40:02,959 30448 INFO dard_live openerp.service.server: Worker (30448) Parent changed
+2017-05-15 11:40:03,200 30452 INFO dard_live openerp.service.server: Worker (30452) Parent changed
+2017-05-15 11:40:03,260 30453 INFO dard_live openerp.service.server: Worker (30453) Parent changed
+2017-05-15 11:40:03,326 30449 INFO dard_live openerp.service.server: Worker (30449) Parent changed
+2017-05-15 11:40:03,473 30455 INFO ? openerp.service.server: Worker (30455) Parent changed
+2017-05-15 11:40:03,513 30460 INFO ? openerp.service.server: Worker (30460) Parent changed
+2017-05-15 11:40:03,541 30461 INFO ? openerp.service.server: Worker (30461) Parent changed
+2017-05-15 11:40:03,574 30459 INFO dard_live openerp.service.server: Worker (30459) Parent changed
+2017-05-15 11:40:03,774 30446 INFO ? openerp.service.server: Worker (30446) Parent changed
+2017-05-15 11:40:03,899 30445 INFO ? openerp.service.server: Worker (30445) Parent changed
+2017-05-15 11:40:03,925 30458 INFO dard_live openerp.service.server: Worker (30458) Parent changed
+2017-05-15 11:40:03,928 30457 INFO dard_live openerp.service.server: Worker (30457) Parent changed
+2017-05-15 11:40:04,990 30451 INFO ? openerp.service.server: Worker (30451) Parent changed
+2017-05-15 11:40:05,145 30454 INFO dard_live openerp.service.server: Worker (30454) Parent changed
+2017-05-15 11:40:05,472 30456 INFO dard_live openerp.service.server: Worker (30456) Parent changed
+2017-05-15 11:40:06,104 30450 INFO ? openerp.service.server: Worker (30450) Parent changed
+2017-05-15 11:40:06,308 30447 INFO ? openerp.service.server: Worker (30447) Parent changed
+2017-05-15 11:40:06,964 30448 INFO dard_live openerp.service.server: Worker (30448) exiting. request_count: 3, registry count: 1.
+2017-05-15 11:40:07,205 30452 INFO dard_live openerp.service.server: Worker (30452) exiting. request_count: 4, registry count: 1.
+2017-05-15 11:40:07,264 30453 INFO dard_live openerp.service.server: Worker (30453) exiting. request_count: 8, registry count: 1.
+2017-05-15 11:40:07,328 30449 INFO dard_live openerp.service.server: Worker (30449) exiting. request_count: 8, registry count: 1.
+2017-05-15 11:40:07,476 30455 INFO ? openerp.service.server: Worker (30455) exiting. request_count: 7, registry count: 1.
+2017-05-15 11:40:07,516 30460 INFO ? openerp.service.server: Worker (30460) exiting. request_count: 21, registry count: 1.
+2017-05-15 11:40:07,544 30461 INFO ? openerp.service.server: Worker (30461) exiting. request_count: 15, registry count: 1.
+2017-05-15 11:40:07,576 30459 INFO dard_live openerp.service.server: Worker (30459) exiting. request_count: 13, registry count: 1.
+2017-05-15 11:40:07,776 30446 INFO ? openerp.service.server: Worker (30446) exiting. request_count: 6, registry count: 1.
+2017-05-15 11:40:07,904 30445 INFO ? openerp.service.server: Worker (30445) exiting. request_count: 6, registry count: 1.
+2017-05-15 11:40:07,930 30458 INFO dard_live openerp.service.server: Worker (30458) exiting. request_count: 10, registry count: 1.
+2017-05-15 11:40:07,932 30457 INFO dard_live openerp.service.server: Worker (30457) exiting. request_count: 2, registry count: 1.
+2017-05-15 11:40:08,994 30451 INFO ? openerp.service.server: Worker (30451) exiting. request_count: 19, registry count: 0.
+2017-05-15 11:40:09,150 30454 INFO dard_live openerp.service.server: Worker (30454) exiting. request_count: 3, registry count: 1.
+2017-05-15 11:40:09,477 30456 INFO dard_live openerp.service.server: Worker (30456) exiting. request_count: 15, registry count: 1.
+2017-05-15 11:40:10,109 30450 INFO ? openerp.service.server: Worker (30450) exiting. request_count: 4, registry count: 1.
+2017-05-15 11:40:10,312 30447 INFO ? openerp.service.server: Worker (30447) exiting. request_count: 2, registry count: 1.
+2017-05-15 11:40:15,841 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:40:15,841 30463 INFO ? openerp.service.server: Worker (30463) Parent changed
+2017-05-15 11:40:15,868 30463 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:40:15,869 30463 INFO ? openerp.service.server: Worker (30463) exiting. request_count: 16, registry count: 0.
+2017-05-15 11:40:29,620 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live_production_qa'
+2017-05-15 11:40:29,620 30464 INFO ? openerp.service.server: Worker (30464) Parent changed
+2017-05-15 11:40:29,646 30464 INFO ? openerp.sql_db: ConnectionPool(used=0/count=0/max=100): Closed 1 connections to 'host=127.0.0.1 port=5432 user=dardlive password=xxxxxxxx dbname=dard_live'
+2017-05-15 11:40:29,646 30464 INFO ? openerp.service.server: Worker (30464) exiting. request_count: 16, registry count: 0.

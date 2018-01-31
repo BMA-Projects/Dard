@@ -1,0 +1,43 @@
+<openerp>
+    <data>
+      
+      <!-- account_voucher.view_vendor_payment_form -->
+     <!--    <record id="inherit_view_vendor_payment_form_dard" model="ir.ui.view">
+            <field name="name">Account Voucher</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="check_seq" readonly="1" attrs="{'invisible' : [('state', 'not in', ['posted'] )]}"/>
+                </xpath>
+            </field>
+        </record>
+ -->
+        <record id="inherit_view_vendor_payment_check_form_dard" model="ir.ui.view">
+            <field name="name">Account Voucher</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_check_writing.view_vendor_payment_check_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='print_check']" position="replace">
+                      <button name="print_dard_check" icon="gtk-print" string="Print Check" type="object" attrs="{'invisible':['|',('allow_check','!=',True),('state','!=','posted') ]}" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="check_seq" readonly="1" attrs="{'invisible' : [('state', 'not in', ['posted'] )]}"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Reprint Check Reasons">
+                        <field name="check_print_reason_ids" readonly="1">
+                            <tree>
+                                <!-- <field name="create_date"/> -->
+                                <field name="print_reason"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

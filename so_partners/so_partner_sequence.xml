@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Sequences for Res Partner -->
+        <record id="seq_type_res_partner_company" model="ir.sequence.type">
+            <field name="name">Res Partner Company</field>
+            <field name="code">res.partner.company</field>
+        </record>
+
+        <record id="seq_res_partner_company" model="ir.sequence">
+            <field name="name">Res Partner Company</field>
+            <field name="code">res.partner.company</field>
+            <field name="prefix">COM</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_type_res_partner_contact" model="ir.sequence.type">
+            <field name="name">Res Partner Contact</field>
+            <field name="code">res.partner.contact</field>
+        </record>
+        
+        <record id="seq_res_partner_contact" model="ir.sequence">
+            <field name="name">Res Partner Contact</field>
+            <field name="code">res.partner.contact</field>
+            <field name="prefix"></field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

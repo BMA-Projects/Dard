@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- An Artwork Type-->
+        <record id="artwork_platting_1" model="artwork.master.platting">
+            <field name="name">Antique Brass</field>
+        </record>
+        <record id="artwork_platting_2" model="artwork.master.platting">
+            <field name="name">Antique Silver</field>
+        </record>
+        <record id="artwork_platting_3" model="artwork.master.platting">
+            <field name="name">Antique Copper</field>
+        </record>
+        <record id="artwork_platting_4" model="artwork.master.platting">
+            <field name="name">Shiny Gold</field>
+        </record>
+        <record id="artwork_platting_5" model="artwork.master.platting">
+            <field name="name">Shiny Silver(Nickel)</field>
+        </record>
+        <record id="artwork_platting_6" model="artwork.master.platting">
+            <field name="name">Shiny Copper</field>
+        </record>
+        <record id="artwork_platting_7" model="artwork.master.platting">
+            <field name="name">Blk. Nickel</field>
+        </record>
+        <!--<record id="artwork_platting_8" model="artwork.master.platting">-->
+            <!--<field name="name">Other</field>-->
+        <!--</record>-->
+
+    </data>
+</openerp>

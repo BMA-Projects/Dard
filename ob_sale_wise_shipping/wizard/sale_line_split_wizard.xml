@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_line_split_wizard_tag" model="ir.ui.view">
+            <field name="name">sale.line.split.wizard.tag</field>
+            <field name="model">sale.line.split.into.tag</field>
+            <field name="arch" type="xml">
+            <form string="Split Sale Line" version="7.0">
+                <separator string="Quantity to Create a new line"/>
+                <group>
+                    <field name="quantity"/>
+                </group>
+                <footer>
+                    <button name="split_line" string="Ok" type="object" class="oe_highlight" />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+        <record id="split_into_sale_line_tag" model="ir.actions.act_window">
+            <field name="name">Split into Sale Line Tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.line.split.into.tag</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

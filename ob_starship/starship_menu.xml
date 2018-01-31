@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <menuitem id="menu_starship" name="StarShip Service Management" parent="stock.menu_stock_configuration" sequence="5"/>
+            <menuitem id="menu_bma_request" name="Request Path Configuration" parent="menu_starship" action="starship_request_action" />
+   </data>
+</openerp>

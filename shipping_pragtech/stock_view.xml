@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- shipping_usps_response start -->
+        <record id="view_shipping_response_form" model="ir.ui.view">
+            <field name="name">shipping.response.form</field>
+            <field name="model">shipping.response</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Shipping Response">
+                    <group>
+	                    <field name="sequence"/>
+	                	<field name="pack_info"/>
+	                    <field name="name" />
+	                    <field name="rate" />
+	                    <field name="type" />
+	                    <field name="is_label_genrated"/>
+	                    <field name="carrier_track_no" invisible="1"/>
+	                </group>
+	                    <newline/>
+	                     <button name="generate_tracking_no" string="Accept and Generate Label" type="object"  confirm="Are you Sure to generate a label..?" icon="terp-camera_test" />
+                   
+                </form>
+            </field>
+        </record>
+
+        <record id="view_shipping_response_tree" model="ir.ui.view">
+            <field name="name">shipping.response.tree</field>
+            <field name="model">shipping.response</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:cust_default==True;red:sys_default==True" string = "Shipping Response" >
+                    <button name="generate_tracking_no" string="Accept" type="object" icon="gtk-go-forward" />
+                    <field name="name" />
+                    <field name="rate" />
+                    <field name="type" />
+                    <field name="cust_default" invisible="1"/>
+                    <field name="sys_default" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shipping_response_action" model="ir.actions.act_window">
+            <field name="name">Shipping Response</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.response</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_shipping_response_tree"/>
+            <field name="help">Key in Server name and User ID which you get from USPS website.</field>
+        </record>
+        <!-- shipping_usps_response end -->
+
+        <!-- <record id="view_picking_out_form_inherit_shb1" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.inherit.shb1</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+				<field name="origin" position="before">			
+                    <field name="shipping_rate" attrs="{'invisible': [('state','!=','done')]}" />
+                </field>    
+            </field>
+        </record> -->
+
+        <!-- <record id="view_picking_out_form_inherit12" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.inherit12</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+            	<field name="partner_id" position="after">
+            		<field name="sale_id"/>
+            	</field>
+            	 <page string="Products" position="after">
+                   <page string="Shipping Info">
+                        <group colspan="4" col="4" >
+                            <separator string = "Shipping Type" colspan="4"/>
+                            <field name="sale_id"/>
+                            <field name="use_shipping" />
+                            <field name="shipping_type" />
+                        </group>
+
+                        <group colspan="4" col="4" >
+                            <separator string = "Weight" colspan="4"/>
+                            <field name="weight_package" colspan="4" string="Package Weight(LB)"/>
+                        </group>
+
+                        <group colspan="4" col="4" name="usps" attrs="{'invisible':[('shipping_type','!=','USPS'), ('shipping_type','!=','All')]}" >
+                            <separator string = "USPS" />
+
+                            <group colspan="4" col="4" >
+                                <field name="service_type_usps" attrs="{'required':['|', ('shipping_type','=','USPS'),('shipping_type','=','All')]}" />
+                                <field name="container_usps" />
+                                <field name="size_usps" attrs="{'required':['|', ('shipping_type','=','USPS'),('shipping_type','=','All')]}" />
+                                <field name="first_class_mail_type_usps" attrs="{'required':[('service_type_usps','in',('First Class','First Class HFP Commercial'))], 'invisible':[('service_type_usps','not in',('First Class','First Class HFP Commercial'))]}" />
+                            </group>
+
+                            <group colspan="4" col="4" attrs="{'invisible':[('size_usps','!=','LARGE')]}" >
+                                <separator string = "USPS Dimension" />
+                                <field name="width_usps" />
+                                <field name="length_usps" />
+                                <field name="height_usps" />
+                                <field name="girth_usps" attrs="{'invisible':['|', ('container_usps','!=','Non-Rectangular'), ('container_usps','!=','Variable'), ('container_usps','!=','')]}" />
+                            </group>
+
+                        </group>
+                        
+                        <group colspan="4" col="4" name="fedex" attrs="{'invisible':[('shipping_type','!=','Fedex'), ('shipping_type','!=','All')]}" >
+                            <separator string = "Fedex" />
+
+                            <group colspan="4" col="4" >
+                                <field name="dropoff_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="service_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="packaging_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="payment_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="physical_packaging_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                            </group>
+
+                        </group>
+
+                        <group colspan="4" col="4" name="ups" attrs="{'invisible':[('shipping_type','!=','UPS'), ('shipping_type','!=','All')]}" >
+                            <separator string = "UPS" />
+                            <group colspan="4" col="4" >
+                                <field name="pickup_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')]}" />
+                                <field name="service_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')]}" />
+                                <field name="packaging_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')]}" />
+                            </group>
+
+                        </group>
+
+                        <group colspan="4" col="1" >
+                            <separator/>
+                            <button string="Generate Shipping Quotes" icon="gtk-apply" name="generate_shipping" type="object" />
+                        </group>
+                        <group colspan="4" col="2" >
+                            <separator string = "Shipping Quotes" colspan="2" />
+                            <field name="response_usps_ids" nolabel="1" widget="one2many_list"  colspan="2" >
+                                <tree colors="blue:cust_default==True;red:sys_default==True" string="Shipping Quotes" >
+                                    <button name="generate_tracking_no" string="Accept" type="object" icon="gtk-go-forward" />
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="rate" />
+                                    <field name="cust_default" invisible="1"/>
+                                    <field name="sys_default" invisible="1" /> 
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    </page>
+            </field>
+        </record>
+ -->        
+        <!--<record id="view_picking_inherit_form2_inherit" model="ir.ui.view">
+            <field name="name">view_picking_inherit_form2.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock_account.view_picking_inherit_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='do_enter_transfer_details']" position="after">
+                    <button name="create_pdf"  type="object" icon="gtk-apply" string="Print Labels" states="assigned" groups="base.group_sale_manager"/>
+                </xpath>
+            </field>
+        </record>-->
+        <!--<record id="view_picking_out_form_inherit1" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.inherit1</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                &lt;!&ndash; <xpath expr="/form/header/button[@string='Cancel Transfer']" position="after">
+                    <button name="%(action_view_generate_shipping_labels)d" icon="gtk-apply" string="Generate Shipment Labels" type="action" states="confirmed"/>
+                </xpath> &ndash;&gt;
+                <field name="carrier_id" position="replace">
+                    <field name="carrier_id" readonly="1"/>
+				</field>                
+	         	 <field name="carrier_tracking_ref" position="replace">
+	         	    <field name="carrier_tracking_ref" readonly="1"/>
+	         	 </field>
+            	 <page string="Additional Info" position="after">
+                   <page string="Shipping Info" attrs="{'invisible':[('picking_type_code','!=','outgoing')]}">
+                        <group colspan="4" col="4" >
+                            <separator string = "Shipping Type" colspan="4"/>
+                            <field name="sale_id" string="Sale Order Number" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                            <field name="use_shipping" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                            <field name="shipping_type" on_change="onchange_mapping_country(is_customer_account,shipping_type,partner_id)" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                            &lt;!&ndash; <field name="is_customer_account"  attrs="{'readonly':[('carrier_tracking_ref','!=',False)],'invisible':[('shipping_type','=',False)]}"/> &ndash;&gt;
+                            <field name="is_customer_account" readonly="1"/>
+                            <field name="is_multiple_label" invisible="1"/>
+                        </group>
+						<group attrs="{'invisible':[('is_customer_account','!=',True)]}" >
+						    <separator string = "Shipping Accounts" colspan="4"/>
+						    <field name="fedex_id"  attrs="{'invisible':[('shipping_type','in',['UPS','USPS',False])],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+						    <field name="ups_id"  attrs="{'invisible':[('shipping_type','in',['Fedex','USPS',False])],'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+						    &lt;!&ndash; <field name="usps_id" attrs="{'invisible':[('shipping_type','in',['UPS','Fedex'])],'readonly':[('carrier_tracking_ref','!=',False)]}"/> &ndash;&gt;
+						</group>
+                         <group colspan="4" col="4" >
+                            <separator string = "Weight" colspan="4"/>
+                            &lt;!&ndash; <field name="weight_package"  string="Package Weight(LB)" colspan="4" required="True" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/> &ndash;&gt;
+                            <field name="weight_package"  string="Package Weight(LB)" colspan="4"/>
+							<field name="no_of_packets" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+							<field name="max_weight" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+
+                            <separator string = "Package Dimensions (IN)" colspan="4"/>
+                            <field name="package_length" attrs="{'readonly':[('carrier_tracking_ref','!=',False)], 'invisible': 1}"/>
+							<field name="package_width" attrs="{'readonly':[('carrier_tracking_ref','!=',False)], 'invisible': 1}"/>
+							<field name="package_height" attrs="{'readonly':[('carrier_tracking_ref','!=',False)], 'invisible': 1}"/>
+                            <field name="product_ul" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                            <separator string = "Insurance" colspan="4"/>
+                            <field name="insurance_amount" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                            <br/><br/><br/><br/><br/><br/>
+                            <button string="Add Packet Lines" icon="gtk-apply" name="add_packet_line" type="object" attrs="{'invisible':[('carrier_tracking_ref','!=',False)]}"/>
+                        </group>
+                        <group colspan="2">
+                        	<separator string = "Package Details" colspan="4"/>
+                        	<field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}">
+                        	&lt;!&ndash; <field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2"> &ndash;&gt;
+                        		
+                        		<tree editable="bottom">
+                        			<field name="sequence"/>
+                        			<field name="pack"/>
+                        			<field name="weight" sum="Total Amount"/>
+                        			<field name="carrier_id"/>
+                        			<field name="carrier_tracking_ref"/>
+                                    <field name="product_ul_line"/>
+                        		</tree>
+                        	</field>
+                        </group>
+
+                        <group colspan="4" col="4" name="usps" attrs="{'invisible':[('shipping_type','!=','USPS'), ('shipping_type','!=','All')]}" >
+                            <separator string = "USPS" />
+
+                            <group colspan="4" col="4" >
+                                <field name="service_type_usps" attrs="{'required':['|', ('shipping_type','=','USPS'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="container_usps" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                                <field name="size_usps" attrs="{'required':['|', ('shipping_type','=','USPS'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="first_class_mail_type_usps" attrs="{'required':[('service_type_usps','in',('First Class','First Class HFP Commercial'))], 'invisible':[('service_type_usps','not in',('First Class','First Class HFP Commercial'))]}" />
+                            </group>
+							
+                            <group colspan="4" col="4" attrs="{'invisible':[('size_usps','!=','LARGE')]}" >
+                                <separator string = "USPS Dimension" />
+                                <field name="width_usps" />
+                                <field name="length_usps" />
+                                <field name="height_usps" />
+                                <field name="girth_usps"  />
+                            </group>
+
+                        </group>
+                        
+                        <group colspan="4" col="4" name="fedex" attrs="{'invisible':[('shipping_type','!=','Fedex'), ('shipping_type','!=','All')]}" >
+                            <separator string = "Fedex" />
+
+                            <group colspan="4" col="4" >
+                                <field name="dropoff_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="service_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="packaging_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                               &lt;!&ndash; <field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" /> &ndash;&gt;
+                                <field name="payment_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="physical_packaging_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                            </group>
+
+                        </group>
+
+                        <group colspan="4" col="4" name="ups" attrs="{'invisible':[('shipping_type','!=','UPS'), ('shipping_type','!=','All')]}" >
+                            <separator string = "UPS" />
+
+                            <group colspan="4" col="4" >
+                                <field name="pickup_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="service_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <field name="packaging_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                            </group>
+
+                        </group>
+
+                        <group col="3" >
+                            <button string="Generate Shipping Quotes" icon="gtk-apply" name="generate_shipping" type="object" attrs="{'invisible':[('carrier_tracking_ref','!=',False)]}"/>
+                            <button string="Compare Rates" icon="gtk-apply" name="open_compair_rate_wizard" type="object" attrs="{'invisible':[('carrier_tracking_ref','!=',False)]}"/>
+                            <button name="%(action_view_generate_shipping_labels)d" icon="gtk-apply" string="Generate Shipment Labels" type="action" attrs="{'invisible':[('state','not in',['confirmed','assigned'])]}"  />
+                        </group>
+
+                        <group colspan="4" col="2" >
+                            <separator string = "Shipping Quotes" colspan="2" />
+                            <field name="response_usps_ids" nolabel="1" widget="one2many_list"  colspan="2" >
+                                <tree colors="blue:cust_default==True;red:sys_default==True;green:is_label_genrated==True" string="Shipping Quotes" >
+                                    &lt;!&ndash; <button name="generate_tracking_no" string="Accept and Generate Label" type="object" confirm="Are you Sure to generate a label..?" attrs="{'invisible':[('is_label_genrated','=',True)]}" icon="terp-camera_test" /> &ndash;&gt;
+                                    <field name="sequence"/>
+                					<field name="pack_info"/>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="is_label_genrated"/>
+                                   	<field name="label_genrated" invisible="1"/>
+                                    <field name="rate" />
+                                    <field name="cust_default" invisible="1"/>
+                                    <field name="sys_default" invisible="1" />
+                                    &lt;!&ndash; <button name="show_attachment" type="object" string="Show Receipt" attrs="{'invisible':[('is_label_genrated','!=',True)]}" icon="gtk-justify-fill"/> &ndash;&gt;
+                                </tree>
+                            </field>
+                        </group>
+
+                        
+                    </page>
+                        
+                    </page>
+            </field>
+        </record>-->
+		
+		  
+		
+        <!-- Shipping Info -->
+        <!-- <record id="view_shipping_picking_out_search" model="ir.ui.view">
+            <field name="name">stock.picking.shipping.out.search</field>
+            <field name="model">stock.picking</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Picking list">
+                    <group col="8" colspan="4">
+                        <filter icon="terp-camera_test" name="confirmed" string="Ready To Ship" domain="[('state','=','confirmed')]" help="Confirmed Delivery Orders"/>
+                        <filter icon="terp-dialog-close" name="done" string="Shipped" domain="[('state','=','done')]" help="Delivery orders already processed"/>
+                        <separator orientation="vertical"/>
+                        <field name="name"/>
+                        <field name="partner_id" />
+                        <field name="origin"/>
+                        <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+						<field name="stock_journal_id"  widget="selection"/>
+                        <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                   </group>
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4" col="8">
+                        <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="Order Date" icon="terp-go-month" domain="[]"  context="{'group_by':'date'}"/>
+                        <filter string="Expected Date" icon="terp-go-month" domain="[]"  context="{'group_by':'min_date'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="Journal" icon="terp-folder-orange" domain="[]" context="{'group_by':'stock_journal_id'}"  groups="base.group_extended"/>
+						<filter string="Journal" icon="terp-folder-orange" domain="[]" context="{'group_by':'stock_journal_id'}"  />
+                    </group>
+                </search>
+            </field>
+        </record> -->
+
+       <!--  <record id="view_shipping_picking_out_tree" model="ir.ui.view">
+            <field name="name">stock.picking.shipping.out.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state in ('draft');grey:state in ('cancel');red:state not in ('cancel', 'done') and date &lt; current_date" string="Delivery Orders">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="origin"/>
+                    <field name="date"/>
+                    <field name="min_date"/>
+                    <field name="backorder_id" groups="base.group_extended"/>
+					<field name="backorder_id" />
+                    <field name="invoice_state"/>
+                    <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+					<field name="stock_journal_id"  widget="selection"/>
+                    <field name="state"/>
+                    <button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward"/>
+                </tree>
+            </field>
+        </record> -->
+        
+        <!-- <record id="view_shipping_picking_out_form" model="ir.ui.view">
+            <field name="name">stock.picking.shipping.out.form</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Orders">
+                    <group col="6" colspan="4">
+                        <group colspan="4" col="4">
+                            <field name="name" readonly="1"/>
+                            <field name="origin" readonly="1"/>
+                            <field name="address_id" on_change="onchange_partner_in(address_id)" context="{'contact_display':'partner'}" colspan="4"/>
+                            <field name="carrier_id"/>
+                            <field name="carrier_tracking_ref" groups="base.group_extended"/>
+                            <field name="number_of_packages" groups="base.group_extended"/>
+							<field name="carrier_tracking_ref" readonly="1"/>
+                            <field name="number_of_packages"/>
+                            <field name="weight"/>
+                            <field name="weight_net"/>
+                            <field name="invoice_state"/>
+                            <field name="backorder_id" readonly="1" groups="base.group_extended"/>
+							<field name="backorder_id" readonly="1"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="date"/>
+                            <field name="min_date" readonly="1"/>
+                            <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+							<field name="stock_journal_id"  widget="selection"/>
+                            <field name="batch_no" />
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Shipping Info">
+							<group colspan="4" col="4" >
+                            <separator string = "Shipping Type" colspan="4"/>
+                            <field name="use_shipping" />
+                            <field name="shipping_type" />
+                        </group>
+
+                        <group colspan="4" col="4" >
+                            <separator string = "Weight" colspan="4"/>
+                            <field name="weight_package" string="Weight Package(LB)" colspan="4" required="True"/>
+                        </group>
+
+                        <group colspan="4" col="4" name="usps" attrs="{'invisible':[('shipping_type','!=','USPS'), ('shipping_type','!=','All')]}" >
+                            <separator string = "USPS" />
+                            <group colspan="4" col="4" >
+                                <field name="service_type_usps" attrs="{'required':['|', ('shipping_type','=','USPS'),('shipping_type','=','All')]}" />
+                                <field name="container_usps" />
+                                <field name="size_usps" attrs="{'required':['|', ('shipping_type','=','USPS'),('shipping_type','=','All')]}" />
+                                <field name="first_class_mail_type_usps" attrs="{'required':[('service_type_usps','in',('First Class','First Class HFP Commercial'))], 'invisible':[('service_type_usps','not in',('First Class','First Class HFP Commercial'))]}" />
+                            </group>
+							<separator string = "USPS Dimension" />
+                            <group colspan="4" col="4" attrs="{'invisible':[('size_usps','!=','LARGE')]}" >
+                                
+                                <field name="width_usps" />
+                                <field name="length_usps" />
+                                <field name="height_usps" />
+                                <field name="girth_usps" />
+                            </group>
+
+                        </group>
+                        
+                        <group colspan="4" col="4" name="fedex" attrs="{'invisible':[('shipping_type','!=','Fedex'), ('shipping_type','!=','All')]}" >
+                            <separator string = "Fedex" />
+
+                            <group colspan="4" col="4" >
+                                <field name="dropoff_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="service_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="packaging_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="payment_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                                <field name="physical_packaging_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')]}" />
+                            </group>
+
+                        </group>
+
+                        <group colspan="4" col="4" name="ups" attrs="{'invisible':[('shipping_type','!=','UPS'), ('shipping_type','!=','All')]}" >
+                            <separator string = "UPS" />
+
+                            <group colspan="4" col="4" >
+                                <field name="pickup_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')]}" />
+                                <field name="service_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')]}" />
+                                <field name="packaging_type_ups" attrs="{'required':['|', ('shipping_type','=','UPS'),('shipping_type','=','All')]}" />
+                            </group>
+
+                        </group>
+
+                        <group colspan="4" col="1" >
+                            <separator/>
+                            <button string="Generate Shipping Quotes" icon="gtk-apply" name="generate_shipping" type="object" />
+                        </group>
+
+                        <group colspan="4" col="2" >
+                            <separator string = "Shipping Quotes" colspan="2" />
+                            <field name="response_usps_ids" nolabel="1" widget="one2many_list"  colspan="2" >
+                                <tree colors="blue:cust_default==True;red:sys_default==True" string="Shipping Quotes" >
+                                    <button name="generate_tracking_no" string="Accept" type="object" icon="gtk-go-forward" />
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="rate" />
+                                    <field name="cust_default" invisible="1" />
+                                    <field name="sys_default" invisible="1" />
+                                </tree>
+                            </field>
+                        </group>
+                            <field name="state"/>
+                        </page>
+                    </notebook>
+                </form>
+           </field>
+       </record> -->
+
+
+       <!-- <record id="action_shipping_picking_tree" model="ir.actions.act_window">
+            <field name="name">Outgoing Orders For Shipping</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','out')]</field>
+            <field name="context">{'contact_display': 'partner_address', 'search_default_available': 1}</field>
+            <field name="search_view_id" ref="view_shipping_picking_out_search"/>
+            <field name="help">This is the list of all delivery orders with only their shipping tab.</field>
+        </record> -->
+        <!-- <record id="action_shipping_picking_tree_out_view1_waiting" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_shipping_picking_out_tree"/>
+            <field name="act_window_id" ref="action_shipping_picking_tree"/>
+        </record> -->
+        <!-- <record id="action_shipping_picking_tree_out_view2_waiting" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_shipping_picking_out_form"/>
+            <field name="act_window_id" ref="action_shipping_picking_tree"/>
+        </record> -->
+
+        <!-- <menuitem action="action_shipping_picking_tree" id="menu_action_shipping_picking_tree" parent="stock.menu_stock_warehouse_mgmt" sequence="4"/> -->
+		
+		
+		 
+		
+    </data>
+</openerp>

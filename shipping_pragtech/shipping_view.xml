@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- USPS Start -->
+        <record id="shipping_usps_form" model="ir.ui.view">
+            <field name="name">shipping.usps.form</field>
+            <field name="model">shipping.usps</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="USPS Settings">
+                    <notebook colspan="4">
+                        <page string="Settings">
+                            <group colspan="2" col="2">
+                                <separator string="General Information" colspan="2" />
+                                <field name="name" />
+                                <field name="user_id" />
+                            </group>
+                            <group>
+                                <separator string="Customer Information" colspan="2" />
+                                <field name="company_id"/>
+                                <field name="partner_id" domain="[('company_id','=',company_id)]"/>
+                                <field name="country_id"/>
+                            </group>
+
+                            <group colspan="2" col="2">
+                                <separator string="Others" colspan="2" />
+                                <!--<field name="default"/>-->
+                                <field name="test"/>
+                                <field name="active"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="shipping_usps_tree" model="ir.ui.view">
+            <field name="name">shipping.usps.tree</field>
+            <field name="model">shipping.usps</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="USPS Settings">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="company_id"/>
+                    <field name="partner_id"/>
+                    <field name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shipping_usps_action" model="ir.actions.act_window">
+            <field name="name">USPS Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.usps</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="shipping_usps_tree"/>
+            <field name="help">Key in Server name and User ID which you get from USPS website.</field>
+        </record>
+        <!-- USPS End -->
+
+        <!-- Fedex Start -->
+        <record id="shipping_fedex_form" model="ir.ui.view">
+            <field name="name">shipping.fedex.form</field>
+            <field name="model">shipping.fedex</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fedex Settings">
+                    <notebook colspan="4">
+                        <page string="Settings">
+                            <group colspan="2" col="2">
+                                <separator string="General Information" colspan="2" />
+                                <field name="name" />
+                                <field name="account_no" />
+                                <field name="key" />
+                                <field name="password" />
+                                <field name="meter_no" />
+                                <field name="integrator_id" />
+                            </group>
+                            <group>
+                                <separator string="Customer Information" colspan="2" />
+                                <field name="company_id"/>
+                                <field name="partner_id" domain="[('company_id','=',company_id)]"/>
+                                <field name="country_id"/>
+                            </group>
+
+                            <group colspan="2" col="2">
+                                <separator string="Others" colspan="2" />
+                                <!--<field name="default"/>-->
+                                <field name="test"/>
+                                <field name="active"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="shipping_fedex_tree" model="ir.ui.view">
+            <field name="name">shipping.fedex.tree</field>
+            <field name="model">shipping.fedex</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fedex Settings">
+                    <field name="name" />
+                    <field name="account_no" />
+                    <field name="key" />
+                    <field name="password" />
+                    <field name="meter_no" />
+                    <field name="integrator_id" />
+                    <field name="company_id"/>
+                    <field name="partner_id"/>
+                    <field name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shipping_fedex_action" model="ir.actions.act_window">
+            <field name="name">Fedex Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.fedex</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="shipping_fedex_tree"/>
+            <field name="help">Key in account details which you get from Fedex website.</field>
+        </record>
+        <!-- Fedex End -->
+
+        <!-- UPS Start -->
+        <record id="shipping_ups_form" model="ir.ui.view">
+            <field name="name">shipping.ups.form</field>
+            <field name="model">shipping.ups</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="UPS Settings">
+                    <notebook colspan="4">
+                        <page string="Settings">
+                            <group colspan="2" col="2">
+                                <separator string="General Information" colspan="2" />
+                                <field name="name" />
+                                <field name="access_license_no" />
+                                <field name="user_id" />
+                                <field name="password" />
+                                <field name="shipper_no" />
+                            </group>
+                            <group>
+                                <separator string="Customer Information" colspan="2" />
+                                <field name="company_id"/>
+                                <field name="partner_id" domain="[('company_id','=',company_id)]"/>
+                                <field name="country_id"/>
+                            </group>
+
+                            <group colspan="2" col="2">
+                                <separator string="Production/Test" colspan="2" />
+                                <!--<field name="default"/>-->
+                                <field name="test"/>
+                                <field name="active"/>
+                            </group>
+                            
+                            <!-- <group colspan="2" col="2">
+                                <separator string="Credit Card Details" colspan="2" />
+                                <field name="cc_type"/>
+                                <field name="cc_number"/>
+                                <field name="cc_e_d_year"/>
+                            </group> -->
+                        </page>
+                    </notebook>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="shipping_ups_tree" model="ir.ui.view">
+            <field name="name">shipping.ups.tree</field>
+            <field name="model">shipping.ups</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="UPS Settings">
+                    <field name="name" />
+                    <field name="access_license_no" />
+                    <field name="user_id" />
+                    <field name="password" />
+                    <field name="shipper_no" />
+                    <field name="company_id"/>
+                    <field name="partner_id"/>
+                    <field name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shipping_ups_action" model="ir.actions.act_window">
+            <field name="name">UPS Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.ups</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="shipping_ups_tree"/>
+            <field name="help">Key in account details which you get from UPS website.</field>
+        </record>
+        <!-- UPS End -->
+
+        <!--<delete model="ir.actions.report.xml" search="[('name','=','stock.stock.picking.list')]" />-->
+    </data>
+</openerp>

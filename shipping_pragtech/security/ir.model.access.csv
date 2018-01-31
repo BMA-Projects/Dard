@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shipping_ups_group_stock_manager,shipping_ups group_stock_manager,model_shipping_ups,,1,1,1,1
+access_shipping_usps_group_stock_manager,shipping_usps group_stock_manager,model_shipping_usps,,1,1,1,1
+access_shipping_fedex_group_stock_manager,shipping_fedex group_stock_manager,model_shipping_fedex,,1,1,1,1
+access_shipping_response_group_stock_manager,shipping_response_group,model_shipping_response,,1,1,1,1
+access_shipping_report_group_stock_manager,shipping_report_group,model_shipping_report,,1,1,1,1
+access_pack_weight_group_stock_manager,pack_weight_group,model_pack_weight,,1,1,1,1

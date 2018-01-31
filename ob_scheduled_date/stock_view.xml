@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Add In Hand Date to Delivery Order-->
+        <record id="view_picking_form_in_hand_date" model="ir.ui.view">
+            <field name="name">stock.picking.form.in.hand.date</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="in_hand_date" readonly="1" attrs="{'invisible':[('picking_type_code','=','incoming')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

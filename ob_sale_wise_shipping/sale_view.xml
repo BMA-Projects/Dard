@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Form View for Sale Order -->
+        <record model="ir.ui.view" id="sale_order_inherit_shipping_wise">
+            <field name="name">sale.order.inherit.shipping.wise</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/tree[@string='Sales Order Lines']/field[@name='price_subtotal']" position="after">
+                      <button name="%(split_into_sale_line_tag)d" string="Create a new line" states="draft" type="action" icon="terp-accessories-archiver+"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='tax_id']" position="before">
+                      <field name="shipping_address_id" context="{'from_so_line':True}"/>
+                      <field name="carrier_id_by_line"/>
+                </xpath>
+           </field>
+        </record>
+    </data>
+</openerp>

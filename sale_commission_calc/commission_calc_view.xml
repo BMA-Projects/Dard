@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+		<!-- SALE TEAM -->
+
+        <record model="ir.ui.view" id="view_sale_team_tree">
+            <field name="name">view.sale.team.tree</field>
+            <field name="model">sale.team</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Team">
+                    <field name="name"/>
+                    <field name="commission_rule_id"/>
+                    <field name="skip_invoice"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sale_team_form">
+            <field name="name">view.sale.team.form</field>
+            <field name="model">sale.team</field>
+            <field name="arch" type="xml">
+				<form string="Groups" version="7.0">
+                  <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="commission_rule_id"/>
+                        <field name="skip_invoice"/>
+                    </group>
+                    <notebook>
+                        <page string="Team Member">
+                            <field name="users"/>
+                        </page>
+                        <page string="Inherited Team">
+                            <label string="This team is the parent of the following teams"/>
+                            <field name="implied_ids"/>
+                        </page>
+                    </notebook>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sale_team_form">
+            <field name="name">Sale Teams</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.team</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_sale_team_tree"/>
+        </record>
+
+
+		<!-- COMMISSION RULE -->
+
+        <record model="ir.ui.view" id="view_commission_rule_tree">
+            <field name="name">view.commission.rule.tree</field>
+            <field name="model">commission.rule</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Rules">
+                    <field name="name"  select="1"/>
+                    <field name="type"  select="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_commission_rule_form">
+            <field name="name">view.commission.rule.form</field>
+            <field name="model">commission.rule</field>
+            <field name="arch" type="xml">
+                <form string="Commission Rule" version="7.0">
+                <sheet>
+                    <separator string="General info." colspan="4"/>
+                    <group>
+                    	<group>
+                    		<field name="name" select="1"/>
+                    	</group>
+                    	<group>
+                    		<field name="type" select="1"/>
+                    	</group>
+                    </group>
+                    <notebook>
+                    	<page string="Commission Rates">
+                        	<group >
+                    	    	<label string="Commission Rate is defined for each product. Please go to Sales tab in Product window to define it"
+                    	    	     attrs="{'invisible':[('type','!=','percent_product')]}"/>
+                    	    	<label string="Commission Rate is defined for each product category. Please go to Product Category window to define it"
+                    	    	     attrs="{'invisible':[('type','!=','percent_product_category')]}"/>
+                    	    	<field name="fix_percent" attrs="{'invisible':[('type','!=','percent_fixed')]}"/>
+							</group>
+							<field name="rule_rates" widget="one2many_list" colspan="4" nolabel="1"  attrs="{'invisible':[('type','not in',('percent_amount','percent_accumulate'))]}">
+								<tree string="Rule Rates" editable="bottom">
+	                                <field name="amount_over"/>
+	                                <field name="amount_upto"/>
+	                                <field name="percent_commission"/>
+	                            </tree>
+	                        </field>
+		            	</page>
+                    	<page string="Accumulate Conditions" attrs="{'invisible':[('type','not in',('percent_accumulate'))]}">
+							<field name="rule_conditions" widget="one2many_list" colspan="4" nolabel="1"  >
+								<tree string="Rule Conditions" editable="bottom">
+	                                <field name="sequence"/>
+	                                <field name="sale_margin_over"/>
+	                                <field name="sale_margin_upto"/>
+	                                <field name="commission_coeff"/>
+	                                <field name="accumulate_coeff"/>
+	                            </tree>
+	                        </field>
+		            	</page>
+					</notebook>
+				</sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_commission_rule_form">
+            <field name="name">Commission Rules</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_commission_rule_tree"/>
+        </record>
+
+
+
+		<!-- COMMISSION WORKSHEET -->
+
+        <record model="ir.ui.view" id="view_commission_worksheet_tree">
+            <field name="name">view.commission.worksheet.tree</field>
+            <field name="model">commission.worksheet</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Worksheet">
+                    <field name="name"/>
+                    <field name="sale_team_id"/>
+                    <field name="period_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_commission_worksheet_form">
+            <field name="name">view.commission.worksheet.form</field>
+            <field name="model">commission.worksheet</field>
+            <field name="arch" type="xml">
+                <form string="Commission Worksheet" version="7.0">
+					<header>
+                        <button name="action_confirm" states="draft" string="Confirm" type="object" class="oe_highlight" groups="base.group_user" />
+                        <!--<button name="invoice_cancel" states="invoice_except" string="Cancel" groups="base.group_user"/>-->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed" />
+               		</header>
+                <sheet>
+                    <h1>
+                        <label string="Worksheet "/>
+                        <field name="name" class="oe_inline" readonly="1"/>
+                    </h1>
+                    <div class="oe_right oe_button_box">
+                        <button name="action_calculate" string="Calculate Commission" states="draft" type="object" />
+                        <!--<button name="action_create_invoice" states="confirmed" string="Create Invoice" type="object"/>-->
+                    </div>
+					<group colspan="4">
+                        <group>
+                            <field name="sale_team_id"/>
+                        </group>
+                        <group>
+                            <field name="period_id"/>
+                        </group>
+						<field name="worksheet_lines" widget="one2many_list" colspan="4" nolabel="1" >
+                            <tree string="Worksheet Lines" editable="bottom">
+                                <field name="order_id"/>
+                                <field name="order_date"/>
+                                <field name="order_amt"/>
+                                <field name="margin"/>
+                                <field name="percent_margin"/>
+                                <field name="accumulated_amt"/>
+                                <field name="commission_amt" sum="Total Commission" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+				</form>
+            </field>
+        </record>
+
+        <record id="view_commission_worksheet_search" model="ir.ui.view">
+            <field name="name">commission_worksheet_search</field>
+            <field name="model">commission.worksheet</field>
+            <field name="arch" type="xml">
+                <search string="Accounts">
+                	<field name="name" filter_domain="['|', ('name','ilike',self), ('period_id','ilike',self)]" string="Name or Period"/>
+                	<filter icon="terp-sale" string="Draft" domain="[('state','=','draft')]"/>
+                	<filter icon="terp-sale" string="Confirm" domain="[('state','=','confirmed')]"/>
+                    <filter icon="terp-sale" string="Paid" domain="[('state','=','done')]"/>
+                    <filter icon="terp-sale" string="Waiting Pay" domain="[('wait_pay','=',1)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Team" icon="terp-folder-orange" domain="" context="{'group_by':'sale_team_id'}"/>
+                        <filter string="Status" icon="terp-stock_symbol-selection" domain="" context="{'group_by':'state'}"/>
+                        <filter string="Period" icon="terp-stock_symbol-selection" domain="" context="{'group_by':'period_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_commission_worksheet_form">
+            <field name="name">Commission Worksheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.worksheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_commission_worksheet_tree"/>
+            <field name="search_view_id" ref="view_commission_worksheet_search"/>
+        </record>
+
+        <menuitem name="Commission Calc" id="menu_commission_calc" parent="base.menu_base_partner"/>
+        <menuitem name="Sale Teams" id="menu_sale_team" parent="menu_commission_calc" action="action_sale_team_form" sequence="10"/>
+        <menuitem name="Commission Rules" id="menu_commission_rule" parent="menu_commission_calc" action="action_commission_rule_form"  sequence="20"/>
+        <menuitem name="Commission Worksheet" id="menu_commission_worksheet" parent="menu_commission_calc" action="action_commission_worksheet_form"  sequence="30"/>
+
+    </data>
+</openerp>

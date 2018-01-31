@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record id="view_sales_config_sale_order_setting" model="ir.ui.view">
+             <field name="name">sample order settings</field>
+             <field name="model">sale.config.settings</field>
+             <field name="inherit_id" ref="sale.view_sales_config"/>
+             <field name="arch" type="xml">
+                 <data>
+                     <xpath expr="//div[@name='Customer Features']" position="inside">
+                         <div>
+                              <field name="group_convert_order_in_zero" class="oe_inline" groups="ob_sale_purchase_sample.group_sample_order"/>
+                              <label for="group_convert_order_in_zero" groups="ob_sale_purchase_sample.group_sample_order"/>
+                         </div>
+                     </xpath>
+                 </data>
+             </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_sample_modified_form">
+            <field name="name">sale.order.sample.modified.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="before">
+                    <field name="is_sample" on_change="onchange_sample(is_sample)" attrs="{'readonly': [('state', 'in', ['done','manual'])]}" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" attrs="{'invisible': [('is_sample', '=', False)], 'required':[('is_sample', '=', True)], 'readonly': [('state', 'in', ['done','manual'])]}" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+                </field>
+                <xpath expr="/form/sheet/notebook/page[2]" position="after">
+                    <page string="Sample Information" attrs="{'invisible': [('is_sample', '=', False)], 'readonly': [('state', '=', 'done')]}" groups="ob_sale_purchase_sample.group_sample_order">
+                        <group col='4'>
+                            <field name="alarm_id"/>
+                            <field name="follow_up"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="procurment_order_form_view_sample_order" model="ir.ui.view">
+            <field name="name">procurment.order.form.view.sample.order</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view" />
+            <field name="arch" type="xml">
+                <field name="priority" position="after">
+                    <field name="is_sample" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+                </field>
+            </field>
+        </record>
+
+		<record id="view_ob_sample_order_stock_picking" model="ir.ui.view">
+			<field name="name">ob.sample.order.stock.picking</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<field name="min_date" position="after">
+					<field name="is_sample" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+				</field>
+			</field>
+		</record>
+
+		<record id="view_ob_product_stock_move_form" model="ir.ui.view">
+			<field name="name">ob.product.stock.move.form</field>
+			<field name="model">stock.move</field>
+			<field name="inherit_id" ref="stock.view_move_form" />
+			<field name="arch" type="xml">
+				<field name='create_date' position="after">
+					<field name="is_sample" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+				</field>
+            </field>
+		</record>
+
+        <record model="ir.ui.view" id="sample_invoice_customer_form">
+            <field name="name">account.invoice.customer.form.sample</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_invoice']" position="after">
+                    <field name="is_sample" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+                </xpath>
+            </field>
+       </record>
+
+        <record model="ir.ui.view" id="sample_purchase_order_form">
+            <field name="name">sample.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="is_sample" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+                </xpath>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="sample_invoice_supplier_form">
+            <field name="name">account.invoice.supplier.form.sample</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_invoice']" position="after">
+                    <field name="is_sample" groups="ob_sale_purchase_sample.group_sample_order"/>
+                    <field name="sample_type" widget="selection" groups="ob_sale_purchase_sample.group_sample_order"/>
+                </xpath>
+            </field>
+       </record>
+
+        <record id="view_sales_order_filter_sample" model="ir.ui.view">
+            <field name="name">sale.order.list.select.sample</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Done']" position="after">
+                    <filter string="Sample" domain="[('is_sample','=',True)]"/>
+                </xpath>
+                <xpath expr="//group//filter[@string='Order Month']" position="after">
+                    <filter string="Sample Type" domain="[]" context="{'group_by':'sample_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_purchase_order_filter_sample" model="ir.ui.view">
+            <field name="name">purchase.order.list.select.sample</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Exception']" position="after">
+                    <filter string="Sample" domain="[('is_sample','=',True)]"/>
+                </xpath>
+                <xpath expr="//group/filter[@string='Expected Month']" position="after">
+                    <filter string="Sample Type" domain="[]" context="{'group_by':'sample_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_picking_out_search_sample" model="ir.ui.view">
+            <field name="name">stock.picking.search.sample</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Backorders']" position="after">
+                    <filter string="Sample" domain="[('is_sample','=',True)]"/>
+                </xpath>
+                <xpath expr="//group/filter[@string='Procurement Group']" position="after">
+                    <filter string="Sample Type" domain="[]" context="{'group_by':'sample_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_move_search_sample" model="ir.ui.view">
+            <field name="name">stock.move.search.sample</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_search" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Done']" position="after">
+                    <filter string="Sample" domain="[('is_sample','=',True)]"/>
+                </xpath>
+                <xpath expr="//filter[@string='Scheduled']" position="after">
+                    <filter string="Sample Type" domain="[]" context="{'group_by':'sample_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_sample" model="ir.ui.view">
+            <field name="name">account.invoice.select.sample</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Unpaid']" position="after">
+                    <filter string="Sample" domain="[('is_sample','=',True)]"/>
+                </xpath>
+                <xpath expr="//group/filter[@string='Due Month']" position="after">
+                    <filter string="Sample Type" domain="[]" context="{'group_by':'sample_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>
+

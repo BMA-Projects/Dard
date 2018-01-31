@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Set color Orange if Scheduled date is lower than curent date -->
+        <record id="mrp_production_tree_change_color" model="ir.ui.view">
+            <field name="name">mrp.production.tree.change.color</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree[@string='Manufacturing Orders']" position="attributes">
+                    <attribute name="colors">bold:message_unread==True" colors="blue:state in ('draft','confirmed');orange:date_planned&lt;current_date and state not in ('done','cancel');black:date_planned&gt;=current_date;gray:state in ('done','cancel') 
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

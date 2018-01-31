@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_groups_form_inherit_fields_access">
+            <field name="name">res.groups.form</field>
+            <field name="model">res.groups</field>
+            <field name="inherit_id" ref="base.view_groups_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                	<page string="Fields">
+		                <group string="Invisible Fields">
+		                    <field name="invisible_res_groups" nolabel="1"/>
+		                </group>
+		                <group string="Read Only Fields">
+		                    <field name="read_only_res_groups" nolabel="1"/>
+		                </group>
+		            </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

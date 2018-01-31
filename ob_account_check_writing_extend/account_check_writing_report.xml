@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <report id="account_print_check_middle_extend"
+            string="Print Check (Middle) Extended"
+            model="account.voucher"
+            name="account.print.check.middle.extended"
+            rml="ob_account_check_writing_extend/report/check_print_middle_extended.rml"
+            multi="True"
+            auto="False"/>
+            
+     </data>
+</openerp>

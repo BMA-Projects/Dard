@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_scheduled_dt" model="ir.ui.view">
+            <field name="name">sale.order.form.scheduled.date</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Hide Order Date-->
+                <xpath expr="//field[@name='date_order']" position="replace">
+                    <field name="date_order" invisible="1"/>
+                </xpath>
+                <!-- Add Ship date, In hand date, Planned Date, visible Create date-->
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="create_date"/>
+                    <field name="ship_dt"/>
+                    <field name="planned_date" invisible="1"/>
+                    <field name="sc_date"/>
+                    <field name="in_hand_date" attrs="{'invisible':[('in_hand_date_visible','=',False)]}"/>
+                    <field name="in_hand_date_visible" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+                </xpath>
+                <!--  <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_line_ship_dt': ship_dt}</attribute>
+                </xpath> -->
+                <xpath expr="//tree[@string='Sales Order Lines']/field[@name='tax_id']" position="after">
+                    <field name="line_ship_dt"/>
+                    <field name="line_sc_date"/>
+                    <field name="line_planned_date" invisible="1"/>
+                </xpath>
+                <xpath expr="//form[@string='Sales Order Lines']/group/group[2]/field[@name='tax_id']" position="after">
+                    <field name="line_ship_dt" />
+                    <field name="line_sc_date"/>
+                    <field name="line_planned_date" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+

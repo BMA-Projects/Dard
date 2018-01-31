@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+		<record id="mrp_production_form_plating_color_form" model="ir.ui.view">
+            <field name="name">mrp.production.form.plating.color.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+            	
+            	<field name="date_planned" position="after">
+            		<field name="size" />
+                    <field name="metal_ids" widget="many2many_tags"/>
+                    <field name="s_mould" />
+                    <field name="p_mould" />
+            	</field>
+            
+                <xpath expr="//page[@string='Extra Information']" position="after">
+                	<page string="Production">
+	                	<group>
+	                		<group string="Sample Information">
+	                			<field name="prod_sample" />
+	                			<field name="prod_approval" />
+	                			<field name="prod_del_date" />
+	                			<field name="prod_approve_date" />
+	                			<field name="prod_sample_qty" />
+	                		</group>
+	                		<group col="4">
+	                			<group>
+									<field name="over_run" />
+									<field name="overrun_qty" />
+									<field name="prod_del_dt" string="Production Del. Date"/>
+									<field name="line_sc_date" />
+									<field name="line_specs_ids" widget="many2many_tags" /> 
+									<field name="line_specs" /> 
+									<field name="decoration_ids" widget="many2many_tags" />
+									<field name="packaging_ids" widget="many2many_tags" />
+								</group>
+							</group>
+						</group>
+						<!--  	<label for="line_specs" string="Line Specs" />
+							<field name="line_specs" /> -->
+                	</page>
+                
+                    <page string="Plating">
+                    	<field name="mrp_plating_ids">
+                			<tree string="Platting" editable="bottom">
+				            	<field name="plating_id" on_change="onchange_plating_id(parent.date_planned, parent.product_qty)"/>
+				                <!-- <field name="plating_1" /> -->
+				                <field name="plating_qty"/>
+				                <field name="plating_ship_qty"/>
+				                <field name="plating_ship_date" string = "Plating Del. Date"/>
+				                <!-- <field name="plaking_pkg_slip" /> -->
+               				</tree>
+               			</field>
+               		</page>
+               		<page string="Colors" >
+                		<group>
+                			<group string="Color">
+                				<field name="mrp_color_ids" nolabel="1">
+		                			<tree string="Colors" editable="bottom">
+		                				<field name="sale_color" />
+						            	<!-- <field name="sale_color_id"/> -->
+						                <field name="sale_color_qty" />
+						                <field name="sale_color_type"/>
+						                <!-- <field name="sale_color_type_id"/> -->
+		               				</tree>
+                				</field>
+                			</group>
+                			<group string="Print">
+		                		<field name="mrp_color_print_ids" nolabel="1">
+        		        			<tree string="Print" editable="bottom">
+        		        				<field name="sale_color_print"/>
+						            	<!-- <field name="sale_color_print_id"/> -->
+				        		        <field name="sale_color_print_qty" />
+				        		        <field name="sale_color_print_type"/>
+				                		<!-- <field name="sale_color_print_type_id"/> -->
+               						</tree>
+                				</field>
+                			</group>
+                		</group>
+                	</page>
+                 </xpath>
+           	</field>
+        </record>
+	</data>
+</openerp>	

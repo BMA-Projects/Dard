@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+
+		<record id="ir_cron_check_xml_file_test" model="ir.cron">
+			<field name="name">Sale Order</field>
+			<field name="interval_number">1</field>
+			<field name="interval_type">minutes</field>
+			<field name="numbercall">-1</field>
+			<field eval="False" name="doall" />
+			<field eval="'sale.order'" name="model" />
+			<field eval="'update_sale_orders_with_shipping'" name="function" />
+            <field eval="'()'" name="args" />
+			<field name="priority">1</field>
+		</record>
+
+	</data>
+</openerp>

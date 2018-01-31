@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <!-- Field Product Overrun in product form-->
+       <record model="ir.ui.view" id="product_overrun_view">
+            <field name="name">product.template.overrun.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="over_run"/>
+                </field>
+            </field>
+       </record>
+
+       <!-- Field Product Overrun in product form-->
+       <record model="ir.ui.view" id="product_overrun_form_view">
+            <field name="name">product.product.overrun.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="over_run"/>
+                </field>
+            </field>
+       </record>
+
+    <!-- Field Product Overrun in Sale order line-->
+       <record model="ir.ui.view" id="sale_order_overrun">
+            <field name="name">sale.order.overrun.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='price_unit']" position="after">
+                        <field name="over_run" />
+                        <field name="overrun_qty" />
+                </xpath>
+            </field>
+       </record>
+
+        <!-- Inherited form view of manufacturing order, Added Overrun field of Product. -->
+        <record id="mrp_production_form_overrun" model="ir.ui.view">
+            <field name="name">mrp.production.form.overrun</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_planned']" position="before">
+                    <field name="over_run" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+       <!-- Inherited form view of procurement order, Added Overrun field of Product. -->
+        <record id="view_procurement_form_overrun" model="ir.ui.view">
+            <field name="name">procurement.order.form.overrun</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='product_uos_qty']" position="before">
+                        <field name="over_run"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherited form view of purchase order, Added Overrun field of Product. -->
+         <record id="view_purchase_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath  expr="/form/sheet/notebook/page[@string='Products']/field[@name='order_line']/tree/field[@name='product_qty']" position="after">
+                    <field name="over_run" invisible="1"/>
+                </xpath>
+            </field>
+          </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- Sale order line allotment id and weight field invisible and new fields added -->
+        <record model="ir.ui.view" id="sale_order_inherit_adnart">
+            <field name="name">sale.order.inherit.form.adnart</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='th_weight']" position="after">
+                    <field name="mould"/>
+                    <field name="size"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='th_weight']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='address_allotment_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+           </field>
+        </record>
+
+        <!-- Blank Order Field invisible -->
+        <record model="ir.ui.view" id="sale_order_inherit_property_id">
+            <field name="name">sale.order.inherit.form.property</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="ob_product_variant.product_charges_sale_order_line"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_blank_order']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+           </field>
+        </record>
+
+    </data>
+</openerp>

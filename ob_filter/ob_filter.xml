@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!--group by for leads-->
+        <record id="view_lead_filter_inherit" model="ir.ui.view">
+            <field name="name">view.lead.filter.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//search/separator/separator//filter[@name='New Mail']" position="after">-->
+                    <!--<field name="partner_id"/>-->
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Last Message']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- group by for customer payments-->
+        <record id="view_customer_payment_filter" model="ir.ui.view">
+            <field name="name">view.customer.payment.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter_customer_pay"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Status']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+         <!--group by for Sales Order-->
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">view.sales.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group//filter[@string='Order Month']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--group by for Supplier Payments-->
+        <record id="view_account_voucher_filter" model="ir.ui.view">
+            <field name="name">view.account.voucher.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter_vendor_pay"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Status']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--group by for Supplier Invoices-->
+        <record id="view_account_invoice_filter" model="ir.ui.view">
+            <field name="name">view.account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Due Month']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--group by for Stock Moves-->
+        <record id="view_stock_moves_filter" model="ir.ui.view">
+            <field name="name">view.stock.moves.inherit</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_search"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Scheduled']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--group by for Purchase Quotation-->
+        <record id="view_purchase_quotation_filter" model="ir.ui.view">
+            <field name="name">view.purchase.quotation.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Expected Month']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--group by for Work Orders-->
+        <!--<record id="view_work_orders_filter" model="ir.ui.view">-->
+            <!--<field name="name">view.work.order.inherit</field>-->
+            <!--<field name="model">mrp.production.workcenter.line</field>-->
+            <!--<field name="inherit_id" ref="mrp_operations.view_mrp_production_workcenter_form_view_filter"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--&lt;!&ndash;<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="so_tracking_id"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="so_tracking_stage_id"/>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</xpath>&ndash;&gt;-->
+                <!--<xpath expr="//group/filter[@string='Scheduled Month']" position="after">-->
+                    <!--<filter string="Company" context="{'group_by':'company_id'}"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--group by for Product-->
+        <record id="view_product_template_filter_extend" model="ir.ui.view">
+            <field name="name">view.product.template.filter.extend</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Type']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- group by for Manufacturing Order -->
+        <record id="view_manufacturing_order_filter_extend" model="ir.ui.view">
+            <field name="name">view.manufacturing.order.filter.extend</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Scheduled Month']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- group by for Incoming Shipments -->
+        <record id="view_purchase_incoming_shipment_extend" model="ir.ui.view">
+            <field name="name">view.purchase.incoming.shipment.extend</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Procurement Group']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- group by for Journal Entries -->
+        <record id="view_account_journal_entries_filter" model="ir.ui.view">
+            <field name="name">view.account.journal.entries.filter</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_move_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Entries Month']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- group by for Purchase Receipt -->
+        <record id="view_account_purchase_receipt_filter" model="ir.ui.view">
+            <field name="name">view.account.purchase.receipt.filter</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter_vendor"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Status']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        !-- group by for Sales Receipt -->
+        <record id="view_account_sales_receipt_filter" model="ir.ui.view">
+            <field name="name">view.account.sales.receipt.filter</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter_sale"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="company_id"/>
+                </search>
+                <!--<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">-->
+                    <!--<field name="so_tracking_id"/>-->
+                    <!--<field name="so_tracking_stage_id"/>-->
+
+                <!--</xpath>-->
+                <xpath expr="//group/filter[@string='Status']" position="after">
+                    <filter string="Company" context="{'group_by':'company_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

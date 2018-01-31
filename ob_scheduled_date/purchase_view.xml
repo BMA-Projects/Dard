@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purchase_order_tree_change_color" model="ir.ui.view">
+            <field name="name">purchase.order.tree.change.color</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree[@string='Purchase Order']" position="attributes">
+                    <attribute name="colors">grey:state=='cancel';blue:state in ('wait','confirmed');red:state in ('except_invoice','except_picking');orange: minimum_planned_date&lt;current_date 
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

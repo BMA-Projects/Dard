@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<record id="ranking_report_form" model="ir.ui.view">
+            <field name="name">ranking.report.form</field>
+            <field name="model">ranking.report</field>
+            <field name="arch" type="xml">
+                <form string="Ranking Report">
+                    <group>
+                        <group>
+                            <field name="limit"/>
+                            <field name="filter_type" type="checkbox" required="1"/>
+                            <field name="customer_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','customer')],
+                                'required':[('filter_type','=','customer')]}"/>
+
+                            <field name="supplier_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','supplier')],
+                                'required':[('filter_type','=','supplier')]}"/>
+
+                            <field name="sales_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','sales_level')],
+                                'required':[('filter_type','=','sales_level')]}"/>
+
+                            <field name="purchase_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','purchase_level')],
+                                'required':[('filter_type','=','purchase_level')]}"/>
+
+                            <field name="product_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','product')],'required':[('filter_type','=','product')]}"/>
+
+                            <field name="salesperson_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','sales_person')],'required':[('filter_type','=','sales_person')]}"/>
+
+                            <field name="territory_filter" type="checkbox" attrs="{'invisible':[('filter_type','!=','state')],'required':[('filter_type','=','state')]}"/>
+
+                            <field name="product_id" type="checkbox" attrs="{'invisible':['|',('product_filter','!=','state'),('filter_type','!=','product')],'required':[('product_filter','=','state')]}"/>
+
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="get_ranking_data" string="Show Rank" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ranking_data" model="ir.actions.act_window">
+            <field name="name">Ranking Report Details</field>
+            <field name="res_model">ranking.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ranking_report_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Ranking Report Details"
+            action="action_ranking_data"
+            id="menu_open_ranking_report_data" parent="base.next_id_64" sequence="15"/>
+
+    </data>
+</openerp>

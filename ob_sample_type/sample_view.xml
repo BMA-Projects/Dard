@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="sample_type_form_view">
+            <field name="name">sample.type.form</field>
+            <field name="model">sample.type</field>
+            <field name="arch" type="xml">
+                <form string="Sample Type" version="7.0">
+                    <sheet>
+                       <group>
+                          <field name="name"/>
+                          <field name="description"/>
+                          <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sample_type_tree_view">
+            <field name="name">sample.type.tree</field>
+            <field name="model">sample.type</field>
+            <field name="arch" type="xml">
+                <tree string="Sample Type">
+                  <field name="name" />
+                  <field name="description"/>
+                  <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="sample_type_action">
+            <field name="name">Sample Type</field>
+            <field name="res_model">sample.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+       </record>
+
+        <menuitem action="sample_type_action" id="sample_type_master" name="Sample Type" parent="base.menu_base_config" sequence="80"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="crm_leads_view_state" model="ir.ui.view">
+            <field name="name">crm.lead.view.state</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Leads Form']/sheet/group/group/div/div[contains(@class, 'address_format')]" position="replace">
+                    <div class="address_format">
+                        <field name="city" placeholder="City" style="width: 40%%"/>
+                        <field name="state_id" on_change="onchange_state(state_id)" options='{"no_open": True, "create_name_field": "code"}' placeholder="Provinces" style="width: 27%%"/>
+                        <field name="zip" placeholder="Postal Code" style="width: 30%%"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_case_oppor_state" model="ir.ui.view">
+            <field name="name">crm.case.oppor.state</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Opportunities']/sheet/notebook/page[@string='Lead']/group/group/div/div[contains(@class, 'address_format')]" position="replace">
+                    <div class="address_format">
+                        <field name="city" placeholder="City" style="width: 40%%"/>
+                        <field name="state_id" class="oe_no_button" placeholder="Provinces" style="width: 27%%" options='{"no_open": True, "create_name_field": "code"}' on_change="onchange_state(state_id)"/>
+                        <field name="zip" placeholder="Postal Code" style="width: 30%%"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

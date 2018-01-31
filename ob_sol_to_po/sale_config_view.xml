@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_config_new_po" model="ir.ui.view">
+            <field name="name">sale.config.new.po</field>
+            <field name="model">sale.config.settings</field>
+            <field name="inherit_id" ref="sale.view_sales_config"/>
+            <field name="arch" type="xml">
+                <data>
+                    <div name="customer feature" position="after">
+                        <separator string="Create New Po and Po Line"/>
+                        <group>
+                            <label for="id" string="Create New Po And Po Line"/>
+                            <div name="create_po_or_poline">
+                                <field name="create_po_or_poline" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </div>
+                </data>
+             </field>
+        </record>
+    </data>
+</openerp>

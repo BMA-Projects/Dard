@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="sale_order_special_instruction">
+            <field name="name">sale.order.special.instruction</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@string='Other Information']" position="after">
+                    <page string="Special Instrcution">
+                        <group>
+                            <field name="printing_note"/>
+                            <field name="packing_note"/>
+                            <field name="shipping_note"/>
+                        </group>
+                    </page>
+                </xpath>    
+            </field>
+        </record>
+
+    </data>
+</openerp>

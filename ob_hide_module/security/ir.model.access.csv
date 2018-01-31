@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hide_module_admin_user,ir.module.module,model_ir_module_module,group_hide_modules,0,0,0,0

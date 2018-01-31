@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- inherit res partner view for adding extra field  --> 
+        <record id="shipping_partners_form_inherit_view" model="ir.ui.view">
+            <field name="name">shipping.partners.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="type">form</field>            
+            <field name="arch" type="xml">
+                <!-- <field name="property_product_pricelist" position="after">
+                    <field name="price_list_for_invoice"/>
+                </field> -->
+                <xpath expr="//page[@string='Accounting']" position="after">
+                    <page string="Shipping Accounts" invisible="1">
+                        <group col="3">
+	                        <field name="ups_id" domain="[('partner_id','=',id)]"/><group></group>
+	                        <field name="fedex_id" domain="[('partner_id','=',id)]"/><group></group>
+	                        <field name="usps_id" domain="[('partner_id','=',id)]"/><group></group>
+	                    </group>
+                    </page>
+                </xpath>
+           </field>
+     	</record>
+     	
+  	</data>
+</openerp>

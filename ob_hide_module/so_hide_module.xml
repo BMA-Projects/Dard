@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="base.menu_management" name="Modules" parent="base.menu_administration" groups="so_hide_module.group_hide_modules" sequence="0"/>
+
+        <!--  Earlier is decided to hide author, license and website in treeview, formview and filter -->
+        <!--record id="module_form_view_hidden" model="ir.ui.view">
+            <field name="name">module.form.view.hidden</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Module']/sheet/group" position="replace">
+                    <group>
+                        <group>
+                            <field name="author" invisible="1"/>
+                            <field name="website" widget="url" attrs="{'invisible':[('website','=',False)]}" invisible="1"/>
+                            <field name="category_id" widget="selection"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="license" invisible="1"/>
+                            <field name="installed_version"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="module_tree_view_hidden" model="ir.ui.view">
+            <field name="name">module.tree.view.hidden</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='author']" position="replace">
+                    <field name="author" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="module_filter_view_hidden" model="ir.ui.view">
+            <field name="name">module.list.select.hidden</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.view_module_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/filter[@string='Author']" position="replace">
+                    <filter string="Author" icon="terp-personal" domain="[]" context="{'group_by':'author'}" invisible="1"/>
+                </xpath>
+            </field>
+        </record-->
+
+
+    </data>
+</openerp>

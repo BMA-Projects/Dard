@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_order_reopen_form" model="ir.ui.view">
+            <field name="name">sale.order.reopen.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <button name="action_cancel" position="after">
+                    <button name="action_reopen" type="object" states="manual,progress,shipping_except" string="Re-open" icon="gtk-convert"  groups="base.group_sale_salesman,base.group_sale_manager"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

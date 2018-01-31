@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+<!--
+    Added Buttons in Product Template
+-->        
+        <record id="product_template_only_form_view_extend" model="ir.ui.view">
+            <field name="name">product.template.only.form.view.extend</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button class="oe_inline oe_stat_button" name="open_product_prices"
+                                string="View Prices" type="object" icon="fa-bars"/>
+                </xpath>
+            </field>
+        </record>
+        
+<!--
+    Added Buttons in Product Variants
+-->
+        <record id="product_normal_form_view_extend" model="ir.ui.view">
+            <field name="name">product.product.normal.form.view.extend</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button class="oe_inline oe_stat_button" name="open_product_prices"
+                                string="View Prices" type="object" icon="fa-bars"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--
+    Tree view of Product Pricelist item in Product
+-->
+        <record id="product_pricelist_item_tree_view" model="ir.ui.view">
+            <field name="name">product.pricelist.item.tree.view</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="arch" type="xml">
+                <tree string="Products Listprices Items">
+                    <field name="product_tmpl_id" string="Product"/>
+                    <field name="product_id" string="Variant"/>
+                    <field name="min_quantity" string="Quantity"/>
+                    <field name="price_surcharge" string="Price"/>
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+

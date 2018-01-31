@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+security_authnet_credentials,security.authnet.credentials,model_account_authnet,account.group_account_manager,1,1,1,1
+security_account_authnet,security.account.authnet,model_account_authnet,account.group_account_invoice,1,0,0,0
+security_authnet_cim_mgr,security.authnet.cim.mgr,model_account_authnet_cim,account.group_account_manager,1,1,1,1
+security_authnet_cim_acct,security.authnet.cim.acct,model_account_authnet_cim,account.group_account_user,1,1,1,0
+security_authnet_cim_inv,security.authnet.cim.inv,model_account_authnet_cim,account.group_account_invoice,1,1,1,0
+security_authnet_cim_pay_mgr,security.authnet.cim.pay.mgr,model_account_authnet_cim_payprofile,account.group_account_manager,1,1,1,1
+security_authnet_cim_pay_acct,security.authnet.cim.pay.acct,model_account_authnet_cim_payprofile,account.group_account_user,1,1,1,0
+security_authnet_cim_pay_inv,security.authnet.cim.pay.inv,model_account_authnet_cim_payprofile,account.group_account_invoice,1,1,1,0
+security_cc_transactions,security.authnet.cc.transaction,model_credit_card_transaction,,1,1,1,1
+security_cc_message,security.authnet.cc.message,model_account_voucher_pay,,1,1,1,1

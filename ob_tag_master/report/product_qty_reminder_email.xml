@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1"> 
+        <record id="product_qty_reminder_email" model="email.template">
+            <field name="name">stock Reminder Email</field>
+            <field name="model_id" ref="ob_tag_master.model_product_cron"/>
+            <field name="email_from">${(user.email or 'admin@dard.com')|safe}</field>
+            <field name="email_to">test@officebrain.com</field>
+            <field name="subject"><![CDATA[Stock alert]]></field>
+            <field name="body_html">
+                <![CDATA[
+                    <table width="755" align="center" cellspacing="0" cellpadding="0" id="wrapper">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                <table width="750px" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center"><img alt="" src="ob_tag_master/static/src/img/top.png" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                <table width="730" align="center" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr style="background-color: #E8E8E8">
+                                            <td width="38">&nbsp;</td>
+                                            <td valign="top">
+                                            <div style="float: left;width: 100%;">
+                                                <strong><p> These are the products with stock less then minimum defined quantity.</p></strong>
+                                            </div>
+                                            <div id="`" style="border-bottom: 1px dotted #000; height: 1px; float: left; width: 100%;">&nbsp;</div>
+                                            <div align="center" style="display: block; float: left; padding: 15px 0px;width:700px;">
+
+                                                % if ctx.get('product_list'):
+                                                    <table cellspacing="2" cellpadding="2" style="border: 1px groove;border-collapse: collapse;">
+                                                        <tr>
+                                                            <th style="border: 1px groove;">No.</th>
+                                                            <th style="border: 1px groove;">SKU</th>
+                                                            <th style="border: 1px groove;">Product</th>
+                                                            <th style="border: 1px groove;">Quantity<br>Available</th>
+                                                            <th style="border: 1px groove;">Incoming<br>Quantity</th>
+                                                        </tr>
+
+                                                        % for vals in ctx.get('product_list'):
+                                                            <tr>
+                                                                <td style="border: 1px groove ;">${vals.count}</td>
+                                                                <td style="border: 1px groove ;">${vals.sku}</td>
+                                                                <td style="border: 1px groove ;">${vals.prod_name}<br>(${vals.attribs})</td>
+                                                                <td style="border: 1px groove ;text-align:center;">${vals.qty}</td>
+                                                                <td style="border: 1px groove ;text-align:center;">${vals.incoming_qty}</td>
+                                                            </tr>
+                                                        % endfor
+                                                    </table>
+                                                % else:
+                                                    <strong><p>All products are above stock minimum quantities.</p></strong>
+                                                % endif
+                                                <p> *** This is an automatically generated email, please do not reply *** </p>
+                                                <br />
+                                            <div style="border-bottom: 1px dotted #000; height: 1px; float: left; width: 100%;">&nbsp;
+                                            </div>
+                                            <div style=" float: right; width: 100%;text-align:right;">Date:- ${ctx.get('email_date')}</div>
+                                            <p style="margin: 0px; padding: 10px 0px; float: left; width: 100%;">
+                                            </p>
+                                            </td>
+                                            <td width="38"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                <table cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="730px"><img src="http://www.work247.com/go/images/bottom.jpg" alt="" style="padding: 0px 0px 0px 1px;" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>&nbsp;</p>
+            ]]>
+            </field>
+        </record>
+    </data>
+</openerp>

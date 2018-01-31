@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<record id="sale_order_stage_change_allow" model="ir.ui.view">
+            <field name="name">sale.order.allow.change</field>
+            <field name="model">sale.order.allow.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sample Information Update Form">
+                    
+                        <b>Are You Sure you Want To Change The Stage ?</b>
+                        <br /> 
+                    <group col="4" colspan="4">  
+                        <field name="message_allow"/>
+                    </group>
+                    <footer>
+                        <button name="update_sale_stage_change_info" id="stage_change" data-att-id="4" string="Yes" type="object" class="oe_highlight stage_change"/>
+                        or
+                        <button name="no_update_sale_stage_change_info" type="object" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_stage_change_allow" model="ir.actions.act_window">
+            <field name="name">Update Stage</field>
+            <field name="res_model">sale.order.allow.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

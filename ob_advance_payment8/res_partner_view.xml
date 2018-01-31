@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="view_partner_advance_pay_2_form" model="ir.ui.view">
+           <field name="name">view.partner.advance.pay.form</field>
+           <field name="model">res.partner</field>
+	   <field name="type">form</field>
+	   <field name="inherit_id" ref="account.view_partner_property_form" />
+	   		<field name="arch" type="xml">
+				<xpath expr="//field[@name='credit_limit']" position="replace">
+					
+                                        <field name="credit_limit" invisible="1"/>
+				</xpath>
+
+				<xpath expr="//field[@name='credit_limit']" position="before">
+					<field name="allow_credit" attrs="{'invisible':[('customer','=',False)]}"
+						/>
+					<field name="fix_credit_limit" readonly="True"
+						attrs="{'invisible':['|',('customer','=',False),('allow_credit','=',False)]}" />
+                                        <field name="avbl_limit" attrs="{'invisible':['|',('customer','=',False),('allow_credit','=',False)]}"/>
+                                        
+				</xpath>
+
+				<xpath expr="//field[@name='credit_limit']" position="after">
+                                        <!--<field name="alert_after"
+						attrs="{'invisible':['|',('allow_credit','=',False),('customer','=',False)]}"
+						 />
+					<field name="allow_advance"
+						attrs="{'invisible':['|',('customer','=',False),('allow_credit','=',False)]}"
+						/>
+					<field name="avbl_advance"
+						attrs="{'invisible':['|',('customer','=',False),('allow_advance','=',False)]}" />-->
+
+                                        <!--<field name="avbl_credit_limit" attrs="{'invisible':[('customer','=',False)]}"/>-->
+                                        <button type='action' name="%(action_add_credit)d"
+						attrs="{'invisible':['|',('allow_credit','=',False),('customer','=',False)]}"
+						string="Add Credit" />
+				</xpath> 
+		</field>
+	</record>
+
+
+
+
+       <record id="view_order_form_advance_pay_2_form" model="ir.ui.view">
+           <field name="name">view.order.form.advance.pay2.form</field>
+           <field name="model">sale.order</field>
+	   <field name="type">form</field>
+	   <field name="inherit_id" ref="sale.view_order_form" />
+   		<field name="arch" type="xml">
+			<xpath expr="//field[@name='currency_id']" position="after">
+                             <!--<field name="avbl_credit_limit" />-->
+                             <field name="avbl_limit"/>
+                             <field name="credit_hold" invisible="1"/>
+			</xpath>
+                        
+		</field>
+	</record>
+
+
+       <record id="invoice_advance_pay_form" model="ir.ui.view">
+           <field name="name">view.account.invoice.advance.pay.form</field>
+           <field name="model">account.invoice</field>
+	   <field name="type">form</field>
+	   <field name="inherit_id" ref="account.invoice_form" />
+   		<field name="arch" type="xml">
+			<xpath expr="//field[@name='account_id']" position="after">
+                             <field name="avbl_credit_limit" invisible="1"/>
+                            <!-- <field name="avbl_limit"/>-->
+			</xpath>
+		</field>
+	</record>
+
+
+	<record id="view_sales_order_filter_credit_hold" model="ir.ui.view">
+   		<field name="name">sale.order.list.select.inherit.credit.hold</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+        	<xpath expr="//filter[@string='Done']" position="after">
+                <filter string="Credit Status" domain="[('credit_hold','=','On Credit Hold')]"/>
+            </xpath>
+<!--                 <xpath expr="//group[@string='Group By']" position="inside"> -->
+<!--                     <filter string="Credit Status" domain="[]" context="{'group_by':'credit_hold'}"/> -->
+<!--                 </xpath> -->
+    	</field>
+    </record>
+	
+	
+	<record id="view_quotation_tree_credit_hold" model="ir.ui.view">
+   		<field name="name">sale.order.tree.ext.credit.note</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+        	<field name="state" position="after">
+            	<field name="credit_hold" />
+           	</field>
+    	</field>
+    </record>
+    
+    <record id="view_order_tree_credit_hold" model="ir.ui.view">
+   		<field name="name">sale.order.tree.ext.credit.note</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+        	<field name="state" position="after">
+            	<field name="credit_hold" />
+           	</field>
+    	</field>
+    </record>
+		
+
+    </data>
+</openerp>
+

@@ -1,0 +1,51 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_charges_sale_order_line">
+            <field name="name">sale.order.line.product.charges.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form/group" position="after">
+                    <group colspan="2" string="Product Options" attrs="{'invisible':['|','|',('is_variant','=',False),('has_imprint_method','=',False),('is_blank_order','=',True)]}" col="4">
+                        <field name="imprint_data" invisible="1"/>
+                        <field name="imprint_data_fields" invisible="1"/>
+                        <field name="charges_data" on_change="line_calculate_charges(product_id, line_no_of_pms_code, line_no_of_color, line_no_of_position, line_no_of_free_color, line_no_of_free_side, charges_data, imprint_method, product_uom_qty)" invisible="1"/>
+                        <field name="apply_pms_charge" invisible="1"/>
+                        <field name="is_variant" invisible="1"/>
+                    </group>
+                    <group colspan="2" attrs="{'invisible':['|','|',('is_variant','=',False),('has_imprint_method','=',False),('is_blank_order','=',True)]}" col="4">
+                        <group>
+                            <field name="imprint_method" context="{'from_sale':True,'product_id':product_id}"
+                               options="{'no_create': True, 'no_create_edit':True}"
+                               on_change="onchange_imprint_method(product_id,imprint_method,product_uom_qty)"
+                               attrs="{'invisible':['|',('is_variant','=',False),('has_imprint_method','=',False)]}" />
+                            <field name="pms_code" widget="many2many_tags" options="{'custom_field': true,'is_pms_code': true}"
+                               on_change="onchange_imprint_method_fields(product_id, charges_data, False, False, line_no_of_color, line_no_of_pms_code, line_no_of_free_color, line_no_of_free_side, imprint_method, pms_code)"
+                               attrs="{'invisible':['|',('apply_pms_charge','=',False),('imprint_method','=',False)]}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                    <field name="setup_charge" attrs="{'invisible':['|',('is_variant','=',False),('has_imprint_method','=',False)]}"/>
+                    <field name="run_charge" attrs="{'invisible':['|',('is_variant','=',False),('has_imprint_method','=',False)]}"/>
+                    <field name="up_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                    <field name="ltm_charge" attrs="{'invisible':[('is_variant','=',False)]}"/>
+                    <field name="pms_charge" attrs="{'invisible':['|','|',('apply_pms_charge','=',False),('is_variant','=',False),('has_imprint_method','=',False)]}"/>
+                    <field invisible="1" name="is_charge_service"/>
+                	<field invisible="1" name="parent_order_line_id"/>
+                    <field invisible="1" name="temp_qty" on_change="onchange_product_qty(charges_data, product_uom_qty)"/>
+                    <field name="has_imprint_method" invisible="1"/>
+                    <field invisible="1" name="line_no_of_pms_code" />
+                    <field invisible="1" name="line_no_of_color" />
+                    <field invisible="1" name="line_no_of_position" />
+                    <field invisible="1" name="line_no_of_free_color" />
+                    <field invisible="1" name="line_no_of_free_side" />
+                    <field invisible="1" name="line_attr_max_val" />
+                    <field name="is_blank_order" on_change="onchange_is_blank_order(imprint_method)"/>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

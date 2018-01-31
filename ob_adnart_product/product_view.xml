@@ -1,0 +1,27 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="adnart_product_form_view">
+            <field name="name">adnart.product.form.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="after">
+                    <field name="old_item_id"/>
+                    <field name="parent_item"/>
+                    <field name="attachment" />
+                    <field name="packaging" />
+                    <field name="product_note" />
+                    <field name="product_size" />
+                </field>
+                <xpath expr="//page[@string='Information']" position="after">
+                	<page string="Child Products">
+               			<label for="prod_attac_ids" string="Attachment Product" options="{'create':False}"/>
+               			<field name="prod_attac_ids" />
+               			<label for="prod_packa_ids" string="Package Product" />
+               			<field name="prod_packa_ids" />
+                	</page>
+                </xpath>
+            </field>
+        </record>
+     </data>
+</openerp>

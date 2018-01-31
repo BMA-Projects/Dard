@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="category_code_tree_view">
+            <field name="name">category.code.tree</field>
+            <field name="model">category.code</field>
+            <field name="arch" type="xml">
+                <tree string="Category Code">
+                  <field name="code" />
+                  <field name="description" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="category_code_form_view">
+            <field name="name">category.code.form</field>
+            <field name="model">category.code</field>
+            <field name="arch" type="xml">
+                <form string="Category Code" version="7.0">
+                    <sheet>
+                       <group>
+                            <field name="code" />
+                            <field name="description" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="category_code_action">
+            <field name="name">Category Code</field>
+            <field name="res_model">category.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+       </record>
+
+       <menuitem action="category_code_action" id="menu_configuration_categ_code" name="Category Code" parent="account.menu_finance_configuration" />
+
+    </data>
+</openerp>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- VOUCHER view -->
+<record id="view_vendor_receipt_form_cc_authnet" model="ir.ui.view">
+	<field name="name">account.voucher.receipt.form.cc.authnet</field>
+	<field name="model">account.voucher</field>
+	<field name="inherit_id" ref="sod_account_payment_cc.view_vendor_receipt_form_cc"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name='invoice_addr_id']" position="after">
+			<field name="cim_id" invisible="1" /> 
+			<field name="cim_payment_id" options='{"create":False, "create_edit": False}' 
+				attrs="{'invisible':['|',('cim_id','=',False),('new_card','=',True)], 'readonly':[('state','not in',['draft'])]}"/>
+		</xpath>
+		<xpath expr="//page[@string='Payment Information']" position="after">
+			<page string="CC Transaction" attrs="{'invisible':['|',('cim_id','=',False),('state','!=','posted')]}">
+				<field name="transaction_ids">
+					<tree>
+						<field name="trans_date" />
+						<field name="pim_id" />
+						<field name="trans_id" />
+						<field name="amount" />
+					</tree>
+				</field>
+			</page>
+		</xpath>
+	</field>
+</record>
+
+<!-- POPUP view -->
+<record id="view_vendor_receipt_dialog_form_cc_authnet" model="ir.ui.view">
+	<field name="name">account.voucher.receipt.dialog.form.cc.authnet</field>
+	<field name="model">account.voucher</field>
+	<field name="inherit_id" ref="sod_account_payment_cc.view_vendor_receipt_dialog_form_cc"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name='invoice_addr_id']" position="after">
+			<field name="cim_id" invisible="1" />
+			<field name="cim_payment_id" options='{"create":False, "create_edit": False}' 
+				attrs="{'invisible':['|',('cim_id','=',False),('new_card','=',True)], 'readonly':[('state','not in',['draft'])]}"/>
+		</xpath>
+		<xpath expr="//page[@string='Payment Information']" position="after">
+			<page string="CC Transaction" attrs="{'invisible':['|',('cim_id','=',False),('state','!=','posted')]}">
+				<field name="transaction_ids">
+					<tree>
+						<field name="trans_date" />
+						<field name="pim_id" />
+						<field name="trans_id" />
+						<field name="amount" />
+					</tree>
+				</field>
+			</page>
+		</xpath>
+	</field>
+</record>
+
+</data>
+</openerp>

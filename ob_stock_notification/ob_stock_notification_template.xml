@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="email_template_stock_notification" model="email.template">
+            <field name="name">Stock Notification Template</field>
+            <field name="email_from">${object.company_id.partner_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Product Move Details</field>
+            <!--field name="email_to">${object.picking_id.partner_id.email}</field-->
+            <field name="model_id" ref="stock.model_stock_move"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div>
+    <p>
+        Hello,
+        <br/><br/>
+        The details of Product movement is as below.
+    </p>
+    <table border="1" cellpadding="5" cellspacing="1">
+        <tbody>
+            <tr>
+                <td><strong>Product:</strong></td><td>${object.product_id.name}</td>
+            </tr>
+            <tr>
+                <td><strong>Product Quantity:</strong></td><td>${object.product_qty} ${object.product_id.uom_id.name}</td>
+            </tr>
+            <tr>
+                <td><strong>Source Location:</strong></td><td>${object.location_id.name}</td>
+            </tr>
+            <tr>
+                <td><strong>Destination Location:</strong></td><td>${object.location_dest_id.name}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

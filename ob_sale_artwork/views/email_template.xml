@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="email_template_edi_virtual_process" model="email.template">
+            <field name="name">Virtual Approval - Send by Email</field>
+            <field name="email_from">${object.order_line_id.order_id.user_id.email or object.order_line_id.order_id.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="email_to"></field>
+            <!-- <field name="email_to">${object.order_line_id.order_id and object.order_line_id.order_id.partner_id.order_proof_email or object.order_line_id.order_id.partner_id.email}</field> -->
+            <field name="subject">Virtual Confirmation for ${object.order_line_id.product_id.name}</field>
+            <field name="partner_to">${object.order_line_id.order_id and object.order_line_id.order_id.partner_id.id}</field>
+            <field name="model_id" ref="ob_sale_artwork.model_sale_order_line_images"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.order_line_id.order_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                    <table width="755" align="center" cellspacing="0" cellpadding="0" id="wrapper">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                <table width="750px" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center"><img alt="" src="http://www.work247.com/go/images/top.png" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                <table width="730" align="center" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr style="background-color: #E8E8E8">
+                                            <td width="38">&nbsp;</td>
+                                            <td valign="top">
+                                            <div style="float: left;width: 100%;">
+                                                % if object.order_line_id.order_id.partner_id.company_id.logo:
+                                                    <img src="data:image/png;base64, ${object.order_line_id.order_id.partner_id.company_id.logo}" /> 
+                                                %endif
+                                            </div>
+                                            <div class="detail" id="dynamicfields" title="`">
+                                            <ul style="display: block; width: 320px; float: left; margin: 0px; padding: 12px 0px 5px 0px;">
+                                                <li style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; list-style: none;
+                                                width: 250px; float: left; line-height: 22px;"><span style="font-size: medium;">Order# : <strong>[${(object.order_line_id.order_id.name) or 'N/A'}]</strong></span></li>
+                                                <li style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; list-style: none;
+                                                width: 250px; float: left; line-height: 22px;">Order Date :<strong> [${object.order_line_id.order_id.date_order}]</strong></li>
+                                                <li style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; list-style: none;
+                                                width: 250px; float: left; line-height: 22px;">Customer P.O # :<strong> [${(object.order_line_id.order_id.client_po_ref or 'N/A')}]</strong></li>
+                                                % if object.is_url:
+                                                	<li style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; list-style: none;
+	                                                width: 250px; float: left; line-height: 22px;">Virtual File Link : <strong><a target="_blank" href="${object.external_link}" >Download</a></strong></li>
+                                                %else:
+	                                                <li style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; list-style: none;
+	                                                width: 250px; float: left; line-height: 22px;">Virtual File Link : <strong><a href="${object.get_base_url()}${object.virtual_file_name_url}" >Download</a></strong></li>
+                                                %endif
+                                                
+                                            </ul>
+                                            </div>
+                                            <div id="Div1" style="border-bottom: 1px dotted #000; height: 1px; float: left; width: 100%;">&nbsp;</div>
+                                            <p style="margin: 0px; padding: 10px 0px; float: left; width: 100%;">**THIS IS AN AUTOMATED RESPONSE**</p>
+                                            <p style="margin: 0px; padding: 10px 0px; float: left; width: 100%;">Thank you for your order.&nbsp; Please review the  attached ORDER PROOF and click on one of the two options below:  &ldquo;Approved or Revision&rdquo;.&nbsp;&nbsp; After making your selection, a secondary  screen will appear.&nbsp; Please follow all the necessary instructions.&nbsp; If  you opted for a revision, you will receive a new proof shortly.</p>
+                                            <div id="`" style="border-bottom: 1px dotted #000; height: 1px; float: left; width: 100%;">&nbsp;</div>
+                                            <div align="center" style="display: block; float: left; padding: 15px 0px;width:700px;"><br />
+                                            
+                                            <a href="${object.approval_link}" id="approved1">
+                                            <img width="495" height="49" src="http://www.work247.com/go/images/btn-first.png" alt="" style="padding: 5px 0px; border: none;" /></a><br />
+                                            <a href="${object.semi_approval_link}" id="approved2">
+                                            <img width="495" height="49" src="http://www.work247.com/go/images/btn-second.png" alt="" style="padding: 5px 0px; border: none;" /></a>
+                                            <a href="${object.send_another_link}" id="approved3">
+                                            <br /><img width="495" height="49" src="http://www.work247.com/go/images/btn-third.png" alt="" style="padding: 5px 0px; border: none;" /></a></div>
+                                            <div style="border-bottom: 1px dotted #000; height: 1px; float: left; width: 100%;">&nbsp;</div>
+                                            <p style="margin: 0px; padding: 10px 0px; float: left; width: 100%;">Should  you have any questions, concerns or would like to speak to a customer service representative, please call ${object.order_line_id.order_id.partner_id.company_id.phone or ''}.&nbsp; Thank you again for  choosing ${object.order_line_id.order_id.partner_id.company_id.website or object.order_line_id.order_id.partner_id.company_id.name}.</p>
+                                            <p style="margin: 0px; padding: 10px 0px; float: left; width: 100%;">
+                                                % if object.order_line_id.order_id.partner_id.company_id.logo:
+                                                    <img src="data:image/png;base64, ${object.order_line_id.order_id.partner_id.company_id.logo}" /> 
+                                                %endif
+                                            </p>
+                                            </td>
+                                            <td width="38">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                <table cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="730px"><img src="http://www.work247.com/go/images/bottom.jpg" alt="" style="padding: 0px 0px 0px 1px;" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>&nbsp;</p>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

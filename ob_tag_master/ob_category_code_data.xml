@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="code_categ_1" model="category.code">
+            <field name="code">A</field>
+            <field name="description">Acquisition or Abandonment of Secured Property</field>
+        </record>
+
+        <record id="code_categ_2" model="category.code">
+            <field name="code">B</field>
+            <field name="description">Proceeds from broker and barter exchange transactions</field>
+        </record>
+
+        <record id="code_categ_3" model="category.code">
+            <field name="code">C</field>
+            <field name="description">Cancellation of Debt</field>
+        </record>
+
+        <record id="code_categ_4" model="category.code">
+            <field name="code">CAP</field>
+            <field name="description">Changes in  corporate control and capital structure</field>
+        </record>
+
+        <record id="code_categ_5" model="category.code">
+            <field name="code">G</field>
+            <field name="description">Certain government payments</field>
+        </record>
+
+        <record id="code_categ_6" model="category.code">
+            <field name="code">H</field>
+            <field name="description">Health coverage tax credit or advance payments</field>
+        </record>
+
+        <record id="code_categ_7" model="category.code">
+            <field name="code">INT</field>
+            <field name="description">Interest income</field>
+        </record>
+
+        <record id="code_categ_8" model="category.code">
+            <field name="code">MISC</field>
+            <field name="description">Miscellaneous income</field>
+        </record>
+
+    </data>
+</openerp>

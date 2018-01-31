@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="aged_partner_balance_inherited_view" model="ir.ui.view">
+            <field name="name">Partner Ageing</field>
+            <field name="model">account.aged.trial.balance.inherited</field>
+            <field name="inherit_id" ref="account.account_aged_balance_view" />
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//form/label[1]" position="replace" >
+                    <label string="Aged Partner Balance is a more detailed report of your receivables by intervals. When opening that report, OfficeBrainBMA asks for the name of the company, the fiscal period and the size of the interval to be analyzed (in days). OfficeBrainBMA then calculates a table of credit balance by period. So if you request an interval of 30 days OfficeBrainBMA generates an analysis of creditors for the past month, past two months, and so on. "/>
+                </xpath>
+                <xpath expr="//field[@name='target_move']" position="after">
+                    <!-- <field name="all_partner" invisible="context.get('from_menu', False)"/> -->
+                    <field name="all_partner"/>
+                    <field name="references"/>
+                </xpath>
+                <xpath expr="//group/field[@name='direction_selection']" position="after">
+                     <field name="period_length" string="Rest Period Length (Days)"/>
+                    
+                </xpath>
+                <xpath expr="//group/field[@name='period_length']" position="attributes">
+                    <attribute name='invisible'>1</attribute> 
+                </xpath>
+                <xpath expr="//group/field[@name='direction_selection']" position="before">
+                    <field name="first_period_length"/>       
+                </xpath>
+            </data>
+            </field>
+        </record>
+
+        <record id="action_aged_partner_balance_inherited_view" model="ir.actions.act_window">
+             <field name="name">Partner Ageing</field>
+             <field name="res_model">account.aged.trial.balance.inherited</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="view_id" ref="aged_partner_balance_inherited_view"/>
+             <field name="context">{'from_menu':False}</field>
+             <field name="target">new</field>
+        </record>
+
+        <record id="action_aged_partner_balance_inherited_view1" model="ir.actions.act_window">
+             <field name="name">Partner Ageing</field>
+             <field name="res_model">account.aged.trial.balance.inherited</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">tree,form</field>
+             <field name="view_id" ref="aged_partner_balance_inherited_view"/>
+             <field name="context">{'from_menu':True}</field>
+             <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="ir_values_aged_partner_balance_inherited">
+           <field name="key2" eval="'client_print_multi'"/>
+           <field name="model" eval="'res.partner'"/>
+           <field name="name">Partner Ageing</field>
+           <field name="value" eval="'ir.actions.act_window,%d'%action_aged_partner_balance_inherited_view"/>
+           <field name="context">{}</field>
+        </record>
+
+        <menuitem icon="STOCK_PRINT"
+            name="Aged Partner Balance"
+            action="action_aged_partner_balance_inherited_view1"
+            id="account.menu_aged_trial_balance"
+            parent="account.next_id_22"/>
+
+    </data>
+</openerp>

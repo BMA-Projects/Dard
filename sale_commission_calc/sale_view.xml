@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_ext" model="ir.ui.view">
+            <field name="name">view.order.form.ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="attributes">
+                    <attribute name="on_change">onchange_user_id(user_id)</attribute>
+                </field>
+                <field name="origin" position="after">
+                    <group colspan="2" col="2">
+                    <separator colspan="2" string="Team/Commission"/>
+                       <field name="sale_team_ids" nolabel="1">
+                            <tree string="Teams and Commissions" editable="top">
+                            	<field name="sale_id" invisible="1"/>
+                                <field name="sale_team_id"/>
+                                <field name="commission_rule_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_sale_order_team_tree">
+            <field name="name">view.sale.order.team.tree</field>
+            <field name="model">sale.order.team</field>
+            <field name="arch" type="xml">
+                <tree string="Teams">
+                    <field name="sale_id" invisible="1"/>
+                    <field name="sale_team_id"/>
+                    <field name="commission_rule_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sale_order_team_form">
+            <field name="name">view.sale.order.team.form</field>
+            <field name="model">sale.order.team</field>
+            <field name="arch" type="xml">
+                <form string="Teams">
+                    <field name="sale_team_id"/>
+                    <field name="commission_rule_id"/>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Overwrite existing "done" activity for account.voucher.basic workflow -->
+<record id="account_voucher.act_done" model="workflow.activity">
+	<field name="wkf_id" ref="account_voucher.wkf"/>
+	<field name="name">done</field>
+    <field name="action">proforma_voucher()</field>
+    <field name="kind">function</field>
+    <field name="flow_stop">True</field>
+</record>
+
+<!-- New "dispute" activity for failed CC transactions -->
+<record id="act_dispute" model="workflow.activity">
+	<field name="wkf_id" ref="account_voucher.wkf"/>
+	<field name="name">dispute</field>
+	<field name="action"></field>
+	<field name="kind">dummy</field>
+</record>
+
+<record id="t_dispute" model="workflow.transition">
+	<field name="act_from" ref="account_voucher.act_proforma"/>
+	<field name="act_to" ref="act_dispute"/>
+	<field name="signal">cc_dispute</field>
+	<field name="condition">True</field>
+</record>
+
+<record id="t_resolve" model="workflow.transition">
+	<field name="act_from" ref="act_dispute"/>
+	<field name="act_to" ref="account_voucher.act_done"/>
+	<field name="signal">proforma_voucher</field>
+	<field name="condition">True</field>
+</record>
+
+</data>
+</openerp>

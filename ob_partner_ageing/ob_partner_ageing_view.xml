@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <report
+            id="action_report_aged_partner_balance_inherited"
+            model="res.partner"
+            string="Partner Ageing"
+            report_type="qweb-pdf"
+            name="partner.report_agedpartnerbalance"
+            file="ob_partner_ageing.report_agedpartnerbalance_inherited"
+            menu="False"
+        />
+
+    </data>
+</openerp>

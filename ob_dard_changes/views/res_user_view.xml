@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="res_users_form_inherit_for_salesperson" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.for.salesperson</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="is_salesperson"/>
+                </xpath>
+                
+<!--                 <xpath expr="//page[@string='Preferences']" position="after"> -->
+<!--                     <page string="Check List"> -->
+<!--                     	<field name="check_list"> -->
+<!--                     		<tree editable="bottom"> -->
+<!--                     			<field name="sale_id" /> -->
+<!--                     			<field name="is_printed_first_time" /> -->
+<!--                     		</tree> -->
+<!--                     	</field> -->
+<!--                     </page> -->
+<!--                 </xpath> -->
+                
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="crm_case_form_view_leads_remove_escalate">
+            <field name="name">CRM - Leads Form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group/div/button[@name='case_escalate']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="crm_case_form_view_oppor_remove_escalate">
+            <field name="name">Opportunities</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group/div/button[@name='case_escalate']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_inherit_salesperson" model="ir.ui.view">
+            <field name="name">sale.order.inherit.salesperson</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='sc_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//tree[@string='Sales Order Lines']/field[@name='line_sc_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form[@string='Sales Order Lines']/group/group[2]/field[@name='line_sc_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/group/field[@name='amount_tax']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/group/field[@name='amount_untaxed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                     <attribute name="string">Sales Person</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                     <field name="order_processor"/>
+
+                </xpath>
+            </field>
+        </record>
+
+
+           <record id="sale_order_inherit_salesperson_isquotation" model="ir.ui.view">
+            <field name="name">sale.order.inherit.salesperson.isquotation</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='shipped']" position="after"> -->
+                <xpath expr="//field[@name='client_po_ref']" position="before">
+                     <field name="is_quotation"/>
+               </xpath>
+            </field>
+        </record>
+
+
+
+
+        <record id="invoice_supplier_form_for_salesperson" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.for.salesperson</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="invoice_form_for_salesperson" model="ir.ui.view">
+            <field name="name">account.invoice.form.for.salesperson</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='invoice_line_tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/group/field[@name='amount_tax']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/group/field[@name='amount_untaxed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/group/div/label[@for='amount_tax']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/group/div/button[@name='button_reset_taxes']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Other Info']/field[@name='tax_line']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_invoice_line_form_for_tax" model="ir.ui.view">
+            <field name="name">account.invoice.line.form.for.tax</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/group/group/field[@name='invoice_line_tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record id="mrp_production_form_view_for_salesperson" model="ir.ui.view">
+            <field name="name">mrp.production.form.for.salesperson</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group/field[@name='user_id']" position="attributes">
+                    <attribute name="domain">[('is_salesperson','=',True)]</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

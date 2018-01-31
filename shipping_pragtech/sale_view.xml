@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_order_form_inherit_frm_shp1" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.frm.shp1</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+<!--                 <field name="partner_id" position="after"> -->
+<!--                    <field name="invalid_addr" invisible="1"/> -->
+                  
+<!--                 </field> -->
+                
+                <field domain="[('type','=','sale')]" name="pricelist_id" position="after">
+                	<field name="journal_id"/>
+                </field>
+                <!-- <xpath expr="//group[@name='sale_total']" position="before">
+                    <group>
+                    	<field name="is_ship_customer_account"/>
+                    </group>
+                </xpath>  -->
+                <!--<field name="note" position="before">-->
+                    <!--<group>-->
+                    	<!--<field name="is_ship_customer_account" attrs="{'invisible':[('carrier_id','!=',False)]}"/>-->
+                    <!--</group>-->
+                <!--</field>-->
+                <label for="carrier_id" position="attributes">
+                	<attribute name="attrs">{'invisible':[('is_ship_customer_account','=',True)]}</attribute>
+                </label>
+                <field name="carrier_id" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_ship_customer_account','=',True)]}</attribute>
+                </field>
+                <button name="delivery_set" position="attributes">
+                	<attribute name="attrs">{'invisible':['|','|',('carrier_id','=',False),('state','not in',('draft','sent')),('is_ship_customer_account','=',True)]}</attribute>
+                </button>
+	                
+                <field name="partner_shipping_id" position="replace">
+                    <field name="partner_shipping_id" on_change="onchang_label(partner_shipping_id)"/>
+                    <field name="is_test" invisible="1"/>
+                </field>
+                <field name="partner_shipping_id" position="after">
+                    <group colspan="4" col="4">
+                        <newline></newline>
+                   		<!-- <button name="check_address_validate" string="Check Address Validity" type="object" attrs="{'invisible': [('state','in',['progress','manual','done'])]}"/> -->
+                   		<button name="check_address_validate" string="Check Address Validity" type="object" attrs="{'invisible': [('is_test','=',True)]}"/>
+                   		<field name="valid_note" nolabel="1"/>
+                   	</group>
+                </field>
+            </field>
+        </record>
+
+<!--         <record id="view_order_form_inherit_frm_shp2" model="ir.ui.view"> -->
+<!--             <field name="name">sale.order.form.inherit.frm.shp2</field> -->
+<!--             <field name="model">sale.order</field> -->
+<!--             <field name="type">form</field> -->
+<!--             <field name="inherit_id" ref="sale.view_order_form" /> -->
+<!--             <field name="arch" type="xml"> -->
+<!--                 <field domain="[('type','=','sale')]" name="pricelist_id" groups="base.group_extended" position="after" > -->
+<!-- 					 <field domain="[('type','=','sale')]" name="pricelist_id" position="after">  -->
+<!--                     	<field name="journal_id" /> -->
+<!--                 	</field> -->
+<!--             </field> -->
+<!--         </record> -->
+
+		<!-- <record id="view_order_form_from_delivery_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.delivery.inherit.frm.shp1</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="delivery.view_order_withcarrier_form" />
+            <field name="arch" type="xml">
+                <field name="carrier_id" position="replace">
+                    <group style="width: 65%%">
+                        <label for="carrier_id"/>
+                        <div>
+                            <field name="carrier_id" context="{'order_id':active_id or False}" class="oe_inline"/>
+                            <button name="delivery_set" string="Add in Quote" type="object"
+                                class="oe_edit_only"
+                                attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                            <br/>
+                            <label string="If you don't 'Add in Quote', the exact price will be computed when invoicing based on delivery order(s)."
+                                class="oe_edit_only"
+                                attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}"/>
+                        </div>
+                    </group>
+                    
+                </field>  -->
+
+
+
+		
+
+        <record id="view_sales_order_filter_inherit1" model="ir.ui.view">
+            <field name="name">sale.order.list.select.inherit1</field>
+            <field name="model">sale.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                   <field name="invalid_addr"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- <record id="view_shop_form_pys" model="ir.ui.view">
+               <field name="name">sale.shop.form</field>
+               <field name="model">sale.shop</field>
+               <field name="type">form</field>
+               <field name="inherit_id" ref="sale.view_shop_form"/>
+               <field name="arch" type="xml">
+               	   <field name="pricelist_id" position="after">	
+                   <xpath expr="field[@name='warehouse_id']" position="after">
+                       <field name="suffix"/>
+                       <field name="cust_address"/>
+                   </xpath>
+                   </field>
+               </field>
+        </record> -->
+
+    </data>
+</openerp>

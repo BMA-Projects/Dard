@@ -1,0 +1,149 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="ob_wiz_form">
+            <field name="name">ob.wiz.form</field>
+            <field name="model">oe.wizard</field>
+            <field name="arch" type="xml">
+                <form string='OE Wizard'>
+                    <sheet>
+                        <field name="grp_1" invisible="1"/>
+                        <field name="grp_2" invisible="1"/>
+                        <field name="grp_3" invisible="1"/>
+                        <field name="grp_4" invisible="1"/>
+                        <field name="grp_5" invisible="1"/>
+                        <field name="grp_6" invisible="1"/>
+                        <field name="grp_7" invisible="1"/>
+                        <field name="count" invisible="1"/>
+                        <group string="Customer Details" attrs="{'invisible': [('grp_1', '=', False),('grp_7','=',False)], 'readonly': [('grp_7','=',True)]}">
+                            <group>
+                                <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options="{'always_reload': True, 'no_create': True, 'no_open': True}" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="client_order_ref" required="1" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="user_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="section_id" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_salesteams" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="pricelist_id" widget="selection" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            </group>
+                            <group>
+                                <field name="date_order" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="rush_order" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="is_sample" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="sample_type_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('is_sample','=',False)], 'readonly': [('grp_7','=',True)]}" domain="[('active','=',True)]"/>
+                            </group>
+                        </group>
+                        <group string="Repeat Order Info" attrs="{'invisible': [('grp_2', '=', False),('grp_7','=',False)]}">
+                            <group>
+                                <field name="is_repeat_order" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                                <field name="is_repeat_art" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            </group>
+                            <group>
+                                <field name="so_id" attrs="{'invisible': [('is_repeat_order','=',False)], 'required': [('is_repeat_order','=',True),('cust_po_ref_id','=',False)], 'readonly': [('grp_7','=',True)]}" domain="[('partner_id','=', context.get('partner_id', False))]" widget="selection" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="cust_po_ref_id" attrs="{'invisible': [('is_repeat_order','=',False)], 'required': [('is_repeat_order','=',True),('so_id','=',False)], 'readonly': [('grp_7','=',True)]}" domain="[('partner_id','=', context.get('partner_id', False))]" widget="selection" context="{'get_cust_po_ref': True}" options="{'no_create': True, 'no_open': True}"/>
+                            </group>
+                        </group>
+                        <group string="Product Details" attrs="{'invisible': [('grp_3', '=', False)]}">
+                            <field name="prod_tmpl_id" context="{'prod_tmpl_id': prod_tmpl_id}" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            <field name="product_details_ids" attrs="{'invisible': [('prod_tmpl_id','=', False)]}" options="{'no_create': True}">
+                                <tree create="false">
+                                    <field name="product_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="quantity"/>
+                                    <field name="price"/>
+                                    <field name="is_variant" invisible="1"/>
+                                    <field name="has_imprint_method" invisible="1"/>
+                                    <field name="imprint_method" options="{'no_create': True, 'no_open': True}" context="{'from_wizard':True, 'product_template_id': parent.prod_tmpl_id}" attrs="{'invisible':['|',('is_variant','=',False),('has_imprint_method','=',False)]}"/>
+                                    <field name="is_proof_required"/>
+                                    <field name="imprint_data_fields" invisible="1"/>
+                                    <field name="imprint_data" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <!-- To display products with quantity > 0 -->
+                        <group string="Product Details" attrs="{'invisible': [('grp_7','=',False)]}">
+                            <field name="product_details_ids2" options="{'no_create': True}" attrs="{'readonly': [('grp_7','=',True)]}">
+                                <tree create="false">
+                                    <field name="product_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="quantity"/>
+                                    <field name="price"/>
+                                    <field name="is_variant" invisible="1"/>
+                                    <field name="has_imprint_method" invisible="1"/>
+                                    <field name="imprint_method" options="{'no_create': True, 'no_open': True}" context="{'from_wizard':True, 'product_template_id': parent.prod_tmpl_id}" attrs="{'invisible':['|',('is_variant','=',False),('has_imprint_method','=',False)]}"/>
+                                    <field name="is_proof_required"/>
+                                    <field name="imprint_data_fields" invisible="1"/>
+                                    <field name="imprint_data" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Proof Details" attrs="{'invisible': [('grp_4', '=', False)]}">
+                            <field name="prod_tmpl_id1" readonly="1"/>
+                            <field name="product_details_ids1" attrs="{'invisible': [('prod_tmpl_id1','=', False)]}" domain="[('quantity','>',0)]" context="{'wizard_id': id}">
+                                <tree create="false" editable="true">
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="quantity" readonly="1"/>
+                                    <field name="price" readonly="1"/>
+                                    <field name="imprint_method" context="{'from_wizard':True, 'product_template_id': parent.prod_tmpl_id}" readonly="1"/>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="email"/>
+                                    <button name="upload_artwork" type="object" string="Upload ArtWork" icon="STOCK_GO_UP"/>
+                                    <field name="art_image" widget="image_pdf_multi" invisible="1"/>
+                                    <field name="virtual_proofing_required" invisible="1"/>
+                                    <field name="manual_approval" invisible="1"/>
+                                    <field name="proof_date"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <!-- To display products with quantity > 0 -->
+                        <group string="Proof Details" attrs="{'invisible': [('grp_7','=',False)]}">
+                            <field name="product_details_ids3" domain="[('quantity','>',0)]" context="{'wizard_id': id}" attrs="{'readonly': [('grp_7','=',True)]}">
+                                <tree create="false" editable="true">
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="quantity" readonly="1"/>
+                                    <field name="price" readonly="1"/>
+                                    <field name="imprint_method" context="{'from_wizard':True, 'product_template_id': parent.prod_tmpl_id}" readonly="1"/>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="email"/>
+                                    <button name="upload_artwork" type="object" string="Upload ArtWork" icon="STOCK_GO_UP"/>
+                                    <field name="art_image" widget="image_pdf_multi" invisible="1"/>
+                                    <field name="virtual_proofing_required" invisible="1"/>
+                                    <field name="manual_approval" invisible="1"/>
+                                    <field name="proof_date"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Special Instruction" attrs="{'invisible': [('grp_5', '=', False),('grp_7','=',False)]}">
+                            <field name="printing_note" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            <field name="packing_note" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            <field name="shipping_note" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                        </group>
+                        <group string="Shipping Details" attrs="{'invisible': [('grp_6','=',False),('grp_7','=',False)]}">
+                            <field name="carrier_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            <field name="partner_shipping_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            <field name="in_hand_date" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                            <field name="is_add_in_quote" attrs="{'readonly': [('grp_7','=',True)]}"/>
+                        </group>
+                        <footer>
+                            <button name='minus_wiz' type='object' string='Previous' attrs="{'invisible': [('grp_1','=',True)]}"/>
+                            <button name="save_order" string="Save" type="object" class="oe_highlight" attrs="{'invisible': [('grp_7','=',False)]}"/>
+                            <button name="add_new_product" string="Add New Product" type="object" class="oe_highlight" attrs="{'invisible': ['|',('grp_4','=',False)]}"/>
+                            <button name='plus_wiz' type='object' string='Next' attrs="{'invisible': [('grp_7','=',True)]}"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_oe_through_wizard" model="ir.actions.act_window">
+            <field name="name">Customer Details</field>
+            <field name="res_model">oe.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem action="action_oe_through_wizard" id="menu_order_wizard" parent="base.menu_sales" sequence="10" groups="base.group_sale_salesman,base.group_sale_manager" name="Order Details"/>
+
+    </data>
+</openerp>

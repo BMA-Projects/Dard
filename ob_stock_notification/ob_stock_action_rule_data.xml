@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- automated actions for send mail on product move -->
+        <record id="filter_pull_moves" model="ir.filters">
+            <field name="name">Pull Moves for stock</field>
+            <field name="model_id">stock.move</field>
+            <field name="domain">[('state','=','done'),('picking_id','!=',False)]</field>
+            <field name="user_id" eval="False"/>
+        </record>
+
+        <record id="action_send_mail_on_product_move" model="ir.actions.server">
+            <field name="name">Send mail on product move</field>
+            <field name="model_id" ref="stock.model_stock_move"/>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">
+wm_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'stock', 'group_stock_manager')[1]
+user_ids = self.pool.get('res.groups').browse(cr, uid, wm_id, context=context).users
+email_to = ''
+for user_id in user_ids:
+    email_to = email_to and email_to + ',' + user_id.email or email_to + user_id.email
+tmpl_obj = self.pool.get('email.template')
+tmpl_ids = tmpl_obj.search(cr, uid, [('name','=','Stock Notification Template')])
+if tmpl_ids:
+    tmpl_obj.write(cr, uid, tmpl_ids[0], {'email_to':email_to}, context=context)
+    self.pool.get('email.template').send_mail(cr, uid, tmpl_ids[0], object.id, True)
+            </field>
+        </record>
+
+        <record id="rule_notify_on_stock_move" model="base.action.rule">
+            <field name="name">Notify Customer/Supplier for stock move</field>
+            <field name="model_id" ref="stock.model_stock_move"/>
+            <field name="sequence">1</field>
+            <field name="filter_id" ref="filter_pull_moves"/>
+            <field name="active">False</field>
+            <field name="kind">on_create_or_write</field>
+            <field name="server_action_ids" eval="[(6, 0, [ref('action_send_mail_on_product_move')])]"/>
+        </record>
+
+    </data>
+</openerp>

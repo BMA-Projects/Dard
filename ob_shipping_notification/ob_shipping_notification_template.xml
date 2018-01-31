@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+<!--Ready to Deliver Shipping Notification Template-->
+        <record id="email_template_ready_to_deliver_shipping_notification" model="email.template">
+            <field name="name">Ready to Deliver Shipping Notification Template</field>
+            <field name="email_from">${object.company_id.partner_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Payment received for ${object.name} and is ready to ship</field>
+            <!--field name="email_to">${object.picking_id.partner_id.email}</field-->
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div>
+    <p>
+        Hello,
+        <br/><br/>
+        Payment received for delivery order ${object.name}, now you can ship the order.
+        <br/><br/>
+        The details of shipping is as below.
+        <br/><br/>
+    </p>
+    <table border="1" cellpadding="5" cellspacing="1">
+        <tbody>
+            <tr>
+                <td><strong>Delivery Order:</strong></td><td>${object.name}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+            ]]></field>
+        </record>
+
+
+<!--Draft Shipping Notification Template-->
+        <record id="email_template_draft_shipping_notification" model="email.template">
+            <field name="name">Draft Shipping Notification Template</field>
+            <field name="email_from">${object.company_id.partner_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
+            <field name="subject">Payment received for ${object.name} and can process further</field>
+            <!--field name="email_to">${object.picking_id.partner_id.email}</field-->
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div>
+    <p>
+        Hello,
+        <br/><br/>
+        Payment received for delivery order ${object.name} and can process further.
+        <br/><br/>
+        The details of shipping is as below.
+        <br/><br/>
+    </p>
+    <table border="1" cellpadding="5" cellspacing="1">
+        <tbody>
+            <tr>
+                <td><strong>Delivery Order:</strong></td><td>${object.name}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+            ]]></field>
+        </record>
+
+
+    </data>
+</openerp>

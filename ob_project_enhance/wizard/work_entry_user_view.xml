@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+        <record model="ir.ui.view" id="work_entry_by_user_form">
+            <field name="name">work.entry.by.user.form</field>
+            <field name="model">work.entry.user</field>
+            <field name="arch" type="xml">
+                <form string="Work Entry by User">
+                    <group col="4">
+                        <field name="task_number" readonly="1"/>
+                        <field name="time_spent" required = "1"  widget="float_time" help="This field automatically convert decimal into time. i.e if you enter 1.5 it will consider as 1:30 hour."/>
+                        <!--<field name="task_type_id" readonly="1"/>-->
+                        <field name="estimated_task_type_id" readonly="1" widget="selection" required = "1"/>
+                        <field name="work_type_id" options="{'no_create': True}" required = "1"/>
+                        <field name="user_id"  readonly="1"/>
+                    </group>
+                    <label for="name" string="Work Summary" />
+                    <field name="name" required = "1"/>
+                    <footer>
+                        <button name="work_entry_log" type="object" string="Log entry" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_add_work_summury_by_user">
+            <field name="name">Work Entry By User</field>
+            <field name="res_model">work.entry.user</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="work_entry_by_user_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp> 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve">
+    <t t-name="Approve.Art">
+        <table>
+            <tr>
+                <td><p>Comments (Optional)</p></td>
+                <td><textarea name="cmnt" id="cmnt" placeholder="Enter your comment" autofocus="true"  rows="5" cols="40" /></td>
+            </tr>
+            <tr>
+                <td><p>Enter Your Full Name <span style="color:red">*</span></p></td>
+                <td>
+                    <input name="uname" id="uname" type="text" />
+                </td>
+             </tr>
+        </table>
+    </t>
+    
+    <t t-name="ChangeApprove.Art">
+            <table id="divinputfile" >
+                <tr>
+                    <td colspan="2">
+                        <label style="font-weight: bold">
+                            ADDITIONAL ART/DOCUMENTS TO UPLOAD</label>
+                        <label></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" id="uploadTextValue" name="uploadTextValue" value="" />
+                        <input id="uploadText" style="width:300px" type="file" onchange="PreviewText();" />
+                        <!-- <input name="attach" id="attach" type="file"/> -->
+                    </td>
+                </tr>
+                <tr style="display: none">
+                    <td colspan="2">
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        
+            <table>
+                <tr>
+                    <td>
+                        <b>Comments: <span>(If an option has been provided, please specify which option you prefer)</span></b>
+                        <textarea name="cmnt" rows="2" cols="20" style="width:300px;height:60px;" id="cmnt" class="textarea"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span id="lblname1" style="font-weight: bold; text-align: left; font-size:12px;">Enter Your Full Name: </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input name="uname" type="text" id="uname" style="height:25px;width:300px;border: 1px solid #ccc;" />
+                        <span id="RequiredFieldValidator1" style="color:Red;font-weight:bold;visibility:hidden;">Please Enter Name</span>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+    </t>
+    <t t-extend="FieldBinaryFile">
+        <t t-jquery="a.oe_form_binary_file_save_data" t-operation="replace">
+            <button class="oe_button oe_form_binary_file_save" type="button" title="Save">
+                <img t-att-src='_s + "/web/static/src/img/icons/gtk-save.png"'/>
+                <span>Save</span>
+            </button>
+        </t>
+    </t>
+    <t t-extend="HiddenInputFile">
+        <t t-jquery="input.oe_form_binary_file" t-operation="replace">
+            <input type="file" class="oe_form_binary_file" name="ufile" t-if="widget.widget!='image'"/>
+            <input type="file" class="oe_form_binary_file" name="ufile" accept=".png,.jpg,.jpeg,.gif,.pdf" t-if="widget.widget=='my_widget'"/>
+            <input type="file" class="oe_form_binary_file" name="ufile" accept="image/*" t-if="widget.widget=='image'"/>
+        </t>
+    </t>
+</templates>

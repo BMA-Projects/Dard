@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700italic" rel="stylesheet" type="text/css" />
+    <!-- font-family: 'Source Sans Pro', sans-serif;  -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css" />
+    <!--  font-family: 'Lato', sans-serif;   -->
+    
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style type="text/css">
+        body
+        {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Lato' , sans-serif;
+            font-size: 14px;
+        }
+        .container
+        {
+            width: 750px;
+            margin: 0 auto;
+        }
+        .main
+        {
+            width: 100%;
+        }
+        .hed
+        {
+            background-color: #eebe2d;
+          /*  padding: 95px 0 25px 30px; */
+            color: #fff;
+            font-size: 33px;
+            font-family: 'Lato' , sans-serif;
+            font-weight: 400;
+        }
+        .info-hed
+        {
+            background-color: #f9f9f6;
+            color: #3b3b3b;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 35px 0 25px 25px;
+            box-shadow: inset 0px 7px 23px -14px;
+        }
+        .info-con
+        {
+            background-color: #eeede7;
+            padding: 25px 0 35px 0;
+        }
+        .info-con .info-text
+        {
+            width: 45%;
+            padding: 15px 0 15px 35px;
+            font-size: 15px;
+            color: #5d5d5d;
+            font-weight: 700;
+            display: inline-block;
+        }
+        .cont-main
+        {
+            background-color: #f9f9f6;
+            padding: 30px;
+        }
+        .cont-main .cont-top
+        {
+            width: 100%;
+            padding-bottom: 30px;
+        }
+        .cont-main .cont-top .approved
+        {
+            width: 185px;
+            float: left;
+            color: #01aa11;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .cont-main .cont-top .approved-make
+        {
+            width: 250px;
+            float: left;
+            color: #ffa800;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .cont-main .cont-top .revision
+        {
+            width: 245px;
+            float: left;
+            color: #da0606;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .cont-main .cont-comment
+        {
+            width: 100%;
+        }
+        .cont-main .cont-comment .cont-box
+        {
+            width: 465px;
+            display: inline-block;
+        }
+        .cont-main .cont-comment .cont-box .cont-tit
+        {
+            width: 100%;
+            color: #5d5d5d;
+            font-weight: 700;
+            font-size: 15px;
+            padding-bottom: 10px;
+        }
+        .cont-main .cont-comment .cont-box .cont-tit span
+        {
+            width: 100%;
+            color: #5d5d5d;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .cont-main .cont-comment .cont-box .textarea
+        {
+            width: 100%;
+            border: solid 2px #e3e0d6;
+            height: 60px;
+            padding: 5px;
+            border-radius: 5px;
+            resize: none;
+        }
+        .cont-main .cont-comment .cont-but
+        {
+            width: 170px;
+            display: inline-block;
+            vertical-align: bottom;
+            text-align: right;
+        }
+        .cont-main .cont-comment .cont-but .submit
+        {
+            background-color: #feb43f;
+            width: 125px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border: 0px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .footer-part
+        {
+            background-color: #e3e1db;
+            padding: 25px 30px;
+            font-family: 'Source Sans Pro' , sans-serif;
+        }
+        .footer-part .footer-tit
+        {
+            width: 100%;
+            font-style: italic;
+            color: #131313;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .footer-part .footer-font
+        {
+            color: #5b5b5b;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+        }
+        #fakeinputfile
+        {
+        }
+        #fakeinputfile #fakefilepc
+        {
+            width: 250px;
+            height: 13px;
+            font-size: 12px;
+            font-family: Arial;
+            height: 18px;
+        }
+        #divinputfile
+        {
+            /*background:url(upload_file.gif) no-repeat 100% 1px;*/ /*  background: url(images/btn-upload.png) no-repeat 100% 1px; */
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        #divinputfile #filepc
+        {
+            opacity: 0.0;
+            -moz-opacity: 0.0;
+            filter: alpha(opacity=00);
+            font-size: 12px;
+        }
+    </style>
+    <style type="text/css">
+        .custom-upload
+        {
+            background-color: #eebe2d;
+            padding: 5px 0px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            width: 100px;
+            float: left;
+        }
+        .custom-upload input
+        {
+            left: -9999px;
+            position: absolute;
+        }
+        #approved-make:target
+        {
+            display: block;
+        }
+        .mas-main
+        {
+            width: 320px;
+            margin: 0;
+        }
+        .mas-main-part
+        {
+            width: 320px;
+            float: left;
+        }
+        .mas-top-part
+        {
+            width: 320px;
+            background-color: #eebe2d;
+            padding: 10px;
+            font-size: 15px;
+            font-family: 'lato' , sans-serif;
+            font-weight: 400;
+            color: #fff;
+            text-align: center;
+        }
+        .mas-cont-pates
+        {
+            width: 310px;
+            float: left;
+            background-color: #eeede7;
+            padding: 15px;
+        }
+        .mas-cont-patesss
+        {
+            width: 310px;
+            background-color: #eeede7;
+            padding: 15px;
+            text-align: center;
+        }
+        .mas-cont-patesss .submit
+        {
+            background-color: #feb43f;
+            width: 125px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border: 0px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .mas-cont-pates .submit
+        {
+            background-color: #feb43f;
+            width: 125px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border: 0px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: none;
+            float: left;
+            margin: 0 15px;
+        }
+        .mas-cont-pates .text-parts
+        {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 15px;
+            color: #5d5d5d;
+            font-weight: 700;
+            font-family: 'lato' , sans-serif;
+        }
+        .popup-remove-but
+        {
+            background-color: #fff;
+            font-size: 18px;
+            display: block;
+            float: right;
+            width: 25px;
+            height: 25px;
+            text-decoration: none;
+            color: #eebe2d;
+            font-weight: bold;
+            font-weight: 700;
+            margin-top: -4px;
+            position: relative;
+        }
+        .modal-box
+        {
+            background: white none repeat scroll 0 0 padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+            display: none;
+            left: 50%;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            width: 339px;
+            z-index: 999;
+        }
+        .modal-overlay
+        {
+            opacity: 0;
+            filter: alpha(opacity=0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 900;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3) !important;
+        }
+        .all-tables
+        {
+            width: 100%;
+            border-width: 0 !important;
+        }
+        .all-tables tbody
+        {
+            width: 100%;
+            border: 0px;
+        }
+        .all-tables th
+        {
+            border: solid 0px #000;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .all-tables td
+        {
+            border: solid 1px #e6e6e6;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .all-tables td a
+        {
+            color: #000;
+        }
+        .all-tables tr
+        {
+            background-color: transparent !important;
+        }
+        .all-tables tr td:last-child
+        {
+            border: solid 1px #e6e6e6;
+        }
+        .all-tables tr td:last-child table td
+        {
+            color: #000;
+            background-color: transparent;
+            float: left;
+            width: 20px;
+            vertical-align: middle;
+            border: 0px;
+        }
+        .all-tables tr td:last-child table td a
+        {
+            color: #000 !important;
+            float: left;
+        }
+        .Preview-btn
+        {
+            background-color: green;
+            border: 0 none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 5px 0;
+            padding: 5px 0;
+            text-align: center;
+            width: 90px;
+        }
+    </style>
+
+    <script type="text/javascript" language="javascript">
+            javascript:window.history.forward(1);
+    </script>
+
+<link href="App_Themes/Default/RadUpload.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Default/RadUploadProgressArea.css" type="text/css" rel="stylesheet" /><title>
+	Work247 -- Proof Page Details
+</title></head>
+<body>
+    <form name="form1" method="post" action="ProofNewTemplate.aspx?Problem=TlRNek56VXo%3d&amp;ciid=TVRjeg%3d%3d&amp;itm=TVRFMU1UVT0%3d&amp;ord=TWpjd056a3pPQT09&amp;type=none" onsubmit="javascript:return WebForm_OnSubmit();" id="form1" enctype="multipart/form-data">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMTg1NzA1ODk0DxYKHglwcnJvZnR5cGVkHgtBcHByb3ZlZE1zZwUbVGhhbmsgeW91IGZvciB5b3VyIGZlZWRiYWNrHgpDaGFuZ2VkTXNnBRtUaGFuayB5b3UgZm9yIHlvdXIgZmVlZGJhY2seC1JldmlzaW9uTXNnBRtUaGFuayB5b3UgZm9yIHlvdXIgZmVlZGJhY2seC0V4aXN0aW5nTXNnBWNBdHRlbnRpb24hIEEgcmVzcG9uc2UgZm9yIHRoaXMgcHJvb2YgaGFzIGFscmVhZHkgYmVlbiByZWNlaXZlZC4gWW91ciBzZWxlY3Rpb24gY2Fubm90IGJlIHByb2Nlc3NlZC4WAgIDD2QWDgIIDxYCHglpbm5lcmh0bWwFvgINCjx0YWJsZSB3aWR0aD0iMTAwJSI+DQogICAgPHRib2R5Pg0KICAgICAgICA8dHI+DQogICAgICAgICAgICA8dGQgY2xhc3M9ImhlZCI+REVNTyBQUk9PRjwvdGQ+DQogICAgICAgICAgICA8dGQ+DQogICAgICAgICAgICA8ZGl2IHN0eWxlPSJwYWRkaW5nOiAycHggMCAyIDBweDsgZmxvYXQ6IHJpZ2h0OyB3aWR0aDogMjUwcHg7IGhlaWdodDogMTIwcHg7Ij48aW1nIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGFsdD0iIiBzcmM9IiIgLz48L2Rpdj4NCiAgICAgICAgICAgIDwvdGQ+DQogICAgICAgIDwvdHI+DQogICAgPC90Ym9keT4NCjwvdGFibGU+DQpkAgkPFgIfBQUIICZuYnNwOyBkAgoPFgIfBQXhAQ0KPGRpdiBjbGFzcz0iaW5mby10ZXh0Ij5QTyAjIDogICBbQ08jXTwvZGl2Pg0KPGRpdiBjbGFzcz0iaW5mby10ZXh0Ij5JbmhhbmRzIERhdGUgOiBbSW5oYW5kcyBEYXRlXTwvZGl2Pg0KPGRpdiBjbGFzcz0iaW5mby10ZXh0Ij5TaGlwVG9Db21wYW55IDogW1NoaXBUb0NvbXBhbnldIDwvZGl2Pg0KPGRpdiBjbGFzcz0iaW5mby10ZXh0Ij5JdGVtIERlc2NyaXB0aW9uIDogMTE1MTU8L2Rpdj4NCmQCCw9kFgYCAQ88KwANAQAPFgQeC18hRGF0YUJvdW5kZx4LXyFJdGVtQ291bnQCAWQWAmYPZBYEAgEPZBYGZg9kFgJmDxUBATFkAgEPDxYCHgRUZXh0BQ5IeWRyYW5nZWFzLmpwZ2RkAgIPZBYCZg8VAT9odHRwOi8vd3d3LndvcmsyNDcuY29tL1ZpcnR1YWxGaWxlU3RvcmFnZS81MzM3NTMvSHlkcmFuZ2Vhcy5qcGdkAgIPDxYCHgdWaXNpYmxlaGRkAgMPFgIfCWgWAgIBDxBkZBYAZAIJDxAPFgQeB0NoZWNrZWRoHwloZGRkZAINDxYCHwUFjAINCjxkaXYgY2xhc3M9ImZvb3Rlci10aXQiPldoaWxlIHdlIHN0cm9uZ2x5IHJlY29tbWVuZCB5b3UgdG8gdGFrZSBhZHZhbnRhZ2Ugb2YgdGhpcyB0aW1lIHNhdmluZyBvcHRpb24sIHlvdXIgcHJvb2YgbWF5IHN0aWxsIGJlIGZpeGVkIGJhY2sgdG8gTWFnZW50VmlydHVhbCBhdCA6PC9kaXY+DQo8ZGl2IGNsYXNzPSJmb290ZXItZm9udCI+PHN0cm9uZz5Qcm9vZiBEZXBhcnRtZW50OiA8YnIgLz4NCnByb29mc0BvZmZpY2ViZWFjb24uY29tIDwvc3Ryb25nPjwvZGl2Pg0KZAIQDxYCHwUFBiZuYnNwO2QCEg8WAh8FZWQYAgUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgMFC2Noa0FwcHJvdmVkBQ5jaGtBcHByb3ZlTWFrZQULY2hrUmV2aXNpb24FC2dyZEZpbGVMaXN0DzwrAAoBCAIBZA==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDAKUgPK0BgLii9zeAwLEhISACwL/5tvJBwKQo8KrDQL/wOPXBALjhKvfDgLFt4XxDQKYufeeBwLU9ZuZBgKD+/7zAQL9tfJD" />
+</div>
+
+    <script>
+$(function(){
+
+var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+
+	$('span[data-modal-id]').click(function(e) {
+    $('#chkApproved').prop('checked', true);
+    $('#Approved-Make-done').hide(300); 
+    $('#chkRevision').prop('checked', false);
+    $('#chkApproveMake').prop('checked', false);
+    $('#txtcmt').val("");
+		 
+	e.preventDefault();
+    $("body").append(appendthis);
+    $(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+		var modalBox = $(this).attr('data-modal-id');
+		//alert(modalBox);
+		$('#'+modalBox).fadeIn($(this).data());
+		
+		$(".modal-box").css({
+	        top: ($(window).height() - ($(".modal-box").outerHeight() + 200)) / 2,
+	        left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+	    });
+		
+		
+		
+	});
+	
+	$('input[data-modal-id]').click(function(e) {
+	   debugger;
+	   $('body').css({'overflow':'hidden'});
+		
+	   if ($("#txtcmt").val().length != 0){
+	       
+		e.preventDefault();
+    $("body").append(appendthis);
+    $(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+		var modalBox = $(this).attr('data-modal-id');
+		//alert(modalBox);
+		$('#'+modalBox).fadeIn($(this).data());
+		
+		$(".modal-box").css({
+	        top: ($(window).height() - ($(".modal-box").outerHeight() + 200)) / 2,
+	        left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+	    });
+
+		
+		}
+		
+	});  
+  
+  
+$(".js-modal-close, .modal-overlay").click(function() {
+
+    $(".modal-box, .modal-overlay").fadeOut(500, function() {
+       $(".modal-overlay").remove();
+   });
+ 	
+});
+
+$(".submit.js-modal-close.close").click(function() {
+   
+    $(".modal-box, .modal-overlay").fadeOut(500, function() {
+        $(".modal-overlay").remove();
+    });
+ 
+    $('#chkApproved').prop('checked', false);
+ 	
+});
+
+
+
+$(window).resize(function() {
+	$(".modal-box").css({
+        top: ($(window).height() - ($(".modal-box").outerHeight() + 200)) / 2,
+        left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+    });
+});
+
+
+
+
+    $('.Preview-btn[data-modal-id]').click(function(e) {
+
+	$('.iframe').css({'height': $(window).height(), 'width':'1200px','text-align':'center'});
+	$('.iframe').parent().css({'height': $(window).height(), 'width':'1200px', 'margin':'0 auto'});
+	$('.iframe').parent().parent().css({'height': $(window).height(), 'width':'98%', 'left':'auto', 'top':'0', 'background-color':'rgba(0,0,0,0.5)'});
+	$('body').css({'overflow':'hidden'});
+		e.preventDefault();
+    $("body").append(appendthis);
+    $(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+		var modalBox = $(this).attr('data-modal-id');
+		//alert(modalBox);
+		$('#'+modalBox).fadeIn($(this).data());
+		
+		///$(".modal-box").css({
+	       // top: ($(window).height() - ($(".modal-box").outerHeight() + 200)) / 2,
+	        //left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+	   // });
+
+
+
+});
+
+});
+    </script>
+
+    <script type="text/javascript">
+				$(document).ready(function() {
+				
+				   $('#chkApproveMake').click(function(){
+                        this.checked?$('#Approved-Make-done').show(300):$('#Approved-Make-done').hide(500); 
+                         $('#chkRevision').prop('checked', false);
+                          $('#chkApproved').prop('checked', false);
+                          $('#lblerr').hide();
+                    });
+                    
+                    $('#chkRevision').click(function(){
+                        this.checked?$('#Approved-Make-done').show(300):$('#Approved-Make-done').hide(500); 
+                        $('#chkApproveMake').prop('checked', false);
+                          $('#chkApproved').prop('checked', false);
+                          $('#lblerr').hide();
+                    });
+                    
+                    $('#chkApproved').click(function(){
+                                     
+//                        $('#Approved-Make-done').hide(500); 
+//                        $('#chkRevision').prop('checked', false);
+//                        $('#chkApproveMake').prop('checked', false);
+                        
+                    });
+                    
+                                
+                    
+                    
+				 });
+				    
+	function errMessage(){
+	    
+	    $('#lblerr').html("Please Enter Comment");
+	    $('#lblerr').show();
+	    $('#Approved-Make-done').show(300); 
+	}
+	
+	function chkCommentText(url){
+        document.getElementById("frameURL").src = url;
+	}
+	
+    function checkCommentTextValidation(){
+        if ($("#txtcmt").val().length == 0){
+            $('#lblerr').html("Please Enter Comment");
+            $('#lblerr').show();
+                return false;
+            }
+        return true;
+    }
+
+    </script>
+
+    <div id="popup1" class="modal-box">
+        <div class="mas-main">
+            <div class="mas-main-part">
+                
+                <div class="mas-top-part">
+                    Thank You, Your Feedback Submitted!
+                    
+                </div>
+                <div class="mas-cont-patesss">
+                    <input type="submit" name="BtnSubmit" value="OK" id="BtnSubmit" class="submit" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup2" class="modal-box">
+        <div class="mas-main">
+            <div class="mas-main-part">
+                <div class="mas-top-part">
+                    <b> you want to send feedback ?</b>
+                    </div>
+                <div class="mas-cont-pates">
+                <table style="width:250px">
+                    <tr>
+                        <td colspan=2>
+                            <span id="lblname1" style="text-align: left; font-size:12px;">Enter Your Full Name: </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 >
+                              <input name="txtname" type="text" id="txtname" style="height:25px;width:295px;border: 1px solid #ccc;" />
+                            <span id="RequiredFieldValidator1" style="color:Red;font-weight:bold;visibility:hidden;">Please Enter Name</span> <br />
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                    <td align="left">
+                        <input type="submit" name="btn_yes_new" value="Yes" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;btn_yes_new&quot;, &quot;&quot;, true, &quot;popgp&quot;, &quot;&quot;, false, false))" id="btn_yes_new" class="submit" style=" margin-left:10px;" />
+                    </td>
+                        <td align="left">
+                            
+                    <a href="#" class="submit js-modal-close close" style=" margin-left:5px;">No</a>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup3" class="modal-box">
+        <div class="ifrm-modals">
+            <a href="" class="popup-remove-but js-modal-close close" style="background-color: #fff;
+                border: 1px solid red; border-radius: 100%; color: red; font-size: 25px; height: 32px;
+                padding: 0 0 5px; position: absolute; right: 20px; text-align: center; top: 20px;
+                width: 40px;">x</a>
+            <iframe width="560" height="315" id="frameURL" src="#" frameborder="0" allowfullscreen
+                class="iframe"></iframe>
+        </div>
+    </div>
+    <script type="text/javascript">
+//<![CDATA[
+
+//]]>
+</script>
+
+    <input type="hidden" name="HiddenField1" id="HiddenField1" value="Click YES to Submit, Click No to Cancel" />
+    <input type="hidden" name="hdnResponseEmailID" id="hdnResponseEmailID" />
+    <div class="container">
+        <div class="main">
+            <div id="companyText" class="hed">
+<table width="100%">
+    <tbody>
+        <tr>
+            <td class="hed">DEMO PROOF</td>
+            <td>
+            <div style="padding: 2px 0 2 0px; float: right; width: 250px; height: 120px;"><img width="100%" height="100%" alt="" src="http://test.officebeacon.com/Work247Generic/images/leaderpromosLogo.jpg" /></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+            <div id="headerText" class="info-hed"> Header Text </div>
+            <div id="orderDetailText" class="info-con">
+            <div class="info-text">PO # :   [CO#]</div>
+            <div class="info-text">Inhands Date : [Inhands Date]</div>
+            <div class="info-text">ShipToCompany : [ShipToCompany] </div>
+            <div class="info-text">Item Description : 11515</div>
+            </div>
+            <div id="actionPanel" class="cont-main">
+                <div class="cont-top">
+                    <div>
+	<table cellspacing="0" rules="all" class="all-tables" border="1" id="grdFileList" style="border-color:#95ACC5;border-width:1px;border-style:solid;font-family:Verdana;font-size:8pt;width:100%;border-collapse:collapse;">
+		<tr class="gridheader" valign="middle" style="color:White;font-weight:normal;height:25px;">
+			<th scope="col" style="color:#000000;">No</th><th scope="col" style="color:Black;">File Name</th><th scope="col" style="color:#000000;">Preview</th>
+		</tr><tr style="background-color:FloralWhite;height:20px;">
+			<td>
+                                    1
+                                </td><td>Hydrangeas.jpg</td><td>
+                                    <input type="button" onclick='chkCommentText("http://www.work247.com/VirtualFileStorage/533753/Hydrangeas.jpg")' class="Preview-btn"
+                                        value="Preview" data-modal-id="popup3" />
+                                </td>
+		</tr>
+	</table>
+</div>
+                </div>
+                
+                <div id="chkoptionpanel" class="cont-top">
+                    <div class="approved">
+                        <span data-modal-id="popup2"><input id="chkApproved" type="checkbox" name="chkApproved" /><label for="chkApproved">Approved</label></span>
+                    </div>
+                    <div class="approved-make">
+                        <input id="chkApproveMake" type="checkbox" name="chkApproveMake" /><label for="chkApproveMake">Approved: Make Changes</label>
+                    </div>
+                    <div class="revision">
+                        <input id="chkRevision" type="checkbox" name="chkRevision" /><label for="chkRevision">Revision: Please send new proof</label>
+                    </div>
+                </div>
+                <div class="cont-comment" id="Approved-Make-done" style="display: none">
+                    <div>
+                        <table id="divinputfile">
+                            <tr>
+                                <td colspan="2">
+                                    <label style="font-weight: bold">
+                                        ADDITIONAL ART/DOCUMENTS TO UPLOAD</label>&nbsp;<label></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div id="fakeinputfile">
+                                        <input name="fakefilepc" type="text" id="fakefilepc" readonly="readonly" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <label class="custom-upload">
+                                        Upload
+                                        <input name="filepc" type="file" size="30" id="filepc" onchange="document.getElementById('fakefilepc').value = this.value;" />
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr style="display: none">
+                                <td colspan="2">
+                                    <br />
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="cont-box">
+                                    <div class="cont-tit">
+                                        Comments: <span>(If an option has been provided, please specify which option you prefer)</span></div>
+                                    <textarea name="txtcmt" rows="2" cols="20" id="txtcmt" class="textarea"></textarea>
+                                </div>
+                                <div class="cont-but">
+                                    <input type="submit" name="BtnSubmit11" value="Submit" onclick="return checkCommentTextValidation();" id="BtnSubmit11" class="submit" data-modal-id="popup1" />
+                                    
+                                </div>
+                            </td>
+						</tr>
+							 <tr>
+								<td colspan=2>
+									<span id="lblname1" style="text-align: left; font-size:12px;">Enter Your Full Name: </span>
+								</td>
+							</tr>
+                    <tr>
+                        <td colspan=2 >
+                              <input name="txtname" type="text" id="txtname" style="height:25px;width:295px;border: 1px solid #ccc;" />
+                            <span id="RequiredFieldValidator1" style="color:Red;font-weight:bold;visibility:hidden;">Please Enter Name</span> <br />
+                        </td>
+                    </tr>
+                        
+                        <tr>
+                            <td>
+                                <div class="cont-tit">
+                                    <label id="lblerr" style="color: Red" visible="false">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+            </div>
+            
+            
+            <div id="footerText" class="footer-part">
+<div class="footer-tit">While we strongly recommend you to take advantage of this time saving option, your proof may still be fixed back to MagentVirtual at :</div>
+<div class="footer-font"><strong>Proof Department: <br />
+proofs@officebeacon.com </strong></div>
+</div>
+        </div>
+    </div>
+    
+    <!------------Old Code------------------------------------------------------------------------------------------------------------------------------------------------>
+    
+    <!-- changes for bug no 4434 starts--------------------------------->
+    
+    <!-- changes for bug no 4434 ends-------------------------------->
+    <!-- changes-------------------------------->
+    
+    <!-- changes-------------------------------->
+    
+    <!-- changes-------------------------------->
+    <div id="msg" style="color: #FFFFFF; font-size: large; font-weight: bold;
+        -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;"></div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("RequiredFieldValidator1"));
+console.log('qwjhdqwdqad',Page_Validators);
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var RequiredFieldValidator1 = document.all ? document.all["RequiredFieldValidator1"] : document.getElementById("RequiredFieldValidator1");
+RequiredFieldValidator1.controltovalidate = "txtname";
+RequiredFieldValidator1.errormessage = "Please Enter Name";
+RequiredFieldValidator1.validationGroup = "popgp";
+RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+RequiredFieldValidator1.initialvalue = "";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+document.getElementById('RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('RequiredFieldValidator1'));
+}
+
+//]]>
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="ob_account_check_writing_extend_inherit_assets_backend" name="mail assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/ob_account_check_writing_extend/static/src/js/ob_account_check_writing_extend.js"></script>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

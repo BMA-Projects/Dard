@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="check_print_wizard_form_view" model="ir.ui.view">
+            <field name="name">check.print.wizard.form.view</field>
+            <field name="model">check.print.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <center><h4>The check is already printed.</h4></center>
+                    <group>
+
+                        <label string="Do you want to reprint check?" for="is_check_print"/>
+                        <field name="is_check_print" nolabel="1"/>
+                        <field name="print_reason"  attrs="{'invisible': [('is_check_print', '=', False)], 'required': [('is_check_print', '=', True)]}"/>
+                    </group>
+                    <footer>
+                        <button name="check_report_report" string="Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

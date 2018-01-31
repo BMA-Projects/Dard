@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="web_keyboard_shortcuts assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/web_keyboard_shortcuts/static/src/css/focus_menu.css"/>
+                <script type="text/javascript" src="/web_keyboard_shortcuts/static/src/js/html2canvas.js"></script>
+                <script type="text/javascript" src="/web_keyboard_shortcuts/static/src/js/jquery.cookie.js"></script>
+                <script type="text/javascript" src="/web_keyboard_shortcuts/static/src/js/web_keyboard_shortcuts.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

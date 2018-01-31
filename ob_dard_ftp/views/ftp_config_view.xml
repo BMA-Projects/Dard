@@ -1,0 +1,84 @@
+<openerp>
+    <data>
+        <record id="ftp_config_form" model="ir.ui.view">
+            <field name="name">FTP config</field>
+            <field name="model">ftp.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group cols="2">
+                            <field name="ftp_host"/>
+                            <field name="host_user"/>
+                            <field name="host_pass" password="True" />
+                        </group>
+                        <group cols="4">
+                            <field name="upload_path"/>
+                            <field name="partner_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="active"/>
+                        </group>
+                        
+<!--                         <label string="Select Customer(s)" /> -->
+                        <group>
+                        	<field name="partner_ids" />
+                        </group>
+                        
+                        <button name="test_ftp_connection" type="object" string="Test Connection" icon="gtk-network"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ftp_config_tree" model="ir.ui.view">
+            <field name="name">FTP config</field>
+            <field name="model">ftp.config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ftp_host"/>
+                    <field name="host_user"/>
+                    <field name="upload_path"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ftp_config" model="ir.actions.act_window">
+          <field name="name">FTP Config</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">ftp.config</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[]</field>
+        </record>
+        <menuitem id="ftp_config_menu" name="FTP config" sequence="32" parent="base.menu_config" action="action_ftp_config"/>
+
+<!-- ++++++++++++++++++++++++++++++++ custom attachment view ++++++++++++++++++++++++++++++++ -->
+
+        <record id="view_attachment_tree_1" model="ir.ui.view">
+            <field name="model">ir.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="Attachments" create="false" edit="false">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="create_date"/>
+                    <field name="datas_fname" invisible="1"/>
+                    <field name="datas" filename="datas_fname"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_attachment_csv" model="ir.actions.act_window">
+            <field name="name">Attachments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.attachment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_attachment_tree_1"/>
+            <field name="search_view_id" ref="base.view_attachment_search"/>
+            <field name="domain" eval="[('parent_id','=',ref('ftp_dict')),('res_model','=','partner.statistics')]"></field>
+        </record>
+        <menuitem action="action_attachment_csv" id="menu_action_attachment_csv" parent="account.menu_finance_reporting" sequence="36"/>
+   </data>
+</openerp>

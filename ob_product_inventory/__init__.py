@@ -1,0 +1,1 @@
+import ob_product_inventory

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="res_company_order_confirmation_mail">
+            <field name="name">res.company.order.confirmation</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@string='General Information']/group/group/field[@name='company_registry']" position="after">
+                    <field name="support_email"/>
+                    <field name="support_phone"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

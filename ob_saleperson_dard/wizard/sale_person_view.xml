@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- wizard action on res.partner -->
+        <act_window id="temp_sales_person_action"
+            name="Assign Sales Person"
+            src_model="res.partner"
+            res_model="saleperson.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new" 
+            groups="base.group_sale_manager,base.group_erp_manager,account.group_account_manager"
+            />
+
+        <!-- wizard view -->
+        <record id="temporary_sales_person_view" model="ir.ui.view">
+            <field name="name">saleperson_wizard</field>
+            <field name="model">saleperson.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sales person">
+                    <div>
+                        Sales Person
+                    </div>
+                    <field name="user_id"/>
+                    <footer>
+                        <button string="Apply" name="action_apply" type="object"  class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />    
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

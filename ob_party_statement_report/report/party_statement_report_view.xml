@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="party_statementreport" model="ir.ui.view">
+            <field name="name">Party Statement Report</field>
+            <field name="model">party.statement.report</field>
+            <field name="arch" type="xml">
+                <form string="XLS Report">
+                    <separator colspan="4" string="Party Statement Report" />
+                    <group>
+                    	<group>
+	                    	<field name='from_date'/>
+	                    	<field name='company_id' options="{'no_create_edit': True,'no_create':True}"/>
+                            <field name='group_by_partner'/>
+                            <field name='group_by_detail'/>
+	                    </group>
+	                    <group>
+                            <field name='to_date'/>
+                            <field name="sales_person" attrs="{'invisible':['|', ('group_by_partner', '=', 'supplier'),('group_by_partner', '=', False)]}"/>
+                            
+	                    </group>
+                    </group>
+                    <notebook attrs="{'invisible':[('group_by_partner', '=', False)]}">
+                        <page string="Partners">
+                        	<label for="customer_ids" attrs="{'invisible':['|', ('group_by_partner', '=', 'supplier'),('group_by_partner', '=', False)]}"/>
+                        	<field name="customer_ids" attrs="{'invisible':['|', ('group_by_partner', '=', 'supplier'),('group_by_partner', '=', False)]}" options="{'no_create_edit': True,'no_create':True}"/>
+                            <label for="supplier_ids" attrs="{'invisible':['|', ('group_by_partner', '=', 'customer'),('group_by_partner', '=', False)]}"/>
+                            <field name="supplier_ids" attrs="{'invisible':['|', ('group_by_partner', '=', 'customer'),('group_by_partner', '=', False)]}" options="{'no_create_edit': True,'no_create':True}"/>
+                           </page>
+                    </notebook>
+                    
+                    <footer>
+                        <button name="generate_report" string="Print PDF" type="object" class="oe_highlight" context="{'pdf_report':True}"/>
+                        <button name="generate_report" string="Export Excel" type="object" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+		<record model="ir.actions.act_window" id="party_statementreport_act">
+            <field name="name">Party Statement Report</field>
+            <field name="res_model">party.statement.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id='party_statementreport_menu'
+            action='party_statementreport_act'
+            groups='account.group_account_manager'
+            parent='account.menu_finance_reporting'/>
+
+    </data>
+    
+</openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<FSIInterfaceList><FSIInterface Enabled="True"><InterfaceID>1</InterfaceID><FSIID>94</FSIID><InterfaceName>Default Interface</InterfaceName><DocumentInterfaceList><DocumentInterface DocumentName="Order" ExtensionFSIID="-1" ExtensionItemsMergeMap=""><FieldMapList>
+          <FieldMap>
+            <StarShipGUIItemName>Recipient.Attention</StarShipGUIItemName>
+            <FieldMapTarget>1</FieldMapTarget>
+            <TargetValue>ATTENTION</TargetValue>
+          </FieldMap>
+        </FieldMapList>
+        <FreightWriteBackSettings>0</FreightWriteBackSettings>
+        <NotesItemList Enabled="True"/>
+        <AdditionalWriteBackSettingList/>
+      </DocumentInterface>
+    </DocumentInterfaceList>
+  </FSIInterface>
+</FSIInterfaceList>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <template id="paypal_payment_button" inherit_id= "payment_paypal.paypal_acquirer_button">
+            <xpath expr="//button[@t-att-class='submit_class']" position="replace">
+                <button type="submit" width="100px"
+                    t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif"/>
+                    <span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+                </button>
+            </xpath>
+        </template>
+    </data>
+</openerp>

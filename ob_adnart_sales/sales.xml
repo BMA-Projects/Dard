@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="adnart_customer_form_inherit" model="ir.ui.view">
+            <field name="name">adnart.customer.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="customer_id"/>
+                    <field name="customer_code"/>
+                    <field name="suppl_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

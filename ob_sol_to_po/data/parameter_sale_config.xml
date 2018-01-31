@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+	<record id="sale_config_parameter" model="ir.config_parameter">
+	    <field name="key">po.settings</field>
+	    <field name="value">normal</field>
+	</record>
+</data>
+</openerp>

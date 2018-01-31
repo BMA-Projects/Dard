@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data noupdate="0">
+        <record id="ir_cron_ftp_upload" model="ir.cron">
+            <field name="name">csv upload cron</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">1</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(hours=24)).strftime('%Y-%m-%d %H:%M:%S')" />
+            <field eval="False" name="doall"/>
+            <field eval="'partner.statistics'" name="model"/>
+            <field eval="'gen_csv'" name="function"/>
+            <field name="args">(1,'000005')</field>
+            <field name="priority">1</field>
+        </record>
+
+        <!-- DIR FOR ATTACHMENTS -->
+        <record id="ftp_dict" model="document.directory">
+            <field name="name">FTP uploaded files</field>
+            <field name="user_id">1</field>
+            <field name="type">directory</field>
+        </record>
+        
+        
+        
+        
+        <record id="ir_cron_asi_file" model="ir.cron">
+            <field name="name">Create E-ASI File</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">1</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(hours=24)).strftime('%Y-%m-%d %H:%M:%S')" />
+            <field eval="False" name="doall"/>
+            <field eval="'account.invoice'" name="model"/>
+            <field eval="'generate_asi_file'" name="function"/>
+            <field name="args">()</field>
+            <field name="priority">1</field>
+        </record>
+        
+        
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <report
+            id="action_report_production"
+            model="mrp.production"
+            string="Production Report"
+            report_type="qweb-pdf"
+            name="ob_mo_report_dard.report_production_mo"
+            file="ob_mo_report_dard.report_production_mo"
+            />
+
+    </data>
+</openerp>

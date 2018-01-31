@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="purchase_order_line_tree_for_so1" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.for.so1</field>
+            <field name="model">purchase.order.line</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Order Lines" create="false">
+                    <field name="order_id"/>
+                    <field name="name"/>
+                    <field name="partner_id" string="Supplier" />
+                    <field name="product_id"/>
+                    <field name="price_unit"/>
+                    <field name="product_qty"/>
+                    <field name="product_uom" groups="product.group_uom"/>
+                    <field name="price_subtotal"/>
+                    <field name="date_planned"  widget="date" width="135"/>
+                    <field name="state" invisible="1"/>
+                    <field name="invoiced" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+      </data>
+ </openerp>

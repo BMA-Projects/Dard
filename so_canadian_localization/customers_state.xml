@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="res_partner_view_state" model="ir.ui.view">
+            <field name="name">res.partner.view.state</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group/group/div/div[contains(@class, 'address_format')]" position="replace">
+                    <div class="address_format">
+                        <field name="city" placeholder="City" style="width: 40%%" attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                        <field name="state_id" class="oe_no_button" placeholder="Provinces" style="width: 27%%" options='{"no_open": True, "create_name_field": "code"}' on_change="onchange_state(state_id)" attrs="{'readonly': [('use_parent_address','=',True)]}" />
+                        <field name="zip" placeholder="Postal Code" style="width: 30%%" attrs="{'readonly': [('use_parent_address','=',True)]}"/>
+                    </div>
+                </xpath>
+                <xpath expr="//form[@string='Contact']/sheet/group/div/div[@class='address_format']" position="replace">
+                    <div class="address_format">
+                        <field name="city" placeholder="City" style="width: 40%%"/>
+                        <field name="state_id" class="oe_no_button" placeholder="Provinces" style="width: 27%%" options='{"no_open": True, "create_name_field": "code"}' on_change="onchange_state(state_id)"/>
+                        <field name="zip" placeholder="Postal Code" style="width: 30%%"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="res_company_view_state" model="ir.ui.view">
+            <field name="name">res.company.view.state</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Company']/sheet/notebook/page/group/group/div/div" position="replace">
+                    <div>
+                        <field name="city" placeholder="City" style="width: 40%%"/>
+                        <field name="state_id" class="oe_no_button" placeholder="Provinces" style="width: 27%%" options='{"no_open": True, "create_name_field": "code"}'/>
+                        <field name="zip" placeholder="Postal Code" style="width: 30%%"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_partner_bank_view_state" model="ir.ui.view">
+            <field name="name">res.partner.bank.view.state</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Bank account']/group/group[@name='owner']/div" position="replace">
+                    <div>
+                        <field name="owner_name" placeholder="Name"/>
+                        <field name="street" placeholder="Street"/>
+                        <div>
+                            <field name="zip" class="oe_inline" placeholder="Postal Code"/>
+                            <field name="city" class="oe_inline" placeholder="City"/>
+                        </div>
+                        <field name="state_id" placeholder="Provinces" options='{"no_open": True, "create_name_field": "code"}'/>
+                        <field name="country_id" placeholder="Country" options='{"no_open": True}'/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_bank_view_state" model="ir.ui.view">
+                <field name="name">res.bank.view.state</field>
+                <field name="model">res.bank</field>
+                <field name="inherit_id" ref="base.view_res_bank_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//form[@string='Bank']/sheet/group/group[@string='Address']/div" position="replace">
+                        <div>
+                            <field name="street" placeholder="Street..."/>
+                            <field name="street2"/>
+                            <div>
+                                <field name="zip" class="oe_inline" placeholder="Postal Code"/>
+                                <field name="city" class="oe_inline" placeholder="City"/>
+                            </div>
+                            <field name="state" placeholder="Provinces" options='{"create_name_field": "code"}'/>
+                            <field name="country" placeholder="Country"/>
+                        </div>
+                    </xpath>
+                </field>
+        </record>
+
+    </data>
+</openerp>

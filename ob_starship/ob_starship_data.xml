@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <record id="service_product_starship" model="product.product">
+            <field name="name">Handling and Shipping Charges</field>
+            <field name="type">service</field>
+        </record>
+	</data>
+</openerp>

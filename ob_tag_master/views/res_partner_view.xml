@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="ob_sale_wise_shipping_partner_tag">
+            <field name="name">partner.view.multiple</field>
+            <field name="model">res.partner</field>
+	    <field name="priority" eval="2000" />
+            <field name="inherit_id" ref="so_partners.view_partner_multiple_values_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='cust_number']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='asi_number']" position="before">
+                    <field name="search_contect" string="Parent's Customer/Supplier Number" readonly="1" attrs="{'invisible': [('is_company', '!=', False)]}"/>
+                    <field name="cust_number" string="Customer/Supplier Number" readonly="1" attrs="{'invisible': [('is_company', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+    
+        <record id="res_partner_search_view_for_search_contact" model="ir.ui.view">
+            <field name="name">Search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <filter string="Suppliers" position="after" >
+                    <field name="search_contect" string="Search Contact" filter_domain="[('search_contect','ilike',self)]"/>
+                </filter>
+                <field name="name" position="attributes">
+                    <attribute name="filter_domain">['|','|','|','|',('name','ilike',self),('parent_id','ilike',self),('ref','=',self),('cust_number','ilike',self),('search_contect','ilike',self)]
+                    </attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

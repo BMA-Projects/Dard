@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+         <record id="view_order_form_adnart_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.adnart.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group/field[@name='project_id']" position="after">
+                    <field name="art_multi_images" widget="image_slider"/>
+                </xpath> 
+            </field>
+        </record> 
+    </data>
+</openerp>
