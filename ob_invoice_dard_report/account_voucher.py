@@ -121,6 +121,14 @@ class account_voucher(models.Model):
         return res
 
 
+class CustomerInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    order_ids = fields.Many2many(
+        'sale.order', 'sale_order_invoice_rel', 'invoice_id', 'order_id',
+        'Sale Orders')
+
+
 class IrSequence(models.Model):
     _inherit = 'ir.sequence'
 
