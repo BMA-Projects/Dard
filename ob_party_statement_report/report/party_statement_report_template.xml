@@ -25,11 +25,11 @@
 							<center>
 								<h3><span t-esc="data['currunt_company']"/></h3>
 								<h4><t t-esc="data['head_caption']"/></h4>
-								<h4><t t-esc="data['head_caption2']"></t><span t-esc="time.strftime('%m-%d-%Y', time.strptime(data['from_date'],'%Y-%m-%d'))"/> To : <span t-esc="time.strftime('%m-%d-%Y', time.strptime(data['to_date'],'%Y-%m-%d'))"/></h4>
+								<h4><t t-esc="data['head_caption2']"></t><span t-esc="time.strftime('%m-%d-%Y', time.strptime(data['from_date'],'%Y-%m-%d'))"/> To : <span t-esc="time.strftime('%m/%d/%Y ')"/></h4>
 							</center>
 						</div>
 						<div class="col-xs-3">
-							<h5 style="text-align:right">Print Date : <t t-esc="time.strftime('%m/%d/%Y ')" /></h5>
+							<h5 style="text-align:right">Print Date : <t t-esc="time.strftime('%m-%d-%Y', time.strptime(data['to_date'],'%Y-%m-%d'))" /></h5>
 						</div>
 					</t>
 				</div>
