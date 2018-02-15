@@ -63,7 +63,7 @@
                 </xpath>
                 <field name="lst_price" position="after">
                     <field name="allocated_quantity"/>
-                    <field name="purchased_quantity"/>
+                    <field name="incoming_qty" string="Purchased Quantity"/>
                     <field name="consumed_quantity"/>
                 </field>
 
