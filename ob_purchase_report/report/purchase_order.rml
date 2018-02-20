@@ -687,7 +687,7 @@
                         </td>
                         <td>
                           <para style="terp_default_right_9">[[formatLang(line.date_planned,date=True)]]</para>
-                          <para style="terp_default_right_9">[[ o.pricelist_id.currency_id. symbol ]][[formatLang(line.price_unit,digits=get_digits(dp='Account'))]]</para>
+                          <para style="terp_default_right_9">[[ o.pricelist_id.currency_id. symbol ]][[formatLang(line.price_unit,digits=3)]]</para>
                         </td>
                         <td>
                           <para style="P4">
