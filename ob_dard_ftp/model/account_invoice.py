@@ -43,16 +43,16 @@ class account_invoice(models.Model):
             raise Warning(_("No Path Defined To store CSV file"))
         final_list = []
         csv_data = ''
-        header = ['Distributor ASI Number',  'Supplier ASI Number', 'Freight', 
-                  'Invoice No', 'Invoice Date', 'Supplier Sales Order No',
-                  'Final Bill Code', 'Distributor Purchase Order Number', 'Distributor Name', 
-                  'Distributor Address', 'Distributor City', 'Distributor State', 'Distributor Zip', 
-                  'Supplier Name', 'Supplier Address', 'Supplier City', 'Supplier State', 'Supplier Zip',
-                  'Ship To Name', 'Ship To City', 'Ship To State', 'Ship to Zip', 'Product (item) Number',
-                  'Product Description', 'Quantity Shipped', 'Unit Price', 'Unit of Measure', 
-                  'Item Extended Price', 'Invoice Note', 'Terms', 'Ship Via', 'Actual Ship Date',
-                  'Total Invoice Tax Amount', 'Total Invoice Amount', '\n']
-        csv_data += ','.join(header)
+        # header = ['Distributor ASI Number',  'Supplier ASI Number', 'Freight', 
+        #           'Invoice No', 'Invoice Date', 'Supplier Sales Order No',
+        #           'Final Bill Code', 'Distributor Purchase Order Number', 'Distributor Name', 
+        #           'Distributor Address', 'Distributor City', 'Distributor State', 'Distributor Zip', 
+        #           'Supplier Name', 'Supplier Address', 'Supplier City', 'Supplier State', 'Supplier Zip',
+        #           'Ship To Name', 'Ship To City', 'Ship To State', 'Ship to Zip', 'Product (item) Number',
+        #           'Product Description', 'Quantity Shipped', 'Unit Price', 'Unit of Measure', 
+        #           'Item Extended Price', 'Invoice Note', 'Terms', 'Ship Via', 'Actual Ship Date',
+        #           'Total Invoice Tax Amount', 'Total Invoice Amount', '\n']
+        # csv_data += ','.join(header)
         
         
         config_recs = self.env['ftp.config'].search([('active','=',True)])
@@ -76,9 +76,11 @@ class account_invoice(models.Model):
                 invoice_date = customer_invoice.date_invoice or ' '
                 supplier_sales_order_no = ' '  #blank
                 if customer_invoice.residual != customer_invoice.amount_total:
-                    final_bill_code = 'PB '+ customer_invoice.number or ' '
+                    # final_bill_code = 'PB '+ customer_invoice.number or ' '
+                    final_bill_code = 'PB'
                 else:
-                    final_bill_code = 'FB '+ customer_invoice.number or ' '
+                    # final_bill_code = 'FB '+ customer_invoice.number or ' '
+                    final_bill_code = 'FB'
                 distributor_name = customer_invoice.partner_id.name or ' '
                 distributor_address = str(customer_invoice.partner_id.street) + ' ' +  str(customer_invoice.partner_id.street2) or ' '
                 distributor_city = customer_invoice.partner_id.city or ' '
@@ -103,7 +105,8 @@ class account_invoice(models.Model):
                             product_description = inv_line.product_id.name or ' '
                             unit_price = inv_line.price_unit or ' '
                             item_extended_price = inv_line.quantity*inv_line.price_unit or 0.00
-                            unit_of_measure = inv_line.uos_id.name or ' '
+                            # unit_of_measure = inv_line.uos_id.name or ' '
+                            unit_of_measure = 'EA'
                             quantity_shipped = inv_line.quantity or ' '
                             
                             if sale_search:
@@ -158,7 +161,8 @@ class account_invoice(models.Model):
                                 product_description = inv_line.product_id.name or ' '
                                 unit_price = inv_line.price_unit or ' '
                                 item_extended_price = quantity_shipped*inv_line.price_unit or 0.00
-                                unit_of_measure = inv_line.uos_id.name or ' '
+                                # unit_of_measure = inv_line.uos_id.name or ' '
+                                unit_of_measure = 'EA'
                                 
                                 sale_search = self.env['sale.order'].search([('name','=',customer_invoice.origin)])
                                 
