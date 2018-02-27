@@ -55,18 +55,18 @@ class sale_order(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('ship_dt', False):
-            # ship_dt = vals.get('ship_dt', False)
-            # date_order = datetime.now()
-            # date_order_new = date_order.date()
+            ship_dt = vals.get('ship_dt', False)
+            date_order = datetime.now()
+            date_order_new = date_order.date()
 
-            # if isinstance(ship_dt, str):
-            #     ship_dt = datetime.strptime(ship_dt, DEFAULT_SERVER_DATE_FORMAT)
-            #     ship_dt_new = ship_dt.date()
-            #     if ship_dt_new < date_order_new:
-            #         raise Warning(_('Ship Date should not be before the Current Date'))
+            if isinstance(ship_dt, str):
+                ship_dt = datetime.strptime(ship_dt, DEFAULT_SERVER_DATE_FORMAT)
+                ship_dt_new = ship_dt.date()
+                if ship_dt_new < date_order_new:
+                    raise Warning(_('Ship Date should not be before the Current Date'))
             return super(sale_order, self).create(vals)
         else:
-            vals.update({
+	    vals.update({
                 'ship_dt': str(date.today() + timedelta(days=1)),
                 'in_hand_date': str(date.today() + timedelta(days=1))
             })
