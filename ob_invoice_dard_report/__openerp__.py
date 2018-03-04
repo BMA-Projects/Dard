@@ -20,6 +20,7 @@ Provides ability to retrive invoice report for sale invoice order .
         'views/views.xml',
         'report_menu.xml',
         'views/product_view.xml',
+        'views/report_trialbalance.xml',
         'account_voucher_view.xml',
         'wizard/check_print_wizard_view.xml',
 	],
