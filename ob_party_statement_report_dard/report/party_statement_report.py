@@ -168,8 +168,8 @@ class party_statement_report(models.TransientModel):
 
          if not self.sales_person:
              for group_data in group_by_data.iteritems():
-                group_by_name.update({str(eval(group_name['group_name'])):(group_data[0],group_data[1])})
-         group_by_sales = [{}]
+                group_by_name.update({str(eval(group_name['group_name']).encode('ascii', 'ignore')):(group_data[0],group_data[1])})
+             group_by_sales = [{}]
          invoice_data = {'table_header':header_row, 'payment_header': payment_header ,'from_date':self.from_date,'to_date':self.to_date,'company_id':self.company_id and self.company_id.id ,'head_caption':head_caption, 'head_caption2': head_caption2, 'currunt_company': self.company_id.name, 'currunt_company_logo': self.company_id.logo }
 
          # Make XLS file formating and make header
