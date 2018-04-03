@@ -668,13 +668,13 @@ class party_statement_report(models.TransientModel):
         #from_date = str(datetime.datetime.today().month)+"-"+str(1)+"-"+str(datetime.datetime.today().year)
         #to_date = datetime.datetime.today().strftime('%m-%d-%Y')
     	#from_date = str(datetime.datetime.today().month-7)+"-"+str(1)+"-"+str(datetime.datetime.today().year)
-    	#any_day= datetime.date(2017, 9, 1)
+        #any_day= datetime.date(2018, 9, 1)
     	#next_month = any_day.replace(day=28) + datetime.timedelta(days=4)
     	#to_date = next_month - datetime.timedelta(days=next_month.day)
     	#to_date = to_date.strftime('%m-%d-%Y')
         
         # from march to current month's 7th date
-        from_date = datetime.date(2017, 3, 1).strftime('%m-%d-%Y')
+        from_date = datetime.date(2018, 3, 1).strftime('%m-%d-%Y')
         today = datetime.date.today()
         first = today.replace(day=1)
         to_date = (first - datetime.timedelta(days=1)).strftime('%m-%d-%Y')
