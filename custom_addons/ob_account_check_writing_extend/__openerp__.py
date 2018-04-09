@@ -20,7 +20,7 @@ Module for extend the report of the Check Writing and Check Printing.
     'depends' : ['account_check_writing'],
     'data': [
         'account_check_writing_report.xml',
-        'views/views.xml',
+        # 'views/views.xml',
         'security/ir.model.access.csv',
     ],
     'test': [],

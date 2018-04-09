@@ -168,8 +168,8 @@ class party_statement_report(models.TransientModel):
 
          if not self.sales_person:
              for group_data in group_by_data.iteritems():
-                group_by_name.update({str(eval(group_name['group_name'])):(group_data[0],group_data[1])})
-         group_by_sales = [{}]
+                group_by_name.update({str(eval(group_name['group_name']).encode('ascii', 'ignore')):(group_data[0],group_data[1])})
+             group_by_sales = [{}]
          invoice_data = {'table_header':header_row, 'payment_header': payment_header ,'from_date':self.from_date,'to_date':self.to_date,'company_id':self.company_id and self.company_id.id ,'head_caption':head_caption, 'head_caption2': head_caption2, 'currunt_company': self.company_id.name, 'currunt_company_logo': self.company_id.logo }
 
          # Make XLS file formating and make header
@@ -468,6 +468,7 @@ class party_statement_report(models.TransientModel):
                         return False
                  if not check_data_available:
                      raise ValidationError("No records found for selected options.")
+
                  return self.env['report'].get_action(self,'ob_party_statement_report.account_party_statement_report_template',data=invoice_data)
              else:
                  count = 0
@@ -667,18 +668,17 @@ class party_statement_report(models.TransientModel):
         #from_date = str(datetime.datetime.today().month)+"-"+str(1)+"-"+str(datetime.datetime.today().year)
         #to_date = datetime.datetime.today().strftime('%m-%d-%Y')
     	#from_date = str(datetime.datetime.today().month-7)+"-"+str(1)+"-"+str(datetime.datetime.today().year)
-    	#any_day= datetime.date(2017, 9, 1)
+        #any_day= datetime.date(2018, 9, 1)
     	#next_month = any_day.replace(day=28) + datetime.timedelta(days=4)
     	#to_date = next_month - datetime.timedelta(days=next_month.day)
     	#to_date = to_date.strftime('%m-%d-%Y')
         
         # from march to current month's 7th date
-        from_date = datetime.date(2017, 3, 1).strftime('%m-%d-%Y')
-        now_date = datetime.datetime.now()
-        month = now_date.month
-        year = now_date.year
-        to_date = datetime.date(year, month, 7).strftime('%m-%d-%Y')
-        
+        from_date = datetime.date(2018, 3, 1).strftime('%m-%d-%Y')
+        today = datetime.date.today()
+        first = today.replace(day=1)
+        to_date = (first - datetime.timedelta(days=1)).strftime('%m-%d-%Y')
+
         customer_objs = self.env['res.partner'].search([('customer','=',True)])
         for customer in customer_objs:
             values = {'from_date':from_date, 'to_date':to_date, 'company_id': self.env.user.company_id.id,
