@@ -4,7 +4,7 @@
         <record id="email_template_notification" model="email.template">
             <field name="name">E-mail Notification Template</field>
             <field name="email_from">${object.user_id.email or object.company_id.email or 'noreply@localhost'|safe}</field>
-            <field name="subject">Order Entry Notification</field>
+            <field name="subject">Order Entry Notification (Please do not pay. This is not an invoices..)</field>
             <field name="model_id" ref="sale.model_sale_order"/>
             <field name="auto_delete" eval="True"/>
             <field name="body_html"><![CDATA[
@@ -16,6 +16,7 @@
 
     <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
        &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+       &nbsp;&nbsp;<strong style="color:red">Please do not pay. This is not an invoices..</strong><br />
        &nbsp;&nbsp;Order number: <strong>${object.name}</strong><br />
        &nbsp;&nbsp;Order total: <strong>${object.amount_total} ${object.pricelist_id.currency_id.name}</strong><br />
        &nbsp;&nbsp;Order date: ${object.date_order}<br />
