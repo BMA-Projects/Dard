@@ -35,6 +35,7 @@ class procurement_order(osv.osv):
 
     def _run(self, cr, uid, procurement, context=None):
         if not context: context = {}
+        context = context.copy()
         context.update({'pro_id': procurement.id})
         return super(procurement_order, self)._run(cr, uid, procurement, context=context)
 
