@@ -173,11 +173,10 @@ class sale_order(models.Model):
                     date_order = datetime.strptime(order.date_order, DEFAULT_SERVER_DATETIME_FORMAT)
                 else:
                     date_order = datetime.strptime(order.date_order, DEFAULT_SERVER_DATE_FORMAT)
-
-            if vals.get('order_line') and not vals.get('ship_dt'):
+            if vals.get('order_line') and vals.get('ship_dt'):
                 for line in order.order_line:
                     if line.line_ship_dt:
-                        linedate_new  = line.line_ship_dt
+                        linedate_new  = vals.get('ship_dt')# line.line_ship_dt
                         new_date = order.date_order
                         updated_date = datetime.strptime(new_date, DEFAULT_SERVER_DATETIME_FORMAT).date()
                         update_date = datetime.strptime(linedate_new ,'%Y-%m-%d').date()
