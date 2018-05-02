@@ -108,6 +108,10 @@ class sale_order(models.Model):
 
     @api.multi
     def release_sales_order(self):
+        if not self.env['res.users'].has_group('account.group_account_manager'):
+            raise Warning('You do not have the access to release the order.\n'
+                          ' Please contact your Financial Manager.')
+
         order_ids = self._context.get('active_ids')
         orders = self.browse(order_ids)
         #self._context.update({'by_pass': True})
