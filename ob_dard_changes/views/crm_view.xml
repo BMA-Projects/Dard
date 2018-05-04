@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem action="crm.crm_tracking_campaign_act"
+            id="crm.menu_crm_tracking_campaign_act" sequence="4"
+            groups="base.group_sale_salesman"
+            parent="base.menu_crm_config_lead"/>
+    </data>
+</openerp>

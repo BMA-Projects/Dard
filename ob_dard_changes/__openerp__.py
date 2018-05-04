@@ -28,6 +28,7 @@
         'views/ob_product_view.xml',
         'views/res_user_view.xml',
         'views/sale_order_view.xml',
+        'views/crm_view.xml',
         'views/res_partner_view.xml',
         'views/web_ob_dard_assets.xml',
         'views/account_view.xml',
