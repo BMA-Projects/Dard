@@ -84,7 +84,7 @@ class account_invoice(models.Model):
                 distributor_name = customer_invoice.partner_id.name or ' '
                 distributor_address = str(customer_invoice.partner_id.street) + ' ' +  str(customer_invoice.partner_id.street2) or ' '
                 distributor_city = customer_invoice.partner_id.city or ' '
-                distributor_state = customer_invoice.partner_id.state_id.name or ' '
+                distributor_state = customer_invoice.partner_id.state_id.code or ' '
                 distributor_zip = customer_invoice.partner_id.zip or ' '
                 invoice_note = str(customer_invoice.comment).replace('\n',' ') if str(customer_invoice.comment).replace('\n',' ') != 'False' else  ' '
                 terms = customer_invoice.payment_term.name or ' '
@@ -128,7 +128,7 @@ class account_invoice(models.Model):
                                     distributor_purchase_order_number = sale.client_po_ref or ' '
                                     ship_to_name = sale.partner_shipping_id.name or ' ' 
                                     ship_to_city = sale.partner_shipping_id.city or ' '
-                                    ship_to_state = sale.partner_shipping_id.state_id.name or ' '
+                                    ship_to_state = sale.partner_shipping_id.state_id.code or ' '
                                     ship_to_zip = sale.partner_shipping_id.zip or ' '
                                     ship_via = sale.x_delivery_id.name or ' '
                                     actual_ship_date = sale.ship_dt or ' '
@@ -188,7 +188,7 @@ class account_invoice(models.Model):
                                                 
                                         ship_to_name = sale.partner_shipping_id.name or ' ' 
                                         ship_to_city = sale.partner_shipping_id.city or ' '
-                                        ship_to_state = sale.partner_shipping_id.state_id.name or ' '
+                                        ship_to_state = sale.partner_shipping_id.state_id.code or ' '
                                         ship_to_zip = sale.partner_shipping_id.zip or ' '
                                         ship_via = sale.x_delivery_id.name or ' '
                                         actual_ship_date = sale.ship_dt or ' '
@@ -207,7 +207,7 @@ class account_invoice(models.Model):
             lst.append('\n')
             csv_data += ','.join(lst)
         now = datetime.datetime.now()
-        file_name = 'easybill'+now.strftime("%Y%m%d%H%M")+'.csv'
+        file_name = 'easybill'+now.strftime("%Y%m%d")+'.csv'
         if csv_data:
             attachment_obj = self.env['ir.attachment']
             attachment_id = attachment_obj.create({'name': 'Easybill', 'datas_fname': file_name,
