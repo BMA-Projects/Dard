@@ -128,7 +128,7 @@ class account_invoice(models.Model):
                                     distributor_purchase_order_number = sale.client_po_ref or ' '
                                     ship_to_name = sale.partner_shipping_id.name or ' ' 
                                     ship_to_city = sale.partner_shipping_id.city or ' '
-                                    ship_to_state = sale.partner_shipping_id.state_id.name or ' '
+                                    ship_to_state = sale.partner_shipping_id.state_id.code or ' '
                                     ship_to_zip = sale.partner_shipping_id.zip or ' '
                                     ship_via = sale.x_delivery_id.name or ' '
                                     actual_ship_date = sale.ship_dt or ' '
