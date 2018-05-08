@@ -72,7 +72,7 @@ class account_invoice(models.Model):
                 freight = 0.00
                 distributor_asi_number = customer_invoice.partner_id.asi_number or ' '
                 supplier_asi_number = '48500'
-                invoice_no = customer_invoice.number or ' '
+                invoice_no = customer_invoice.number and customer_invoice.number.split('/')[-1] or ' '
                 invoice_date = customer_invoice.date_invoice or ' '
                 supplier_sales_order_no = ' '  #blank
                 if customer_invoice.residual != customer_invoice.amount_total:
@@ -235,8 +235,8 @@ class account_invoice(models.Model):
                 file_to_transfer = open((file_store_path+data_dir + '/' + file_name), 'rb')
                 ftp.storbinary('STOR '+config_rec.upload_path, file_to_transfer)
                 ftp.quit()
-                _logger.info('FILE: "%s" transfered successfully over FTP:%s'%(easibill.csv,config_rec.ftp_host))
-        except Exception as e:
+                _logger.info('FILE: "%s" transfered successfully over FTP:%s' % (file_name, config_rec.ftp_host))
+    except Exception as e:
             _logger.error('%s'%e)
         
         
