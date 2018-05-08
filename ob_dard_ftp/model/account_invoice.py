@@ -235,8 +235,8 @@ class account_invoice(models.Model):
                 file_to_transfer = open((file_store_path+data_dir + '/' + file_name), 'rb')
                 ftp.storbinary('STOR '+config_rec.upload_path, file_to_transfer)
                 ftp.quit()
-                _logger.info('FILE: "%s" transfered successfully over FTP:%s' % (file_name, config_rec.ftp_host))
-    except Exception as e:
+                _logger.info('FILE: "%s" transfered successfully over FTP:%s'%(easibill.csv,config_rec.ftp_host))
+        except Exception as e:
             _logger.error('%s'%e)
         
         
