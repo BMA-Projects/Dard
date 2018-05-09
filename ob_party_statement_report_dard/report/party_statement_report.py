@@ -674,7 +674,7 @@ class party_statement_report(models.TransientModel):
     	#to_date = to_date.strftime('%m-%d-%Y')
         
         # from march to current month's 7th date
-        from_date = datetime.date(2018, 3, 1).strftime('%m-%d-%Y')
+        from_date = datetime.date(2017, 3, 1).strftime('%m-%d-%Y')
         today = datetime.date.today()
         first = today.replace(day=1)
         to_date = (first - datetime.timedelta(days=1)).strftime('%m-%d-%Y')

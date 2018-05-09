@@ -23,6 +23,7 @@
             <field name='name'>Send Party Statement Report</field>
             <field name='interval_number'>1</field>
             <field name='interval_type'>months</field>
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(months=24)).strftime('%Y-%m-07 %H:%M:%S')" />
             <field name="numbercall">-1</field>
             <field name="doall" eval="False" />
             <field name="model">party.statement.report</field>
