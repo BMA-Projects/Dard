@@ -222,7 +222,7 @@ class sale_order(models.Model):
         
         
         #print 'last_date_____',last_date
-        self.ship_dt = last_date
+        # self.ship_dt = last_date
         
         for order in self:
             for line in order.order_line:
