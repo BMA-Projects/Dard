@@ -17,6 +17,18 @@
             </field>
         </record>
 
+        <record id="invoice_search_extends" model="ir.ui.view">
+            <field name="name">account.invoice.search.dard</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="ob_tag_master.view_account_invoice_filter1"/>
+            <field name="arch" type="xml">
+                <field name="number" position="after">
+                    <field name="search_product"/>
+                </field>
+            </field>
+        </record>
+
+
         <record id="invoice_tree_extends" model="ir.ui.view">
             <field name="name">account.invoice.tree.dard</field>
             <field name="model">account.invoice</field>

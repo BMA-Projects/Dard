@@ -19,6 +19,8 @@ class res_partner(models.Model):
     attention = fields.Char('Attention')
     old_customer_number = fields.Char('Old Customer/Supplier #', copy=False)
 
+    customer_state = fields.Selection([('draft', 'Draft')], default='draft')
+
 
 #     @api.multi
 #     def write(self, vals):

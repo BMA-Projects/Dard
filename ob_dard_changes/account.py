@@ -39,7 +39,6 @@ class account_invoice(models.Model):
         res = super(account_invoice, self).copy(default={'picking_id':False})
         return res
     
-    
     @api.multi
     def action_invoice_sent(self):
         res = super(account_invoice, self).action_invoice_sent()
@@ -52,4 +51,17 @@ class account_invoice(models.Model):
                                      _('You cannot Send Mail to Other User\'s Customers.'))
 #                     raise Warning(_('You cannot Send Mail to Other User\'s Customers'))
         return res
-        
+
+    search_product = fields.Char('Products')
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        # list_invoice = []
+        res = super(account_invoice, self).search(args, offset, limit, order)
+        for rec in args:
+            if rec[0] == 'search_product':
+                product_ids = self.env['product.product'].search(['|', ('name', 'like', rec[2]), ('default_code', '=', rec[2])])
+                invoice_lines = self.env['account.invoice.line'].search([('product_id', 'in', [x.id for x in product_ids])])
+                inv_list = [x.id for x in res] + [x.invoice_id.id for x in invoice_lines]
+                return self.browse(inv_list)
+        return res

@@ -6,6 +6,11 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                     <header>
+                        <field name="customer_state" widget="statusbar" nolabel="1" statusbar_visible="draft"/>
+                    </header>
+                </xpath>
                 <xpath expr="//form/sheet/notebook/page/group/group/field[@name='user_id']" position="attributes">
                     <attribute name="domain">[('is_salesperson','=',True)]</attribute>
                 </xpath>
@@ -27,5 +32,6 @@
                 </filter>
             </field>
         </record>
+
     </data>
 </openerp>
