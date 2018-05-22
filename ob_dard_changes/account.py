@@ -17,6 +17,8 @@ class account_invoice(models.Model):
     zorch_sale_order = fields.Char("Zorch Sales order", copy=False)
     zorch_po_number = fields.Char("Zorch PO Number", copy=False)
     zorch_visible = fields.Boolean('Zorch Fields Visible')
+    state_id = fields.Many2one(string="State", related="partner_id.state_id")
+
 
     @api.multi
     def onchange_partner_id(self, type, partner_id, date_invoice=False,

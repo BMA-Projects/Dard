@@ -9,6 +9,24 @@
 
 from openerp import models, fields, api, _
 
+
+class State(models.Model):
+
+    _inherit = 'res.country.state'
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=80):
+        """
+        Redefine the search to search by company name and ref.
+        """
+        if not name:
+            name = '%'
+        if not args:
+            args = []
+        args = args[:]
+        records = self.search(['|', ('code', operator, name), ('name', operator, name),] + args,limit=limit)
+        return records.name_get()
+
 class res_partner(models.Model):
     _inherit = "res.partner"
 
