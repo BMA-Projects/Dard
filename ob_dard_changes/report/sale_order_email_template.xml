@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <record id="email_template_edi_sale" model="email.template">
-            <field name="name">Sales Order - Send by Email</field>
+            <field name="name">     Sales Order - Send by Email</field>
             <field name="email_from">${(object.user_id.email or '')|safe}</field>
             <field name="subject">${object.company_id.name|safe} ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })</field>
             <field name="partner_to">${object.partner_invoice_id.id}</field>
@@ -34,9 +34,7 @@
        % if object.client_order_ref:
        &nbsp;&nbsp;Your reference: ${object.client_order_ref}<br />
        % endif
-       % if object.user_id:
-       &nbsp;&nbsp;Your contact: <a href="mailto:${object.user_id.email or ''}?subject=Order%20${object.name}">${object.user_id.name}</a>
-       % endif
+       &nbsp;&nbsp;Please contact customer service on any discrepancies.
     </p>
 
     % if object.paypal_url:
@@ -48,7 +46,7 @@
     % endif
 
     <br/>
-    <p>If you have any question, do not hesitate to contact us.</p>
+    <p>If you have any questions, do not hesitate to contact us.</p>
     <p>Thank you for choosing ${object.company_id.name or 'us'}!</p>
     <br/>
     <br/>
