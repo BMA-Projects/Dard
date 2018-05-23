@@ -50,13 +50,11 @@
        % if object.partner_ref:
        &nbsp;&nbsp;Your reference: ${object.partner_ref}<br />
        % endif
-       % if object.validator:
-       &nbsp;&nbsp;Your contact: <a href="mailto:${object.validator.email or ''}?subject=Order%20${object.name}">${object.validator.name}</a>
-       % endif
+       &nbsp;&nbsp;Please contact customer service on any discrepancies.
     </p>
 
     <br/>
-    <p>If you have any question, do not hesitate to contact us.</p>
+    <p>If you have any questions, do not hesitate to contact us.</p>
     <p>Thank you!</p>
     <br/>
     <br/>
