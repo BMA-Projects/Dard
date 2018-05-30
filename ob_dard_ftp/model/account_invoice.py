@@ -230,16 +230,14 @@ class account_invoice(models.Model):
             #config_recs = self.env['ftp.config'].search([('active','=',True)]) #searching all cause if we require to send file over multiple ftp location
             for config_rec in config_recs:
                 ftp = FTP(config_rec.ftp_host)
-                ftp.login(user=config_rec.host_user,passwd=config_rec.host_pass)
-                file_to_transfer = open((file_store_path+data_dir + '/' + file_name), 'rb')
-                ftp.storbinary('STOR '+config_rec.upload_path, file_to_transfer)
+                ftp.login(user=config_rec.host_user, passwd=config_rec.host_pass)
+                file_to_transfer = open((file_store_path + data_dir + '/' + file_name), 'rb')
+                _logger.info('UPLOAD: File to "%s/%s" ' % (config_rec.upload_path, file_to_transfer))
+                ftp.storbinary('STOR %s/%s'%(config_rec.upload_path,file_name), file_to_transfer)
                 ftp.quit()
-                _logger.info('FILE: "%s" transfered successfully over FTP:%s' % (file_name,config_rec.ftp_host))
+                _logger.info('SUCCESS: File "%s" transfered successfully over FTP:%s' % (file_name, config_rec.ftp_host))
+
         except Exception as e:
-            _logger.error('%s'%e)
-        
-        
+            _logger.error('FTP ERROR %s' % e)
+
         return True
-    
-    
-    
