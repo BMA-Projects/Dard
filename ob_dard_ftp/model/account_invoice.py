@@ -233,7 +233,7 @@ class account_invoice(models.Model):
                 ftp.login(user=config_rec.host_user, passwd=config_rec.host_pass)
                 file_to_transfer = open((file_store_path + data_dir + '/' + file_name), 'rb')
                 _logger.info('UPLOAD: File to "%s/%s" ' % (config_rec.upload_path, file_to_transfer))
-                ftp.storbinary('STOR %s/%s'%(config_rec.upload_path,file_name), file_to_transfer)
+                ftp.storbinary('STOR %s/%s/%s'%(config_rec.upload_path,'Easibill',file_name), file_to_transfer)
                 ftp.quit()
                 _logger.info('SUCCESS: File "%s" transfered successfully over FTP:%s' % (file_name, config_rec.ftp_host))
 

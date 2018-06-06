@@ -110,7 +110,8 @@ class partner_statistics(models.Model):
                     for config_rec in config_recs:
                         ftp = FTP(config_rec.ftp_host)
                         ftp.login(user=config_rec.host_user,passwd=config_rec.host_pass)
-                        ftp.storbinary('STOR '+config_rec.upload_path+filename, open((global_path+data_dir +osSep+ filename), 'rb'))
+                        ftp.storbinary('STOR %s/%s/%s' % (config_rec.upload_path, 'Invoices', filename), open((global_path+data_dir +osSep+ filename), 'rb'))
+                        # ftp.storbinary('STOR '+config_rec.upload_path+filename, open((global_path+data_dir +osSep+ filename), 'rb'))
                         ftp.quit()
                         _logger.info('FILE: "%s" transfered successfully over FTP:%s'%(filename,config_rec.ftp_host))
                 except Exception as e:
