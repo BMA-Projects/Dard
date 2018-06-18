@@ -19,6 +19,9 @@ from openerp.exceptions import ValidationError
 from stripe.resource import Invoice
 # from openerp.addons.ob_party_statement_report.party_statement_report import party_report
 
+import logging
+_logger = logging.getLogger(__name__)
+
 class party_statement_report(models.TransientModel):
     _inherit = 'party.statement.report'
 
@@ -678,9 +681,13 @@ class party_statement_report(models.TransientModel):
         today = datetime.date.today()
         first = today.replace(day=1)
         to_date = (first - datetime.timedelta(days=1)).strftime('%m-%d-%Y')
-
         customer_objs = self.env['res.partner'].search([('customer','=',True)])
         for customer in customer_objs:
+            child_partner = [x.id for x in customer.child_ids] + [customer.id]
+            domain = [('state', 'in', ['open']), ('partner_id', 'in', child_partner), ('type', '=', 'out_refund')]
+            invoice_recs = self.env['account.invoice'].search(domain)
+            if not len(invoice_recs):
+                continue
             values = {'from_date':from_date, 'to_date':to_date, 'company_id': self.env.user.company_id.id,
             'customer_ids':[(4, customer.id)]}
             party_statement_report = self.env['party.statement.report'].create(values)
@@ -689,3 +696,7 @@ class party_statement_report(models.TransientModel):
                 continue
             template = self.env.ref('ob_party_statement_report_dard.email_template_party_statement_report')
             self.env['email.template'].browse(template.id).with_context({'datas':datas.get('data')}).send_mail(customer.id)
+            self.env.cr.commit()
+            _logger.info("Party Statement Email created for %s" % (customer.name))
+            time.sleep(2)
+
