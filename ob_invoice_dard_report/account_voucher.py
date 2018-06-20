@@ -69,7 +69,7 @@ class account_voucher(models.Model):
         sequence_check_number_dard  = self.env['ir.model.data'].get_object_reference('ob_invoice_dard_report', 'sequence_check_number_dard')[1]
         seq = self.env['ir.sequence'].browse(sequence_check_number_dard)
         check_number = seq.number_next_actual
-        seq.number_next_actual += 1 
+        seq.number_next_actual += 1
         self.check_seq = seq.number_next_actual
         count  = 0
         currency_id = self.company_id and self.company_id.currency_id and self.company_id.currency_id.id or False
@@ -102,12 +102,11 @@ class account_voucher(models.Model):
         i = 1
         res.update({i:[]})
         count = 0
-        check_total = 0
         for line in self.line_dr_ids:
             if line.move_line_id and line.move_line_id.invoice and line.amount:
                 if not res.get(i):
                     res.update({i:[]})
-                res[i].append({'invoice_no': line.move_line_id.invoice.supplier_invoice_number, 
+                res[i].append({'invoice_no': line.move_line_id.invoice.supplier_invoice_number,
                     'date':line.move_line_id.invoice.date_invoice,
                     'amount': line.amount_original,
                     'amount_paid': line.amount,
@@ -115,9 +114,23 @@ class account_voucher(models.Model):
                     'net_check_amount': line.amount,})
                 count += 1
                 if count == 13:
-                    check_total = 0
                     count = 0
-                    i +=1
+                    i += 1
+
+        for line in self.line_cr_ids:
+            if line.move_line_id and line.move_line_id.invoice and line.amount:
+                if not res.get(i):
+                    res.update({i:[]})
+                res[i].append({'invoice_no': line.move_line_id.invoice.supplier_invoice_number,
+                    'date':line.move_line_id.invoice.date_invoice,
+                    'amount': -line.amount_original,
+                    'amount_paid': -line.amount,
+                    'discount_taken': 0,
+                    'net_check_amount': -line.amount,})
+                count += 1
+                if count == 13:
+                    count = 0
+                    i += 1
         return res
 
 
