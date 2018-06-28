@@ -681,10 +681,10 @@ class party_statement_report(models.TransientModel):
         today = datetime.date.today()
         first = today.replace(day=1)
         to_date = (first - datetime.timedelta(days=1)).strftime('%m-%d-%Y')
-        customer_objs = self.env['res.partner'].search([('customer','=',True)])
+        customer_objs = self.env['res.partner'].search([('customer', '=', True)])
         for customer in customer_objs:
             child_partner = [x.id for x in customer.child_ids] + [customer.id]
-            domain = [('state', 'in', ['open']), ('partner_id', 'in', child_partner), ('type', '=', 'out_refund')]
+            domain = [('state', 'in', ['open']), ('partner_id', 'in', child_partner), ('type', 'in', ['out_refund', 'out_invoice'])]
             invoice_recs = self.env['account.invoice'].search(domain)
             if not len(invoice_recs):
                 continue
