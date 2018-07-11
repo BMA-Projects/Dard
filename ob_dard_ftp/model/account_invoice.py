@@ -22,7 +22,7 @@ osSep = os.sep
 class account_invoice_line(models.Model):
     _inherit = 'account.invoice.line'
 
-    generated = fields.boolean('Easibill Generated')
+    generated = fields.Boolean('Easibill Generated')
 
 
 class account_invoice(models.Model):
