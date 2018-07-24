@@ -18,9 +18,9 @@
     'author': 'OfficeBrain',
     'website': 'http://www.officebrain.com/',
     'depends': ['base_action_rule', 'stock', 'sale'],
-#     'data': [
-#          'ob_billing_action_rule_data.xml',
-#      ],
+    'data': [
+         'security/stock_security.xml',
+     ],
     'installable': True,
     'auto_install': False,
 }

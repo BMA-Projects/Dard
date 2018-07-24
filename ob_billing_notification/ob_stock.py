@@ -72,8 +72,8 @@ class stock_picking(osv.osv):
                 mail_id = False
                 #Check 'Create Invoice' is 'On Demand' and invoice should not be paid.
                 if sale.order_policy == 'manual' and not sale.invoiced:
-                    category_id = self.pool.get('ir.module.category').search(cr, uid, [('name','=','Accounting & Finance')])
-                    manager_ids = group_obj.search(cr, uid, [('name','=', 'Financial Manager'),('category_id','in',category_id)])
+                    category_id = self.pool.get('ir.module.category').search(cr, uid, [('name','=','Warehouse')])
+                    manager_ids = group_obj.search(cr, uid, [('name','=', 'Delivery Notifications'),('category_id','in',category_id)])
                     user_ids = group_obj.browse(cr, uid, manager_ids, context=context)[0].users
                     emails = []
                     for user_id in user_ids:
