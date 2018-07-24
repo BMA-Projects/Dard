@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="multi_entries_confirm_view_wiz" model="ir.ui.view">
+            <field name="name">multi.entries.wiz.form.view.wiz</field>
+            <field name="model">multi.entries.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Confirm">
+                    <h3>By clicking on confirm, it will post the selected unposted journal entries.</h3>
+                    <footer>
+                        <button name="confirm_multi_entries" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_multi_entries_confirm_wiz" model="ir.actions.act_window">
+            <field name="name">Multi Entries Confirmation</field>
+            <field name="res_model">multi.entries.wiz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

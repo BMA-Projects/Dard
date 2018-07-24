@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <act_window id="multiple_confirm_entries"
+                    multi="True"
+                    name="Confirm Entries"
+                    res_model="multi.entries.wiz"
+                    src_model="account.move"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"
+                    view_type="form"/>
+    </data>
+</openerp>
