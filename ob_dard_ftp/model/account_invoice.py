@@ -22,7 +22,7 @@ osSep = os.sep
 class account_invoice_line(models.Model):
     _inherit = 'account.invoice.line'
 
-    generated = fields.Boolean('Easibill Generated')
+    # generated = fields.Boolean('Easibill Generated')
 
 
 class account_invoice(models.Model):
@@ -105,7 +105,7 @@ class account_invoice(models.Model):
                     picking_search = self.env['stock.picking'].search([('name','=',customer_invoice.origin),('picking_type_id.code','=','outgoing')])
                     sale_search = self.env['sale.order'].search([('name','=',picking_search.origin)])
                     for inv_line in customer_invoice.invoice_line:
-                        if inv_line.product_id.type != 'service' and not inv_line.generated:
+                        if inv_line.product_id.type != 'service': # and not inv_line.generated
                             product_number = inv_line.product_id.default_code or ' '
                             product_description = inv_line.product_id.name or ' '
                             unit_price = inv_line.price_unit or ' '
@@ -147,14 +147,14 @@ class account_invoice(models.Model):
                                          str(product_description), str(quantity_shipped), str(unit_price), str(unit_of_measure), str(item_extended_price), 
                                          str(invoice_note), str(terms), str(ship_via), str(actual_ship_date), str(total_invoice_tax_amount), 
                                          str(total_invoice_amount)]
-                                    inv_line.generated = True
+                                    # inv_line.generated = True
                                     final_list.append(data_list)        
                 
                 if customer_invoice.origin and customer_invoice.origin.startswith('SO'):
                     if customer_invoice.invoice_line:
                         for inv_line in customer_invoice.invoice_line:
-                            if inv_line.generated:
-                                continue
+                            # if inv_line.generated:
+                            #     continue
                             quantity_shipped = 0.00
                             stock_move = self.env['stock.move'].search([('origin','=',inv_line.invoice_id.origin),
                                                             ('product_id','=',inv_line.product_id.id),
@@ -209,7 +209,7 @@ class account_invoice(models.Model):
                                                      str(product_description), str(quantity_shipped), str(unit_price), str(unit_of_measure), str(item_extended_price), 
                                                      str(invoice_note), str(terms), str(ship_via), str(actual_ship_date), str(total_invoice_tax_amount), 
                                                      str(total_invoice_amount)]
-                                        inv_line.generated = True
+                                        # inv_line.generated = True
                                         final_list.append(data_list)
         for lst in final_list:
             lst = [str(updated_value).replace(',',' ') for updated_value in lst]
