@@ -76,7 +76,7 @@
                     <td> <p t-field="o.date_order"  t-field-options='{"format": "MM/dd/yyyy"}'/> </td>
                     <td> <span t-field="o.user_id.name"/> </td>
                     <td> <span t-field="o.payment_term.name"/> </td>
-                    <td> <span t-field="o.partner_id.cust_number or o.partner_id.parent_id.cust_number"/> </td>
+                    <td> <span t-esc="o.partner_id.cust_number or o.partner_id.parent_id.cust_number"/> </td>
                 </tr>
             </table>
 
