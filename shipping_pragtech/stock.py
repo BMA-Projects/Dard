@@ -51,7 +51,10 @@ from openerp import  netsvc
 import math
 import socket
 import urllib2
-import Image
+try:
+    from PIL import Image
+except:
+    import Image
 
 import logging 
 from fedex.services.address_validation_service import FedexAddressValidationRequest 
