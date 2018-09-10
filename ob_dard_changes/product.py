@@ -56,11 +56,11 @@ class product_product(models.Model):
             rec.min_qty_ror = reorder_rule.product_min_qty or ''
 
     default_code = fields.Char(string='Item Number', select=True) #overridden to change string
-    allocated_quantity = fields.Float("Allocated Quantity", compute='_get_allocated_qty')
-    purchased_quantity = fields.Float("Purchased Quantity", compute='_get_purchased_qty')
-    consumed_quantity = fields.Float("Consumed Quantity", compute='_get_consumed_qty')
+    allocated_quantity = fields.Float("Allocated Quantity", compute='_get_allocated_qty', store=True)
+    purchased_quantity = fields.Float("Purchased Quantity", compute='_get_purchased_qty', store=True)
+    consumed_quantity = fields.Float("Consumed Quantity", compute='_get_consumed_qty', store=True)
     old_sku = fields.Char(string='Old SKU', select=True)
-    min_qty_ror = fields.Char(string="Minimum Quantity",compute='_get_minqty')
+    min_qty_ror = fields.Char(string="Minimum Quantity",compute='_get_minqty', store=True)
     qty_write_date = fields.Date(string="Product QTY Write Date", default=fields.Date.today())
     
     # Override this function for use of auto set product template and product variant in bom while the creation of bom from product variant.
@@ -156,7 +156,7 @@ class product_product(models.Model):
                     product.qty_write_date = datetime.datetime.now().strftime ("%Y-%m-%d")
     
 
-    total_sold_qty_this_year = fields.Float('Qty sold this year', compute=get_this_year_qty)
+    total_sold_qty_this_year = fields.Float('Qty sold this year', compute=get_this_year_qty, store=True)
     total_sold_qty_last_year = fields.Float('Qty sold last year', readonly=True)
 
 
