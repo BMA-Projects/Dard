@@ -64,8 +64,8 @@ class sale_order(models.Model):
      
     def get_dynamic_manufecture_order(self,cr, uid, sale_id,context=None):
         sale_order_data = False
-        if self.search(cr, uid, [('id', '=', sale_id)]):
-            sale_order_data = self.browse(cr, uid, sale_id)
+        if self.search(cr, uid, [('id', '=', sale_id)], context=context):
+            sale_order_data = self.browse(cr, uid, sale_id, context=context)
         mo_obj = self.pool.get('mrp.production')
         page_list = []
         page_dict = {}
@@ -78,10 +78,10 @@ class sale_order(models.Model):
                     page_dict.update({mrp_rec.name:mrp_rec})
         return page_dict
      
-    def get_dynamic_purchase_order(self,cr, uid, sale_id):
+    def get_dynamic_purchase_order(self,cr, uid, sale_id, context=None):
         sale_order_data = False
-        if self.search(cr, uid, [('id', '=', sale_id)]):
-            sale_order_data = self.browse(cr, uid, sale_id)
+        if self.search(cr, uid, [('id', '=', sale_id)], context=context):
+            sale_order_data = self.browse(cr, uid, sale_id, context=context)
         purchase_obj = self.pool.get('purchase.order')
         mo_obj = self.pool.get('mrp.production')
         page_list = []
@@ -154,12 +154,12 @@ class sale_order(models.Model):
     @api.multi
     def read(self,fields=None,load='_classic_read'):
         res = super(sale_order,self).read(fields,load=load)
-        if self._context.get('bin_size'):
+        if self._context.get('bin_size') and not (self._context.get('params') and self._context.get('params').get('view_type') == 'list'):
             page_dict,page_dict_mo = {},[]
             purchase_mo_vals = {}
             for rec1 in res:
                 if rec1.get('id') and self._context:
-                    page_dict = self.get_dynamic_purchase_order(rec1.get('id'))
+                    page_dict = self.get_dynamic_purchase_order(rec1.get('id'), context=self._context)
                     page_dict_mo = self.get_dynamic_manufecture_order(rec1.get('id'),context=self._context)
                  
                 for purchase_key in page_dict:
@@ -242,19 +242,18 @@ class sale_order(models.Model):
   
     @api.v7
     def fields_view_get(self, cr, user, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
+        if context is None: context = {}
         res = super(sale_order, self).fields_view_get(cr, user, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=submenu)
-        if context is None:context = {}
         sale_id = context.get('active_id',False)
         stock_move_obj  = self.pool.get('stock.move')
         page_dict_mo = {}
-        
         if view_type == 'form':
             page_list = []
             page_dict = {}
             doc = etree.XML(res['arch'])
             nodes = doc.xpath("//notebook")
             if sale_id and context.get('active_model') == 'sale.order':
-                page_dict = self.get_dynamic_purchase_order(cr, user,sale_id)
+                page_dict = self.get_dynamic_purchase_order(cr, user,sale_id, context=context)
                 page_dict_mo = self.get_dynamic_manufecture_order(cr, user, sale_id,context=context)
             if nodes:
                 for page_name in page_dict:
