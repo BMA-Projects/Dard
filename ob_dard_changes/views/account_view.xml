@@ -87,6 +87,22 @@
             </field>
         </record>
 
+
+        <record id="account_move_line_inherited" model="ir.ui.view">
+            <field name="name">account.move.form.inherited</field>
+            <field name="model">account.move</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_id']//form//field[@name='partner_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']//tree//field[@name='partner_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
         <record id="action_sale_order_credit_limit_form" model="ir.actions.act_window">
             <field name="name">Credit Hold Orders</field>
             <field name="res_model">sale.order</field>

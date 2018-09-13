@@ -142,5 +142,12 @@
         </t>
     <!--</t>-->
 </template>
+
+
+    <template id="report_agedpartnerbalance" inherit_id="account.report_agedpartnerbalance">
+        <xpath expr="//tbody/tr[2]" position="replace">
+        </xpath>
+    </template>
+
 </data>
 </openerp>
