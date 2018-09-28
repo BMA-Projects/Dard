@@ -49,9 +49,7 @@ openerp.ob_tree_view_limit = function(instance) {
                                      '<option value="80">80</option>' +
                                      '<option value="200">200</option>' +
                                      '<option value="500">500</option>' +
-                                     '<option value="1000">1000</option>' +
-                                     '<option value="2000">2000</option>' +
-                                     '<option value="NaN">' + _t("Unlimited") + '</option>')
+                                     '<option value="1000">1000</option>')
                              .change(function () {
                                  var val = parseInt($select.val(), 10);
                                  self._limit = (isNaN(val) ? null : val);
