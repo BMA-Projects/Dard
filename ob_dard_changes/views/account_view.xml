@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+        <record model="workflow.activity" id="account.act_open_test">
+            <field name="wkf_id" ref="account.wkf"/>
+            <field name="name">re-open</field>
+            <field name="action">action_open()</field>
+            <field name="kind">function</field>
+        </record>
+
         <record id="view_sale_order_credit_limit_tree" model="ir.ui.view">
             <field name="name">view.sale.order.credit.limit.tree.</field>
             <field name="model">sale.order</field>

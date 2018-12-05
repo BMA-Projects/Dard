@@ -19,6 +19,12 @@ class account_invoice(models.Model):
     zorch_visible = fields.Boolean('Zorch Fields Visible')
     state_id = fields.Many2one(string="State", related="partner_id.state_id")
 
+    @api.multi
+    def action_open(self):
+        for rec in self:
+            query = "update account_invoice set state='open' where id=%s" % (rec.id)
+            rec.env.cr.execute(query)
+        return True
 
     @api.multi
     def onchange_partner_id(self, type, partner_id, date_invoice=False,
