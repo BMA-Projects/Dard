@@ -51,7 +51,7 @@
         </record>
         <!-- shipping_usps_response end -->
 
-        <!-- <record id="view_picking_out_form_inherit_shb1" model="ir.ui.view">
+        <record id="view_picking_out_form_inherit_shb1" model="ir.ui.view">
             <field name="name">stock.picking.out.form.inherit.shb1</field>
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form" />
@@ -61,9 +61,9 @@
                     <field name="shipping_rate" attrs="{'invisible': [('state','!=','done')]}" />
                 </field>    
             </field>
-        </record> -->
+        </record>
 
-        <!-- <record id="view_picking_out_form_inherit12" model="ir.ui.view">
+        <record id="view_picking_out_form_inherit12" model="ir.ui.view">
             <field name="name">stock.picking.out.form.inherit12</field>
             <field name="model">stock.picking</field>
             <field name="type">form</field>
@@ -151,8 +151,8 @@
                     </page>
             </field>
         </record>
- -->        
-        <!--<record id="view_picking_inherit_form2_inherit" model="ir.ui.view">
+
+        <record id="view_picking_inherit_form2_inherit" model="ir.ui.view">
             <field name="name">view_picking_inherit_form2.inherit</field>
             <field name="model">stock.picking</field>
             <field name="type">form</field>
@@ -162,16 +162,17 @@
                     <button name="create_pdf"  type="object" icon="gtk-apply" string="Print Labels" states="assigned" groups="base.group_sale_manager"/>
                 </xpath>
             </field>
-        </record>-->
-        <!--<record id="view_picking_out_form_inherit1" model="ir.ui.view">
+        </record>
+
+        <record id="view_picking_out_form_inherit1" model="ir.ui.view">
             <field name="name">stock.picking.out.form.inherit1</field>
             <field name="model">stock.picking</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                &lt;!&ndash; <xpath expr="/form/header/button[@string='Cancel Transfer']" position="after">
+                <xpath expr="/form/header/button[@string='Cancel Transfer']" position="after">
                     <button name="%(action_view_generate_shipping_labels)d" icon="gtk-apply" string="Generate Shipment Labels" type="action" states="confirmed"/>
-                </xpath> &ndash;&gt;
+                </xpath>
                 <field name="carrier_id" position="replace">
                     <field name="carrier_id" readonly="1"/>
 				</field>                
@@ -185,7 +186,7 @@
                             <field name="sale_id" string="Sale Order Number" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
                             <field name="use_shipping" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
                             <field name="shipping_type" on_change="onchange_mapping_country(is_customer_account,shipping_type,partner_id)" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
-                            &lt;!&ndash; <field name="is_customer_account"  attrs="{'readonly':[('carrier_tracking_ref','!=',False)],'invisible':[('shipping_type','=',False)]}"/> &ndash;&gt;
+                            <field name="is_customer_account"  attrs="{'readonly':[('carrier_tracking_ref','!=',False)],'invisible':[('shipping_type','=',False)]}"/>
                             <field name="is_customer_account" readonly="1"/>
                             <field name="is_multiple_label" invisible="1"/>
                         </group>
@@ -193,11 +194,11 @@
 						    <separator string = "Shipping Accounts" colspan="4"/>
 						    <field name="fedex_id"  attrs="{'invisible':[('shipping_type','in',['UPS','USPS',False])],'readonly':[('carrier_tracking_ref','!=',False)]}" />
 						    <field name="ups_id"  attrs="{'invisible':[('shipping_type','in',['Fedex','USPS',False])],'readonly':[('carrier_tracking_ref','!=',False)]}"/>
-						    &lt;!&ndash; <field name="usps_id" attrs="{'invisible':[('shipping_type','in',['UPS','Fedex'])],'readonly':[('carrier_tracking_ref','!=',False)]}"/> &ndash;&gt;
+						    <field name="usps_id" attrs="{'invisible':[('shipping_type','in',['UPS','Fedex'])],'readonly':[('carrier_tracking_ref','!=',False)]}"/>
 						</group>
                          <group colspan="4" col="4" >
                             <separator string = "Weight" colspan="4"/>
-                            &lt;!&ndash; <field name="weight_package"  string="Package Weight(LB)" colspan="4" required="True" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/> &ndash;&gt;
+                            <field name="weight_package"  string="Package Weight(LB)" colspan="4" required="True" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
                             <field name="weight_package"  string="Package Weight(LB)" colspan="4"/>
 							<field name="no_of_packets" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
 							<field name="max_weight" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
@@ -215,7 +216,7 @@
                         <group colspan="2">
                         	<separator string = "Package Details" colspan="4"/>
                         	<field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}">
-                        	&lt;!&ndash; <field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2"> &ndash;&gt;
+                        	<field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2">
                         		
                         		<tree editable="bottom">
                         			<field name="sequence"/>
@@ -255,7 +256,7 @@
                                 <field name="dropoff_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="service_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="packaging_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
-                               &lt;!&ndash; <field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" /> &ndash;&gt;
+                                <field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="payment_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="physical_packaging_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                             </group>
@@ -283,7 +284,7 @@
                             <separator string = "Shipping Quotes" colspan="2" />
                             <field name="response_usps_ids" nolabel="1" widget="one2many_list"  colspan="2" >
                                 <tree colors="blue:cust_default==True;red:sys_default==True;green:is_label_genrated==True" string="Shipping Quotes" >
-                                    &lt;!&ndash; <button name="generate_tracking_no" string="Accept and Generate Label" type="object" confirm="Are you Sure to generate a label..?" attrs="{'invisible':[('is_label_genrated','=',True)]}" icon="terp-camera_test" /> &ndash;&gt;
+                                    <button name="generate_tracking_no" string="Accept and Generate Label" type="object" confirm="Are you Sure to generate a label..?" attrs="{'invisible':[('is_label_genrated','=',True)]}" icon="terp-camera_test" />
                                     <field name="sequence"/>
                 					<field name="pack_info"/>
                                     <field name="name"/>
@@ -293,14 +294,11 @@
                                     <field name="rate" />
                                     <field name="cust_default" invisible="1"/>
                                     <field name="sys_default" invisible="1" />
-                                    &lt;!&ndash; <button name="show_attachment" type="object" string="Show Receipt" attrs="{'invisible':[('is_label_genrated','!=',True)]}" icon="gtk-justify-fill"/> &ndash;&gt;
+                                    <button name="show_attachment" type="object" string="Show Receipt" attrs="{'invisible':[('is_label_genrated','!=',True)]}" icon="gtk-justify-fill"/>
                                 </tree>
                             </field>
                         </group>
-
-                        
                     </page>
-                        
                     </page>
             </field>
         </record>-->
@@ -308,7 +306,7 @@
 		  
 		
         <!-- Shipping Info -->
-        <!-- <record id="view_shipping_picking_out_search" model="ir.ui.view">
+        <record id="view_shipping_picking_out_search" model="ir.ui.view">
             <field name="name">stock.picking.shipping.out.search</field>
             <field name="model">stock.picking</field>
             <field name="type">search</field>
@@ -339,9 +337,9 @@
                     </group>
                 </search>
             </field>
-        </record> -->
+        </record>
 
-       <!--  <record id="view_shipping_picking_out_tree" model="ir.ui.view">
+       <record id="view_shipping_picking_out_tree" model="ir.ui.view">
             <field name="name">stock.picking.shipping.out.tree</field>
             <field name="model">stock.picking</field>
             <field name="type">tree</field>
@@ -361,9 +359,9 @@
                     <button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward"/>
                 </tree>
             </field>
-        </record> -->
+        </record>
         
-        <!-- <record id="view_shipping_picking_out_form" model="ir.ui.view">
+        <record id="view_shipping_picking_out_form" model="ir.ui.view">
             <field name="name">stock.picking.shipping.out.form</field>
             <field name="model">stock.picking</field>
             <field name="type">form</field>
@@ -473,10 +471,10 @@
                     </notebook>
                 </form>
            </field>
-       </record> -->
+       </record>
 
 
-       <!-- <record id="action_shipping_picking_tree" model="ir.actions.act_window">
+       <record id="action_shipping_picking_tree" model="ir.actions.act_window">
             <field name="name">Outgoing Orders For Shipping</field>
             <field name="res_model">stock.picking</field>
             <field name="type">ir.actions.act_window</field>
@@ -486,21 +484,21 @@
             <field name="context">{'contact_display': 'partner_address', 'search_default_available': 1}</field>
             <field name="search_view_id" ref="view_shipping_picking_out_search"/>
             <field name="help">This is the list of all delivery orders with only their shipping tab.</field>
-        </record> -->
-        <!-- <record id="action_shipping_picking_tree_out_view1_waiting" model="ir.actions.act_window.view">
+        </record>
+        <record id="action_shipping_picking_tree_out_view1_waiting" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_shipping_picking_out_tree"/>
             <field name="act_window_id" ref="action_shipping_picking_tree"/>
-        </record> -->
-        <!-- <record id="action_shipping_picking_tree_out_view2_waiting" model="ir.actions.act_window.view">
+        </record>
+        <record id="action_shipping_picking_tree_out_view2_waiting" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_shipping_picking_out_form"/>
             <field name="act_window_id" ref="action_shipping_picking_tree"/>
-        </record> -->
+        </record>
 
-        <!-- <menuitem action="action_shipping_picking_tree" id="menu_action_shipping_picking_tree" parent="stock.menu_stock_warehouse_mgmt" sequence="4"/> -->
+        <menuitem action="action_shipping_picking_tree" id="menu_action_shipping_picking_tree" parent="stock.menu_stock_warehouse_mgmt" sequence="4"/>
 		
 		
 		 
