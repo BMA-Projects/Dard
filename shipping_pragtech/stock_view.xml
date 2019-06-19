@@ -215,7 +215,7 @@
                         </group>
                         <group colspan="2">
                         	<separator string = "Package Details" colspan="4"/>
-                        	<field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}">
+                        	<!--<field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}">-->
                         	<field name="pack_weight_ids" nolabel="1" widget="one2many_list" context="{'pack_weight_ids': pack_weight_ids}" colspan="2">
                         		
                         		<tree editable="bottom">
