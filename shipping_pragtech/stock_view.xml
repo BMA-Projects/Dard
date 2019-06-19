@@ -63,7 +63,7 @@
             </field>
         </record>
 
-        <record id="view_picking_out_form_inherit12" model="ir.ui.view">
+        <!--<record id="view_picking_out_form_inherit12" model="ir.ui.view">
             <field name="name">stock.picking.out.form.inherit12</field>
             <field name="model">stock.picking</field>
             <field name="type">form</field>
@@ -150,7 +150,7 @@
                     </page>
                     </page>
             </field>
-        </record>
+        </record>-->
 
         <record id="view_picking_inherit_form2_inherit" model="ir.ui.view">
             <field name="name">view_picking_inherit_form2.inherit</field>
