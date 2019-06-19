@@ -209,7 +209,7 @@
 							<field name="package_height" attrs="{'readonly':[('carrier_tracking_ref','!=',False)], 'invisible': 1}"/>
                             <field name="product_ul" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
                             <separator string = "Insurance" colspan="4"/>
-                            <field name="insurance_amount" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+                            <!--<field name="insurance_amount" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>-->
                             <br/><br/><br/><br/><br/><br/>
                             <button string="Add Packet Lines" icon="gtk-apply" name="add_packet_line" type="object" attrs="{'invisible':[('carrier_tracking_ref','!=',False)]}"/>
                         </group>
@@ -319,8 +319,8 @@
                         <field name="name"/>
                         <field name="partner_id" />
                         <field name="origin"/>
-                        <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
-						<field name="stock_journal_id"  widget="selection"/>
+                        <!--<field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+						<field name="stock_journal_id"  widget="selection"/>-->
                         <field name="company_id" widget="selection" groups="base.group_multi_company"/>
                    </group>
                     <newline/>
@@ -353,8 +353,8 @@
                     <field name="backorder_id" groups="base.group_extended"/>
 					<field name="backorder_id" />
                     <field name="invoice_state"/>
-                    <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
-					<field name="stock_journal_id"  widget="selection"/>
+                    <!--<field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+					<field name="stock_journal_id"  widget="selection"/>-->
                     <field name="state"/>
                     <button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward"/>
                 </tree>
@@ -371,7 +371,7 @@
                         <group colspan="4" col="4">
                             <field name="name" readonly="1"/>
                             <field name="origin" readonly="1"/>
-                            <field name="address_id" on_change="onchange_partner_in(address_id)" context="{'contact_display':'partner'}" colspan="4"/>
+                            <!--<field name="address_id" on_change="onchange_partner_in(address_id)" context="{'contact_display':'partner'}" colspan="4"/>-->
                             <field name="carrier_id"/>
                             <field name="carrier_tracking_ref" groups="base.group_extended"/>
                             <field name="number_of_packages" groups="base.group_extended"/>
@@ -386,9 +386,9 @@
                         <group colspan="2" col="2">
                             <field name="date"/>
                             <field name="min_date" readonly="1"/>
-                            <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
-							<field name="stock_journal_id"  widget="selection"/>
-                            <field name="batch_no" />
+                            <!--<field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+							<field name="stock_journal_id"  widget="selection"/>-->
+                            <!--<field name="batch_no" />-->
                         </group>
                     </group>
                     <notebook colspan="4">
