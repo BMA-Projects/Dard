@@ -170,9 +170,9 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/header/button[@string='Cancel Transfer']" position="after">
+                <!--<xpath expr="/form/header/button[@string='Cancel Transfer']" position="after">
                     <button name="%(action_view_generate_shipping_labels)d" icon="gtk-apply" string="Generate Shipment Labels" type="action" states="confirmed"/>
-                </xpath>
+                </xpath>-->
                 <field name="carrier_id" position="replace">
                     <field name="carrier_id" readonly="1"/>
 				</field>                
@@ -186,7 +186,7 @@
                             <field name="sale_id" string="Sale Order Number" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
                             <field name="use_shipping" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
                             <field name="shipping_type" on_change="onchange_mapping_country(is_customer_account,shipping_type,partner_id)" attrs="{'readonly':[('carrier_tracking_ref','!=',False)]}"/>
-                            <field name="is_customer_account"  attrs="{'readonly':[('carrier_tracking_ref','!=',False)],'invisible':[('shipping_type','=',False)]}"/>
+                            <!--<field name="is_customer_account"  attrs="{'readonly':[('carrier_tracking_ref','!=',False)],'invisible':[('shipping_type','=',False)]}"/>-->
                             <field name="is_customer_account" readonly="1"/>
                             <field name="is_multiple_label" invisible="1"/>
                         </group>
@@ -194,7 +194,7 @@
 						    <separator string = "Shipping Accounts" colspan="4"/>
 						    <field name="fedex_id"  attrs="{'invisible':[('shipping_type','in',['UPS','USPS',False])],'readonly':[('carrier_tracking_ref','!=',False)]}" />
 						    <field name="ups_id"  attrs="{'invisible':[('shipping_type','in',['Fedex','USPS',False])],'readonly':[('carrier_tracking_ref','!=',False)]}"/>
-						    <field name="usps_id" attrs="{'invisible':[('shipping_type','in',['UPS','Fedex'])],'readonly':[('carrier_tracking_ref','!=',False)]}"/>
+						    <!--<field name="usps_id" attrs="{'invisible':[('shipping_type','in',['UPS','Fedex'])],'readonly':[('carrier_tracking_ref','!=',False)]}"/>-->
 						</group>
                          <group colspan="4" col="4" >
                             <separator string = "Weight" colspan="4"/>
@@ -256,7 +256,7 @@
                                 <field name="dropoff_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="service_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="packaging_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
-                                <field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
+                                <!--<field name="package_detail_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />-->
                                 <field name="payment_type_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                                 <field name="physical_packaging_fedex" attrs="{'required':['|', ('shipping_type','=','Fedex'),('shipping_type','=','All')],'readonly':[('carrier_tracking_ref','!=',False)]}" />
                             </group>
@@ -294,7 +294,7 @@
                                     <field name="rate" />
                                     <field name="cust_default" invisible="1"/>
                                     <field name="sys_default" invisible="1" />
-                                    <button name="show_attachment" type="object" string="Show Receipt" attrs="{'invisible':[('is_label_genrated','!=',True)]}" icon="gtk-justify-fill"/>
+                                    <!--<button name="show_attachment" type="object" string="Show Receipt" attrs="{'invisible':[('is_label_genrated','!=',True)]}" icon="gtk-justify-fill"/>-->
                                 </tree>
                             </field>
                         </group>
