@@ -4,7 +4,7 @@ Mako==1.0.0
 MarkupSafe==0.23
 Pillow==2.5.1
 http://download.gna.org/pychart/PyChart-1.39.tar.gz
-PyYAML==3.11
+PyYAML==5.4
 Werkzeug==0.9.6
 argparse==1.2.1
 decorator==3.4.0
